@@ -1818,7 +1818,7 @@ CurveWidget::pasteKeyFramesFromClipBoardToSelectedCurve()
         }
     }
     if (!curve) {
-        Dialogs::warningDialog( tr("Curve Editor").toStdString(), tr("You must select a curve first.").toStdString() );
+        Dialogs::warningDialog( tr("Редактор кривых").toStdString(), tr("You must select a curve first.").toStdString() );
 
         return;
     }
@@ -1910,7 +1910,7 @@ CurveWidget::loopSelectedCurve()
 
     CurveGuiPtr curve = ce->getSelectedCurve();
     if (!curve) {
-        Dialogs::warningDialog( tr("Curve Editor").toStdString(), tr("You must select a curve first in the view.").toStdString() );
+        Dialogs::warningDialog( tr("Редактор кривых").toStdString(), tr("You must select a curve first in the view.").toStdString() );
 
         return;
     }
@@ -1953,7 +1953,7 @@ CurveWidget::negateSelectedCurve()
     }
     CurveGuiPtr curve = ce->getSelectedCurve();
     if (!curve) {
-        Dialogs::warningDialog( tr("Curve Editor").toStdString(), tr("You must select a curve first in the view.").toStdString() );
+        Dialogs::warningDialog( tr("Редактор кривых").toStdString(), tr("You must select a curve first in the view.").toStdString() );
 
         return;
     }
@@ -1986,7 +1986,7 @@ CurveWidget::reverseSelectedCurve()
     }
     CurveGuiPtr curve = ce->getSelectedCurve();
     if (!curve) {
-        Dialogs::warningDialog( tr("Curve Editor").toStdString(), tr("You must select a curve first in the view.").toStdString() );
+        Dialogs::warningDialog( tr("Редактор кривых").toStdString(), tr("You must select a curve first in the view.").toStdString() );
 
         return;
     }
@@ -2017,7 +2017,7 @@ CurveWidget::frameSelectedCurve()
     _imp->_selectionModel->getSelectedCurves(&selection);
     if ( selection.empty() ) {
         frameAll();
-        //Dialogs::warningDialog( tr("Curve Editor").toStdString(), tr("You must select a curve first in the left pane.").toStdString() );
+        //Dialogs::warningDialog( tr("Редактор кривых").toStdString(), tr("You must select a curve first in the left pane.").toStdString() );
     } else {
         centerOn(selection, false);
     }
@@ -2157,7 +2157,7 @@ CurveWidget::exportCurveToAscii()
             KnobIPtr knob = isKnobCurve->getInternalKnob();
             KnobStringBase* isString = dynamic_cast<KnobStringBase*>( knob.get() );
             if (isString) {
-                Dialogs::warningDialog( tr("Curve Editor").toStdString(), tr("String curves cannot be imported/exported.").toStdString() );
+                Dialogs::warningDialog( tr("Редактор кривых").toStdString(), tr("String curves cannot be imported/exported.").toStdString() );
 
                 return;
             }
@@ -2165,7 +2165,7 @@ CurveWidget::exportCurveToAscii()
         }
     }
     if ( curves.empty() ) {
-        Dialogs::warningDialog( tr("Curve Editor").toStdString(), tr("You must have a curve on the editor first.").toStdString() );
+        Dialogs::warningDialog( tr("Редактор кривых").toStdString(), tr("You must have a curve on the editor first.").toStdString() );
 
         return;
     }
@@ -2233,7 +2233,7 @@ CurveWidget::importCurveFromAscii()
             KnobIPtr knob = isKnobCurve->getInternalKnob();
             KnobStringBase* isString = dynamic_cast<KnobStringBase*>( knob.get() );
             if (isString) {
-                Dialogs::warningDialog( tr("Curve Editor").toStdString(), tr("String curves cannot be imported/exported.").toStdString() );
+                Dialogs::warningDialog( tr("Редактор кривых").toStdString(), tr("String curves cannot be imported/exported.").toStdString() );
 
                 return;
             }
@@ -2242,7 +2242,7 @@ CurveWidget::importCurveFromAscii()
         }
     }
     if ( curves.empty() ) {
-        Dialogs::warningDialog( tr("Curve Editor").toStdString(), tr("You must have a curve on the editor first.").toStdString() );
+        Dialogs::warningDialog( tr("Редактор кривых").toStdString(), tr("You must have a curve on the editor first.").toStdString() );
 
         return;
     }
