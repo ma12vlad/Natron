@@ -74,7 +74,7 @@ AboutWindow::AboutWindow(QWidget* parent)
 #endif
 #endif
 
-    setWindowTitle( tr("About %1").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    setWindowTitle( tr("Pro %1").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _mainLayout = new QVBoxLayout(this);
     setLayout(_mainLayout);
 
