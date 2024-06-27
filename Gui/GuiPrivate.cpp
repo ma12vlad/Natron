@@ -412,7 +412,7 @@ GuiPrivate::createCurveEditorGui()
 {
     _curveEditor = new CurveEditor(_gui, _appInstance.lock()->getTimeLine(), _gui);
     _curveEditor->setScriptName(kCurveEditorObjectName);
-    _curveEditor->setLabel( tr("Curve Editor").toStdString() );
+    _curveEditor->setLabel( tr("Redaktor krivih").toStdString() );
     _curveEditor->setVisible(false);
     _gui->registerTab(_curveEditor, _curveEditor);
 }
