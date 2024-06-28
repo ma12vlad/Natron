@@ -426,3 +426,15 @@ OBJECTIVE_SOURCES += \
     $$PWD/../Gui/QtMac.mm \
     $$PWD/../Gui/TaskBarMac.mm
 }
+
+TRANSLATIONS = $$files(translations/Gui_ru.ts)
+
+qtPrepareTool(LRELEASE, lrelease)
+for(tsfile, TRANSLATIONS) {
+    qmfile = $$tsfile
+    qmfile ~= s,.ts$,.qm,
+    if (!exists($$qmfile)) {
+        command = $$LRELEASE -removeidentical $$tsfile -qm $$qmfile
+        system($$command)|error("Translation: Failed to run: $$command")
+    }
+}
