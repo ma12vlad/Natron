@@ -125,8 +125,8 @@ void
 OverlayColorButton::mousePressEvent(QMouseEvent* e)
 {
     if ( triggerButtonIsRight(e) ) {
-        StandardButtonEnum rep = Dialogs::questionDialog(tr("Warning").toStdString(),
-                                                         tr("Are you sure you want to reset the overlay color?").toStdString(),
+        StandardButtonEnum rep = Dialogs::questionDialog(tr("Предупреждение").toStdString(),
+                                                         tr("Уверены, что хотите сбросить цвет наложения?").toStdString(),
                                                          false);
         if (rep == eStandardButtonYes) {
             _panel->resetHostOverlayColor();

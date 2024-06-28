@@ -165,7 +165,7 @@ DSMoveKeysAndNodesCommand::DSMoveKeysAndNodesCommand(const DopeSheetKeyPtrList &
     _dt(dt),
     _model(model)
 {
-    setText( tr("Move selected keys") );
+    setText( tr("Перемещение выбранных клавиш") );
     std::set<NodePtr> nodesSet;
     for (std::vector<DSNodePtr>::const_iterator it = nodes.begin(); it != nodes.end(); ++it) {
         DopeSheetItemType type = (*it)->getItemType();
@@ -344,7 +344,7 @@ DSTransformKeysCommand::DSTransformKeysCommand(const DopeSheetKeyPtrList &keys,
         data.keys.push_back(*it);
     }
 
-    setText( tr("Scale keyframes") );
+    setText( tr("Масштабирование ключевых кадров") );
 }
 
 void
@@ -499,7 +499,7 @@ DSLeftTrimReaderCommand::DSLeftTrimReaderCommand(const DSNodePtr &reader,
     _oldTime(oldTime),
     _newTime(newTime)
 {
-    setText( tr("Trim left") );
+    setText( tr("Обрезать cлева") );
 }
 
 void
@@ -586,7 +586,7 @@ DSRightTrimReaderCommand::DSRightTrimReaderCommand(const DSNodePtr &reader,
     _oldTime(oldTime),
     _newTime(newTime)
 {
-    setText( tr("Trim right") );
+    setText( tr("Обрезать справа") );
 }
 
 void
@@ -672,7 +672,7 @@ DSSlipReaderCommand::DSSlipReaderCommand(const DSNodePtr &dsNodeReader,
     _dt(dt),
     _model(model)
 {
-    setText( tr("Slip reader") );
+    setText( tr("Слип-ридер") );
 }
 
 void
@@ -789,7 +789,7 @@ DSRemoveKeysCommand::DSRemoveKeysCommand(const std::vector<DopeSheetKey> &keys,
     _keys(keys),
     _model(model)
 {
-    setText( tr("Delete selected keyframes") );
+    setText( tr("Удалить выбранные ключевые кадры") );
 }
 
 void
@@ -846,7 +846,7 @@ DSSetSelectedKeysInterpolationCommand::DSSetSelectedKeysInterpolationCommand(con
     _changes(changes),
     _model(model)
 {
-    setText( tr("Set selected keys interpolation") );
+    setText( tr("Установить интерполяцию выбранных ключей") );
 }
 
 void
@@ -902,7 +902,7 @@ DSPasteKeysCommand::DSPasteKeysCommand(const std::vector<DopeSheetKey> &keys,
     }
 
     _refTime = _model->getTimelineCurrentTime();
-    setText( tr("Paste keyframes") );
+    setText( tr("Вставка ключевых кадров") );
     for (std::size_t i = 0; i < keys.size(); ++i) {
         _keys.push_back(keys[i]);
         if (_refKeyindex == -1) {

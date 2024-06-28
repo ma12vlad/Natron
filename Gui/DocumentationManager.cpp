@@ -358,7 +358,7 @@ DocumentationManager::handler(QHttpRequest *req,
                                                 "<link rel=\"stylesheet\" href=\"_static/style.css\" type=\"text/css\" />"
                                                 "</head>"
                                                 "<body>")
-                              .arg( tr("%1 %2 documentation")
+                              .arg( tr("%1 %2 документация")
                                     .arg( QString::fromUtf8(NATRON_APPLICATION_NAME) )
                                     .arg( QString::fromUtf8(NATRON_VERSION_STRING) ) );
         QString groupBodyEnd = QString::fromUtf8("</ul>"
@@ -372,7 +372,7 @@ DocumentationManager::handler(QHttpRequest *req,
                                               "<h3>%1</h3>"
                                               "<ul>"
                                               "<li><a href=\"/index.html\">NATRON_DOCUMENTATION</a> &raquo;</li>")
-                            .arg( tr("Navigation") );
+                            .arg( tr("Навигация") );
         QString navFooter = QString::fromUtf8("</ul>"
                                               "</div>");
         for (int i = 0; i < options.size(); ++i) {
@@ -416,15 +416,15 @@ DocumentationManager::handler(QHttpRequest *req,
                                                            "<p>%2</p>"
                                                            "<div class=\"toctree-wrapper compound\">"
                                                            "<ul>")
-                                         .arg( tr("%1 nodes").arg( tr( group.toUtf8().constData() ) ) )
-                                         .arg( tr("The following sections contain documentation about every node in the %1 group.").arg( tr( group.toUtf8().constData() ) ) + QLatin1Char(' ') + tr("Node groups are available by clicking on buttons in the left toolbar, or by right-clicking the mouse in the Node Graph area.") + QLatin1Char(' ') + tr("Please note that documentation is also generated automatically for third-party OpenFX plugins.")
+                                         .arg( tr("%1 узлы").arg( tr( group.toUtf8().constData() ) ) )
+                                         .arg( tr("Следующие разделы содержат документацию по каждому узлу в группе %1.").arg( tr( group.toUtf8().constData() ) ) + QLatin1Char(' ') + tr("Группы Узлов доступны при нажатии кнопок на левой панели инструментов или при щелчке правой кнопкой мыши в области Cхемы Узлов.") + QLatin1Char(' ') + tr("Обратите внимание, что документация также генерируется автоматически для сторонних плагинов OpenFX.")
  
                                                );
                 html.append(groupHeader);
                 html.replace(QString::fromUtf8("__REPLACE_TITLE__"), tr("%1 nodes").arg( tr( group.toUtf8().constData() ) ) );
                 html.append(navHeader);
                 html.append( QString::fromUtf8("<li><a href=\"/_group.html\">%1</a> &raquo;</li>")
-                             .arg( tr("Reference Guide") ) );
+                             .arg( tr("Справочное руководство") ) );
                 html.append(navFooter);
                 html.append(groupBodyStart);
 
@@ -450,15 +450,15 @@ DocumentationManager::handler(QHttpRequest *req,
                                                        "<p>%2</p>"
                                                        "<div class=\"toctree-wrapper compound\">"
                                                        "<ul>")
-                                     .arg( tr("Reference Guide") )
-            .arg ( tr("The first section in this manual describes the various options available from the %1 preference settings. The next section gives the documentation for the various environment variables that may be used to control %1's behavior. It is followed by one section for each node group in %1.")
-                  .arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) + QLatin1Char(' ') + tr("Node groups are available by clicking on buttons in the left toolbar, or by right-clicking the mouse in the Node Graph area.") + QLatin1Char(' ') + tr("Please note that documentation is also generated automatically for third-party OpenFX plugins.") );
+                                     .arg( tr("Справочное руководство") )
+            .arg ( tr("В первом разделе этого руководства описаны различные параметры, доступные в настройках предпочтений %1. В следующем разделе представлена ​​документация по различным переменным среды, которые можно использовать для управления поведением %1. За ним следует один раздел для каждой группы узлов в %1.")
+                  .arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) + QLatin1Char(' ') + tr("Группы Узлов доступны при нажатии кнопок на левой панели инструментов или при щелчке правой кнопкой мыши в области Cхемы Узлов.") + QLatin1Char(' ') + tr("Обратите внимание, что документация также генерируется автоматически для сторонних плагинов OpenFX.") );
             html.append(groupHeader);
-            html.replace( QString::fromUtf8("__REPLACE_TITLE__"), tr("Reference Guide") );
+            html.replace( QString::fromUtf8("__REPLACE_TITLE__"), tr("Справочное руководство") );
             html.append(navHeader);
             html.append(navFooter);
             html.append(groupBodyStart);
-            html.append( QString::fromUtf8("<li class=\"toctree-l1\"><a href=\"/_prefs.html\">%1</a></li>").arg( tr("%1 preferences").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) ) );
+            html.append( QString::fromUtf8("<li class=\"toctree-l1\"><a href=\"/_prefs.html\">%1</a></li>").arg( tr("Предпочтения %1").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) ) );
 
             QStringList groups;
             // Group ordering is set at every place in the code where GROUP_ORDER appears in the comments
@@ -495,7 +495,7 @@ DocumentationManager::handler(QHttpRequest *req,
             for (int i = 0; i < groups.size(); ++i) {
                 html.append( QString::fromUtf8("<li class='toctree-l1'><a href='/_group.html?id=%1'>%2</a></li>")
                              .arg( groups.at(i) )
-                             .arg( tr("%1 nodes").arg( tr( groups.at(i).toUtf8().constData() ) ) )
+                             .arg( tr("%1 узлы").arg( tr( groups.at(i).toUtf8().constData() ) ) )
                              );
             }
             html.append(groupBodyEnd);
@@ -560,7 +560,7 @@ DocumentationManager::handler(QHttpRequest *req,
                                              "</div>"
                                              "</div>"
                                              "</body>"
-                                             "</html>").arg( tr("Page not found") );
+                                             "</html>").arg( tr("Страница не найдена") );
         body = parser(notFound, docDir).toUtf8();
         status = 404;
     }
@@ -621,7 +621,7 @@ DocumentationManager::parser(QString html,
                                        "<input type=\"hidden\" name=\"area\" value=\"default\" />"
                                        "</form>"
                                        "</div>")
-                     .arg( tr("Search docs") ) );
+                     .arg( tr("Поиск документов") ) );
     menuHTML.append( QString::fromUtf8("<div id=\"mainMenu\">") );
     if ( indexFile.exists() ) {
         if ( indexFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
@@ -668,7 +668,7 @@ DocumentationManager::parser(QString html,
     }
 
     // replace "NATRON_DOCUMENTATION" with current version
-    result.replace( QString::fromUtf8("NATRON_DOCUMENTATION"), tr("%1 %2 documentation").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).arg( QString::fromUtf8(NATRON_VERSION_STRING) ) );
+    result.replace( QString::fromUtf8("NATRON_DOCUMENTATION"), tr("%1 %2 документация").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).arg( QString::fromUtf8(NATRON_VERSION_STRING) ) );
 
     return result;
 }             // DocumentationManager::parser

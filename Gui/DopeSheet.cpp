@@ -828,7 +828,7 @@ DopeSheet::renameSelectedNode()
 
     _imp->selectionModel->getCurrentSelection(&keys, &selectedNodes);
     if ( selectedNodes.empty() || (selectedNodes.size() > 1) ) {
-        Dialogs::errorDialog( tr("Rename node").toStdString(), tr("You must select exactly 1 node to rename.").toStdString() );
+        Dialogs::errorDialog( tr("Переименовать Узел").toStdString(), tr("Вы должны выбрать ровно 1 Узел для переименования.").toStdString() );
 
         return;
     }
@@ -882,7 +882,7 @@ DopeSheet::pasteKeys(bool relative)
         std::list<DSKnobPtr> dstKnobs;
         _imp->editor->getHierarchyView()->getSelectedDSKnobs(&dstKnobs);
         if (dstKnobs.empty()) {
-            Dialogs::warningDialog(tr("Paste").toStdString(), tr("You must select at least one parameter dimension on the left to perform this action").toStdString());
+            Dialogs::warningDialog(tr("Вставить").toStdString(), tr("Для выполнения этого действия необходимо выбрать хотя бы одно измерение параметра слева").toStdString());
             return;
         }
         _imp->pushUndoCommand( new DSPasteKeysCommand(toPaste, dstKnobs, relative, _imp->editor) );
@@ -896,7 +896,7 @@ DopeSheet::pasteKeys(const std::vector<DopeSheetKey>& keys, bool relative)
         std::list<DSKnobPtr> dstKnobs;
         _imp->editor->getHierarchyView()->getSelectedDSKnobs(&dstKnobs);
         if (dstKnobs.empty()) {
-            Dialogs::warningDialog(tr("Paste").toStdString(), tr("You must select at least one parameter dimension on the left to perform this action").toStdString());
+            Dialogs::warningDialog(tr("Вставить").toStdString(), tr("Для выполнения этого действия необходимо выбрать хотя бы одно измерение параметра слева").toStdString());
             return;
         }
         _imp->pushUndoCommand( new DSPasteKeysCommand(keys, dstKnobs, relative, _imp->editor) );

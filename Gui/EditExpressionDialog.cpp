@@ -108,7 +108,7 @@ void
 EditExpressionDialog::setTitle()
 {
     KnobIPtr k = _knob->getKnob();
-    QString title( tr("Set expression on ") );
+    QString title( tr("Включить выражение ") );
 
     title.append( QString::fromUtf8( k->getName().c_str() ) );
     if ( (_dimension != -1) && (k->getDimension() > 1) ) {
@@ -133,7 +133,7 @@ EditExpressionDialog::compileExpression(const QString& expr)
         _knob->getKnob()->validateExpression(expr.toStdString(), _dimension == -1 ? 0 : _dimension, isUseRetButtonChecked()
                                              , &exprResult);
     } catch (const std::exception& e) {
-        QString err = QString( tr("ERROR") + QLatin1String(": %1") ).arg( QString::fromUtf8( e.what() ) );
+        QString err = QString( tr("ОШИБКА") + QLatin1String(": %1") ).arg( QString::fromUtf8( e.what() ) );
 
         return err;
     }
@@ -163,11 +163,11 @@ EditExpressionDialog::getImportedModules(QStringList& modules) const
 void
 EditExpressionDialog::getDeclaredVariables(std::list<std::pair<QString, QString> >& variables) const
 {
-    variables.push_back( std::make_pair( QString::fromUtf8("thisNode"), tr("the current node") ) );
-    variables.push_back( std::make_pair( QString::fromUtf8("thisGroup"), tr("When thisNode belongs to a group, it references the parent group node, otherwise it will reference the current application instance") ) );
-    variables.push_back( std::make_pair( QString::fromUtf8("thisParam"), tr("the current param being edited") ) );
-    variables.push_back( std::make_pair( QString::fromUtf8("dimension"), tr("Defined only if the parameter is multi-dimensional, it references the dimension of the parameter being edited (0-based index)") ) );
-    variables.push_back( std::make_pair( QString::fromUtf8("frame"), tr("the current time on the timeline or the time passed to the get function") ) );
+    variables.push_back( std::make_pair( QString::fromUtf8("thisNode"), tr("текущий Узел") ) );
+    variables.push_back( std::make_pair( QString::fromUtf8("thisGroup"), tr("Когда этот Узел принадлежит группе, он ссылается на родительский Узел группы, в противном случае он будет ссылаться на текущий экземпляр приложения") ) );
+    variables.push_back( std::make_pair( QString::fromUtf8("thisParam"), tr("текущий редактируемый параметр") ) );
+    variables.push_back( std::make_pair( QString::fromUtf8("dimension"), tr("Определяется только в том случае, если параметр является многомерным, он ссылается на размерность редактируемого параметра (отсчёт от 0)") ) );
+    variables.push_back( std::make_pair( QString::fromUtf8("frame"), tr("текущее время на временной шкале или время, переданное функции get") ) );
 }
 
 NATRON_NAMESPACE_EXIT

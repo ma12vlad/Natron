@@ -2386,19 +2386,19 @@ DopeSheetViewPrivate::createContextMenu()
 
     // Edit menu
     Menu *editMenu = new Menu(contextMenu);
-    editMenu->setTitle( tr("Edit") );
+    editMenu->setTitle( tr("Редактирование") );
 
     contextMenu->addAction( editMenu->menuAction() );
 
     // Interpolation menu
     Menu *interpMenu = new Menu(contextMenu);
-    interpMenu->setTitle( tr("Interpolation") );
+    interpMenu->setTitle( tr("Интерполяция") );
 
     contextMenu->addAction( interpMenu->menuAction() );
 
     // View menu
     Menu *viewMenu = new Menu(contextMenu);
-    viewMenu->setTitle( tr("View") );
+    viewMenu->setTitle( tr("Просмотр") );
 
     contextMenu->addAction( viewMenu->menuAction() );
 
