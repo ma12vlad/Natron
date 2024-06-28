@@ -944,7 +944,7 @@ Gui::exportGroupAsPythonScript(NodeCollection* collection)
     }
 
     if (!hasOutput) {
-        Dialogs::errorDialog( tr(""Экспорт"").toStdString(), tr("Для экспорта как группы должен существовать хотя бы один Выходной Узел.").toStdString() );
+        Dialogs::errorDialog( tr("Экспорт").toStdString(), tr("Для экспорта как группы должен существовать хотя бы один Выходной Узел.").toStdString() );
 
         return;
     }
