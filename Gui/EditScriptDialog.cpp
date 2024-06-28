@@ -142,9 +142,9 @@ EditScriptDialog::create(const QString& initialScript,
     getImportedModules(modules);
     std::list<std::pair<QString, QString> > variables;
     getDeclaredVariables(variables);
-    QString labelHtml( tr("%1 script:").arg( QString::fromUtf8("<b>Python</b>") ) + QString::fromUtf8("<br />") );
+    QString labelHtml( tr("%1 скрипт:").arg( QString::fromUtf8("<b>Python</b>") ) + QString::fromUtf8("<br />") );
     if ( !modules.empty() ) {
-        labelHtml.append( tr("For convenience, the following module(s) have been imported:") + QString::fromUtf8("<br />") );
+        labelHtml.append( tr("Для удобства были импортированы следующие модули:") + QString::fromUtf8("<br />") );
         for (int i = 0; i < modules.size(); ++i) {
             QString toAppend = QString::fromUtf8("<i><font color=orange>from %1 import *</font></i><br />").arg(modules[i]);
             labelHtml.append(toAppend);
@@ -152,13 +152,13 @@ EditScriptDialog::create(const QString& initialScript,
         labelHtml.append( QString::fromUtf8("<br />") );
     }
     if ( !variables.empty() ) {
-        labelHtml.append( tr("Also the following variables have been declared:") + QString::fromUtf8("<br />") );
+        labelHtml.append( tr("Также были объявлены следующие переменные:") + QString::fromUtf8("<br />") );
         for (std::list<std::pair<QString, QString> > ::iterator it = variables.begin(); it != variables.end(); ++it) {
             QString toAppend = QString::fromUtf8("<b>%1</b>: %2<br />").arg(it->first).arg(it->second);
             labelHtml.append(toAppend);
         }
         QKeySequence s(Qt::CTRL);
-        labelHtml.append( QString::fromUtf8("<p>") + tr("Note that parameters can be referenced by drag'n'dropping while holding %1 on their widget").arg( s.toString(QKeySequence::NativeText) ) + QString::fromUtf8("</p>") );
+        labelHtml.append( QString::fromUtf8("<p>") + tr("Обратите внимание, что на параметры можно ссылаться, перетаскивая их, удерживая %1 на их виджете").arg( s.toString(QKeySequence::NativeText) ) + QString::fromUtf8("</p>") );
     }
 
     _imp->expressionLabel = new Label(labelHtml, this);
@@ -176,12 +176,12 @@ EditScriptDialog::create(const QString& initialScript,
 
     if (makeUseRetButton) {
         bool retVariable = hasRetVariable();
-        _imp->useRetButton = new Button(tr("Multi-line"), _imp->midButtonsContainer);
-        _imp->useRetButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("When checked the Python expression will be interpreted "
-                                                                          "as series of statement. The return value should be then assigned to the "
-                                                                          "\"ret\" variable. When unchecked the expression must not contain "
-                                                                          "any new line character and the result will be interpreted from the "
-                                                                          "interpretation of the single line."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+        _imp->useRetButton = new Button(tr("Многолинейный"), _imp->midButtonsContainer);
+        _imp->useRetButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Если этот флажок установлен, выражение Python будет интерпретироваться "
+                                                                          "как серия заявлений. Возвращаемое значение затем должно быть присвоено "
+                                                                          "\"ret\" переменная. Если флажок снят, выражение не должно содержать "
+                                                                          "любой символ новой строки, и результат будет интерпретирован на основе "
+                                                                          "интерпретации одной строки."), NATRON_NAMESPACE::WhiteSpaceNormal) );
         _imp->useRetButton->setCheckable(true);
         bool checked = !initialScript.isEmpty() && retVariable;
         _imp->useRetButton->setChecked(checked);
@@ -191,14 +191,14 @@ EditScriptDialog::create(const QString& initialScript,
     }
 
 
-    _imp->helpButton = new Button(tr("Help"), _imp->midButtonsContainer);
+    _imp->helpButton = new Button(tr("Помощь"), _imp->midButtonsContainer);
     QObject::connect( _imp->helpButton, SIGNAL(clicked(bool)), this, SLOT(onHelpRequested()) );
     _imp->midButtonsLayout->addWidget(_imp->helpButton);
     _imp->midButtonsLayout->addStretch();
 
     _imp->mainLayout->addWidget(_imp->midButtonsContainer);
 
-    _imp->resultLabel = new Label(tr("Result:"), this);
+    _imp->resultLabel = new Label(tr("Результат:"), this);
     _imp->mainLayout->addWidget(_imp->resultLabel);
 
     _imp->resultEdit = new OutputScriptTextEdit(this);
@@ -244,63 +244,63 @@ EditScriptDialog::compileAndSetResult(const QString& script)
 QString
 EditScriptDialog::getHelpPart1()
 {
-    return tr("<p>Each node in the scope already has a variable declared with its name, e.g if you have a node named "
-              "<b>Transform1</b> in your project, then you can type <i>Transform1</i> to reference that node.</p>"
-              "<p>Note that the scope includes all nodes within the same group as thisNode and the parent group node itself, "
-              "if the node belongs to a group. If the node itself is a group, then it can also have expressions depending "
-              "on parameters of its children.</p>"
-              "<p>Each node has all its parameters declared as fields and you can reference a specific parameter by typing its <b>script name</b>, e.g:</p>"
+    return tr("<p>У каждого узла в области видимости уже есть переменная, объявленная с ее именем, например, если у вас есть узел с именем "
+              "<b>Transform1</b> в вашем проекте, вы можете ввести <i>Transform1</i> для ссылки на этот узел.</p>"
+              "<p>Обратите внимание, что область действия включает все узлы в той же группе, что и thisNode, и сам узел родительской группы. "
+              "если узел принадлежит группе. Если узел сам по себе является группой, то он также может иметь выражения в зависимости "
+              "от параметров его дочерних элементов.</p>"
+              "<p>Каждый узел имеет все свои параметры, объявленные как поля, и вы можете сослаться на конкретный параметр, введя его <b>имя скрипта</b>, например:</p>"
               "<pre>Transform1.rotate</pre>"
-              "<p>The script name of a parameter is the name in bold that is shown in the tooltip when hovering a parameter with the mouse, this is what "
-              "identifies a parameter internally.</p>");
+              "<p>TСценарное имя параметра — это имя, выделенное жирным шрифтом, которое отображается во всплывающей подсказке при наведении мыши на параметр."
+              "Это то, что идентифицирует параметр внутри.</p>");
 }
 
 QString
 EditScriptDialog::getHelpThisNodeVariable()
 {
-    return tr("<p>The current node which expression is being edited can be referenced by the variable <i>thisNode</i> for convenience.</p>");
+    return tr("<p>Переменная может ссылаться на текущий Узел, выражение которого редактируется <i>этот Узел</i> для удобства.</p>");
 }
 
 QString
 EditScriptDialog::getHelpThisGroupVariable()
 {
-    return tr("<p>The parent group containing the thisNode can be referenced by the variable <i>thisGroup</i> for convenience, if and "
-              "only if thisNode belongs to a group.</p>");
+    return tr("<p>Переменная может ссылаться на родительскую группу, содержащую этот Узел <i>thisGroup</i> для удобства,"
+              "только если этот узел принадлежит к группе.</p>");
 }
 
 QString
 EditScriptDialog::getHelpThisParamVariable()
 {
-    return tr("<p>The <i>thisParam</i> variable has been defined for convenience when editing an expression. It refers to the current parameter.</p>");
+    return tr("<p>Переменная <i>thisParam</i> определена для удобства редактирования выражения. Он относится к текущему параметру.</p>");
 }
 
 QString
 EditScriptDialog::getHelpDimensionVariable()
 {
-    return tr("<p>In the same way the <i>dimension</i> variable has been defined and references the current dimension of the parameter which expression is being set"
+    return tr("<p>Таким же образом была определена переменная <i>dimension</i>, которая ссылается на текущее измерение параметра, выражение которого задается."
               ".</p>"
-              "<p>The <i>dimension</i> is a 0-based index identifying a specific field of a parameter. For instance if we're editing the expression of the y "
-              "field of the translate parameter of Transform1, the <i>dimension</i> would be 1. </p>");
+              "<p> <i>dimension</i> это индекс, начинающийся с 0, идентифицирующий конкретное поле параметра. Например, если мы редактируем выражение Y "
+              "поле параметра translate параметра Transform1, в котором <i>dimension</i> было бы 1. </p>");
 }
 
 QString
 EditScriptDialog::getHelpPart2()
 {
-    return tr("<p>To access values of a parameter several functions are made accessible: </p>"
-              "<p>The <b>get()</b> function will return a Tuple containing all the values for each dimension of the parameter. For instance "
-              "let's say we have a node Transform1 in our comp, we could then reference the x value of the <i>center</i> parameter this way:</p>"
+    return tr("<p>Для доступа к значениям параметра доступны несколько функций: </p>"
+              "<p>The <b>get()</b> функция вернет цепочку, содержащую все значения для каждого измерения параметра. Например "
+              "скажем, у нас есть узел Transform1 в нашей композиции, тогда мы могли бы ссылаться на значение x параметра <i>center</i> следующим образом:</p>"
               "<pre>Transform1.center.get().x</pre>"
-              "<p>The <b>get(</b><i>frame</i><b>)</b> works exactly like the <b>get()</b> function excepts that it takes an extra "
-              "<i>frame</i> parameter corresponding to the time at which we want to fetch the value. For parameters with an animation "
-              "it would then return their value at the corresponding timeline position. That value would then be either interpolated "
-              "with the current interpolation filter, or the exact keyframe at that time if one exists.</p>");
+              "<p><b>get(</b><i>frame</i><b>)</b> работает точно так же, как функция <b>get()</b>, за исключением того, что она требует дополнительных "
+              "<i>frame</i> параметр, соответствующий времени, в которое мы хотим получить значение. Для параметров с анимацией "
+              "затем он вернет их значение в соответствующей позиции на временной шкале. Затем это значение будет либо интерполировано "
+              "с текущим фильтром интерполяции или точным ключевым кадром в тот момент, если он существует.</p>");
 }
 
 void
 EditScriptDialog::onHelpRequested()
 {
     QString help = getCustomHelp();
-    Dialogs::informationDialog(tr("Help").toStdString(), help.toStdString(), true);
+    Dialogs::informationDialog(tr("Помощь").toStdString(), help.toStdString(), true);
 }
 
 QString

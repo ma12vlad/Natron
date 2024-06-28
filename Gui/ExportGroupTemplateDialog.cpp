@@ -166,22 +166,22 @@ ExportGroupTemplateDialog::ExportGroupTemplateDialog(NodeCollection* group,
 
 
 
-    _imp->idLabel = new Label(tr("Unique ID"), this);
-    QString idTt = NATRON_NAMESPACE::convertFromPlainText(tr("Used by %1 to identify the plug-in in various "
-                                                     "places in the application.\n"
-                                                     "Generally, this contains domain and sub-domains names "
-                                                     "such as fr.inria.group.XXX.\n"
-                                                     "If two plug-ins or more happen to have the same ID, they will be "
-                                                     "gathered by version.\n"
-                                                     "If two plug-ins or more have the same ID and version, the first loaded in the"
-                                                     " search-paths will take precedence over the other.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ), NATRON_NAMESPACE::WhiteSpaceNormal);
+    _imp->idLabel = new Label(tr("Уникальный ID"), this);
+    QString idTt = NATRON_NAMESPACE::convertFromPlainText(tr("Используется %1 для идентификации плагина в различных "
+                                                     "местах.\n"
+                                                     "Обычно он содержит имена доменов и поддоменов "
+                                                     "как например fr.inria.group.XXX.\n"
+                                                     "Если два или более плагинов имеют одинаковый идентификатор, они будут "
+                                                     "собрано по версии.\n"
+                                                     "Если два или более плагинов имеют одинаковый ID и версию, первый из них загружается в"
+                                                     " пути поиска будут иметь приоритет над другими.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ), NATRON_NAMESPACE::WhiteSpaceNormal);
     _imp->idEdit = new LineEdit(this);
     _imp->idEdit->setPlaceholderText( QString::fromUtf8("org.organization.pyplugs.XXX") );
     _imp->idEdit->setToolTip(idTt);
 
 
     _imp->labelLabel = new Label(tr("Label"), this);
-    QString labelTt = NATRON_NAMESPACE::convertFromPlainText(tr("Group label as seen in the user interface."), NATRON_NAMESPACE::WhiteSpaceNormal);
+    QString labelTt = NATRON_NAMESPACE::convertFromPlainText(tr("Метка группы, как показано в пользовательском интерфейсе."), NATRON_NAMESPACE::WhiteSpaceNormal);
     _imp->labelLabel->setToolTip(labelTt);
     _imp->labelEdit = new LineEdit(this);
     _imp->labelEdit->setPlaceholderText( QString::fromUtf8("MyPlugin") );
@@ -189,9 +189,9 @@ ExportGroupTemplateDialog::ExportGroupTemplateDialog(NodeCollection* group,
     _imp->labelEdit->setToolTip(labelTt);
 
 
-    _imp->groupingLabel = new Label(tr("Grouping"), this);
-    QString groupingTt = NATRON_NAMESPACE::convertFromPlainText(tr("Where the plug-in will be located in the menus, "
-                                                           "e.g. \"Color/Transform\", or \"Draw\". Each sub-level must be separated by a '/'."), NATRON_NAMESPACE::WhiteSpaceNormal);
+    _imp->groupingLabel = new Label(tr("Группировка"), this);
+    QString groupingTt = NATRON_NAMESPACE::convertFromPlainText(tr("Где в меню будет располагаться плагин, "
+                                                           "например \"Color/Transform\", или \"Draw\". Каждый подуровень должен быть разделен '/'."), NATRON_NAMESPACE::WhiteSpaceNormal);
     _imp->groupingLabel->setToolTip(groupingTt);
 
     _imp->groupingEdit = new LineEdit(this);
@@ -199,34 +199,34 @@ ExportGroupTemplateDialog::ExportGroupTemplateDialog(NodeCollection* group,
     _imp->groupingEdit->setToolTip(groupingTt);
 
 
-    _imp->versionLabel = new Label(tr("Version"), this);
-    QString versionTt = NATRON_NAMESPACE::convertFromPlainText(tr("The version number can be incremented when changing the behaviour of the plug-in. "
-                                                          "If a user is using and old version of this plug-in in a project, if a newer version "
-                                                          "of this plug-in is available, upon opening the project a dialog will ask whether "
-                                                          "the plug-in should update to the newer version in the project or not."), NATRON_NAMESPACE::WhiteSpaceNormal);
+    _imp->versionLabel = new Label(tr("Версия"), this);
+    QString versionTt = NATRON_NAMESPACE::convertFromPlainText(tr("Номер версии плагина можно увеличить. "
+                                                          "Если в проекте старая версию этого плагина, но доступна новая версия "
+                                                          "то при открытии проекта появится диалог с вопросом, должен ли "
+                                                          "плагин обновиться до более новой версии в проекте или нет."), NATRON_NAMESPACE::WhiteSpaceNormal);
     _imp->versionLabel->setToolTip(versionTt);
 
     _imp->versionSpinbox = new SpinBox(this, SpinBox::eSpinBoxTypeInt);
     _imp->versionSpinbox->setMinimum(1);
     _imp->versionSpinbox->setToolTip(versionTt);
 
-    _imp->iconPathLabel = new Label(tr("Icon relative path"), this);
-    QString iconTt = NATRON_NAMESPACE::convertFromPlainText(tr("File path of an optional icon to identify the plug-in. "
-                                                       "The path is relative to the Python script."), NATRON_NAMESPACE::WhiteSpaceNormal);
+    _imp->iconPathLabel = new Label(tr("Относительный путь значка"), this);
+    QString iconTt = NATRON_NAMESPACE::convertFromPlainText(tr("Путь к файлу с дополнительным значком для идентификации подключаемого модуля. "
+                                                       "Путь указан относительно скрипта на Python."), NATRON_NAMESPACE::WhiteSpaceNormal);
     _imp->iconPathLabel->setToolTip(iconTt);
     _imp->iconPath = new LineEdit(this);
     _imp->iconPath->setPlaceholderText( QString::fromUtf8("Label.png") );
     _imp->iconPath->setToolTip(iconTt);
 
-    _imp->descriptionLabel = new Label(tr("Description"), this);
-    QString descTt =  NATRON_NAMESPACE::convertFromPlainText(tr("Plug-in description, as seen when clicking the "
-                                                        "\"?\" button on the settings panel of the node (optional)."), NATRON_NAMESPACE::WhiteSpaceNormal);
+    _imp->descriptionLabel = new Label(tr("Описание"), this);
+    QString descTt =  NATRON_NAMESPACE::convertFromPlainText(tr("Описание плагина, которое видно при нажатии на кнопку "
+                                                        "\"?\" кнопка на панели настроек узла (опционально)."), NATRON_NAMESPACE::WhiteSpaceNormal);
     _imp->descriptionEdit = new PlaceHolderTextEdit(this);
     _imp->descriptionEdit->setToolTip(descTt);
-    _imp->descriptionEdit->setPlaceHolderText( tr("This plug-in can be used to produce XXX effect...") );
+    _imp->descriptionEdit->setPlaceHolderText( tr("Этот плагин можно использовать для создания эффекта XXX...") );
 
-    _imp->fileLabel = new Label(tr("Directory"), this);
-    QString fileTt  = NATRON_NAMESPACE::convertFromPlainText(tr("Directory where to export the Python script."), NATRON_NAMESPACE::WhiteSpaceNormal);
+    _imp->fileLabel = new Label(tr("Каталог"), this);
+    QString fileTt  = NATRON_NAMESPACE::convertFromPlainText(tr("Каталог, в который можно экспортировать скрипт Python."), NATRON_NAMESPACE::WhiteSpaceNormal);
     _imp->fileLabel->setToolTip(fileTt);
     _imp->fileEdit = new LineEdit(this);
 
@@ -356,13 +356,13 @@ ExportGroupTemplateDialog::onOkClicked()
     QDir d(dirPath);
 
     if ( !d.exists() ) {
-        Dialogs::errorDialog( tr("Error").toStdString(), tr("Specify a directory where to save the script").toStdString() );
+        Dialogs::errorDialog( tr("Ошибка").toStdString(), tr("Specify a directory where to save the script").toStdString() );
 
         return;
     }
     QString pluginLabel = _imp->labelEdit->text();
     if ( pluginLabel.isEmpty() ) {
-        Dialogs::errorDialog( tr("Error").toStdString(), tr("Specify a label to name the script").toStdString() );
+        Dialogs::errorDialog( tr("Ошибка").toStdString(), tr("Укажите метку для имени скрипта").toStdString() );
 
         return;
     } else {
@@ -371,7 +371,7 @@ ExportGroupTemplateDialog::onOkClicked()
 
     QString pluginID = _imp->idEdit->text();
     if ( pluginID.isEmpty() ) {
-        Dialogs::errorDialog( tr("Error").toStdString(), tr("Specify a unique ID to identify the script").toStdString() );
+        Dialogs::errorDialog( tr("Ошибка").toStdString(), tr("Укажите уникальный идентификатор для идентификации скрипта").toStdString() );
 
         return;
     }
@@ -383,10 +383,9 @@ ExportGroupTemplateDialog::onOkClicked()
     QStringList filters;
     filters.push_back( QString( pluginLabel + QString::fromUtf8(".py") ) );
     if ( !d.entryList(filters, QDir::Files | QDir::NoDotAndDotDot).isEmpty() ) {
-        StandardButtonEnum rep = Dialogs::questionDialog(tr("Existing plug-in").toStdString(),
-                                                         tr("A group plug-in with the name \"%1\" already exists "
-                                                            "would you like to "
-                                                            "overwrite it?").arg(pluginLabel).toStdString(), false);
+        StandardButtonEnum rep = Dialogs::questionDialog(tr("Существующий плагин").toStdString(),
+                                                         tr("Групповой плагин с названием \"%1\" уже существует "
+                                                            "Переписать его?").arg(pluginLabel).toStdString(), false);
         if  (rep == eStandardButtonNo) {
             return;
         }
@@ -404,8 +403,8 @@ ExportGroupTemplateDialog::onOkClicked()
     }
 
     if (!foundInPath) {
-        QString message = tr("Directory \"%1\" is not in the group plug-in search path, would you like to add it?").arg(dirPath);
-        StandardButtonEnum rep = Dialogs::questionDialog(tr("Plug-in path").toStdString(),
+        QString message = tr("Каталог \"%1\" отсутствует в пути поиска подключаемого модуля группы, добавить его?").arg(dirPath);
+        StandardButtonEnum rep = Dialogs::questionDialog(tr("Путь к плагину").toStdString(),
                                                          message.toStdString(), false);
 
         if  (rep == eStandardButtonYes) {
@@ -415,7 +414,7 @@ ExportGroupTemplateDialog::onOkClicked()
 
     QFile file(filePath);
     if ( !file.open(QIODevice::ReadWrite | QIODevice::Truncate) ) {
-        Dialogs::errorDialog( tr("Error").toStdString(), QString(tr("Cannot open ") + filePath).toStdString() );
+        Dialogs::errorDialog( tr("Ошибка").toStdString(), QString(tr("Не удается открыть ") + filePath).toStdString() );
 
         return;
     }

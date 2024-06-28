@@ -180,7 +180,7 @@ Gui::reloadProject()
     ProjectPtr proj = getApp()->getProject();
 
     if ( !proj->hasProjectBeenSavedByUser() ) {
-        Dialogs::errorDialog( tr("Reload project").toStdString(), tr("This project has not been saved yet").toStdString() );
+        Dialogs::errorDialog( tr("Перезагрузить проект").toStdString(), tr("Этот проект еще не сохранен").toStdString() );
 
         return;
     }
@@ -438,18 +438,18 @@ Gui::createMenuActions()
     _imp->menubar = new QMenuBar(this);
     setMenuBar(_imp->menubar);
 
-    _imp->menuFile = new Menu(tr("File"), _imp->menubar);
-    _imp->menuRecentFiles = new Menu(tr("Open Recent"), _imp->menuFile);
-    _imp->menuEdit = new Menu(tr("Edit"), _imp->menubar);
-    _imp->menuLayout = new Menu(tr("Layout"), _imp->menubar);
-    _imp->menuDisplay = new Menu(tr("Display"), _imp->menubar);
-    _imp->menuRender = new Menu(tr("Render"), _imp->menubar);
-    _imp->viewersMenu = new Menu(tr("Viewer(s)"), _imp->menuDisplay);
-    _imp->viewerInputsMenu = new Menu(tr("Connect to A Side"), _imp->viewersMenu);
-    _imp->viewerInputsBMenu = new Menu(tr("Connect to B Side"), _imp->viewersMenu);
-    _imp->viewersViewMenu = new Menu(tr("View"), _imp->viewersMenu);
-    _imp->cacheMenu = new Menu(tr("Cache"), _imp->menubar);
-    _imp->menuHelp = new Menu(tr("Help"), _imp->menubar);
+    _imp->menuFile = new Menu(tr("Файл"), _imp->menubar);
+    _imp->menuRecentFiles = new Menu(tr("Открыть недавние"), _imp->menuFile);
+    _imp->menuEdit = new Menu(tr("Редактировать"), _imp->menubar);
+    _imp->menuLayout = new Menu(tr("Макет"), _imp->menubar);
+    _imp->menuDisplay = new Menu(tr("Дисплей"), _imp->menubar);
+    _imp->menuRender = new Menu(tr("Рендер"), _imp->menubar);
+    _imp->viewersMenu = new Menu(tr("Просмотрщик(и)"), _imp->menuDisplay);
+    _imp->viewerInputsMenu = new Menu(tr("Подключиться к стороне A"), _imp->viewersMenu);
+    _imp->viewerInputsBMenu = new Menu(tr("Подключиться к стороне В"), _imp->viewersMenu);
+    _imp->viewersViewMenu = new Menu(tr("Просмотр"), _imp->viewersMenu);
+    _imp->cacheMenu = new Menu(tr("Кэш"), _imp->menubar);
+    _imp->menuHelp = new Menu(tr("Помощь"), _imp->menubar);
 
 
     _imp->actionNew_project = new ActionWithShortcut(kShortcutGroupGlobal, kShortcutIDActionNewProject, kShortcutDescActionNewProject, this);
@@ -701,22 +701,22 @@ Gui::createMenuActions()
 
     // Help menu
     _imp->actionHelpDocumentation = new QAction(this);
-    _imp->actionHelpDocumentation->setText( tr("Documentation") );
+    _imp->actionHelpDocumentation->setText( tr("Документация") );
     _imp->menuHelp->addAction(_imp->actionHelpDocumentation);
     QObject::connect( _imp->actionHelpDocumentation, SIGNAL(triggered()), this, SLOT(openHelpDocumentation()) );
 
     _imp->actionHelpWebsite = new QAction(this);
-    _imp->actionHelpWebsite->setText( tr("Website") );
+    _imp->actionHelpWebsite->setText( tr("Вэб-сайт") );
     _imp->menuHelp->addAction(_imp->actionHelpWebsite);
     QObject::connect( _imp->actionHelpWebsite, SIGNAL(triggered()), this, SLOT(openHelpWebsite()) );
 
     _imp->actionHelpForum = new QAction(this);
-    _imp->actionHelpForum->setText( tr("Forum") );
+    _imp->actionHelpForum->setText( tr("Форум") );
     _imp->menuHelp->addAction(_imp->actionHelpForum);
     QObject::connect( _imp->actionHelpForum, SIGNAL(triggered()), this, SLOT(openHelpForum()) );
 
     _imp->actionHelpIssues = new QAction(this);
-    _imp->actionHelpIssues->setText( tr("Issues") );
+    _imp->actionHelpIssues->setText( tr("Проблемы") );
     _imp->menuHelp->addAction(_imp->actionHelpIssues);
     QObject::connect( _imp->actionHelpIssues, SIGNAL(triggered()), this, SLOT(openHelpIssues()) );
 
@@ -771,7 +771,7 @@ Gui::openHelpDocumentation()
         QDesktopServices::openUrl( QUrl(remoteUrl) );
         break;
     case 2:
-        Dialogs::informationDialog(tr("Missing documentation").toStdString(), tr("Missing documentation, please go to settings and select local or online documentation source.").toStdString(), true);
+        Dialogs::informationDialog(tr("Отсутствующая документация").toStdString(), tr("Отсутствует документация, перейдите в настройки и выберите локальный или онлайн-источник документации.").toStdString(), true);
         break;
     }
 #else

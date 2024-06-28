@@ -312,7 +312,7 @@ GuiPrivate::createPropertiesBinGui()
 {
     _propertiesBin = new PropertiesBinWrapper(_gui);
     _propertiesBin->setScriptName(kPropertiesBinName);
-    _propertiesBin->setLabel( tr("Properties").toStdString() );
+    _propertiesBin->setLabel( tr("Характеристики").toStdString() );
 
     QVBoxLayout* mainPropertiesLayout = new QVBoxLayout(_propertiesBin);
     mainPropertiesLayout->setContentsMargins(0, 0, 0, 0);
@@ -349,7 +349,7 @@ GuiPrivate::createPropertiesBinGui()
 
     _clearAllPanelsButton->setFixedSize(smallButtonSize);
     _clearAllPanelsButton->setIconSize(smallButtonIconSize);
-    _clearAllPanelsButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Clears all the panels in the properties bin pane."),
+    _clearAllPanelsButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Очищает все панели в панели свойств"),
                                                                       NATRON_NAMESPACE::WhiteSpaceNormal) );
     _clearAllPanelsButton->setFocusPolicy(Qt::NoFocus);
     QObject::connect( _clearAllPanelsButton, SIGNAL(clicked(bool)), _gui, SLOT(clearAllVisiblePanels()) );
@@ -364,7 +364,7 @@ GuiPrivate::createPropertiesBinGui()
     _minimizeAllPanelsButtons->setChecked(false);
     _minimizeAllPanelsButtons->setFixedSize(smallButtonSize);
     _minimizeAllPanelsButtons->setIconSize(smallButtonIconSize);
-    _minimizeAllPanelsButtons->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Minimize / Maximize all panels."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _minimizeAllPanelsButtons->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Свернуть/Развернуть все панели."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _minimizeAllPanelsButtons->setFocusPolicy(Qt::NoFocus);
     QObject::connect( _minimizeAllPanelsButtons, SIGNAL(clicked(bool)), _gui, SLOT(minimizeMaximizeAllPanels(bool)) );
 
@@ -375,9 +375,9 @@ GuiPrivate::createPropertiesBinGui()
     _maxPanelsOpenedSpinBox->setFixedSize(maxPanelsOpenedSpinBoxSize);
     _maxPanelsOpenedSpinBox->setMinimum(0);
     _maxPanelsOpenedSpinBox->setMaximum(99);
-    _maxPanelsOpenedSpinBox->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Set the maximum of panels that can be opened at the same time "
-                                                                           "in the properties bin pane. The special value of 0 indicates "
-                                                                           "that an unlimited number of panels can be opened."),
+    _maxPanelsOpenedSpinBox->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Rоличество панелей, которые можно открыть одновременно "
+                                                                           "в панели свойств. Значение 0 указывает "
+                                                                           "что можно открыть неограниченное количество панелей."),
                                                                         NATRON_NAMESPACE::WhiteSpaceNormal) );
     _maxPanelsOpenedSpinBox->setValue( appPTR->getCurrentSettings()->getMaxPanelsOpened() );
     QObject::connect( _maxPanelsOpenedSpinBox, SIGNAL(valueChanged(double)), _gui, SLOT(onMaxPanelsSpinBoxValueChanged(double)) );
@@ -402,7 +402,7 @@ GuiPrivate::createNodeGraphGui()
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
     _nodeGraphArea = new NodeGraph(_gui, _appInstance.lock()->getProject(), scene, _gui);
     _nodeGraphArea->setScriptName(kNodeGraphObjectName);
-    _nodeGraphArea->setLabel( tr("Node Graph").toStdString() );
+    _nodeGraphArea->setLabel( tr("Схема узлов").toStdString() );
     _nodeGraphArea->setVisible(false);
     _gui->registerTab(_nodeGraphArea, _nodeGraphArea);
 }
@@ -412,7 +412,7 @@ GuiPrivate::createCurveEditorGui()
 {
     _curveEditor = new CurveEditor(_gui, _appInstance.lock()->getTimeLine(), _gui);
     _curveEditor->setScriptName(kCurveEditorObjectName);
-    _curveEditor->setLabel( tr("Curve editor").toStdString() );
+    _curveEditor->setLabel( tr("Редактор кривых").toStdString() );
     _curveEditor->setVisible(false);
     _gui->registerTab(_curveEditor, _curveEditor);
 }
@@ -422,7 +422,7 @@ GuiPrivate::createDopeSheetGui()
 {
     _dopeSheetEditor = new DopeSheetEditor(_gui, _appInstance.lock()->getTimeLine(), _gui);
     _dopeSheetEditor->setScriptName(kDopeSheetEditorObjectName);
-    _dopeSheetEditor->setLabel( tr("Dope Sheet").toStdString() );
+    _dopeSheetEditor->setLabel( tr("Шкала времени").toStdString() );
     _dopeSheetEditor->setVisible(false);
     _gui->registerTab(_dopeSheetEditor, _dopeSheetEditor);
 }
@@ -432,7 +432,7 @@ GuiPrivate::createScriptEditorGui()
 {
     _scriptEditor = new ScriptEditor(_gui);
     _scriptEditor->setScriptName("scriptEditor");
-    _scriptEditor->setLabel( tr("Script Editor").toStdString() );
+    _scriptEditor->setLabel( tr("Редактор скриптов").toStdString() );
     _scriptEditor->setVisible(false);
     _gui->registerTab(_scriptEditor, _scriptEditor);
 }
@@ -442,7 +442,7 @@ GuiPrivate::createProgressPanelGui()
 {
     _progressPanel = new ProgressPanel(_gui);
     _progressPanel->setScriptName("progress");
-    _progressPanel->setLabel( tr("Progress").toStdString() );
+    _progressPanel->setLabel( tr("Прогресс").toStdString() );
     _progressPanel->setVisible(false);
     _gui->registerTab(_progressPanel, _progressPanel);
 }
@@ -604,10 +604,10 @@ GuiPrivate::checkProjectLockAndWarn(const QString& projectPath,
         if (lockPID != curPid) {
             QString appFilePath = QCoreApplication::applicationFilePath();
             if ( ProcInfo::checkIfProcessIsRunning(appFilePath.toStdString().c_str(), lockPID) ) {
-                StandardButtonEnum rep = Dialogs::questionDialog( tr("Project").toStdString(),
-                                                                  tr("This project may be open in another instance of Natron "
-                                                                     "running on %1 as process ID %2, "
-                                                                     "and was opened by %3 on %4.\nContinue anyway?").arg(lockHost,
+                StandardButtonEnum rep = Dialogs::questionDialog( tr("Проект").toStdString(),
+                                                                  tr("Этот проект может быть открыт в другом экземпляре Natron. "
+                                                                     "работает на %1 как идентификатор процесса %2, "
+                                                                     "и был открыт %3 на %4.\nВсё равно продолжить?").arg(lockHost,
                                                                                                                           QString::number(lockPID),
                                                                                                                           author,
                                                                                                                           lockCreationDate).toStdString(),
