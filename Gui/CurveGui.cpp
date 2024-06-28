@@ -404,8 +404,8 @@ CurveGui::drawCurve(int curveIndex,
 
                 double xText = _curveWidget->toZoomCoordinates(10, 0).x();
 
-                _curveWidget->renderText( xText, curveYRange.min, tr("min"), minMaxColor, _curveWidget->font() );
-                _curveWidget->renderText( xText, curveYRange.max, tr("max"), minMaxColor, _curveWidget->font() );
+                _curveWidget->renderText( xText, curveYRange.min, tr("мин"), minMaxColor, _curveWidget->font() );
+                _curveWidget->renderText( xText, curveYRange.max, tr("макс"), minMaxColor, _curveWidget->font() );
             }
         }
 

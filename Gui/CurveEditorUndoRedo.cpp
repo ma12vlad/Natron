@@ -80,7 +80,7 @@ AddKeysCommand::AddKeysCommand(CurveWidget *editor,
     k.keyframes = keys;
     _keys.push_back(k);
 
-    setText( tr("Add multiple keyframes") );
+    setText( tr("Добавить несколько ключевых кадров") );
 }
 
 void
@@ -253,7 +253,7 @@ RemoveKeysCommand::RemoveKeysCommand(CurveWidget* editor,
     , _keys(keys)
     , _curveWidget(editor)
 {
-    setText( tr("Remove multiple keyframes") );
+    setText( tr("Удалить несколько ключевых кадров") );
 }
 
 void
@@ -377,7 +377,7 @@ MoveKeysCommand::MoveKeysCommand(CurveWidget* widget,
     , _keys(keys)
     , _widget(widget)
 {
-    setText( tr("Move multiple keys") );
+    setText( tr("Переместить несколько ключей") );
 }
 
 static void
@@ -544,7 +544,7 @@ SetKeysInterpolationCommand::SetKeysInterpolationCommand(CurveWidget* widget,
     , _keys(keys)
     , _widget(widget)
 {
-    setText( tr("Set multiple keys interpolation") );
+    setText( tr("Установить интерполяцию с несколькими ключами") );
 }
 
 void
@@ -747,7 +747,7 @@ MoveTangentCommand::MoveTangentCommand(CurveWidget* widget,
     default:
         break;
     }
-    setText( tr("Move keyframe slope") );
+    setText( tr("Переместить наклон ключевого кадра") );
 }
 
 void

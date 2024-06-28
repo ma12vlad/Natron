@@ -130,10 +130,10 @@ ImportExportCurveDialog::ImportExportCurveDialog(bool isExportDialog,
     //////File
     _fileContainer = new QWidget(this);
     _fileLayout = new QHBoxLayout(_fileContainer);
-    _fileLabel = new Label(tr("File:"), _fileContainer);
+    _fileLabel = new Label(tr("Файл:"), _fileContainer);
     _fileLayout->addWidget(_fileLabel);
     _fileLineEdit = new LineEdit(_fileContainer);
-    _fileLineEdit->setPlaceholderText( tr("File path...") );
+    _fileLineEdit->setPlaceholderText( tr("Путь к файлу...") );
     _fileLineEdit->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     _fileLayout->addWidget(_fileLineEdit);
     _fileBrowseButton = new Button(_fileContainer);
@@ -147,18 +147,18 @@ ImportExportCurveDialog::ImportExportCurveDialog(bool isExportDialog,
     //////x start value
     _startContainer = new QWidget(this);
     _startLayout = new QHBoxLayout(_startContainer);
-    _startLabel = new Label(tr("X start value:"), _startContainer);
+    _startLabel = new Label(tr("Начальное значение X:"), _startContainer);
     _startLayout->addWidget(_startLabel);
     _startLineEdit = new LineEdit(_startContainer);
     _startLineEdit->setText(QString::number(xstart,'g',10));
-    _startLineEdit->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("The X of the first value in the ASCII file. This can be a python expression."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _startLineEdit->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Первое значение X  в ASCII-файле. Это может быть выражение на языке python."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _startLayout->addWidget(_startLineEdit);
     _mainLayout->addWidget(_startContainer);
 
     //////x increment
     _incrContainer = new QWidget(this);
     _incrLayout = new QHBoxLayout(_incrContainer);
-    _incrLabel = new Label(tr("X increment:"), _incrContainer);
+    _incrLabel = new Label(tr("Приращение X:"), _incrContainer);
     _incrLayout->addWidget(_incrLabel);
     _incrLineEdit = new LineEdit(_incrContainer);
     if (xstart == 0. && xend == 1.) {
@@ -166,7 +166,7 @@ ImportExportCurveDialog::ImportExportCurveDialog(bool isExportDialog,
     } else {
         _incrLineEdit->setText(QString::number(1));
     }
-    _incrLineEdit->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("The X increment between two consecutive values. This can be a python expression."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _incrLineEdit->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Приращение X между двумя последовательными значениями. Это может быть выражение на языке python."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _incrLayout->addWidget(_incrLineEdit);
     _mainLayout->addWidget(_incrContainer);
 
@@ -174,12 +174,12 @@ ImportExportCurveDialog::ImportExportCurveDialog(bool isExportDialog,
     if (isExportDialog) {
         _endContainer = new QWidget(this);
         _endLayout = new QHBoxLayout(_endContainer);
-        _endLabel = new Label(tr("X end value:"), _endContainer);
+        _endLabel = new Label(tr("Конечное значение X:"), _endContainer);
         _endLabel->setFont( QApplication::font() ); // necessary, or the labels will get the default font size
         _endLayout->addWidget(_endLabel);
         _endLineEdit = new LineEdit(_endContainer);
         _endLineEdit->setText(QString::number(xend,'g',10));
-        _incrLineEdit->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("The X of the last value in the ASCII file. This can be a python expression."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+        _incrLineEdit->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Последнее значение X в ASCII-файле. Это может быть выражение на языке python."), NATRON_NAMESPACE::WhiteSpaceNormal) );
         _endLayout->addWidget(_endLineEdit);
         _mainLayout->addWidget(_endContainer);
     }
@@ -190,7 +190,7 @@ ImportExportCurveDialog::ImportExportCurveDialog(bool isExportDialog,
         column._curve = curves[i];
         column._curveContainer = new QWidget(this);
         column._curveLayout = new QHBoxLayout(column._curveContainer);
-        column._curveLabel = new Label( tr("%1 column:").arg( curves[i]->getName() ) );
+        column._curveLabel = new Label( tr("%1 столбец:").arg( curves[i]->getName() ) );
         column._curveLabel->setFont( QApplication::font() ); // necessary, or the labels will get the default font size
         column._curveLayout->addWidget(column._curveLabel);
         column._curveSpinBox = new SpinBox(column._curveContainer, SpinBox::eSpinBoxTypeInt);
@@ -442,10 +442,10 @@ EditKeyFrameDialog::EditKeyFrameDialog(EditModeEnum mode,
         xLabel = QString::fromUtf8("x: ");
         break;
     case eEditModeLeftDerivative:
-        xLabel = QString( tr("Left slope: ") );
+        xLabel = QString( tr("Левый склон: ") );
         break;
     case eEditModeRightDerivative:
-        xLabel = QString( tr("Right slope: ") );
+        xLabel = QString( tr("Правый склон: ") );
         break;
     }
     _imp->xLabel = new Label(xLabel, _imp->boxContainer);

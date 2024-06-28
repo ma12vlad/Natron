@@ -64,7 +64,7 @@ Gui::importLayout()
         FStreamsSupport::ifstream ifile;
         FStreamsSupport::open(&ifile, filename);
         if (!ifile) {
-            Dialogs::errorDialog( tr("Error").toStdString(), tr("Failed to open file: ").toStdString() + filename, false );
+            Dialogs::errorDialog( tr("Ошибка").toStdString(), tr("Не удалось открыть файл: ").toStdString() + filename, false );
 
             return;
         }
@@ -76,12 +76,12 @@ Gui::importLayout()
             restoreLayout(true, false, s);
         } catch (const boost::archive::archive_exception & e) {
             QString err = QString::fromUtf8("Exception occurred when opening file %1: %2").arg( QString::fromUtf8( filename.c_str() ) ).arg( QString::fromUtf8( e.what() ) );
-            Dialogs::errorDialog( tr("Error").toStdString(), tr( err.toStdString().c_str() ).toStdString(), false );
+            Dialogs::errorDialog( tr("Ошибка").toStdString(), tr( err.toStdString().c_str() ).toStdString(), false );
 
             return;
         } catch (const std::exception & e) {
             QString err = QString::fromUtf8("Exception occurred when opening file %1: %2").arg( QString::fromUtf8( filename.c_str() ) ).arg( QString::fromUtf8( e.what() ) );
-            Dialogs::errorDialog( tr("Error").toStdString(), tr( err.toStdString().c_str() ).toStdString(), false );
+            Dialogs::errorDialog( tr("Ошибка").toStdString(), tr( err.toStdString().c_str() ).toStdString(), false );
 
             return;
         }
@@ -110,13 +110,13 @@ Gui::createDefaultLayoutInternal(bool wipePrevious)
             } catch (const boost::archive::archive_exception & e) {
                 ifile.close();
                 QString err = QString::fromUtf8("Exception occurred when opening file %1: %2").arg( QString::fromUtf8( fileLayout.c_str() ) ).arg( QString::fromUtf8( e.what() ) );
-                Dialogs::errorDialog( tr("Error").toStdString(), tr( err.toStdString().c_str() ).toStdString(), false );
+                Dialogs::errorDialog( tr("Ошибка").toStdString(), tr( err.toStdString().c_str() ).toStdString(), false );
 
                 return;
             } catch (const std::exception & e) {
                 ifile.close();
                 QString err = QString::fromUtf8("Exception occurred when opening file %1: %2").arg( QString::fromUtf8( fileLayout.c_str() ) ).arg( QString::fromUtf8( e.what() ) );
-                Dialogs::errorDialog( tr("Error").toStdString(), tr( err.toStdString().c_str() ).toStdString(), false );
+                Dialogs::errorDialog( tr("Ошибка").toStdString(), tr( err.toStdString().c_str() ).toStdString(), false );
 
                 return;
             }
@@ -252,13 +252,13 @@ Gui::updateViewsActions(int viewsCount)
         left->setCheckable(false);
         left->setShortcut( QKeySequence(Qt::CTRL + Qt::Key_1) );
         _imp->viewersViewMenu->addAction(left);
-        left->setText( tr("Display Left View") );
+        left->setText( tr("Показать вид слева") );
         QObject::connect( left, SIGNAL(triggered()), this, SLOT(showView0()) );
         QAction* right = new QAction(this);
         right->setCheckable(false);
         right->setShortcut( QKeySequence(Qt::CTRL + Qt::Key_2) );
         _imp->viewersViewMenu->addAction(right);
-        right->setText( tr("Display Right View") );
+        right->setText( tr("Показать вид справа") );
         QObject::connect( right, SIGNAL(triggered()), this, SLOT(showView1()) );
 
         _imp->viewersMenu->addAction( _imp->viewersViewMenu->menuAction() );
@@ -275,7 +275,7 @@ Gui::updateViewsActions(int viewsCount)
             }
             _imp->viewersViewMenu->addAction(viewI);
             const char* slot = slotForView(i);
-            viewI->setText( QString( tr("Display View ") ) + QString::number(i + 1) );
+            viewI->setText( QString( tr("Вид просмотра ") ) + QString::number(i + 1) );
             if (slot) {
                 QObject::connect(viewI, SIGNAL(triggered()), this, slot);
             }

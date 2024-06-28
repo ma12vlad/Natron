@@ -1818,7 +1818,7 @@ CurveWidget::pasteKeyFramesFromClipBoardToSelectedCurve()
         }
     }
     if (!curve) {
-        Dialogs::warningDialog( tr("Curve Editor").toStdString(), tr("You must select a curve first.").toStdString() );
+        Dialogs::warningDialog( tr("редактор кривых").toStdString(), tr("Сначала вы должны выбрать кривую.").toStdString() );
 
         return;
     }
@@ -1910,7 +1910,7 @@ CurveWidget::loopSelectedCurve()
 
     CurveGuiPtr curve = ce->getSelectedCurve();
     if (!curve) {
-        Dialogs::warningDialog( tr("Curve Editor").toStdString(), tr("You must select a curve first in the view.").toStdString() );
+        Dialogs::warningDialog( tr("Редактор кривых").toStdString(), tr("Сначала необходимо выбрать кривую на просмотре.").toStdString() );
 
         return;
     }
@@ -1953,7 +1953,7 @@ CurveWidget::negateSelectedCurve()
     }
     CurveGuiPtr curve = ce->getSelectedCurve();
     if (!curve) {
-        Dialogs::warningDialog( tr("Curve Editor").toStdString(), tr("You must select a curve first in the view.").toStdString() );
+        Dialogs::warningDialog( tr("Редактор кривых").toStdString(), tr("Сначала необходимо выбрать кривую на просмотре.").toStdString() );
 
         return;
     }
@@ -1986,7 +1986,7 @@ CurveWidget::reverseSelectedCurve()
     }
     CurveGuiPtr curve = ce->getSelectedCurve();
     if (!curve) {
-        Dialogs::warningDialog( tr("Curve Editor").toStdString(), tr("You must select a curve first in the view.").toStdString() );
+        Dialogs::warningDialog( tr("Редактор кривых").toStdString(), tr("Сначала необходимо выбрать кривую на просмотре.").toStdString() );
 
         return;
     }
@@ -2157,7 +2157,7 @@ CurveWidget::exportCurveToAscii()
             KnobIPtr knob = isKnobCurve->getInternalKnob();
             KnobStringBase* isString = dynamic_cast<KnobStringBase*>( knob.get() );
             if (isString) {
-                Dialogs::warningDialog( tr("Curve Editor").toStdString(), tr("String curves cannot be imported/exported.").toStdString() );
+                Dialogs::warningDialog( tr("Редактор кривых").toStdString(), tr("Струнные кривые невозможно импортировать/экспортировать.").toStdString() );
 
                 return;
             }
@@ -2165,7 +2165,7 @@ CurveWidget::exportCurveToAscii()
         }
     }
     if ( curves.empty() ) {
-        Dialogs::warningDialog( tr("Curve Editor").toStdString(), tr("You must have a curve on the editor first.").toStdString() );
+        Dialogs::warningDialog( tr("Редактор кривых").toStdString(), tr("Сначала у вас должна быть кривая в редакторе.").toStdString() );
 
         return;
     }
@@ -2183,7 +2183,7 @@ CurveWidget::exportCurveToAscii()
             //double end = xstart + (count-1) * incr;
             if ( curves[i]->areKeyFramesTimeClampedToIntegers() &&
                  ( ( (int)incr != incr) || ( (int)xstart != xstart ) ) ) {
-                Dialogs::warningDialog( tr("Curve Export").toStdString(), tr("%1 doesn't support X values that are not integers.").arg( curves[i]->getName() ).toStdString() );
+                Dialogs::warningDialog( tr("Экспорт кривой").toStdString(), tr("%1 не поддерживает значения X, не являющиеся целыми числами.").arg( curves[i]->getName() ).toStdString() );
 
                 return;
             }
@@ -2233,7 +2233,7 @@ CurveWidget::importCurveFromAscii()
             KnobIPtr knob = isKnobCurve->getInternalKnob();
             KnobStringBase* isString = dynamic_cast<KnobStringBase*>( knob.get() );
             if (isString) {
-                Dialogs::warningDialog( tr("Curve Editor").toStdString(), tr("String curves cannot be imported/exported.").toStdString() );
+                Dialogs::warningDialog( tr("Редактор кривых").toStdString(), tr("Струнные кривые невозможно импортировать/экспортировать.").toStdString() );
 
                 return;
             }
@@ -2242,7 +2242,7 @@ CurveWidget::importCurveFromAscii()
         }
     }
     if ( curves.empty() ) {
-        Dialogs::warningDialog( tr("Curve Editor").toStdString(), tr("You must have a curve on the editor first.").toStdString() );
+        Dialogs::warningDialog( tr("Редактор кривых").toStdString(), tr("Сначала у вас должна быть кривая в редакторе.").toStdString() );
 
         return;
     }
@@ -2251,7 +2251,7 @@ CurveWidget::importCurveFromAscii()
     if ( dialog.exec() ) {
         QString filePath = dialog.getFilePath();
         if ( !QFile::exists(filePath) ) {
-            Dialogs::warningDialog( tr("Curve Import").toStdString(), tr("File not found.").toStdString() );
+            Dialogs::warningDialog( tr("Импорт кривой").toStdString(), tr("Файл не найден.").toStdString() );
 
             return;
         }
@@ -2268,7 +2268,7 @@ CurveWidget::importCurveFromAscii()
             double xInt = std::floor(x);
             if ( curves[i]->areKeyFramesTimeClampedToIntegers() &&
                  ( ( incrInt != incr) || ( xInt != x) ) ) {
-                Dialogs::warningDialog( tr("Curve Import").toStdString(), tr("%1 doesn't support X values that are not integers.").arg( curves[i]->getName() ).toStdString() );
+                Dialogs::warningDialog( tr("Импорт кривой").toStdString(), tr("%1 не поддерживает значения X, не являющиеся целыми числами.").arg( curves[i]->getName() ).toStdString() );
 
                 return;
             }
@@ -2292,14 +2292,14 @@ CurveWidget::importCurveFromAscii()
             }
             ///assert that the values count is greater than the number of curves provided by the user
             if ( values.size() < columns.size() ) {
-                Dialogs::errorDialog( tr("Curve Import").toStdString(), tr("The file contains less curves than what you selected.").toStdString() );
+                Dialogs::errorDialog( tr("Импорт кривой").toStdString(), tr("Файл содержит меньше кривых, чем вы выбрали.").toStdString() );
 
                 return;
             }
 
             for (std::map<int, CurveGuiPtr>::const_iterator col = columns.begin(); col != columns.end(); ++col) {
                 if ( col->first >= (int)values.size() ) {
-                    Dialogs::errorDialog( tr("Curve Import").toStdString(), tr("One of the curve column index is not a valid index for the given file.").toStdString() );
+                    Dialogs::errorDialog( tr("Импорт кривой").toStdString(), tr("Один из индексов столбца кривой не является допустимым для данного файла.").toStdString() );
 
                     return;
                 }
@@ -2350,7 +2350,7 @@ CurveWidget::addKey(const CurveGuiPtr& curve, double xCurve, double yCurve)
 
     Curve::YRange yRange = curve->getCurveYRange();
     if ( (yCurve < yRange.min) || (yCurve > yRange.max) ) {
-        QString err =  tr("Out of curve y range ") +
+        QString err =  tr("Вне диапазона кривой Y  ") +
         QString::fromUtf8("[%1 - %2]").arg(yRange.min).arg(yRange.max);
         Dialogs::warningDialog( "", err.toStdString() );
 

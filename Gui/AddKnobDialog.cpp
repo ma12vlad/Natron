@@ -519,7 +519,7 @@ AddKnobDialog::AddKnobDialog(DockablePanel* panel,
         _imp->startNewLineLabel = new Label(tr("Start New Line"), secondRowContainer);
         secondRowLayout->addWidget(_imp->startNewLineLabel);
         _imp->startNewLineBox = new QCheckBox(secondRowContainer);
-        _imp->startNewLineBox->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("If unchecked the parameter will be on the same line as the previous parameter"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+        _imp->startNewLineBox->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Если флажок снят, параметр будет находиться на той же строке, что и предыдущий параметр"), NATRON_NAMESPACE::WhiteSpaceNormal) );
         if (knob) {
             // get the flag on the previous knob
             bool startNewLine = true;
@@ -559,9 +559,9 @@ AddKnobDialog::AddKnobDialog(DockablePanel* panel,
         QHBoxLayout* thirdRowLayout = new QHBoxLayout(thirdRowContainer);
         thirdRowLayout->setContentsMargins(0, 0, 15, 0);
 
-        _imp->typeLabel = new Label(tr("Type"), thirdRowContainer);
+        _imp->typeLabel = new Label(tr("Тип"), thirdRowContainer);
         _imp->typeChoice = new ComboBox(thirdRowContainer);
-        _imp->typeChoice->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("The data type of the parameter."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+        _imp->typeChoice->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Тип данных параметра."), NATRON_NAMESPACE::WhiteSpaceNormal) );
         for (int i = 0; i < (int)eParamDataTypeCount; ++i) {
             assert(_imp->typeChoice->count() == i);
             _imp->typeChoice->addItem( tr( dataTypeString( (ParamDataTypeEnum)i ) ) );
@@ -576,20 +576,20 @@ AddKnobDialog::AddKnobDialog(DockablePanel* panel,
 
         thirdRowLayout->addWidget(_imp->typeChoice);
 
-        _imp->animatesLabel = new Label(tr("Animates"), thirdRowContainer);
+        _imp->animatesLabel = new Label(tr("Анимация"), thirdRowContainer);
         thirdRowLayout->addWidget(_imp->animatesLabel);
 
         _imp->animatesCheckbox = new QCheckBox(thirdRowContainer);
-        _imp->animatesCheckbox->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("When checked this parameter will be able to animate with keyframes."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+        _imp->animatesCheckbox->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Если этот параметр отмечен, можно будет анимировать ключевые кадры."), NATRON_NAMESPACE::WhiteSpaceNormal) );
         if (knob) {
             _imp->animatesCheckbox->setChecked( knob->isAnimationEnabled() );
         }
 
         thirdRowLayout->addWidget(_imp->animatesCheckbox);
-        _imp->evaluatesLabel = new Label(NATRON_NAMESPACE::convertFromPlainText(tr("Render On Change"), NATRON_NAMESPACE::WhiteSpaceNormal), thirdRowContainer);
+        _imp->evaluatesLabel = new Label(NATRON_NAMESPACE::convertFromPlainText(tr("Рендеринг при изменении"), NATRON_NAMESPACE::WhiteSpaceNormal), thirdRowContainer);
         thirdRowLayout->addWidget(_imp->evaluatesLabel);
         _imp->evaluatesOnChange = new QCheckBox(thirdRowContainer);
-        _imp->evaluatesOnChange->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("If checked, when the value of this parameter changes a new render will be triggered."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+        _imp->evaluatesOnChange->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Если этот флажок установлен, то при изменении значения этого параметра будет запущен новый рендеринг."), NATRON_NAMESPACE::WhiteSpaceNormal) );
         if (knob) {
             _imp->evaluatesOnChange->setChecked( knob->getEvaluateOnChange() );
         }
@@ -601,20 +601,20 @@ AddKnobDialog::AddKnobDialog(DockablePanel* panel,
     {
         _imp->tooltipLabel = new Label(tr("ToolTip"), this);
         _imp->tooltipArea = new QTextEdit(this);
-        _imp->tooltipArea->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("The help tooltip that will appear when hovering the parameter with the mouse."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+        _imp->tooltipArea->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Подсказка, которая появится при наведении мыши на параметр."), NATRON_NAMESPACE::WhiteSpaceNormal) );
         _imp->mainLayout->addRow(_imp->tooltipLabel, _imp->tooltipArea);
         if (knob) {
             _imp->tooltipArea->setPlainText( QString::fromUtf8( knob->getHintToolTip().c_str() ) );
         }
     }
     {
-        _imp->menuItemsLabel = new Label(tr("Menu Items"), this);
+        _imp->menuItemsLabel = new Label(tr("Пункты меню"), this);
         _imp->menuItemsEdit = new QTextEdit(this);
-        QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("The entries of the drop-down menu. \n"
-                                                       "Each line defines a new menu entry. You can specify a specific help tooltip for each entry "
-                                                       "by separating the entry text from the help with the following characters on the line: "
+        QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("Записи выпадающего меню. \n"
+                                                       "Каждая строка определяет новый пункт меню. Можно указать конкретную подсказку для каждой записи. "
+                                                       "отделив текст ввода от справки следующими символами в строке: "
                                                        "<?> \n\n"
-                                                       "e.g.: Special function<?>Will use our very own special function."), NATRON_NAMESPACE::WhiteSpaceNormal);
+                                                       "например: Специальная функция<?>Будет использовать нашу собственную специальную функцию.."), NATRON_NAMESPACE::WhiteSpaceNormal);
         _imp->menuItemsEdit->setToolTip(tt);
         _imp->mainLayout->addRow(_imp->menuItemsLabel, _imp->menuItemsEdit);
 
@@ -640,9 +640,9 @@ AddKnobDialog::AddKnobDialog(DockablePanel* panel,
         QHBoxLayout* optLayout = new QHBoxLayout(optContainer);
         optLayout->setContentsMargins(0, 0, 15, 0);
 
-        _imp->multiLineLabel = new Label(tr("Multiline"), optContainer);
+        _imp->multiLineLabel = new Label(tr("Многострочный"), optContainer);
         _imp->multiLine = new QCheckBox(optContainer);
-        _imp->multiLine->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Should this text be multi-line or single-line?"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+        _imp->multiLine->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Текст будет многострочным или однострочным?"), NATRON_NAMESPACE::WhiteSpaceNormal) );
         optLayout->addWidget(_imp->multiLine);
         _imp->mainLayout->addRow(_imp->multiLineLabel, optContainer);
 
@@ -658,10 +658,10 @@ AddKnobDialog::AddKnobDialog(DockablePanel* panel,
         QHBoxLayout* optLayout = new QHBoxLayout(optContainer);
         optLayout->setContentsMargins(0, 0, 15, 0);
 
-        _imp->usePointInteractLabel = new Label(tr("Use Point Interact"), optContainer);
+        _imp->usePointInteractLabel = new Label(tr("Использовать точку взаимодействия"), optContainer);
         _imp->usePointInteract = new QCheckBox(optContainer);
-        QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("If checked, display a 2D point interact for this parameter.\n "
-                                                       "This property is only valid for Floating Point 2D parameters."), NATRON_NAMESPACE::WhiteSpaceNormal);
+        QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("Если этот флажок установлен, для этого параметра отображается взаимодействие двухмерных точек.\n "
+                                                       "Это свойство применимо только к двумерным параметрам с плавающей точкой."), NATRON_NAMESPACE::WhiteSpaceNormal);
 
         _imp->usePointInteract->setToolTip(tt);
         optLayout->addWidget(_imp->usePointInteract);
@@ -1663,8 +1663,8 @@ AddKnobDialog::onOkClicked()
     }
 
     if (badFormat) {
-        Dialogs::errorDialog( tr("Error").toStdString(), tr("A parameter must have a unique script name composed only of characters from "
-                                                            "[a - z / A- Z] and digits [0 - 9]. This name cannot contain spaces for scripting purposes.")
+        Dialogs::errorDialog( tr("Ошибка").toStdString(), tr("Параметр должен иметь уникальное имя сценария, состоящее только из символов "
+                                                            "[a - z / A- Z] и цифр [0 - 9]. Это имя не может содержать пробелы для целей сценариев.")
                               .toStdString() );
 
         return;
@@ -1684,8 +1684,8 @@ AddKnobDialog::onOkClicked()
             NodesList nodes = isHolderGroup->getNodes();
             for (NodesList::iterator it = nodes.begin(); it != nodes.end(); ++it) {
                 if ( (*it)->getScriptName() == stdName ) {
-                    Dialogs::errorDialog( tr("Error").toStdString(), tr("A parameter on a group cannot have the same script-name as a node within "
-                                                                        "the group for scripting purposes.")
+                    Dialogs::errorDialog( tr("Ошибка").toStdString(), tr("Для целей сценариев параметр в группе не может иметь то же имя сценария "
+                                                                        "что и Узел внутри группы.")
                                           .toStdString() );
 
                     return;
@@ -1782,7 +1782,7 @@ AddKnobDialog::onOkClicked()
             oldKnobIsPage->setName( _imp->nameLineEdit->text().toStdString() );
             oldKnobIsPage->setLabel( _imp->labelLineEdit->text().toStdString() );
         } catch (const std::exception& e) {
-            Dialogs::errorDialog( tr("Error while creating parameter").toStdString(), e.what() );
+            Dialogs::errorDialog( tr("Ошибка при создании параметра").toStdString(), e.what() );
 
             return;
         }
@@ -1790,7 +1790,7 @@ AddKnobDialog::onOkClicked()
         try {
             _imp->createKnobFromSelection( (int)t, oldIndexInParent );
         }   catch (const std::exception& e) {
-            Dialogs::errorDialog( tr("Error while creating parameter").toStdString(), e.what() );
+            Dialogs::errorDialog( tr("Ошибка при создании параметра").toStdString(), e.what() );
 
             return;
         }
@@ -1843,7 +1843,7 @@ AddKnobDialog::onOkClicked()
                                                                     false,
                                                                     true);
         } catch (const std::exception& e) {
-            Dialogs::errorDialog( tr("Error while creating parameter").toStdString(), e.what() );
+            Dialogs::errorDialog( tr("Ошибка при создании параметра").toStdString(), e.what() );
 
             return;
         }
@@ -1876,8 +1876,8 @@ AddKnobDialog::onOkClicked()
                 }
             }
             if (defIndex == -1) {
-                QString s = tr("The default value \"%1\" does not exist in the defined menu items.").arg( _imp->defaultStr->text() );
-                Dialogs::errorDialog( tr("Error while creating parameter").toStdString(), s.toStdString() );
+                QString s = tr("Значение по умолчанию \"%1\" не существует в определенных пунктах меню.").arg( _imp->defaultStr->text() );
+                Dialogs::errorDialog( tr("Ошибка при создании параметра").toStdString(), s.toStdString() );
 
                 return;
             }

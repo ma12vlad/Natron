@@ -133,7 +133,7 @@ ColorSelectorPaletteButton::updateColor(bool signal)
                 .arg(_g)
                 .arg(_b)
                 .arg(_a)
-                .arg( tr("Clear color with right-click.") ) );
+                .arg( tr("Очистите цвет щелчком правой кнопки мыши.if") ) );
 
     if (signal) {
         Q_EMIT colorChanged(_r, _g, _b, _a);

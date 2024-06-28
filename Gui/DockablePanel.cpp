@@ -165,7 +165,7 @@ DockablePanel::DockablePanel(Gui* gui,
                 _imp->_pluginID = plugin->getPluginID();
                 _imp->_pluginVersionMajor = plugin->getMajorVersion();
                 _imp->_pluginVersionMinor = plugin->getMinorVersion();
-                pluginLabelVersioned = tr("%1 version %2.%3").arg(_imp->_pluginLabel).arg(_imp->_pluginVersionMajor).arg(_imp->_pluginVersionMinor);
+                pluginLabelVersioned = tr("%1 версия %2.%3").arg(_imp->_pluginLabel).arg(_imp->_pluginVersionMajor).arg(_imp->_pluginVersionMinor);
             }
         }
     }
@@ -223,7 +223,7 @@ DockablePanel::DockablePanel(Gui* gui,
             _imp->_centerNodeButton = new Button( QIcon(pixCenter), QString(), getHeaderWidget() );
             _imp->_centerNodeButton->setFixedSize(mediumBSize);
             _imp->_centerNodeButton->setIconSize(mediumIconSize);
-            _imp->_centerNodeButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Centers the node graph on this item."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+            _imp->_centerNodeButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Центрирует график узлов по этому элементу."), NATRON_NAMESPACE::WhiteSpaceNormal) );
             _imp->_centerNodeButton->setFocusPolicy(Qt::NoFocus);
             QObject::connect( _imp->_centerNodeButton, SIGNAL(clicked()), this, SLOT(onCenterButtonClicked()) );
             _imp->_headerLayout->addWidget(_imp->_centerNodeButton);
@@ -238,7 +238,7 @@ DockablePanel::DockablePanel(Gui* gui,
                 _imp->_enterInGroupButton->setFixedSize(mediumBSize);
                 _imp->_enterInGroupButton->setIconSize(mediumIconSize);
                 _imp->_enterInGroupButton->setFocusPolicy(Qt::NoFocus);
-                _imp->_enterInGroupButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Pressing this button will show the underlying node graph used for the implementation of this node."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+                _imp->_enterInGroupButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Нажатие этой кнопки покажет базовый граф узла, используемый для реализации этого узла."), NATRON_NAMESPACE::WhiteSpaceNormal) );
             }
 
             QPixmap pixHelp;
@@ -258,7 +258,7 @@ DockablePanel::DockablePanel(Gui* gui,
             icHideShow.addPixmap(pixShow, QIcon::Normal, QIcon::Off);
             icHideShow.addPixmap(pixHide, QIcon::Normal, QIcon::On);
             _imp->_hideUnmodifiedButton = new Button(icHideShow, QString(), _imp->_headerWidget);
-            _imp->_hideUnmodifiedButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Show/Hide all parameters without modifications."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+            _imp->_hideUnmodifiedButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Показать/Скрыть все параметры без изменений."), NATRON_NAMESPACE::WhiteSpaceNormal) );
             _imp->_hideUnmodifiedButton->setFocusPolicy(Qt::NoFocus);
             _imp->_hideUnmodifiedButton->setFixedSize(mediumBSize);
             _imp->_hideUnmodifiedButton->setIconSize(mediumIconSize);
@@ -311,9 +311,9 @@ DockablePanel::DockablePanel(Gui* gui,
             _imp->_colorButton = new Button(QIcon(p), QString(), _imp->_headerWidget);
             _imp->_colorButton->setFixedSize(mediumBSize);
             _imp->_colorButton->setIconSize(mediumIconSize);
-            _imp->_colorButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Node color in the nodegraph. "
-                                                                              "The default node color is set in the "
-                                                                              "%1 preferences.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ),
+            _imp->_colorButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Цвет узла в Схеме Узлов. "
+                                                                              "Цвет узла по умолчанию устанавливается в "
+                                                                              "%1 предпочтение.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ),
                                                                            NATRON_NAMESPACE::WhiteSpaceNormal) );
             _imp->_colorButton->setFocusPolicy(Qt::NoFocus);
             QObject::connect( _imp->_colorButton, SIGNAL(clicked()), this, SLOT(onColorButtonClicked()) );
@@ -331,9 +331,9 @@ DockablePanel::DockablePanel(Gui* gui,
                 _imp->_overlayButton = new OverlayColorButton(this, QIcon(pixOverlay), _imp->_headerWidget);
                 _imp->_overlayButton->setFixedSize(mediumBSize);
                 _imp->_overlayButton->setIconSize(mediumIconSize);
-                _imp->_overlayButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Overlay color in the viewer. "
-                                                                                    "Some plug-ins will use it to change the color of "
-                                                                                    "the overlay."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+                _imp->_overlayButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Наложение цвета в средстве просмотра. "
+                                                                                    "Некоторые плагины будут использовать его для изменения "
+                                                                                    "цвета наложения."), NATRON_NAMESPACE::WhiteSpaceNormal) );
                 _imp->_overlayButton->setFocusPolicy(Qt::NoFocus);
                 QObject::connect( _imp->_overlayButton, SIGNAL(clicked()), this, SLOT(onOverlayButtonClicked()) );
             }
@@ -348,7 +348,7 @@ DockablePanel::DockablePanel(Gui* gui,
         _imp->_undoButton = new Button(icUndo, QString(), _imp->_headerWidget);
         _imp->_undoButton->setFixedSize(mediumBSize);
         _imp->_undoButton->setIconSize(mediumIconSize);
-        _imp->_undoButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Undo the last change made to this operator."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+        _imp->_undoButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Отменить последнее изменение, внесенное в этот оператор."), NATRON_NAMESPACE::WhiteSpaceNormal) );
         _imp->_undoButton->setEnabled(false);
         _imp->_undoButton->setFocusPolicy(Qt::NoFocus);
         QPixmap pixRedo;
@@ -361,7 +361,7 @@ DockablePanel::DockablePanel(Gui* gui,
         _imp->_redoButton = new Button(icRedo, QString(), _imp->_headerWidget);
         _imp->_redoButton->setFixedSize(mediumBSize);
         _imp->_redoButton->setIconSize(mediumIconSize);
-        _imp->_redoButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Redo the last change undone to this operator."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+        _imp->_redoButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Повторить последнее отмененное для этого оператора изменение."), NATRON_NAMESPACE::WhiteSpaceNormal) );
         _imp->_redoButton->setEnabled(false);
         _imp->_redoButton->setFocusPolicy(Qt::NoFocus);
 
@@ -372,7 +372,7 @@ DockablePanel::DockablePanel(Gui* gui,
         _imp->_restoreDefaultsButton = new Button(icRestore, QString(), _imp->_headerWidget);
         _imp->_restoreDefaultsButton->setFixedSize(mediumBSize);
         _imp->_restoreDefaultsButton->setIconSize(mediumIconSize);
-        _imp->_restoreDefaultsButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Restore default values for this operator."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+        _imp->_restoreDefaultsButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Повторить последнее отмененное для этого оператора изменение."), NATRON_NAMESPACE::WhiteSpaceNormal) );
         _imp->_restoreDefaultsButton->setFocusPolicy(Qt::NoFocus);
         QObject::connect( _imp->_restoreDefaultsButton, SIGNAL(clicked()), this, SLOT(onRestoreDefaultsButtonClicked()) );
         QObject::connect( _imp->_undoButton, SIGNAL(clicked()), this, SLOT(onUndoClicked()) );
@@ -642,7 +642,7 @@ DockablePanel::setPluginIDAndVersion(const std::string& pluginLabel,
                                      unsigned int version)
 {
     if (_imp->_iconLabel) {
-        QString pluginLabelVersioned = tr("%1 version %2").arg( QString::fromUtf8( pluginLabel.c_str() ) ).arg(version);
+        QString pluginLabelVersioned = tr("%1 версия %2").arg( QString::fromUtf8( pluginLabel.c_str() ) ).arg(version);
         _imp->_iconLabel->setToolTip(pluginLabelVersioned);
     }
     if (_imp->_helpButton) {
@@ -673,9 +673,9 @@ void
 DockablePanel::onNodeScriptChanged(const QString& label)
 {
     if (_imp->_nameLineEdit) {
-        _imp->_nameLineEdit->setToolTip( QString::fromUtf8("<p>%1<br /><b><font size=4>%2</b></font></p>").arg( tr("Script name:") ).arg(label) );
+        _imp->_nameLineEdit->setToolTip( QString::fromUtf8("<p>%1<br /><b><font size=4>%2</b></font></p>").arg( tr("Имя скрипта:") ).arg(label) );
     } else if (_imp->_nameLabel) {
-        _imp->_nameLabel->setToolTip( QString::fromUtf8("<p>%1<br /><b><font size=4>%2</b></font></p>").arg( tr("Script name:") ).arg(label) );
+        _imp->_nameLabel->setToolTip( QString::fromUtf8("<p>%1<br /><b><font size=4>%2</b></font></p>").arg( tr("Имя скрипта:") ).arg(label) );
     }
 }
 
@@ -943,7 +943,7 @@ DockablePanel::helpString() const
     if (iseffect) {
         //Prepend the plugin ID
         if ( !_imp->_pluginID.isEmpty() ) {
-            QString pluginLabelVersioned = tr("%1 version %2.%3")
+            QString pluginLabelVersioned = tr("%1 версия %2.%3")
                                             .arg(_imp->_pluginID)
                                             .arg(_imp->_pluginVersionMajor)
                                             .arg(_imp->_pluginVersionMinor);
@@ -1612,14 +1612,14 @@ DockablePanel::onRightClickMenuRequested(const QPoint & pos)
         NodePtr master = isEffect->getNode()->getMasterNode();
         Menu menu(this);
         //menu.setFont( QFont(appFont,appFontSize) );
-        QAction* userParams = new QAction(tr("Manage user parameters..."), &menu);
+        QAction* userParams = new QAction(tr("Управление параметрами пользователя..."), &menu);
         menu.addAction(userParams);
 
 
-        QAction* setKeys = new QAction(tr("Set key on all parameters"), &menu);
+        QAction* setKeys = new QAction(tr("Установить ключ всех параметров"), &menu);
         menu.addAction(setKeys);
 
-        QAction* removeAnimation = new QAction(tr("Remove animation on all parameters"), &menu);
+        QAction* removeAnimation = new QAction(tr("Удалить анимацию по всем параметрам"), &menu);
         menu.addAction(removeAnimation);
 
         if ( master || !_imp->_holder || !_imp->_holder->getApp() || _imp->_holder->getApp()->isGuiFrozen() ) {
@@ -1655,9 +1655,9 @@ DockablePanel::onManageUserParametersActionTriggered()
     }
     // If this is a pyplug, warn that the user is about to break it
     if (node->isPyPlug()) {
-        StandardButtons rep = Dialogs::questionDialog(tr("PyPlug").toStdString(), tr("You are about to edit parameters of this node which will "
-                                                                                     "automatically convert this node as a Group. Are you sure "
-                                                                                     "you want to edit it?").toStdString(), false);
+        StandardButtons rep = Dialogs::questionDialog(tr("PyPlug").toStdString(), tr("Вы собираетесь отредактировать параметры этого Узла "
+                                                                                     " что автоматом преобразует этот Узел в группу. "
+                                                                                     "Отредактировать его?").toStdString(), false);
         if (rep != eStandardButtonYes) {
             return;
         }

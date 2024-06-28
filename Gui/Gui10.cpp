@@ -315,8 +315,8 @@ Gui::exportLayout()
         FStreamsSupport::ofstream ofile;
         FStreamsSupport::open(&ofile, filename);
         if (!ofile) {
-            Dialogs::errorDialog( tr("Error").toStdString()
-                                  , tr("Failed to open file ").toStdString() + filename, false );
+            Dialogs::errorDialog( tr("Ошибка").toStdString()
+                                  , tr("Не удалось открыть файл ").toStdString() + filename, false );
 
             return;
         }
@@ -327,8 +327,8 @@ Gui::exportLayout()
             s.initialize(this);
             oArchive << boost::serialization::make_nvp("Layout", s);
         }catch (...) {
-            Dialogs::errorDialog( tr("Error").toStdString()
-                                  , tr("Failed to save the layout").toStdString(), false );
+            Dialogs::errorDialog( tr("Ошибка").toStdString()
+                                  , tr("Не удалось сохранить макет").toStdString(), false );
 
             return;
         }

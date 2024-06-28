@@ -135,22 +135,22 @@ CurveWidgetPrivate::createMenu()
 
     Menu* fileMenu = new Menu(_rightClickMenu);
     //fileMenu->setFont( QFont(appFont,appFontSize) );
-    fileMenu->setTitle( tr("File") );
+    fileMenu->setTitle( tr("Файл") );
     _rightClickMenu->addAction( fileMenu->menuAction() );
 
     Menu* editMenu = new Menu(_rightClickMenu);
     //editMenu->setFont( QFont(appFont,appFontSize) );
-    editMenu->setTitle( tr("Edit") );
+    editMenu->setTitle( tr("Редактирование") );
     _rightClickMenu->addAction( editMenu->menuAction() );
 
     Menu* interpMenu = new Menu(_rightClickMenu);
     //interpMenu->setFont( QFont(appFont,appFontSize) );
-    interpMenu->setTitle( tr("Interpolation") );
+    interpMenu->setTitle( tr("Интерполяция") );
     _rightClickMenu->addAction( interpMenu->menuAction() );
 
     Menu* viewMenu = new Menu(_rightClickMenu);
     //viewMenu->setFont( QFont(appFont,appFontSize) );
-    viewMenu->setTitle( tr("View") );
+    viewMenu->setTitle( tr("Просмотр") );
     _rightClickMenu->addAction( viewMenu->menuAction() );
 
     CurveEditor* ce = 0;
@@ -166,20 +166,20 @@ CurveWidgetPrivate::createMenu()
     Menu* predefMenu  = 0;
     if (ce) {
         predefMenu = new Menu(_rightClickMenu);
-        predefMenu->setTitle( tr("Predefined") );
+        predefMenu->setTitle( tr("Предопределённый") );
         _rightClickMenu->addAction( predefMenu->menuAction() );
     }
 
     Menu* optionsMenu = new Menu(_rightClickMenu);
-    optionsMenu->setTitle( tr("Options") );
+    optionsMenu->setTitle( tr("Параметры") );
     _rightClickMenu->addAction( optionsMenu->menuAction() );
 
 
-    QAction* exportCurveToAsciiAction = new QAction(tr("Export curve to ASCII file"), fileMenu);
+    QAction* exportCurveToAsciiAction = new QAction(tr("Экспорт кривой в ASCII-файл"), fileMenu);
     QObject::connect( exportCurveToAsciiAction, SIGNAL(triggered()), _widget, SLOT(exportCurveToAscii()) );
     fileMenu->addAction(exportCurveToAsciiAction);
 
-    QAction* importCurveFromAsciiAction = new QAction(tr("Import curve from ASCII file"), fileMenu);
+    QAction* importCurveFromAsciiAction = new QAction(tr("Импорт кривой из файла ASCII"), fileMenu);
     QObject::connect( importCurveFromAsciiAction, SIGNAL(triggered()), _widget, SLOT(importCurveFromAscii()) );
     fileMenu->addAction(importCurveFromAsciiAction);
 
@@ -268,21 +268,21 @@ CurveWidgetPrivate::createMenu()
     viewMenu->addAction(frameCurve);
 
     if (predefMenu) {
-        QAction* loop = new QAction(tr("Loop"), _rightClickMenu);
+        QAction* loop = new QAction(tr("Петля"), _rightClickMenu);
         QObject::connect( loop, SIGNAL(triggered()), _widget, SLOT(loopSelectedCurve()) );
         predefMenu->addAction(loop);
 
-        QAction* reverse = new QAction(tr("Reverse"), _rightClickMenu);
+        QAction* reverse = new QAction(tr("Реверс"), _rightClickMenu);
         QObject::connect( reverse, SIGNAL(triggered()), _widget, SLOT(reverseSelectedCurve()) );
         predefMenu->addAction(reverse);
 
 
-        QAction* negate = new QAction(tr("Negate"), _rightClickMenu);
+        QAction* negate = new QAction(tr("Нивелировать"), _rightClickMenu);
         QObject::connect( negate, SIGNAL(triggered()), _widget, SLOT(negateSelectedCurve()) );
         predefMenu->addAction(negate);
     }
 
-    QAction* updateOnPenUp = new QAction(tr("Update on mouse release only"), _rightClickMenu);
+    QAction* updateOnPenUp = new QAction(tr("Обновление только для версии мыши"), _rightClickMenu);
     updateOnPenUp->setCheckable(true);
     updateOnPenUp->setChecked( appPTR->getCurrentSettings()->getRenderOnEditingFinishedOnly() );
     optionsMenu->addAction(updateOnPenUp);

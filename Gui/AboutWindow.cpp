@@ -74,7 +74,7 @@ AboutWindow::AboutWindow(QWidget* parent)
 #endif
 #endif
 
-    setWindowTitle( tr("Pro %1").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    setWindowTitle( tr("О программе %1").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _mainLayout = new QVBoxLayout(this);
     setLayout(_mainLayout);
 
@@ -89,7 +89,7 @@ AboutWindow::AboutWindow(QWidget* parent)
     _buttonLayout = new QHBoxLayout(_buttonContainer);
     _buttonLayout->addStretch();
 
-    _closeButton = new Button(tr("Close"), _buttonContainer);
+    _closeButton = new Button(tr("Закрыть"), _buttonContainer);
     QObject::connect( _closeButton, SIGNAL(clicked()), this, SLOT(accept()) );
     _buttonLayout->addWidget(_closeButton);
 
@@ -143,8 +143,8 @@ AboutWindow::AboutWindow(QWidget* parent)
         aboutText.append(licenseStr);
     }
     {
-        QString endAbout = QString::fromUtf8("<p>%1</p>").arg( tr("See the <a href=\"%2\">%1 website</a> "
-                                                                  "for more information on this software.")
+        QString endAbout = QString::fromUtf8("<p>%1</p>").arg( tr("Смотрите <a href=\"%2\">%1 вебсайт</a> "
+                                                                  "для подробной информации.")
                              .arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) // %1
                              .arg( QString::fromUtf8(NATRON_WEBSITE_URL) ) ); // %2
         aboutText.append(endAbout);
@@ -365,8 +365,8 @@ AboutWindow::AboutWindow(QWidget* parent)
                 }
             }
         }
-        QString gitStr = QString::fromUtf8("<p>%1</p>").arg(tr("This software was compiled from the source "
-                                                               "code branch %1 at version %2 using %3 targeting %4 for %5.")
+        QString gitStr = QString::fromUtf8("<p>%1</p>").arg(tr("Это программное обеспечение было скомпилировано из исходного кода "
+                                                               "ветка кода %1 в версии %2 с использованием %3 целей %4 для %5.")
                                                             .arg( QString::fromUtf8("<a href=\"https://github.com/NatronGitHub/Natron/tree/" GIT_BRANCH "\">" GIT_BRANCH "</a>") ) // %1
                                                             .arg(argStr) // %2
                                                             .arg( QString::fromUtf8(BOOST_COMPILER OPENMP_STRING) ) // %3
@@ -379,8 +379,8 @@ AboutWindow::AboutWindow(QWidget* parent)
         QString argStr = ( QString::fromUtf8("<a href=\"https://github.com/NatronGitHub/openfx-io/tree/" IO_GIT_COMMIT "\">")
                            + QString::fromUtf8(IO_GIT_COMMIT).mid(0, 7)
                            + QString::fromUtf8("</a>") );
-        QString gitStr = QString::fromUtf8("<p>%1</p>").arg(tr("The bundled %1 "
-                                                               "plugins were compiled from version %2.")
+        QString gitStr = QString::fromUtf8("<p>%1</p>").arg(tr("Входящие в комплект подключаемые модули %1 "
+                                                               "были скомпилированы из версии %2.")
                                                             .arg(QString::fromUtf8("<a href=\"https://github.com/NatronGitHub/openfx-io\">openfx-io</a>")) //%1
                                                             .arg(argStr));  // %2
         aboutText.append(gitStr);
@@ -389,8 +389,8 @@ AboutWindow::AboutWindow(QWidget* parent)
         QString argStr = ( QString::fromUtf8("<a href=\"https://github.com/NatronGitHub/openfx-misc/tree/" MISC_GIT_COMMIT "\">")
                            + QString::fromUtf8(MISC_GIT_COMMIT).mid(0, 7)
                            + QString::fromUtf8("</a>") );
-        QString gitStr = QString::fromUtf8("<p>%1</p>").arg(tr("The bundled %1 "
-                                                               "plugins were compiled from version %2.")
+        QString gitStr = QString::fromUtf8("<p>%1</p>").arg(tr("Входящие в комплект подключаемые модули %1 "
+                                                               "были скомпилированы из версии %2.")
                                                             .arg(QString::fromUtf8("<a href=\"https://github.com/NatronGitHub/openfx-misc\">openfx-misc</a>")) //%1
                                                             .arg(argStr));  // %2
         aboutText.append(gitStr);
@@ -399,8 +399,8 @@ AboutWindow::AboutWindow(QWidget* parent)
         QString argStr = ( QString::fromUtf8("<a href=\"https://github.com/NatronGitHub/openfx-arena/tree/" ARENA_GIT_COMMIT "\">")
                            + QString::fromUtf8(ARENA_GIT_COMMIT).mid(0, 7)
                           + QString::fromUtf8("</a>") );
-        QString gitStr = QString::fromUtf8("<p>%1</p>").arg(tr("The bundled %1 "
-                                                               "plugins were compiled from version %2.")
+        QString gitStr = QString::fromUtf8("<p>%1</p>").arg(tr("Входящие в комплект подключаемые модули %1 "
+                                                               "были скомпилированы из версии %2.")
                                                             .arg(QString::fromUtf8("<a href=\"https://github.com/NatronGitHub/openfx-arena\">openfx-arena</a>")) //%1
                                                             .arg(argStr));  // %2
         aboutText.append(gitStr);
@@ -409,45 +409,41 @@ AboutWindow::AboutWindow(QWidget* parent)
         QString argStr = ( QString::fromUtf8("<a href=\"https://github.com/NatronGitHub/openfx-gmic/tree/" GMIC_GIT_COMMIT "\">")
                            + QString::fromUtf8(GMIC_GIT_COMMIT).mid(0, 7)
                           + QString::fromUtf8("</a>") );
-        QString gitStr = QString::fromUtf8("<p>%1</p>").arg(tr("The bundled %1 "
-                                                               "plugins were compiled from version %2.")
+        QString gitStr = QString::fromUtf8("<p>%1</p>").arg(tr("Входящие в комплект подключаемые модули %1 "
+                                                               "были скомпилированы из версии %2.")
                                                             .arg(QString::fromUtf8("<a href=\"https://github.com/NatronGitHub/openfx-gmic\">openfx-gmic</a>")) //%1
                                                             .arg(argStr));  // %2
         aboutText.append(gitStr);
     }
     const QString status( QString::fromUtf8(NATRON_DEVELOPMENT_STATUS) );
     if ( status == QString::fromUtf8(NATRON_DEVELOPMENT_DEVEL) ) {
-        QString toAppend = QString::fromUtf8("<p>%1</p>").arg(tr("Note: This is a development version, which probably contains bugs. "
-                                                                 "If you feel like reporting a bug, please do so "
-                                                                 "on the %1.")
+        QString toAppend = QString::fromUtf8("<p>%1</p>").arg(tr("Примечание. Это версия для разработки, которая, возможно, содержит ошибки. "
+                                                                 "Если вам хочется сообщить об ошибке, "
+                                                                 "сделайте это на %1.")
                                                               .arg( QString::fromUtf8("<a href=\"%1\">%2</a>").arg(QString::fromUtf8(NATRON_ISSUE_TRACKER_URL)).arg(tr("issue tracker")) )); // %1
         aboutText.append(toAppend);
     } else if ( status == QString::fromUtf8(NATRON_DEVELOPMENT_SNAPSHOT) ) {
-        QString toAppend = QString::fromUtf8("<p>%1</p>").arg(tr("Note: This is an official snapshot version, compiled on the Natron build "
-                                                                 "farm, and it may still contain bugs. If you feel like reporting a bug, please do so "
-                                                                 "on the %1.")
+        QString toAppend = QString::fromUtf8("<p>%1</p>").arg(tr("Примечание. Это официальная версия моментального снимка, скомпилированная на  "
+                                                                 "сборочной ферме Natron, и она все еще может содержать ошибки. Если вам хочется сообщить об ошибке,  "
+                                                                 "сделайте это на %1.")
                                                               .arg( QString::fromUtf8("<a href=\"%1\">%2</a>").arg(QString::fromUtf8(NATRON_ISSUE_TRACKER_URL)).arg(tr("issue tracker")) )); // %1
         aboutText.append(toAppend);
     } else if ( status == QString::fromUtf8(NATRON_DEVELOPMENT_ALPHA) ) {
-        QString toAppend = QString::fromUtf8("<p>%1</p>").arg(tr("Note: This software is currently in alpha version, meaning there are missing features,"
-                                                                 " bugs and untested stuffs. If you feel like reporting a bug, please do so "
-                                                                 "on the %1.")
+        QString toAppend = QString::fromUtf8("<p>%1</p>").arg(tr("Примечание. В настоящее время это программное обеспечение находится в альфа-версии, что означает отсутствие функций, ошибок и непроверенных элементов. Если вам хочется сообщить об ошибке, сделайте это на %1.")
                                                               .arg( QString::fromUtf8("<a href=\"%1\">%2</a>").arg(QString::fromUtf8(NATRON_ISSUE_TRACKER_URL)).arg(tr("issue tracker")) )); // %1
         aboutText.append(toAppend);
     } else if ( status == QString::fromUtf8(NATRON_DEVELOPMENT_BETA) ) {
-        QString toAppend = QString::fromUtf8("<p>%1</p>").arg(tr("Note: This software is currently under beta testing, meaning there are "
-                                                                 " bugs and untested stuffs. If you feel like reporting a bug, please do so "
-                                                                 "on the %1.")
+        QString toAppend = QString::fromUtf8("<p>%1</p>").arg(tr("Примечание. Это программное обеспечение в настоящее время находится на стадии бета-тестирования, что означает, что в нем есть ошибки и непроверенные элементы. Если вам хочется сообщить об ошибке, сделайте это на %1.")
                                                               .arg( QString::fromUtf8("<a href=\"%1\">%2</a>").arg(QString::fromUtf8(NATRON_ISSUE_TRACKER_URL)).arg(tr("issue tracker")) )); // %1
         aboutText.append(toAppend);
     } else if ( status == QString::fromUtf8(NATRON_DEVELOPMENT_RELEASE_CANDIDATE) ) {
-        QString toAppend = tr("The version of this software is a release candidate, which means it has the potential of becoming "
-                                             "the future stable release but might still have some bugs.");
+        QString toAppend = tr("Версия этого программного обеспечения является кандидатом на выпуск, что означает, что она потенциально может стать"
+                                             "будущей стабильной версией,но все еще может содержать некоторые ошибки.");
         aboutText.append(toAppend);
     }
 
     _aboutText->setText(aboutText);
-    _tabWidget->addTab( _aboutText, tr("About") );
+    _tabWidget->addTab( _aboutText, tr("О программе") );
 
     _changelogText =  new QTextBrowser(_tabWidget);
     _changelogText->setOpenExternalLinks(true);
@@ -456,13 +452,13 @@ AboutWindow::AboutWindow(QWidget* parent)
         changelogFile.open(QIODevice::ReadOnly | QIODevice::Text);
         _changelogText->setText( QTextCodec::codecForName("UTF-8")->toUnicode( changelogFile.readAll() ) );
     }
-    _tabWidget->addTab( _changelogText, tr("Changelog") );
+    _tabWidget->addTab( _changelogText, tr("Журнал изменений") );
 
     _libsText = new QTextBrowser(_tabWidget);
     _libsText->setOpenExternalLinks(true);
     updateLibrariesVersions();
 
-    _tabWidget->addTab( _libsText, tr("Libraries") );
+    _tabWidget->addTab( _libsText, tr("Библиотеки") );
 
     _teamText = new QTextBrowser(_tabWidget);
     _teamText->setOpenExternalLinks(false);
@@ -471,7 +467,7 @@ AboutWindow::AboutWindow(QWidget* parent)
         team_file.open(QIODevice::ReadOnly | QIODevice::Text);
         _teamText->setText( QTextCodec::codecForName("UTF-8")->toUnicode( team_file.readAll() ) );
     }
-    _tabWidget->addTab( _teamText, tr("Contributors") );
+    _tabWidget->addTab( _teamText, tr("Авторы") );
 
     _licenseText = new QTextBrowser(_tabWidget);
     _licenseText->setOpenExternalLinks(false);
@@ -480,7 +476,7 @@ AboutWindow::AboutWindow(QWidget* parent)
         license.open(QIODevice::ReadOnly | QIODevice::Text);
         _licenseText->setText( QTextCodec::codecForName("UTF-8")->toUnicode( license.readAll() ) );
     }
-    _tabWidget->addTab( _licenseText, tr("License") );
+    _tabWidget->addTab( _licenseText, tr("Лицензия") );
 
     QWidget* thirdPartyContainer = new QWidget(_tabWidget);
     QVBoxLayout* thidPartyLayout = new QVBoxLayout(thirdPartyContainer);
@@ -604,14 +600,14 @@ AboutWindow::updateLibrariesVersions()
     OSGLContext::getGPUInfos(openGLRenderers);
     if ( !openGLRenderers.empty() ) {
         libsText += (QLatin1String("<h3>") +
-                     tr("OpenGL renderers:") +
+                     tr("Рендереры OpenGL:") +
                      QLatin1String("</h3>"));
         for (std::list<OpenGLRendererInfo>::iterator it = openGLRenderers.begin(); it != openGLRenderers.end(); ++it) {
             libsText += (QLatin1String("<p>") +
-                         tr("%1 from %2").arg( QString::fromUtf8( it->rendererName.c_str() ) )
+                         tr("%1 из %2").arg( QString::fromUtf8( it->rendererName.c_str() ) )
                                         .arg( QString::fromUtf8( it->vendorName.c_str() ) ) +
                          QLatin1String("<br />") +
-                         tr("OpenGL version %1 with GLSL version %2")
+                         tr("Версия OpenGL %1 с версией GLSL %2")
                          .arg( QString::fromUtf8( it->glVersionString.c_str() ) )
                          .arg( QString::fromUtf8( it->glslVersionString.c_str() ) ) +
                          QLatin1String("</p>") );

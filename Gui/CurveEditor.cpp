@@ -170,9 +170,9 @@ CurveEditor::CurveEditor(Gui* gui,
     , _imp( new CurveEditorPrivate() )
 {
     setObjectName( QString::fromUtf8("CurveEditor") );
-    _imp->undoAction = _imp->undoStack->createUndoAction( this, tr("&Undo") );
+    _imp->undoAction = _imp->undoStack->createUndoAction( this, tr("&Отменить") );
     _imp->undoAction->setShortcuts(QKeySequence::Undo);
-    _imp->redoAction = _imp->undoStack->createRedoAction( this, tr("&Redo") );
+    _imp->redoAction = _imp->undoStack->createRedoAction( this, tr("&Повторить") );
     _imp->redoAction->setShortcuts(QKeySequence::Redo);
 
     _imp->mainLayout = new QVBoxLayout(this);
@@ -193,7 +193,7 @@ CurveEditor::CurveEditor(Gui* gui,
     _imp->filterLayout = new QHBoxLayout(_imp->filterContainer);
     _imp->filterLayout->setContentsMargins(0, 0, 0, 0);
 
-    QString filterTt = tr("Show in the curve editor only nodes containing the following filter");
+    QString filterTt = tr("Показывать в редакторе кривых только узлы, содержащие следующий фильтр");
     _imp->filterLabel = new Label(tr("Filter:"), _imp->filterContainer);
     _imp->filterLabel->setToolTip(filterTt);
     _imp->filterEdit = new LineEdit(_imp->filterContainer);
@@ -227,7 +227,7 @@ CurveEditor::CurveEditor(Gui* gui,
 
     _imp->knobLabel = new Label(_imp->expressionContainer);
     _imp->knobLabel->setAltered(true);
-    _imp->knobLabel->setText( tr("No curve selected") );
+    _imp->knobLabel->setText( tr("Кривая не выбрана") );
     _imp->knobLineEdit = new LineEdit(_imp->expressionContainer);
     QObject::connect( _imp->knobLineEdit, SIGNAL(editingFinished()), this, SLOT(onExprLineEditFinished()) );
     _imp->resultLabel = new Label(_imp->expressionContainer);
@@ -1629,7 +1629,7 @@ CurveEditor::setSelectedCurve(const CurveGuiPtr& curve)
             }
         }
     }
-    _imp->knobLabel->setText( tr("No curve selected") );
+    _imp->knobLabel->setText( tr("Кривая не выбрана") );
     _imp->knobLabel->setAltered(true);
     _imp->knobLineEdit->clear();
     _imp->knobLineEdit->setReadOnly_NoFocusRect(true);
@@ -1678,7 +1678,7 @@ CurveEditor::setSelectedCurveExpression(const QString& expression)
         try {
             knob->validateExpression(expr, dim, false, &exprResult);
         } catch (...) {
-            _imp->resultLabel->setText( tr("Error") );
+            _imp->resultLabel->setText( tr("Ошибка") );
 
             return;
         }

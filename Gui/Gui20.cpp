@@ -293,7 +293,7 @@ Gui::loadStyleSheet()
                              .arg( qcolor_to_qstring(altCol) ) // %10 = altered text color
                              .arg( qcolor_to_qstring(lightSelCol) ) ); // %11 = mouse over selection color
     } else {
-        Dialogs::errorDialog( tr("Stylesheet").toStdString(), tr("Failure to load stylesheet file ").toStdString() + qss.fileName().toStdString() );
+        Dialogs::errorDialog( tr("Таблица стилей").toStdString(), tr("Не удалось загрузить файл таблицы стилей ").toStdString() + qss.fileName().toStdString() );
     }
 } // Gui::loadStyleSheet
 
@@ -918,7 +918,7 @@ Gui::findOrCreateToolButton(const PluginGroupNodePtr & plugin)
         assert(imageMenu);
         QAction* createReaderAction = new QAction(this);
         QObject::connect( createReaderAction, SIGNAL(triggered()), this, SLOT(createReader()) );
-        createReaderAction->setText( tr("Read") );
+        createReaderAction->setText( tr("Читать-Импорт") );
         QPixmap readImagePix;
         appPTR->getIcon(NATRON_PIXMAP_READ_IMAGE, TO_DPIX(NATRON_MEDIUM_BUTTON_ICON_SIZE), &readImagePix);
         createReaderAction->setIcon( QIcon(readImagePix) );
@@ -928,7 +928,7 @@ Gui::findOrCreateToolButton(const PluginGroupNodePtr & plugin)
 
         QAction* createWriterAction = new QAction(this);
         QObject::connect( createWriterAction, SIGNAL(triggered()), this, SLOT(createWriter()) );
-        createWriterAction->setText( tr("Write") );
+        createWriterAction->setText( tr("Записать-Экспорт") );
         QPixmap writeImagePix;
         appPTR->getIcon(NATRON_PIXMAP_WRITE_IMAGE, TO_DPIX(NATRON_MEDIUM_BUTTON_ICON_SIZE), &writeImagePix);
         createWriterAction->setIcon( QIcon(writeImagePix) );
@@ -1305,7 +1305,7 @@ Gui::createReader()
         std::string ext = ext_qs.toStdString();
         std::map<std::string, std::string>::iterator found = readersForFormat.find(ext);
         if ( found == readersForFormat.end() ) {
-            errorDialog( tr("Reader").toStdString(), tr("No plugin capable of decoding \"%1\" files was found.").arg(ext_qs).toStdString(), false);
+            errorDialog( tr("Считыватель").toStdString(), tr("Не найден плагин, способный декодировать файлы \"%1\".").arg(ext_qs).toStdString(), false);
         } else {
             CreateNodeArgs args(found->second.c_str(), group);
             args.addParamDefaultValue(kOfxImageEffectFileParamName, pattern);
@@ -1443,7 +1443,7 @@ int
 Gui::saveWarning()
 {
     if ( !getApp()->getProject()->isSaveUpToDate() ) {
-        StandardButtonEnum ret =  Dialogs::questionDialog(NATRON_APPLICATION_NAME, tr("Save changes to %1?").arg( getApp()->getProject()->getProjectFilename() ).toStdString(),
+        StandardButtonEnum ret =  Dialogs::questionDialog(NATRON_APPLICATION_NAME, tr("Сохранить изменения в %1?").arg( getApp()->getProject()->getProjectFilename() ).toStdString(),
                                                           false,
                                                           StandardButtons(eStandardButtonSave | eStandardButtonDiscard | eStandardButtonCancel), eStandardButtonSave);
         if ( (ret == eStandardButtonEscape) || (ret == eStandardButtonCancel) ) {

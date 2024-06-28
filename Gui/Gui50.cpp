@@ -944,7 +944,7 @@ Gui::exportGroupAsPythonScript(NodeCollection* collection)
     }
 
     if (!hasOutput) {
-        Dialogs::errorDialog( tr("Export").toStdString(), tr("To export as group, at least one Output node must exist.").toStdString() );
+        Dialogs::errorDialog( tr(""Экспорт"").toStdString(), tr("Для экспорта как группы должен существовать хотя бы один Выходной Узел.").toStdString() );
 
         return;
     }
@@ -991,9 +991,9 @@ Gui::addMenuEntry(const QString & menuGrouping,
     QStringList grouping = menuGrouping.split( QLatin1Char('/') );
 
     if ( grouping.isEmpty() ) {
-        getApp()->appendToScriptEditor( tr("Failed to add menu entry for ").toStdString() +
+        getApp()->appendToScriptEditor( tr("Не удалось добавить пункт меню для ").toStdString() +
                                         menuGrouping.toStdString() +
-                                        tr(": incorrect menu grouping").toStdString() );
+                                        tr(": неправильная группировка меню").toStdString() );
 
         return;
     }
