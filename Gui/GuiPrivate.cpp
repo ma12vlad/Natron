@@ -402,7 +402,7 @@ GuiPrivate::createNodeGraphGui()
     scene->setItemIndexMethod(QGraphicsScene::NoIndex);
     _nodeGraphArea = new NodeGraph(_gui, _appInstance.lock()->getProject(), scene, _gui);
     _nodeGraphArea->setScriptName(kNodeGraphObjectName);
-    _nodeGraphArea->setLabel( tr("Граф узлов").toStdString() );
+    _nodeGraphArea->setLabel( tr("Node Graph").toStdString() );
     _nodeGraphArea->setVisible(false);
     _gui->registerTab(_nodeGraphArea, _nodeGraphArea);
 }
@@ -412,7 +412,7 @@ GuiPrivate::createCurveEditorGui()
 {
     _curveEditor = new CurveEditor(_gui, _appInstance.lock()->getTimeLine(), _gui);
     _curveEditor->setScriptName(kCurveEditorObjectName);
-    _curveEditor->setLabel( tr("Редактор кривых").toStdString() );
+    _curveEditor->setLabel( tr("Curve editor").toStdString() );
     _curveEditor->setVisible(false);
     _gui->registerTab(_curveEditor, _curveEditor);
 }
