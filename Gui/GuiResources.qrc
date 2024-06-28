@@ -380,4 +380,7 @@
         <file>Resources/Images/patternSize.png</file>
         <file>Resources/Images/searchSize.png</file>
     </qresource>
+    <qresource lang="ru" prefix="/">
+        <file alias="translations.qm">Resources/translations/Gui_ru.qm</file>
+    </qresource>
 </RCC>
