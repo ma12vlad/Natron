@@ -216,11 +216,11 @@ AbortableRenderInfo::onAbortTimerTimeout()
     QString timeoutStr = Timer::printAsTime(NATRON_ABORT_TIMEOUT_MS / 1000, false);
     std::stringstream ss;
 
-    ss << tr("One or multiple render seems to not be responding anymore after numerous attempt made by %1 to abort them for the last %2.").arg ( QString::fromUtf8( NATRON_APPLICATION_NAME) ).arg(timeoutStr).toStdString() << std::endl;
-    ss << tr("This is likely due to a render taking too long in a plug-in.").toStdString() << std::endl << std::endl;
+    ss << tr("Один или несколько рендерингов больше не отвечают после многочисленных попыток %1 прервать их для последнего %2.").arg ( QString::fromUtf8( NATRON_APPLICATION_NAME) ).arg(timeoutStr).toStdString() << std::endl;
+    ss << tr("Вероятно, это связано с тем, что рендеринг в плагине занимает слишком много времени.").toStdString() << std::endl << std::endl;
 
     std::stringstream ssThreads;
-    ssThreads << tr("List of stalled render(s):").toStdString() << std::endl << std::endl;
+    ssThreads << tr("Список остановленных рендеров:").toStdString() << std::endl << std::endl;
 
     bool hasAtLeastOneThreadInNodeAction = false;
     for (ThreadSet::const_iterator it = threads.begin(); it != threads.end(); ++it) {
@@ -237,7 +237,7 @@ AbortableRenderInfo::onAbortTimerTimeout()
             nodeName = node->getFullyQualifiedName();
             pluginId = node->getPluginID();
 
-            ssThreads << " - " << (*it)->getThreadName()  << tr(" stalled in:").toStdString() << std::endl << std::endl;
+            ssThreads << " - " << (*it)->getThreadName()  << tr(" застрял в:").toStdString() << std::endl << std::endl;
 
             if ( !nodeName.empty() ) {
                 ssThreads << "    Node: " << nodeName << std::endl;
@@ -265,11 +265,11 @@ AbortableRenderInfo::onAbortTimerTimeout()
     if ( appPTR->isBackground() ) {
         qDebug() << ss.str().c_str();
     } else {
-        ss << tr("Would you like to kill these renders?").toStdString() << std::endl << std::endl;
-        ss << tr("WARNING: Killing them may not work or may leave %1 in a bad state. The application may crash or freeze as a consequence of this. It is advised to restart %1 instead.").arg( QString::fromUtf8( NATRON_APPLICATION_NAME) ).toStdString();
+        ss << tr("Уничтожить эти рендеры?").toStdString() << std::endl << std::endl;
+        ss << tr("ПРЕДУПРЕЖДЕНИЕ: Их удаление может не сработать или привести к сбою в работе %1. Приложение может выйти из строя или зависнуть. Вместо этого рекомендуется перезапустить %1.").arg( QString::fromUtf8( NATRON_APPLICATION_NAME) ).toStdString();
 
         std::string message = ss.str();
-        StandardButtonEnum reply = Dialogs::questionDialog(tr("A Render is not responding anymore").toStdString(), ss.str(), false, StandardButtons(eStandardButtonYes | eStandardButtonNo), eStandardButtonNo);
+        StandardButtonEnum reply = Dialogs::questionDialog(tr("Рендер не отвечает").toStdString(), ss.str(), false, StandardButtons(eStandardButtonYes | eStandardButtonNo), eStandardButtonNo);
         if (reply == eStandardButtonYes) {
             // Kill threads
             QMutexLocker k(&_imp->threadsMutex);

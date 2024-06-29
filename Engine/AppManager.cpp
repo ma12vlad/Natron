@@ -769,9 +769,9 @@ AppManager::loadInternal(const CLArgs& cl)
             bool ok  = NATRON_PYTHON_NAMESPACE::interpretPythonScript(*it, &err, &output);
             if (!ok) {
                 const QString sp( QString::fromUtf8(" ") );
-                QString m = tr("Failed to execute the following Python command:") + sp +
+                QString m = tr("Не удалось выполнить следующую команду Python:") + sp +
                 QString::fromUtf8( it->c_str() ) + sp +
-                tr("Error:") + sp +
+                tr("Ошибка:") + sp +
                 QString::fromUtf8( err.c_str() );
                 throw std::runtime_error( m.toStdString() );
             } else if ( !output.empty() ) {
@@ -867,7 +867,7 @@ AppManager::initializeOpenGLFunctionsOnce(bool createOpenGLContext)
                 } else {
                     AppManagerPrivate::OpenGLRequirementsData& vdata = _imp->glRequirements[eOpenGLRequirementsTypeViewer];
                     AppManagerPrivate::OpenGLRequirementsData& rdata = _imp->glRequirements[eOpenGLRequirementsTypeRendering];
-                    rdata.error = tr("Error creating OpenGL context.");
+                    rdata.error = tr("Ошибка при создании контекста OpenGL.");
                     vdata.error = rdata.error;
                     rdata.hasRequirements = false;
                     vdata.hasRequirements = false;
@@ -883,8 +883,8 @@ AppManager::initializeOpenGLFunctionsOnce(bool createOpenGLContext)
                 AppManagerPrivate::OpenGLRequirementsData& rdata = _imp->glRequirements[eOpenGLRequirementsTypeRendering];
                 rdata.hasRequirements = false;
                 vdata.hasRequirements = false;
-                vdata.error = tr("Error while creating OpenGL context: %1").arg(QString::fromUtf8(e.what()));
-                rdata.error = tr("Error while creating OpenGL context: %1").arg(QString::fromUtf8(e.what()));
+                vdata.error = tr("Ошибка при создании контекста OpenGL: %1").arg(QString::fromUtf8(e.what()));
+                rdata.error = tr("Ошибка при создании контекста OpenGL: %1").arg(QString::fromUtf8(e.what()));
                 AppManagerPrivate::addOpenGLRequirementsString(rdata.error, eOpenGLRequirementsTypeRendering);
                 AppManagerPrivate::addOpenGLRequirementsString(vdata.error, eOpenGLRequirementsTypeViewer);
                 checkRenderingReq = false;
@@ -983,18 +983,18 @@ AppManager::loadInternalAfterInitGui(const CLArgs& cl)
     }
 
     if (oldCacheVersion != NATRON_CACHE_VERSION || cl.isCacheClearRequestedOnLaunch()) {
-        setLoadingStatus( tr("Clearing the image cache...") );
+        setLoadingStatus( tr("Очистка кэша изображений...") );
         wipeAndCreateDiskCacheStructure();
     } else {
-        setLoadingStatus( tr("Restoring the image cache...") );
+        setLoadingStatus( tr("Восстановление кэша изображений...") );
         _imp->restoreCaches();
     }
 
     if (cl.isOpenFXCacheClearRequestedOnLaunch()) {
-        setLoadingStatus( tr("Clearing the OpenFX Plugins cache...") );
+        setLoadingStatus( tr("Очистка кеша плагинов OpenFX...") );
         clearPluginsLoadedCache();
     } else {
-        setLoadingStatus( tr("Loading plugin cache...") );
+        setLoadingStatus( tr("Загрузка кеша плагина...") );
     }
 
 
@@ -1149,7 +1149,7 @@ AppManager::newAppInstanceInternal(const CLArgs& cl,
 
         return instance;
     } catch (...) {
-        Dialogs::errorDialog( NATRON_APPLICATION_NAME, tr("Cannot load project").toStdString(), false );
+        Dialogs::errorDialog( NATRON_APPLICATION_NAME, tr("Не удается загрузить проект").toStdString(), false );
         removeInstance(_imp->_availableID);
         instance.reset();
         --_imp->_availableID;
@@ -1634,8 +1634,8 @@ AppManager::findAndRunScriptFile(const QString& path,
 
 
                 if ( !error.empty() ) {
-                    QString message(tr("Failed to load %1: %2").arg(absolutePath).arg(QString::fromUtf8( error.c_str() )) );
-                    appPTR->writeToErrorLog_mt_safe(tr("Python Script"), QDateTime::currentDateTime(), message, false);
+                    QString message(tr("Не удалось загрузить %1: %2").arg(absolutePath).arg(QString::fromUtf8( error.c_str() )) );
+                    appPTR->writeToErrorLog_mt_safe(tr("Скрипт на Python"), QDateTime::currentDateTime(), message, false);
                     std::cerr << message.toStdString() << std::endl;
 
                     return false;
@@ -1861,10 +1861,9 @@ AppManager::loadPythonGroups()
         s = "import qtpy\nfrom qtpy import QtCore";
         bool ok  = NATRON_PYTHON_NAMESPACE::interpretPythonScript(s, &err, 0);
         if (!ok) {
-            QString message = tr("Failed to import qtpy.QtCore, make sure it is bundled with your Natron installation "
-                                     "or reachable through the Python path. "
-                                     "Note that Natron disables usage "
-                                 "of site-packages).");
+            QString message = tr("Не удалось импортировать qtpy.QtCore. Убедитесь, что он включен в вашу установку "
+                                     "Natron или доступен по пути Python. "
+                                     "Обратите внимание, что Natron отключает использование сайтов-пакетов.");
             std::cerr << message.toStdString() << std::endl;
             appPTR->writeToErrorLog_mt_safe(QLatin1String("qtpy.QtCore"), QDateTime::currentDateTime(), message);
         }
@@ -1874,7 +1873,7 @@ AppManager::loadPythonGroups()
         std::string s = "from qtpy import QtGui";
         bool ok  = NATRON_PYTHON_NAMESPACE::interpretPythonScript(s, &err, 0);
         if (!ok) {
-            QString message = tr("Failed to import qtpy.QtGui");
+            QString message = tr("Не удалось импортировать qtpy.QtGui");
             std::cerr << message.toStdString() << std::endl;
             appPTR->writeToErrorLog_mt_safe(QLatin1String("qtpy.QtGui"), QDateTime::currentDateTime(), message);
         }
@@ -1889,14 +1888,14 @@ AppManager::loadPythonGroups()
         findAllScriptsRecursive(d, allPlugins, &foundInit, &foundInitGui);
     }
     if ( foundInit.isEmpty() ) {
-        QString message = tr("Info: init.py script not loaded (this is not an error)");
+        QString message = tr("Информация: скрипт init.py не загружен (это не ошибка)");
         appPTR->setLoadingStatus(message);
         if ( !appPTR->isBackground() ) {
             std::cout << message.toStdString() << std::endl;
         }
     } else {
         Q_FOREACH(const QString &found, foundInit) {
-            QString message = tr("Info: init.py script found and loaded at %1").arg(found);
+            QString message = tr("Информация: скрипт init.py найден и загружен в %1").arg(found);
 
             appPTR->setLoadingStatus(message);
             if ( !appPTR->isBackground() ) {
@@ -1907,14 +1906,14 @@ AppManager::loadPythonGroups()
 
     if ( !appPTR->isBackground() ) {
         if ( foundInitGui.isEmpty() ) {
-            QString message = tr("Info: initGui.py script not loaded (this is not an error)");
+            QString message = tr("Информация: скрипт initGui.py не загружен (это не ошибка)");
             appPTR->setLoadingStatus(message);
             if ( !appPTR->isBackground() ) {
                 std::cout << message.toStdString() << std::endl;
             }
         } else {
             Q_FOREACH(const QString &found, foundInitGui) {
-                QString message = tr("Info: initGui.py script found and loaded at %1").arg(found);
+                QString message = tr("Информация: скрипт initGui.py найден и загружен в %1").arg(found);
 
                 appPTR->setLoadingStatus(message);
                 if ( !appPTR->isBackground() ) {
@@ -1944,7 +1943,7 @@ AppManager::loadPythonGroups()
         }
     }
 
-    appPTR->setLoadingStatus( tr("Loading PyPlugs...") );
+    appPTR->setLoadingStatus( tr("Загрузка PyPlugs...") );
 
     Q_FOREACH(const QString &plugin, allPlugins) {
         QString moduleName = plugin;
@@ -2990,13 +2989,13 @@ AppManager::initPython()
     std::string modulename = NATRON_ENGINE_PYTHON_MODULE_NAME;
     bool ok = NATRON_PYTHON_NAMESPACE::interpretPythonScript("import sys\nfrom math import *\nimport " + modulename, &err, 0);
     if (!ok) {
-        throw std::runtime_error( tr("Error while loading python module %1: %2").arg( QString::fromUtf8( modulename.c_str() ) ).arg( QString::fromUtf8( err.c_str() ) ).toStdString() );
+        throw std::runtime_error( tr("Ошибка при загрузке модуля Python %1: %2").arg( QString::fromUtf8( modulename.c_str() ) ).arg( QString::fromUtf8( err.c_str() ) ).toStdString() );
     }
 
     ok = NATRON_PYTHON_NAMESPACE::interpretPythonScript(modulename + ".natron = " + modulename + ".PyCoreApplication()\n", &err, 0);
     assert(ok);
     if (!ok) {
-        throw std::runtime_error( tr("Error while loading python module %1: %2").arg( QString::fromUtf8( modulename.c_str() ) ).arg( QString::fromUtf8( err.c_str() ) ).toStdString() );
+        throw std::runtime_error( tr("Ошибка при загрузке модуля Python %1: %2").arg( QString::fromUtf8( modulename.c_str() ) ).arg( QString::fromUtf8( err.c_str() ) ).toStdString() );
     }
 
     if ( !isBackground() ) {
@@ -3004,14 +3003,14 @@ AppManager::initPython()
         ok = NATRON_PYTHON_NAMESPACE::interpretPythonScript("import sys\nimport " + modulename, &err, 0);
         assert(ok);
         if (!ok) {
-            throw std::runtime_error( tr("Error while loading python module %1: %2").arg( QString::fromUtf8( modulename.c_str() ) ).arg( QString::fromUtf8( err.c_str() ) ).toStdString() );
+            throw std::runtime_error( tr("Ошибка при загрузке модуля Python %1: %2").arg( QString::fromUtf8( modulename.c_str() ) ).arg( QString::fromUtf8( err.c_str() ) ).toStdString() );
         }
 
         ok = NATRON_PYTHON_NAMESPACE::interpretPythonScript(modulename + ".natron = " +
                                                             modulename + ".PyGuiApplication()\n", &err, 0);
         assert(ok);
         if (!ok) {
-            throw std::runtime_error( tr("Error while loading python module %1: %2").arg( QString::fromUtf8( modulename.c_str() ) ).arg( QString::fromUtf8( err.c_str() ) ).toStdString() );
+            throw std::runtime_error( tr("Ошибка при загрузке модуля Python %1: %2").arg( QString::fromUtf8( modulename.c_str() ) ).arg( QString::fromUtf8( err.c_str() ) ).toStdString() );
         }
 
         //redirect stdout/stderr
@@ -3030,7 +3029,7 @@ AppManager::initPython()
         ok = NATRON_PYTHON_NAMESPACE::interpretPythonScript(script, &err, 0);
         assert(ok);
         if (!ok) {
-            throw std::runtime_error( tr("Error while loading StreamCatcher: %1").arg( QString::fromUtf8( err.c_str() ) ).toStdString() );
+            throw std::runtime_error( tr("Ошибка при загрузке StreamCatcher: %1").arg( QString::fromUtf8( err.c_str() ) ).toStdString() );
         }
     }
     // Set QT_API for QtPy
@@ -3181,12 +3180,12 @@ AppManager::onCrashReporterNoLongerResponding()
 {
 #ifdef NATRON_USE_BREAKPAD
     //Crash reporter seems to no longer exist, quit
-    QString error = tr("%1 has detected that the crash reporter process is no longer responding. "
-                       "This most likely indicates that it was killed or that the "
-                       "communication between the 2 processes is failing.")
+    QString error = tr("%1 обнаружил, что процесс отчета о сбоях больше не отвечает. "
+                       "Скорее всего он был уничтожен или связь "
+                       "между двумя процессами нарушена.")
                     .arg( QString::fromUtf8(NATRON_APPLICATION_NAME) );
     std::cerr << error.toStdString() << std::endl;
-    writeToErrorLog_mt_safe(tr("Crash-Reporter"), QDateTime::currentDateTime(), error );
+    writeToErrorLog_mt_safe(tr("Краш-репортер"), QDateTime::currentDateTime(), error );
 #endif
 }
 

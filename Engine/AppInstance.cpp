@@ -414,27 +414,27 @@ AppInstance::newVersionCheckDownloaded()
         const QString popen = QString::fromUtf8("<p>");
         const QString pclose = QString::fromUtf8("</p>");
         QString text =  popen
-               + tr("Updates for %1 are now available for download.")
+               + tr("Обновления для %1 доступны для загрузки.")
                .arg( QString::fromUtf8(NATRON_APPLICATION_NAME) )
                + pclose
                + popen
-               + tr("You are currently using %1 version %2 - %3.")
+               + tr("В настоящее время вы используете %1 версии %2 – %3.")
                .arg( QString::fromUtf8(NATRON_APPLICATION_NAME) )
                .arg( QString::fromUtf8(NATRON_VERSION_STRING) )
                .arg( QString::fromUtf8(NATRON_DEVELOPMENT_STATUS) )
                + pclose
                + popen
-               + tr("The latest version of %1 is version %4 - %5.")
+               + tr("Последней версией %1 является версия %4 – %5.")
                .arg( QString::fromUtf8(NATRON_APPLICATION_NAME) )
                .arg(extractedSoftwareVersionStr)
                .arg(extractedDevStatusStr)
                + pclose
                + popen
-               + tr("You can download it from %1.")
+               + tr("Вы можете скачать его с %1.")
                .arg( QString::fromUtf8("<a href=\"https://natrongithub.github.io/#download\">"
                                        "natrongithub.github.io</a>") )
                + pclose;
-        Dialogs::informationDialog( tr("New version").toStdString(), text.toStdString(), true );
+        Dialogs::informationDialog( tr("Новая версия").toStdString(), text.toStdString(), true );
     }
 } // AppInstance::newVersionCheckDownloaded
 
@@ -461,11 +461,11 @@ AppInstance::getWritersWorkForCL(const CLArgs& cl,
             writerNode = getNodeByFullySpecifiedName(writerName);
 
             if (!writerNode) {
-                QString s = tr("%1 does not belong to the project file. Please enter a valid Write node script-name.").arg(it->name);
+                QString s = tr("%1 не относится к файлу проекта. Введите допустимое имя скрипта узла записи.").arg(it->name);
                 throw std::invalid_argument( s.toStdString() );
             } else {
                 if ( !writerNode->isOutputNode() ) {
-                    QString s = tr("%1 is not an output node! It cannot render anything.").arg(it->name);
+                    QString s = tr("%1 это не выходной узел! Он ничего не может отобразить.").arg(it->name);
                     throw std::invalid_argument( s.toStdString() );
                 }
             }
@@ -486,17 +486,17 @@ AppInstance::getWritersWorkForCL(const CLArgs& cl,
             args.setProperty<bool>(kCreateNodeArgsPropAutoConnect, false);
             writerNode = createWriter( it->filename.toStdString(), args );
             if (!writerNode) {
-                throw std::runtime_error( tr("Failed to create writer for %1.").arg(it->filename).toStdString() );
+                throw std::runtime_error( tr("Не удалось создать программу записи для %1.").arg(it->filename).toStdString() );
             }
 
             //Connect the writer to the corresponding Output node input
             NodePtr output = getProject()->getNodeByFullySpecifiedName( it->name.toStdString() );
             if (!output) {
-                throw std::invalid_argument( tr("%1 is not the name of a valid Output node of the script").arg(it->name).toStdString() );
+                throw std::invalid_argument( tr("%1 не является именем допустимого узла вывода сценария.").arg(it->name).toStdString() );
             }
             GroupOutput* isGrpOutput = dynamic_cast<GroupOutput*>( output->getEffectInstance().get() );
             if (!isGrpOutput) {
-                throw std::invalid_argument( tr("%1 is not the name of a valid Output node of the script").arg(it->name).toStdString() );
+                throw std::invalid_argument( tr("%1 не является именем допустимого узла вывода сценария.").arg(it->name).toStdString() );
             }
             NodePtr outputInput = output->getRealInput(0);
             if (outputInput) {
@@ -531,9 +531,9 @@ AppInstancePrivate::executeCommandLinePythonCommands(const CLArgs& args)
         bool ok  = NATRON_PYTHON_NAMESPACE::interpretPythonScript(*it, &err, &output);
         if (!ok) {
             const QString sp( QString::fromUtf8(" ") );
-            QString m = tr("Failed to execute the following Python command:") + sp +
+            QString m = tr("Не удалось выполнить следующую команду Python:") + sp +
                         QString::fromUtf8( it->c_str() ) + sp +
-                        tr("Error:") + sp +
+                        tr("Ошибка:") + sp +
                         QString::fromUtf8( err.c_str() );
             throw std::runtime_error( m.toStdString() );
         } else if ( !output.empty() ) {
@@ -590,13 +590,13 @@ AppInstance::loadInternal(const CLArgs& cl,
 
         if ( scriptFilename.isEmpty() ) {
             // cannot start a background process without a file
-            throw std::invalid_argument( tr("Project file name is empty.").toStdString() );
+            throw std::invalid_argument( tr("Имя файла проекта пусто.").toStdString() );
         }
 
 
         QFileInfo info(scriptFilename);
         if ( !info.exists() ) {
-            throw std::invalid_argument( tr("%1: No such file.").arg(scriptFilename).toStdString() );
+            throw std::invalid_argument( tr("%1: Такого файла нет.").arg(scriptFilename).toStdString() );
         }
 
         std::list<AppInstance::RenderWork> writersWork;
@@ -605,13 +605,13 @@ AppInstance::loadInternal(const CLArgs& cl,
         if ( info.suffix() == QString::fromUtf8(NATRON_PROJECT_FILE_EXT) ) {
             ///Load the project
             if ( !_imp->_currentProject->loadProject( info.path(), info.fileName() ) ) {
-                throw std::invalid_argument( tr("Project file loading failed.").toStdString() );
+                throw std::invalid_argument( tr("Не удалось загрузить файл проекта.").toStdString() );
             }
         } else if ( info.suffix() == QString::fromUtf8("py") ) {
             ///Load the python script
             loadPythonScript(info);
         } else {
-            throw std::invalid_argument( tr("%1 only accepts python scripts or .ntp project files.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString() );
+            throw std::invalid_argument( tr("%1 принимает только сценарии Python или файлы проектов .ntp.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString() );
         }
 
         // exec the python script specified via --onload
@@ -634,17 +634,17 @@ AppInstance::loadInternal(const CLArgs& cl,
             NodePtr readNode = getNodeByFullySpecifiedName(readerName);
 
             if (!readNode) {
-                std::string exc( tr("%1 does not belong to the project file. Please enter a valid Read node script-name.").arg( QString::fromUtf8( readerName.c_str() ) ).toStdString() );
+                std::string exc( tr("%1 не принадлежит файлу проекта. Введите допустимое имя сценария узла чтения.").arg( QString::fromUtf8( readerName.c_str() ) ).toStdString() );
                 throw std::invalid_argument(exc);
             } else {
                 if ( !readNode->getEffectInstance()->isReader() ) {
-                    std::string exc( tr("%1 is not a Read node! It cannot render anything.").arg( QString::fromUtf8( readerName.c_str() ) ).toStdString() );
+                    std::string exc( tr("%1 это не читаемый узел! Он ничего не может отобразить.").arg( QString::fromUtf8( readerName.c_str() ) ).toStdString() );
                     throw std::invalid_argument(exc);
                 }
             }
 
             if ( it->filename.isEmpty() ) {
-                std::string exc( tr("%1: Filename specified is empty but [-i] or [--reader] was passed to the command-line.").arg( QString::fromUtf8( readerName.c_str() ) ).toStdString() );
+                std::string exc( tr("%1: Указанное имя файла пусто, но в командную строку было передано [-i] или [--reader].").arg( QString::fromUtf8( readerName.c_str() ) ).toStdString() );
                 throw std::invalid_argument(exc);
             }
             KnobIPtr fileKnob = readNode->getKnobByName(kOfxImageEffectFileParamName);
@@ -670,7 +670,7 @@ AppInstance::loadInternal(const CLArgs& cl,
                 loadPythonScript(info);
             } else if ( info.suffix() == QString::fromUtf8(NATRON_PROJECT_FILE_EXT) ) {
                 if ( !_imp->_currentProject->loadProject( info.path(), info.fileName() ) ) {
-                    throw std::invalid_argument( tr("Project file loading failed.").toStdString() );
+                    throw std::invalid_argument( tr("Не удалось загрузить файл проекта.").toStdString() );
                 }
             }
         }
@@ -915,7 +915,7 @@ AppInstance::createNodeFromPythonModule(Plugin* plugin,
         std::string err;
         std::string output;
         if ( !NATRON_PYTHON_NAMESPACE::interpretPythonScript(ss.str(), &err, &output) ) {
-            Dialogs::errorDialog(tr("Group plugin creation error").toStdString(), err);
+            Dialogs::errorDialog(tr("Ошибка создания плагина группы").toStdString(), err);
             if (containerNode) {
                 containerNode->destroyNode(false, false);
             }
@@ -985,8 +985,8 @@ AppInstance::createReader(const std::string& filename,
     std::string ext = extq.toStdString();
     std::map<std::string, std::string>::iterator found = readersForFormat.find(ext);
     if ( found == readersForFormat.end() ) {
-        Dialogs::errorDialog( tr("Reader").toStdString(),
-                              tr("No plugin capable of decoding %1 was found").arg(extq).toStdString(), false );
+        Dialogs::errorDialog( tr("Считыватель").toStdString(),
+                              tr("Не найден плагин, способный декодировать %1").arg(extq).toStdString(), false );
 
         return NodePtr();
     }
@@ -1023,8 +1023,8 @@ AppInstance::createWriter(const std::string& filename,
     std::string ext = extq.toStdString();
     std::map<std::string, std::string>::iterator found = writersForFormat.find(ext);
     if ( found == writersForFormat.end() ) {
-        Dialogs::errorDialog( tr("Writer").toStdString(),
-                              tr("No plugin capable of encoding %1 was found.").arg(extq).toStdString(), false );
+        Dialogs::errorDialog( tr("Записыватель").toStdString(),
+                              tr("Не найден плагин, способный кодировать %1..").arg(extq).toStdString(), false );
 
         return NodePtr();
     }
@@ -1154,10 +1154,10 @@ AppInstance::createNodeInternal(CreateNodeArgs& args)
             plugin = appPTR->getPluginBinaryFromOldID(argsPluginID, versionMajor, versionMinor);
         } catch (const std::exception& e2) {
             if (!isSilentCreation) {
-                Dialogs::errorDialog(tr("Plugin error").toStdString(),
-                                 tr("Cannot load plug-in executable.").toStdString() + ": " + e2.what(), false );
+                Dialogs::errorDialog(tr("Ошибка плагина").toStdString(),
+                                 tr("Невозможно загрузить исполняемый плагин").toStdString() + ": " + e2.what(), false );
             } else {
-                std::cerr << tr("Cannot load plug-in executable.").toStdString() + ": " + e2.what() << std::endl;
+                std::cerr << tr("Невозможно загрузить исполняемый плагин").toStdString() + ": " + e2.what() << std::endl;
             }
             return node;
         }
@@ -1191,10 +1191,10 @@ AppInstance::createNodeInternal(CreateNodeArgs& args)
                 return createNodeFromPythonModule(plugin, args);
             } catch (const std::exception& e) {
                 if (!isSilentCreation) {
-                    Dialogs::errorDialog(tr("Plugin error").toStdString(),
-                                     tr("Cannot create PyPlug:").toStdString() + e.what(), false );
+                    Dialogs::errorDialog(tr("Ошибка плагина").toStdString(),
+                                     tr("Невозможно создать PyPlug:").toStdString() + e.what(), false );
                 } else {
-                    std::cerr << tr("Cannot create PyPlug").toStdString() + ": " + e.what() << std::endl;
+                    std::cerr << tr("Невозможно создать PyPlug").toStdString() + ": " + e.what() << std::endl;
                 }
                 return node;
             }
@@ -1217,10 +1217,10 @@ AppInstance::createNodeInternal(CreateNodeArgs& args)
                 ofxDesc = appPTR->getPluginContextAndDescribe(ofxPlugin, &ctx);
             } catch (const std::exception& e) {
                 if (!isSilentCreation) {
-                    errorDialog(tr("Error while creating node").toStdString(), tr("Failed to create an instance of %1:").arg(argsPluginID).toStdString()
+                    errorDialog(tr("Ошибка создания узла").toStdString(), tr("Не удалось создать экземпляр %1:").arg(argsPluginID).toStdString()
                             + '\n' + e.what(), false);
                 } else {
-                    std::cerr << tr("Failed to create an instance of %1:").arg(argsPluginID).toStdString() + '\n' + e.what() << std::endl;
+                    std::cerr << tr("Не удалось создать экземпляр %1:").arg(argsPluginID).toStdString() + '\n' + e.what() << std::endl;
                 }
                 return NodePtr();
             }
@@ -1253,12 +1253,12 @@ AppInstance::createNodeInternal(CreateNodeArgs& args)
         SettingsPtr settings = appPTR->getCurrentSettings();
         if ( !isSilentCreation && foundPluginID.rfind("uk.co.thefoundry.furnace", 0) != std::string::npos &&
              ( settings->useGlobalThreadPool() || ( settings->getNumberOfParallelRenders() != 1) ) ) {
-            StandardButtonEnum reply = Dialogs::questionDialog(tr("Warning").toStdString(),
-                                                               tr("The settings of the application are currently set to use "
-                                                                  "the global thread-pool for rendering effects.\n"
+            StandardButtonEnum reply = Dialogs::questionDialog(tr("Предупреждение").toStdString(),
+                                                               tr("Настройки приложения в настоящее время настроены на использование "
+                                                                  "глобальный пул потоков для рендеринга эффектов.\n"
                                                                   "The Foundry Furnace "
-                                                                  "is known not to work well when this setting is checked.\n"
-                                                                  "Would you like to turn it off?").toStdString(), false);
+                                                                  "при установке этого параметра он работает некорректно.\n"
+                                                                  "Выключить его?").toStdString(), false);
             if (reply == eStandardButtonYes) {
                 settings->setUseGlobalThreadPool(false);
                 settings->setNumberOfParallelRenders(1);
@@ -1271,10 +1271,10 @@ AppInstance::createNodeInternal(CreateNodeArgs& args)
             if ( !grouping.isEmpty() && ( grouping[0] == QString::fromUtf8(PLUGIN_GROUP_MULTIVIEW) ) ) {
                 int nbViews = getProject()->getProjectViewsCount();
                 if (nbViews < 2) {
-                    StandardButtonEnum reply = Dialogs::questionDialog(tr("Multi-View").toStdString(),
-                                                                       tr("Using a multi-view node requires the project settings to be setup "
-                                                                          "for multi-view.\n"
-                                                                          "Would you like to setup the project for stereo?").toStdString(), false);
+                    StandardButtonEnum reply = Dialogs::questionDialog(tr("Мультипросмотр").toStdString(),
+                                                                       tr("Для использования узла с несколькими представлениями надо настроить параметры "
+                                                                          "проекта для мультипросмотра.\n"
+                                                                          "Хотите настроить проект для стерео?").toStdString(), false);
                     if (reply == eStandardButtonYes) {
                         getProject()->setupProjectForStereo();
                     }
@@ -1513,12 +1513,12 @@ AppInstance::exportDocs(const QString path)
         // IMPORTANT: this code is *very* similar to DocumentationManager::handler in the "_group.html" section
         groups.removeDuplicates();
         QString groupMD;
-        groupMD.append( QString::fromUtf8(".. ") + tr("Do not edit this file! It is generated automatically by %1 itself.").arg ( QString::fromUtf8( NATRON_APPLICATION_NAME) ) + QString::fromUtf8("\n\n") );
+        groupMD.append( QString::fromUtf8(".. ") + tr("Не редактируйте этот файл! Он генерируется автоматически самим %1.").arg ( QString::fromUtf8( NATRON_APPLICATION_NAME) ) + QString::fromUtf8("\n\n") );
         groupMD.append( QString::fromUtf8(".. _reference-guide:\n\n") );
-        groupMD.append( tr("Reference Guide") );
+        groupMD.append( tr("Справочное руководство") );
         groupMD.append( QString::fromUtf8("\n============================================================\n\n") );
-        groupMD.append( tr("The first section in this manual describes the various options available from the %1 preference settings. The next section gives the documentation for the various environment variables that may be used to control %1's behavior. It is followed by one section for each node group in %1.")
-                       .arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) + QLatin1Char(' ') + tr("Node groups are available by clicking on buttons in the left toolbar, or by right-clicking the mouse in the Node Graph area.") /*+ QLatin1Char(' ') + tr("Please note that documentation is also generated automatically for third-party OpenFX plugins.")*/ );
+        groupMD.append( tr("В первом разделе данного руководства описаны различные параметры, доступные в настройках предпочтений %1. В следующем разделе представлена ​​документация по различным переменным среды, которые можно использовать для управления поведением %1. За ним следует один раздел для каждой группы узлов в %1.")
+                       .arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) + QLatin1Char(' ') + tr("Группы узлов доступны при нажатии кнопок на левой панели инструментов или щелчке правой кнопкой мыши в области графика узлов.") /*+ QLatin1Char(' ') + tr("Please note that documentation is also generated automatically for third-party OpenFX plugins.")*/ );
         groupMD.append( QString::fromUtf8("\n\n") );
         //groupMD.append( QString::fromUtf8("Contents:\n\n") );
         groupMD.append( QString::fromUtf8(".. toctree::\n") );
@@ -1529,10 +1529,10 @@ AppInstance::exportDocs(const QString path)
         Q_FOREACH(const QString &group, groups) {
             QString plugMD;
 
-            plugMD.append( QString::fromUtf8(".. ") + tr("Do not edit this file! It is generated automatically by %1 itself.").arg ( QString::fromUtf8( NATRON_APPLICATION_NAME) ) + QString::fromUtf8("\n\n") );
-            plugMD.append( tr("%1 nodes").arg( tr( group.toUtf8().constData() ) ) );
+            plugMD.append( QString::fromUtf8(".. ") + tr("Не редактируйте этот файл! Он генерируется автоматически самим %1.").arg ( QString::fromUtf8( NATRON_APPLICATION_NAME) ) + QString::fromUtf8("\n\n") );
+            plugMD.append( tr("%1 узлы").arg( tr( group.toUtf8().constData() ) ) );
             plugMD.append( QString::fromUtf8("\n============================================================\n\n") );
-            plugMD.append( tr("The following sections contain documentation about every node in the %1 group.").arg( tr( group.toUtf8().constData() ) ) + QLatin1Char(' ') + tr("Node groups are available by clicking on buttons in the left toolbar, or by right-clicking the mouse in the Node Graph area.") /*+ QLatin1Char(' ') + tr("Please note that documentation is also generated automatically for third-party OpenFX plugins.")*/ );
+            plugMD.append( tr("Следующие разделы содержат документацию по каждому узлу в группе %1.").arg( tr( group.toUtf8().constData() ) ) + QLatin1Char(' ') + tr("Группы узлов доступны при нажатии кнопок на левой панели инструментов или щелчке правой кнопкой мыши в области схемы узлов.") /*+ QLatin1Char(' ') + tr("Please note that documentation is also generated automatically for third-party OpenFX plugins.")*/ );
             plugMD.append( QString::fromUtf8("\n\n") );
             //plugMD.append( QString::fromUtf8("Contents:\n\n") );
             plugMD.append( QString::fromUtf8(".. toctree::\n") );
@@ -1694,12 +1694,12 @@ AppInstance::startWritersRenderingFromNames(bool enableRenderStats,
 
             if (!node) {
                 std::string exc(writerName);
-                exc.append( tr(" does not belong to the project file. Please enter a valid Write node script-name.").toStdString() );
+                exc.append( tr(" не принадлежит файлу проекта. Введите допустимое имя сценария узла записи.").toStdString() );
                 throw std::invalid_argument(exc);
             } else {
                 if ( !node->isOutputNode() ) {
                     std::string exc(writerName);
-                    exc.append( tr(" is not an output node! It cannot render anything.").toStdString() );
+                    exc.append( tr(" это не выходной узел! Он ничего не может отобразить.").toStdString() );
                     throw std::invalid_argument(exc);
                 }
                 ViewerInstance* isViewer = node->isEffectViewer();
@@ -1849,7 +1849,7 @@ AppInstancePrivate::getSequenceNameFromWriter(const OutputEffectInstance* writer
         throw std::logic_error(__func__);
     }
     if (isDiskCache) {
-        *sequenceName = tr("Caching");
+        *sequenceName = tr("Кеширование");
     } else {
         *sequenceName = QString();
         KnobIPtr fileKnob = writer->getKnobByName(kOfxImageEffectFileParamName);
@@ -1879,7 +1879,7 @@ AppInstancePrivate::validateRenderOptions(const AppInstance::RenderWork& w,
 
         if (firstFrameD > lastFrameD) {
             Dialogs::errorDialog(w.writer->getNode()->getLabel_mt_safe(),
-                                 tr("First frame index in the sequence is greater than the last frame index.").toStdString(), false );
+                                 tr("Индекс первого кадра в последовательности больше индекса последнего кадра.").toStdString(), false );
 
             return false;
         }
