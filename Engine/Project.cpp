@@ -218,10 +218,10 @@ Project::loadProject(const QString & path,
             if (hasAutoSave) {
                 StandardButtonEnum ret = eStandardButtonNo;
                 if (attemptToLoadAutosave) {
-                    QString text = tr("A recent auto-save of %1 was found.\n"
-                                      "Would you like to use it instead? "
-                                      "Clicking No will remove this auto-save.").arg(name);
-                    ret = Dialogs::questionDialog(tr("Auto-save").toStdString(),
+                    QString text = tr("Обнаружено недавнее автосохранение %1\n"
+                                      "Хотели бы вы использовать его вместо этого? "
+                                      "Нажатие кнопки Нет приведет к удалению этого автосохранения.").arg(name);
+                    ret = Dialogs::questionDialog(tr("Автосохранение").toStdString(),
                                                   text.toStdString(), false, StandardButtons(eStandardButtonYes | eStandardButtonNo),
                                                   eStandardButtonYes);
                 }
@@ -245,7 +245,7 @@ Project::loadProject(const QString & path,
             saveProject(realPath, realName, 0);
         }
     } catch (const std::exception & e) {
-        Dialogs::errorDialog( tr("Project loader").toStdString(), tr("Error while loading project: %1").arg( QString::fromUtf8( e.what() ) ).toStdString() );
+        Dialogs::errorDialog( tr("Загрузчик проекта").toStdString(), tr("Ошибка при загрузке проекта: %1").arg( QString::fromUtf8( e.what() ) ).toStdString() );
         if ( !getApp()->isBackground() ) {
             CreateNodeArgs args(PLUGINID_NATRON_VIEWER, shared_from_this() );
             args.setProperty<bool>(kCreateNodeArgsPropAutoConnect, false);
@@ -255,7 +255,7 @@ Project::loadProject(const QString & path,
 
         return false;
     } catch (...) {
-        Dialogs::errorDialog( tr("Project loader").toStdString(), tr("Unknown error while loading project.").toStdString() );
+        Dialogs::errorDialog( tr("Загрузчик проекта").toStdString(), tr("Неизвестная ошибка при загрузке проекта.").toStdString() );
         if ( !getApp()->isBackground() ) {
             CreateNodeArgs args(PLUGINID_NATRON_VIEWER, shared_from_this() );
             args.setProperty<bool>(kCreateNodeArgsPropAutoConnect, false);
@@ -280,7 +280,7 @@ Project::loadProjectInternal(const QString & path,
 {
     FlagSetter loadingProjectRAII(true, &_imp->isLoadingProject, &_imp->isLoadingProjectMutex);
     QString filePath = path + name;
-    std::cout << tr("Loading project: %1").arg(filePath).toStdString() << std::endl;
+    std::cout << tr("Загрузка проекта: %1").arg(filePath).toStdString() << std::endl;
 
     if ( !QFile::exists(filePath) ) {
         throw std::invalid_argument( QString( filePath + QString::fromUtf8(" : no such file.") ).toStdString() );
@@ -290,7 +290,7 @@ Project::loadProjectInternal(const QString & path,
     FStreamsSupport::ifstream ifile;
     FStreamsSupport::open( &ifile, filePath.toStdString() );
     if (!ifile) {
-        throw std::runtime_error( tr("Failed to open %1").arg(filePath).toStdString() );
+        throw std::runtime_error( tr("Не удалось открыть %1").arg(filePath).toStdString() );
     }
 
     if ( (NATRON_VERSION_MAJOR == 1) && (NATRON_VERSION_MINOR == 0) && (NATRON_VERSION_REVISION == 0) ) {
@@ -336,19 +336,19 @@ Project::loadProjectInternal(const QString & path,
         if (pInfo.vMajor > NATRON_VERSION_MAJOR ||
             (pInfo.vMajor == NATRON_VERSION_MAJOR && pInfo.vMinor > NATRON_VERSION_MINOR) ||
             (pInfo.vMajor == NATRON_VERSION_MAJOR && pInfo.vMinor == NATRON_VERSION_MINOR && pInfo.vRev > NATRON_VERSION_REVISION)) {
-            QString message = tr("This project was saved with a more recent version (%1.%2.%3) of %4. Projects are not forward compatible and may only be opened in a version of %4 equal or more recent than the version that saved it.").arg(pInfo.vMajor).arg(pInfo.vMinor).arg(pInfo.vRev).arg(QString::fromUtf8(NATRON_APPLICATION_NAME));
+            QString message = tr("Этот проект был сохранен с использованием более поздней версии (%1.%2.%3) %4. Проекты не имеют прямой совместимости и могут быть открыты только в версии %4, равной или более поздней версии, в которой они были сохранены.").arg(pInfo.vMajor).arg(pInfo.vMinor).arg(pInfo.vRev).arg(QString::fromUtf8(NATRON_APPLICATION_NAME));
             throw std::runtime_error(message.toStdString());
         }
-        throw std::runtime_error( tr("Unrecognized or damaged project file:").toStdString() + ' ' + e.what());
+        throw std::runtime_error( tr("Нераспознанный или поврежденный файл проекта:").toStdString() + ' ' + e.what());
     } catch (...) {
         const ProjectBeingLoadedInfo& pInfo = getApp()->getProjectBeingLoadedInfo();
         if (pInfo.vMajor > NATRON_VERSION_MAJOR ||
             (pInfo.vMajor == NATRON_VERSION_MAJOR && pInfo.vMinor > NATRON_VERSION_MINOR) ||
             (pInfo.vMajor == NATRON_VERSION_MAJOR && pInfo.vMinor == NATRON_VERSION_MINOR && pInfo.vRev > NATRON_VERSION_REVISION)) {
-            QString message = tr("This project was saved with a more recent version (%1.%2.%3) of %4. Projects are not forward compatible and may only be opened in a version of %4 equal or more recent than the version that saved it.").arg(pInfo.vMajor).arg(pInfo.vMinor).arg(pInfo.vRev).arg(QString::fromUtf8(NATRON_APPLICATION_NAME));
+            QString message = tr("Этот проект был сохранен с использованием более поздней версии (%1.%2.%3) %4. Проекты не имеют прямой совместимости и могут быть открыты только в версии %4, равной или более поздней версии, в которой они были сохранены.").arg(pInfo.vMajor).arg(pInfo.vMinor).arg(pInfo.vRev).arg(QString::fromUtf8(NATRON_APPLICATION_NAME));
             throw std::runtime_error(message.toStdString());
         }
-        throw std::runtime_error( tr("Unrecognized or damaged project file").toStdString() );
+        throw std::runtime_error( tr("Нераспознанный или поврежденный файл проекта.").toStdString() );
     }
 
     Format f;
@@ -458,9 +458,9 @@ Project::saveProject_imp(const QString & path,
         }
     } catch (const std::exception & e) {
         if (!autoS) {
-            Dialogs::errorDialog( tr("Save").toStdString(), e.what() );
+            Dialogs::errorDialog( tr("Сохранить").toStdString(), e.what() );
         } else {
-            qDebug() << "Save failure: " << e.what();
+            qDebug() << "Ошибка сохранения: " << e.what();
         }
     }
 
@@ -602,7 +602,7 @@ Project::saveProjectInternal(const QString & path,
         FStreamsSupport::ofstream ofile;
         FStreamsSupport::open( &ofile, tmpFilename.toStdString() );
         if (!ofile) {
-            throw std::runtime_error( tr("Failed to open file ").toStdString() + tmpFilename.toStdString() );
+            throw std::runtime_error( tr("Не удалось открыть файл ").toStdString() + tmpFilename.toStdString() );
         }
 
         ///Fix file paths before saving.
@@ -813,26 +813,26 @@ Project::findAutoSaveForProject(const QString& projectPath,
 void
 Project::initializeKnobs()
 {
-    KnobPagePtr page = AppManager::createKnob<KnobPage>( this, tr("Settings") );
+    KnobPagePtr page = AppManager::createKnob<KnobPage>( this, tr("Настройки") );
 
-    _imp->envVars = AppManager::createKnob<KnobPath>( this, tr("Project Paths") );
+    _imp->envVars = AppManager::createKnob<KnobPath>( this, tr("Пути проекта") );
     _imp->envVars->setName("projectPaths");
-    _imp->envVars->setHintToolTip( tr("Specify here project paths. Any path can be used "
-                                      "in file paths and can be used between brackets, for example: \n"
+    _imp->envVars->setHintToolTip( tr("Укажите здесь пути проекта. Можно использовать любой путь "
+                                      "в путях к файлам и может использоваться в скобках, например: \n"
                                       "[%1]MyProject.ntp \n"
-                                      "You can add as many project paths as you want and can name them as you want. This way it "
-                                      "makes it easy to share your projects and move files around."
-                                      " You can chain up paths, like so:\n "
+                                      "Вы можете добавить столько путей к проекту, сколько захотите, и назвать их по своему усмотрению. Вот так "
+                                      "позволяет легко делиться своими проектами и перемещать файлы"
+                                      " Вы можете объединить пути в цепочку, например:\n "
                                       "[%1] = <PathToProject> \n"
                                       "[Scene1] = [%1]/Rush/S_01 \n"
                                       "[Shot1] = [Scene1]/Shot001 \n"
-                                      "By default if a file-path is NOT absolute (i.e: not starting with '/' "
-                                      " on Unix or a drive name on Windows) "
-                                      "then it will be expanded using the [%1] path. "
-                                      "Absolute paths are treated as normal."
-                                      " The [%1] path will be set automatically to "
-                                      " the location of the project file when saving and loading a project."
-                                      " The [%2] path will also be set automatically for better sharing of projects with reader nodes.").arg( QString::fromUtf8(NATRON_PROJECT_ENV_VAR_NAME) ).arg( QString::fromUtf8(NATRON_OCIO_ENV_VAR_NAME) ) );
+                                      "По умолчанию, если путь к файлу НЕ является абсолютным (т.е. не начинается с '/' "
+                                      " в Unix) "
+                                      "тогда он будет расширен с использованием пути [%1] "
+                                      "Абсолютные пути рассматриваются как обычно"
+                                      " Путь [%1] будет автоматически установлен на "
+                                      " Расположение файла проекта при сохранении и загрузке проекта"
+                                      " Путь [%2] также будет установлен автоматически для лучшего обмена проектами с узлами чтения.").arg( QString::fromUtf8(NATRON_PROJECT_ENV_VAR_NAME) ).arg( QString::fromUtf8(NATRON_OCIO_ENV_VAR_NAME) ) );
     _imp->envVars->setSecret(false);
     _imp->envVars->setMultiPath(true);
 
@@ -842,8 +842,8 @@ Project::initializeKnobs()
 
     page->addKnob(_imp->envVars);
 
-    _imp->formatKnob = AppManager::createKnob<KnobChoice>( this, tr("Project Format") );
-    _imp->formatKnob->setHintToolTip( tr("The project format is used as the default workspace size for viewers, the default format for generators, and the default output format for writers.  In most cases this should match your plate resolution.") );
+    _imp->formatKnob = AppManager::createKnob<KnobChoice>( this, tr("Формат проекта") );
+    _imp->formatKnob->setHintToolTip( tr("Формат проекта используется в качестве размера рабочей области по умолчанию для средств просмотра, формата по умолчанию для генераторов и формата вывода по умолчанию для авторов. В большинстве случаев это должно соответствовать разрешению вашей пластины.") );
     _imp->formatKnob->setName("outputFormat");
 
     const std::vector<Format> & appFormats = appPTR->getFormats();
@@ -870,14 +870,14 @@ Project::initializeKnobs()
 
     QObject::connect( _imp->formatKnob.get(), SIGNAL(populated()), this, SLOT(onProjectFormatPopulated()) );
 
-    _imp->addFormatKnob = AppManager::createKnob<KnobButton>( this, tr("New Format...") );
+    _imp->addFormatKnob = AppManager::createKnob<KnobButton>( this, tr("Новый формат...") );
     _imp->addFormatKnob->setName("newFormat");
     page->addKnob(_imp->addFormatKnob);
 
-    _imp->previewMode = AppManager::createKnob<KnobBool>( this, tr("Auto Previews") );
+    _imp->previewMode = AppManager::createKnob<KnobBool>( this, tr("Автопросмотр") );
     _imp->previewMode->setName("autoPreviews");
-    _imp->previewMode->setHintToolTip( tr("When checked, preview images in the node graph will be "
-                                          "refreshed automatically. Disabling this will improve performance.") );
+    _imp->previewMode->setHintToolTip( tr("Если этот флажок установлен, изображения предварительного просмотра в графе узлов будут "
+                                          "обновляется автоматически. Отключение этого параметра улучшит производительность.") );
     _imp->previewMode->setAnimationEnabled(false);
     _imp->previewMode->setEvaluateOnChange(false);
     page->addKnob(_imp->previewMode);
@@ -885,34 +885,34 @@ Project::initializeKnobs()
     _imp->previewMode->setDefaultValue(autoPreviewEnabled, 0);
 
 
-    _imp->frameRange = AppManager::createKnob<KnobInt>(this, tr("Frame Range"), 2);
+    _imp->frameRange = AppManager::createKnob<KnobInt>(this, tr("Диапазон кадров"), 2);
     _imp->frameRange->setDefaultValue(1, 0);
     _imp->frameRange->setDefaultValue(250, 1);
     _imp->frameRange->setDimensionName(0, "first");
     _imp->frameRange->setDimensionName(1, "last");
     _imp->frameRange->setEvaluateOnChange(false);
     _imp->frameRange->setName("frameRange");
-    _imp->frameRange->setHintToolTip( tr("The frame range of the project as seen by plug-ins. New viewers are created automatically "
-                                         "with this frame-range. By default when the first Read node is created, this range "
-                                         "will be set to the "
-                                         "sequence legnth, unless the Lock Range parameter is checked.") );
+    _imp->frameRange->setHintToolTip( tr("Диапазон кадров проекта, видимый плагинами. Новые просмотрщики создаются автоматически "
+                                         "с этим диапазоном кадров. По умолчанию при создании первого узла чтения этот диапазон "
+                                         "будет установлено значение "
+                                         "длина последовательности, если не установлен параметр Блокировка диапазона.") );
     _imp->frameRange->setAnimationEnabled(false);
     _imp->frameRange->setAddNewLine(false);
     page->addKnob(_imp->frameRange);
 
-    _imp->lockFrameRange = AppManager::createKnob<KnobBool>( this, tr("Lock Range") );
+    _imp->lockFrameRange = AppManager::createKnob<KnobBool>( this, tr("Блокировка диапазона") );
     _imp->lockFrameRange->setName("lockRange");
     _imp->lockFrameRange->setDefaultValue(false);
     _imp->lockFrameRange->setAnimationEnabled(false);
-    _imp->lockFrameRange->setHintToolTip( tr("By default when the first Read node is created, this range will be set to the "
-                                             "sequence length, unless this parameter is checked.") );
+    _imp->lockFrameRange->setHintToolTip( tr("По умолчанию при создании первого узла чтения для этого диапазона будет установлено значение "
+                                             "длина последовательности, если этот параметр не отмечен.") );
     _imp->lockFrameRange->setEvaluateOnChange(false);
     page->addKnob(_imp->lockFrameRange);
 
-    _imp->frameRate = AppManager::createKnob<KnobDouble>( this, tr("Frame Rate") );
+    _imp->frameRate = AppManager::createKnob<KnobDouble>( this, tr("Частота кадров") );
     _imp->frameRate->setName("frameRate");
-    _imp->frameRate->setHintToolTip( tr("The frame rate of the project. This will serve as a default value for all effects that don't produce "
-                                        "special frame rates.") );
+    _imp->frameRate->setHintToolTip( tr("Частота кадров проекта. Это будет значением по умолчанию для всех эффектов, которые не создают "
+                                        "специальная частота кадров.") );
     _imp->frameRate->setAnimationEnabled(false);
     _imp->frameRate->setDefaultValue(24);
     _imp->frameRate->setMinimum(0.);
@@ -921,26 +921,26 @@ Project::initializeKnobs()
     _imp->frameRate->setDisplayMaximum(120.);
     page->addKnob(_imp->frameRate);
 
-    _imp->gpuSupport = AppManager::createKnob<KnobChoice>( this, tr("GPU Rendering") );
+    _imp->gpuSupport = AppManager::createKnob<KnobChoice>( this, tr("GPU Рендеринг") );
     _imp->gpuSupport->setName("gpuRendering");
     {
         std::vector<ChoiceOption> entries;
-        entries.push_back(ChoiceOption("Enabled","",tr("Enable GPU rendering if required resources are available and the plugin supports it.").toStdString()));
-        entries.push_back(ChoiceOption("Disabled", "", tr("Disable GPU rendering for all plug-ins.").toStdString()));
-        entries.push_back(ChoiceOption("Disabled if background","",tr("Disable GPU rendering when rendering with NatronRenderer but not in GUI mode.").toStdString()));
+        entries.push_back(ChoiceOption("Enabled","",tr("Включите рендеринг с помощью графического процессора, если необходимые ресурсы доступны и плагин поддерживает его.").toStdString()));
+        entries.push_back(ChoiceOption("Disabled", "", tr("Отключите рендеринг графического процессора для всех плагинов.").toStdString()));
+        entries.push_back(ChoiceOption("Disabled if background","",tr("Отключите рендеринг с помощью графического процессора при рендеринге с помощью NatronRenderer, но не в режиме графического интерфейса.").toStdString()));
         _imp->gpuSupport->populateChoices(entries);
     }
     _imp->gpuSupport->setAnimationEnabled(false);
-    _imp->gpuSupport->setHintToolTip( tr("Select when to activate GPU rendering for plug-ins. Note that if the OpenGL Rendering parameter in the Preferences/GPU Rendering is set to disabled then GPU rendering will not be activated regardless of that value.") );
+    _imp->gpuSupport->setHintToolTip( tr("Выберите, когда активировать графический рендеринг для подключаемых модулей. Обратите внимание, что если для параметра OpenGL Rendering в настройках/GPU Rendering установлено значение disabled, то GPU rendering не будет активирован независимо от того, такой ценности.") );
     _imp->gpuSupport->setEvaluateOnChange(false);
     _imp->gpuSupport->setAllDimensionsEnabled(appPTR->getCurrentSettings()->isOpenGLRenderingEnabled());
     page->addKnob(_imp->gpuSupport);
 
-    KnobPagePtr viewsPage = AppManager::createKnob<KnobPage>( this, tr("Views") );
+    KnobPagePtr viewsPage = AppManager::createKnob<KnobPage>( this, tr("Просмотры") );
 
-    _imp->viewsList = AppManager::createKnob<KnobPath>( this, tr("Views List") );
+    _imp->viewsList = AppManager::createKnob<KnobPath>( this, tr("Список просмотров") );
     _imp->viewsList->setName("viewsList");
-    _imp->viewsList->setHintToolTip( tr("The list of the views in the project") );
+    _imp->viewsList->setHintToolTip( tr("Список просмотров в проекте") );
     _imp->viewsList->setAnimationEnabled(false);
     _imp->viewsList->setEvaluateOnChange(false);
     _imp->viewsList->setAsStringList(true);
@@ -950,18 +950,18 @@ Project::initializeKnobs()
     _imp->viewsList->setDefaultValue(encodedDefaultViews);
     viewsPage->addKnob(_imp->viewsList);
 
-    _imp->setupForStereoButton = AppManager::createKnob<KnobButton>( this, tr("Setup views for stereo") );
+    _imp->setupForStereoButton = AppManager::createKnob<KnobButton>( this, tr("Настройка просмотров для стерео") );
     _imp->setupForStereoButton->setName("setupForStereo");
-    _imp->setupForStereoButton->setHintToolTip( tr("Quickly setup the views list for stereo") );
+    _imp->setupForStereoButton->setHintToolTip( tr("Быстрая настройка списка представлений для стерео") );
     _imp->setupForStereoButton->setEvaluateOnChange(false);
     viewsPage->addKnob(_imp->setupForStereoButton);
 
 
-    KnobPagePtr LayersPage = AppManager::createKnob<KnobPage>( this, tr("Layers") );
+    KnobPagePtr LayersPage = AppManager::createKnob<KnobPage>( this, tr("слои") );
 
-    _imp->defaultLayersList = AppManager::createKnob<KnobLayers>( this, tr("Default Layers") );
+    _imp->defaultLayersList = AppManager::createKnob<KnobLayers>( this, tr("Слои по умолчанию") );
     _imp->defaultLayersList->setName("defaultLayers");
-    _imp->defaultLayersList->setHintToolTip( tr("The list of the default layers available in layers menus on nodes.") );
+    _imp->defaultLayersList->setHintToolTip( tr("Список слоев по умолчанию, доступных в меню слоев на узлах.") );
     _imp->defaultLayersList->setAnimationEnabled(false);
     _imp->defaultLayersList->setEvaluateOnChange(false);
     std::list<std::vector<std::string> > defaultLayers;
@@ -995,7 +995,7 @@ Project::initializeKnobs()
     _imp->defaultLayersList->setDefaultValue(encodedDefaultLayers);
     LayersPage->addKnob(_imp->defaultLayersList);
 
-    KnobPagePtr lutPages = AppManager::createKnob<KnobPage>( this, tr("LUT") );
+    KnobPagePtr lutPages = AppManager::createKnob<KnobPage>( this, tr("ТП") );
     std::vector<ChoiceOption> colorSpaces;
     // Keep it in sync with ViewerColorSpaceEnum
     colorSpaces.push_back(ChoiceOption("Linear","",""));
@@ -1003,33 +1003,33 @@ Project::initializeKnobs()
     colorSpaces.push_back(ChoiceOption("Rec.709","",""));
     colorSpaces.push_back(ChoiceOption("BT1886","",""));
 
-    _imp->colorSpace8u = AppManager::createKnob<KnobChoice>( this, tr("8-Bit LUT") );
+    _imp->colorSpace8u = AppManager::createKnob<KnobChoice>( this, tr("8-бит ТП") );
     _imp->colorSpace8u->setName("defaultColorSpace8u");
-    _imp->colorSpace8u->setHintToolTip( tr("Defines the 1D LUT used to convert to 8-bit image data if an effect cannot process floating-point images.") );
+    _imp->colorSpace8u->setHintToolTip( tr("Определяет 1D Таблицы Преобразований, используемый для преобразования в 8-битные данные изображения, если эффект не может обрабатывать изображения с плавающей запятой.") );
     _imp->colorSpace8u->setAnimationEnabled(false);
     _imp->colorSpace8u->populateChoices(colorSpaces);
     _imp->colorSpace8u->setDefaultValue(1);
     lutPages->addKnob(_imp->colorSpace8u);
 
-    _imp->colorSpace16u = AppManager::createKnob<KnobChoice>( this, tr("16-Bit LUT") );
+    _imp->colorSpace16u = AppManager::createKnob<KnobChoice>( this, tr("16-бит ТП") );
     _imp->colorSpace16u->setName("defaultColorSpace16u");
-    _imp->colorSpace16u->setHintToolTip( tr("Defines the 1D LUT used to convert to 16-bit image data if an effect cannot process floating-point images.") );
+    _imp->colorSpace16u->setHintToolTip( tr("Определяет 1D Таблицы Преобразований, используемый для преобразования в 16-битные данные изображения, если эффект не может обрабатывать изображения с плавающей запятой.") );
     _imp->colorSpace16u->setAnimationEnabled(false);
     _imp->colorSpace16u->populateChoices(colorSpaces);
     _imp->colorSpace16u->setDefaultValue(2);
     lutPages->addKnob(_imp->colorSpace16u);
 
-    _imp->colorSpace32f = AppManager::createKnob<KnobChoice>( this, tr("32-Bit Floating Point LUT ") );
+    _imp->colorSpace32f = AppManager::createKnob<KnobChoice>( this, tr("32-бит плавающая запятая ТП") );
     _imp->colorSpace32f->setName("defaultColorSpace32f");
-    _imp->colorSpace32f->setHintToolTip( tr("Defines the 1D LUT used to convert from 32-bit floating-point image data if an effect cannot process floating-point images.") );
+    _imp->colorSpace32f->setHintToolTip( tr("Определяет 1D Таблицы Преобразований, используемый для преобразования в 32-битные данные изображения, если эффект не может обрабатывать изображения с плавающей запятой.") );
     _imp->colorSpace32f->setAnimationEnabled(false);
     _imp->colorSpace32f->populateChoices(colorSpaces);
     _imp->colorSpace32f->setDefaultValue(0);
     lutPages->addKnob(_imp->colorSpace32f);
 
-    KnobPagePtr infoPage = AppManager::createKnob<KnobPage>( this, tr("Info").toStdString() );
+    KnobPagePtr infoPage = AppManager::createKnob<KnobPage>( this, tr("Инфо").toStdString() );
 
-    _imp->projectName = AppManager::createKnob<KnobString>( this, tr("Project Name") );
+    _imp->projectName = AppManager::createKnob<KnobString>( this, tr("Имя Проекта") );
     _imp->projectName->setName("projectName");
     _imp->projectName->setIsPersistent(false);
 //    _imp->projectName->setAsLabel();
@@ -1038,7 +1038,7 @@ Project::initializeKnobs()
     _imp->projectName->setDefaultValue(NATRON_PROJECT_UNTITLED);
     infoPage->addKnob(_imp->projectName);
 
-    _imp->projectPath = AppManager::createKnob<KnobString>( this, tr("Project path") );
+    _imp->projectPath = AppManager::createKnob<KnobString>( this, tr("Путь проекта") );
     _imp->projectPath->setName("projectPath");
     _imp->projectPath->setIsPersistent(false);
     _imp->projectPath->setAnimationEnabled(false);
@@ -1046,9 +1046,9 @@ Project::initializeKnobs()
     // _imp->projectPath->setAsLabel();
     infoPage->addKnob(_imp->projectPath);
 
-    _imp->natronVersion = AppManager::createKnob<KnobString>( this, tr("Saved With") );
+    _imp->natronVersion = AppManager::createKnob<KnobString>( this, tr("Сохранено с") );
     _imp->natronVersion->setName("softwareVersion");
-    _imp->natronVersion->setHintToolTip( tr("The version of %1 that saved this project for the last time.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _imp->natronVersion->setHintToolTip( tr("Версия %1, в которой этот проект сохранялся в последний раз.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     // _imp->natronVersion->setAsLabel();
     _imp->natronVersion->setDefaultEnabled(0, false);
     _imp->natronVersion->setEvaluateOnChange(false);
@@ -1057,9 +1057,9 @@ Project::initializeKnobs()
     _imp->natronVersion->setDefaultValue( generateUserFriendlyNatronVersionName() );
     infoPage->addKnob(_imp->natronVersion);
 
-    _imp->originalAuthorName = AppManager::createKnob<KnobString>( this, tr("Original Author") );
+    _imp->originalAuthorName = AppManager::createKnob<KnobString>( this, tr("Оригинальный автор") );
     _imp->originalAuthorName->setName("originalAuthor");
-    _imp->originalAuthorName->setHintToolTip( tr("The user name and host name of the original author of the project.") );
+    _imp->originalAuthorName->setHintToolTip( tr("Имя пользователя и имя хостинга первоначального автора проекта.") );
     //_imp->originalAuthorName->setAsLabel();
     _imp->originalAuthorName->setDefaultEnabled(0, false);
     _imp->originalAuthorName->setEvaluateOnChange(false);
@@ -1068,9 +1068,9 @@ Project::initializeKnobs()
     _imp->originalAuthorName->setDefaultValue(authorName);
     infoPage->addKnob(_imp->originalAuthorName);
 
-    _imp->lastAuthorName = AppManager::createKnob<KnobString>( this, tr("Last Author") );
+    _imp->lastAuthorName = AppManager::createKnob<KnobString>( this, tr("Последний автор") );
     _imp->lastAuthorName->setName("lastAuthor");
-    _imp->lastAuthorName->setHintToolTip( tr("The user name and host name of the last author of the project.") );
+    _imp->lastAuthorName->setHintToolTip( tr("Имя пользователя и имя хостинга последнего автора проекта.") );
     // _imp->lastAuthorName->setAsLabel();
     _imp->lastAuthorName->setDefaultEnabled(0, false);
     _imp->lastAuthorName->setEvaluateOnChange(false);
@@ -1079,9 +1079,9 @@ Project::initializeKnobs()
     infoPage->addKnob(_imp->lastAuthorName);
 
 
-    _imp->projectCreationDate = AppManager::createKnob<KnobString>( this, tr("Created On") );
+    _imp->projectCreationDate = AppManager::createKnob<KnobString>( this, tr("Созданный на") );
     _imp->projectCreationDate->setName("creationDate");
-    _imp->projectCreationDate->setHintToolTip( tr("The creation date of the project.") );
+    _imp->projectCreationDate->setHintToolTip( tr("Дата создания проекта.") );
     //_imp->projectCreationDate->setAsLabel();
     _imp->projectCreationDate->setDefaultEnabled(0, false);
     _imp->projectCreationDate->setEvaluateOnChange(false);
@@ -1089,86 +1089,86 @@ Project::initializeKnobs()
     _imp->projectCreationDate->setDefaultValue( QDateTime::currentDateTime().toString().toStdString() );
     infoPage->addKnob(_imp->projectCreationDate);
 
-    _imp->saveDate = AppManager::createKnob<KnobString>( this, tr("Last Saved On") );
+    _imp->saveDate = AppManager::createKnob<KnobString>( this, tr("Дата последнего сохранения") );
     _imp->saveDate->setName("lastSaveDate");
-    _imp->saveDate->setHintToolTip( tr("The date this project was last saved.") );
+    _imp->saveDate->setHintToolTip( tr("Дата последнего сохранения проекта.") );
     //_imp->saveDate->setAsLabel();
     _imp->saveDate->setDefaultEnabled(0, false);
     _imp->saveDate->setEvaluateOnChange(false);
     _imp->saveDate->setAnimationEnabled(false);
     infoPage->addKnob(_imp->saveDate);
 
-    KnobStringPtr comments = AppManager::createKnob<KnobString>( this, tr("Comments") );
+    KnobStringPtr comments = AppManager::createKnob<KnobString>( this, tr("Комментарии") );
     comments->setName("comments");
-    comments->setHintToolTip( tr("This area is a good place to write some information about the project such as its authors, license "
-                                 "and anything worth mentioning about it.") );
+    comments->setHintToolTip( tr("Это место для записи некоторой информации о проекте, например, его авторов, лицензии "
+                                 "и все, что стоит упомянуть об этом.") );
     comments->setAsMultiLine();
     comments->setAnimationEnabled(false);
     infoPage->addKnob(comments);
 
     KnobPagePtr pythonPage = AppManager::createKnob<KnobPage>( this, tr("Python") );
-    _imp->onProjectLoadCB = AppManager::createKnob<KnobString>( this, tr("After Project Loaded") );
+    _imp->onProjectLoadCB = AppManager::createKnob<KnobString>( this, tr("После загрузки проекта") );
     _imp->onProjectLoadCB->setName("afterProjectLoad");
-    _imp->onProjectLoadCB->setHintToolTip( tr("Add here the name of a Python-defined function that will be called each time this project "
-                                              "is loaded either from an auto-save or by a user action. It will be called immediately after all "
-                                              "nodes are re-created. This callback will not be called when creating new projects.\n "
-                                              "The signature of the callback is: callback(app) where:\n"
-                                              "- app: points to the current application instance.") );
+    _imp->onProjectLoadCB->setHintToolTip( tr("Добавьте сюда имя функции в Python, которая будет вызываться каждый раз, когда этот проект "
+                                              "загружается либо из автосохранения, либо пользователем. В конце концов он будет вызван сразу "
+                                              "узлы создаются заново. Этот обратный вызов не будет вызываться при создании новых проектов.\n "
+                                              "Подпись обратного вызова: callback(app) где:\n"
+                                              "- app: указывает на текущий экземпляр приложения.") );
     _imp->onProjectLoadCB->setAnimationEnabled(false);
     std::string onProjectLoad = appPTR->getCurrentSettings()->getDefaultOnProjectLoadedCB();
     _imp->onProjectLoadCB->setDefaultValue(onProjectLoad);
     pythonPage->addKnob(_imp->onProjectLoadCB);
 
 
-    _imp->onProjectSaveCB = AppManager::createKnob<KnobString>( this, tr("Before Project Save") );
+    _imp->onProjectSaveCB = AppManager::createKnob<KnobString>( this, tr("Перед сохранением проекта") );
     _imp->onProjectSaveCB->setName("beforeProjectSave");
-    _imp->onProjectSaveCB->setHintToolTip( tr("Add here the name of a Python-defined function that will be called each time this project "
-                                              "is saved by the user. This will be called prior to actually saving the project and can be used "
-                                              "to change the filename of the file.\n"
-                                              "The signature of the callback is: callback(filename,app,autoSave) where:\n"
-                                              "- filename: points to the filename under which the project will be saved"
-                                              "- app: points to the current application instance\n"
-                                              "- autoSave: True if the save was called due to an auto-save, False otherwise\n"
-                                              "You should return the new filename under which the project should be saved.") );
+    _imp->onProjectSaveCB->setHintToolTip( tr("Добавьте сюда имя функции в Python, которая будет вызываться каждый раз, когда этот проект "
+                                              "сохраняется пользователем. Он будет вызываться до фактического сохранения проекта и может быть использован "
+                                              "чтобы изменить имя файла.\n"
+                                              "Подпись обратного вызова: : callback(filename,app,autoSave) где:\n"
+                                              "- имя файла: указывает на имя файла, под которым будет сохранен проект"
+                                              "- app: указывает на текущий экземпляр приложения\n"
+                                              "- autoSave: True, если сохранение было вызвано из-за автосохранения, в противном случае False\n"
+                                              "Вы должны вернуть новое имя файла, под которым должен быть сохранен проект.") );
     _imp->onProjectSaveCB->setAnimationEnabled(false);
     std::string onProjectSave = appPTR->getCurrentSettings()->getDefaultOnProjectSaveCB();
     _imp->onProjectSaveCB->setDefaultValue(onProjectSave);
     pythonPage->addKnob(_imp->onProjectSaveCB);
 
-    _imp->onProjectCloseCB = AppManager::createKnob<KnobString>( this, tr("Before Project Close") );
+    _imp->onProjectCloseCB = AppManager::createKnob<KnobString>( this, tr("До закрытия проекта") );
     _imp->onProjectCloseCB->setName("beforeProjectClose");
-    _imp->onProjectCloseCB->setHintToolTip( tr("Add here the name of a Python-defined function that will be called each time this project "
-                                               "is closed or if the user closes the application while this project is opened. This is called "
-                                               "prior to removing anything from the project.\n"
-                                               "The signature of the callback is: callback(app) where:\n"
-                                               "- app: points to the current application instance.") );
+    _imp->onProjectCloseCB->setHintToolTip( tr("Добавьте сюда имя функции в Python, которая будет вызываться каждый раз, когда этот проект "
+                                               "сохраняется пользователем. Он будет вызываться до фактического сохранения проекта"
+                                               "чтобы изменить имя файла.\n"
+                                               "Подпись обратного вызова: : callback(app) где:\n"
+                                               "- app: указывает на текущий экземпляр приложения.") );
     _imp->onProjectCloseCB->setAnimationEnabled(false);
     std::string onProjectClose = appPTR->getCurrentSettings()->getDefaultOnProjectCloseCB();
     _imp->onProjectCloseCB->setValue(onProjectClose);
     pythonPage->addKnob(_imp->onProjectCloseCB);
 
-    _imp->onNodeCreated = AppManager::createKnob<KnobString>( this, tr("After Node Created") );
+    _imp->onNodeCreated = AppManager::createKnob<KnobString>( this, tr("После создания узла") );
     _imp->onNodeCreated->setName("afterNodeCreated");
-    _imp->onNodeCreated->setHintToolTip( tr("Add here the name of a Python-defined function that will be called each time a node "
-                                            "is created. The boolean variable userEdited will be set to True if the node was created "
-                                            "by the user or False otherwise (such as when loading a project, or pasting a node).\n"
-                                            "The signature of the callback is: callback(thisNode, app, userEdited) where:\n"
-                                            "- thisNode: the node which has just been created\n"
-                                            "- userEdited: a boolean indicating whether the node was created by user interaction or from "
-                                            "a script/project load/copy-paste\n"
-                                            "- app: points to the current application instance.") );
+    _imp->onNodeCreated->setHintToolTip( tr("Добавьте сюда имя функции, определенной в Python, которая будет вызываться каждый раз, когда узел "
+                                            "создается. Логической переменной userEdited будет присвоено значение True, если узел был создан "
+                                            "пользователем или False в противном случае (например, при загрузке проекта или вставке узла).\n"
+                                            "Подпись обратного вызова: callback(thisNode, app, userEdited) где:\n"
+                                            "- thisNode: только что созданный узел\n"
+                                            "- userEdited: логическое значение, указывающее, был ли узел создан в результате взаимодействия"
+                                            "с пользователем или из скрипт/прект загрузить/копирование-вставка\n"
+                                            "- app: указывает на текущий экземпляр приложения.") );
     _imp->onNodeCreated->setAnimationEnabled(false);
     std::string onNodeCreated = appPTR->getCurrentSettings()->getDefaultOnNodeCreatedCB();
     _imp->onNodeCreated->setDefaultValue(onNodeCreated);
     pythonPage->addKnob(_imp->onNodeCreated);
 
-    _imp->onNodeDeleted = AppManager::createKnob<KnobString>( this, tr("Before Node Removal") );
+    _imp->onNodeDeleted = AppManager::createKnob<KnobString>( this, tr("До удаления узла") );
     _imp->onNodeDeleted->setName("beforeNodeRemoval");
-    _imp->onNodeDeleted->setHintToolTip( tr("Add here the name of a Python-defined function that will be called each time a node "
-                                            "is about to be deleted. This function will not be called when the project is closing.\n"
-                                            "The signature of the callback is: callback(thisNode, app) where:\n"
-                                            "- thisNode: the node about to be deleted\n"
-                                            "- app: points to the current application instance.") );
+    _imp->onNodeDeleted->setHintToolTip( tr("Добавьте сюда имя функции, определенной в Python, которая будет вызываться каждый раз, когда узел "
+                                            "собирается быть удалено. Эта функция не будет вызываться при закрытии проекта.\n"
+                                            "Подпись обратного вызова: callback(thisNode, app) где:\n"
+                                            "- thisNode: узел, который будет удалён.\n"
+                                            "- app: указывает на текущий экземпляр приложения.") );
     _imp->onNodeDeleted->setAnimationEnabled(false);
     std::string onNodeDelete = appPTR->getCurrentSettings()->getDefaultOnNodeDeleteCB();
     _imp->onNodeDeleted->setDefaultValue(onNodeDelete);
@@ -1859,7 +1859,7 @@ Project::getLockFileInfos(const QString& projectPath,
     if ( !ts.atEnd() ) {
         *host = ts.readLine();
     } else {
-        *host = tr("unknown host");
+        *host = tr("неизвестный хост");
     }
 
     return true;
