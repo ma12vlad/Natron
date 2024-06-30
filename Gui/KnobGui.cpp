@@ -815,10 +815,10 @@ KnobGui::createDuplicateOnNode(EffectInstance* effect,
         for (int i = 0; i < knob->getDimension(); ++i) {
             std::string expr = knob->getExpression(i);
             if ( !expr.empty() ) {
-                StandardButtonEnum rep = Dialogs::questionDialog( tr("Expression").toStdString(), tr("This operation will create "
-                                                                                                     "an expression link between this parameter and the new parameter on the group"
-                                                                                                     " which will wipe the current expression(s).\n"
-                                                                                                     "Continue anyway?").toStdString(), false,
+                StandardButtonEnum rep = Dialogs::questionDialog( tr("Выражение").toStdString(), tr("Эта операция создаст "
+                                                                                                     "связь выражений между этим параметром и новым параметром в группе"
+                                                                                                     " которое сотрёт текущее выражение.\n"
+                                                                                                     "Продолжить?").toStdString(), false,
                                                                   StandardButtons(eStandardButtonOk | eStandardButtonCancel) );
                 if (rep != eStandardButtonYes) {
                     return KnobIPtr();
