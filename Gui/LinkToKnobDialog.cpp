@@ -136,7 +136,7 @@ LinkToKnobDialog::LinkToKnobDialog(const KnobGuiPtr& from,
     QObject::connect( _imp->buttons, SIGNAL(rejected()), this, SLOT(reject()) );
     _imp->mainLayout->addWidget(_imp->buttons);
 
-    _imp->selectNodeLabel = new Label(tr("Parent:"), _imp->firstLine);
+    _imp->selectNodeLabel = new Label(tr("Исходный:"), _imp->firstLine);
     _imp->firstLineLayout->addWidget(_imp->selectNodeLabel);
 
 
@@ -159,7 +159,7 @@ LinkToKnobDialog::LinkToKnobDialog(const KnobGuiPtr& from,
     }
     nodeNames.sort();
     _imp->nodeSelectionCombo = new CompleterLineEdit(nodeNames, nodeNames, false, this);
-    _imp->nodeSelectionCombo->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Input the name of a node in the current project."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->nodeSelectionCombo->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Введите имя узла в текущем проекте."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->firstLineLayout->addWidget(_imp->nodeSelectionCombo);
 
 

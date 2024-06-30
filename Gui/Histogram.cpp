@@ -314,20 +314,20 @@ Histogram::Histogram(Gui* gui,
     _imp->rightClickMenu = new Menu(this);
     //_imp->rightClickMenu->setFont( QFont(appFont,appFontSize) );
 
-    _imp->histogramSelectionMenu = new Menu(tr("Viewer target"), _imp->rightClickMenu);
+    _imp->histogramSelectionMenu = new Menu(tr("Просмотрщик-цель"), _imp->rightClickMenu);
     //_imp->histogramSelectionMenu->setFont( QFont(appFont,appFontSize) );
     _imp->rightClickMenu->addAction( _imp->histogramSelectionMenu->menuAction() );
 
     _imp->histogramSelectionGroup = new QActionGroup(_imp->histogramSelectionMenu);
 
-    _imp->viewerCurrentInputMenu = new Menu(tr("Viewer input"), _imp->rightClickMenu);
+    _imp->viewerCurrentInputMenu = new Menu(tr("Просмотрщик-вход"), _imp->rightClickMenu);
     //_imp->viewerCurrentInputMenu->setFont( QFont(appFont,appFontSize) );
     _imp->rightClickMenu->addAction( _imp->viewerCurrentInputMenu->menuAction() );
 
     _imp->viewerCurrentInputGroup = new QActionGroup(_imp->viewerCurrentInputMenu);
 
     QAction* inputAAction = new QAction(_imp->viewerCurrentInputMenu);
-    inputAAction->setText( tr("Input A") );
+    inputAAction->setText( tr("Вход A") );
     inputAAction->setData(0);
     inputAAction->setCheckable(true);
     inputAAction->setChecked(true);
@@ -336,7 +336,7 @@ Histogram::Histogram(Gui* gui,
     _imp->viewerCurrentInputMenu->addAction(inputAAction);
 
     QAction* inputBAction = new QAction(_imp->viewerCurrentInputMenu);
-    inputBAction->setText( tr("Input B") );
+    inputBAction->setText( tr("Вход B") );
     inputBAction->setData(1);
     inputBAction->setCheckable(true);
     inputBAction->setChecked(false);
@@ -344,18 +344,18 @@ Histogram::Histogram(Gui* gui,
     _imp->viewerCurrentInputGroup->addAction(inputBAction);
     _imp->viewerCurrentInputMenu->addAction(inputBAction);
 
-    _imp->modeMenu = new Menu(tr("Display mode"), _imp->rightClickMenu);
+    _imp->modeMenu = new Menu(tr("Режим отображения"), _imp->rightClickMenu);
     //_imp->modeMenu->setFont( QFont(appFont,appFontSize) );
     _imp->rightClickMenu->addAction( _imp->modeMenu->menuAction() );
 
     _imp->fullImage = new QAction(_imp->rightClickMenu);
-    _imp->fullImage->setText( tr("Full image") );
+    _imp->fullImage->setText( tr("Полное изображение") );
     _imp->fullImage->setCheckable(true);
     _imp->fullImage->setChecked(false);
     QObject::connect( _imp->fullImage, SIGNAL(triggered()), this, SLOT(computeHistogramAndRefresh()) );
     _imp->rightClickMenu->addAction(_imp->fullImage);
 
-    _imp->filterMenu = new Menu(tr("Smoothing"), _imp->rightClickMenu);
+    _imp->filterMenu = new Menu(tr("Сглаживание"), _imp->rightClickMenu);
     //_imp->filterMenu->setFont( QFont(appFont,appFontSize) );
     _imp->rightClickMenu->addAction( _imp->filterMenu->menuAction() );
 
@@ -399,21 +399,21 @@ Histogram::Histogram(Gui* gui,
 
     _imp->filterActions = new QActionGroup(_imp->filterMenu);
     QAction* noSmoothAction = new QAction(_imp->filterActions);
-    noSmoothAction->setText( tr("Small") );
+    noSmoothAction->setText( tr("Маленький") );
     noSmoothAction->setData(1);
     noSmoothAction->setCheckable(true);
     noSmoothAction->setChecked(true);
     _imp->filterActions->addAction(noSmoothAction);
 
     QAction* size3Action = new QAction(_imp->filterActions);
-    size3Action->setText( tr("Medium") );
+    size3Action->setText( tr("Средний") );
     size3Action->setData(3);
     size3Action->setCheckable(true);
     size3Action->setChecked(false);
     _imp->filterActions->addAction(size3Action);
 
     QAction* size5Action = new QAction(_imp->filterActions);
-    size5Action->setText( tr("High") );
+    size5Action->setText( tr("Высокий") );
     size5Action->setData(5);
     size5Action->setCheckable(true);
     size5Action->setChecked(false);
@@ -569,7 +569,7 @@ Histogram::populateViewersChoices()
     _imp->histogramSelectionMenu->addAction(noneAction);
 
     QAction* currentAction = new QAction(_imp->histogramSelectionGroup);
-    currentAction->setText( tr("Current Viewer") );
+    currentAction->setText( tr("Текущий просмотрщик") );
     currentAction->setData(1);
     currentAction->setCheckable(true);
     currentAction->setChecked(false);
@@ -1705,7 +1705,7 @@ HistogramPrivate::drawWarnings()
     assert( QOpenGLContext::currentContext() == widget->context() );
     if (mipmapLevel > 0) {
         QFontMetrics fm(*_textFont);
-        QString str( tr("Image downscaled") );
+        QString str( tr("Изображение уменьшено") );
 #if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
         double strWidth = fm.horizontalAdvance(str) / _screenPixelRatio;
 #else
@@ -1740,7 +1740,7 @@ HistogramPrivate::drawMissingImage()
         glEnd();
         glLineWidth(1. * _screenPixelRatio);
     }
-    QString txt( tr("Missing image") );
+    QString txt( tr("Отсутствует изображение") );
     QFontMetrics fm(*_textFont);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
     int strWidth = fm.horizontalAdvance(txt) / _screenPixelRatio;

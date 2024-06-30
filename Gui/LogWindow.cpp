@@ -53,7 +53,7 @@ LogWindow::LogWindow(QWidget* parent)
     , _textBrowser(0)
     , _clearButton(0)
 {
-    setWindowTitle( tr("Error Log") );
+    setWindowTitle( tr("Журнал ошибок") );
 
     _mainLayout = new QVBoxLayout(this);
     _mainLayout->setContentsMargins(0, 0, 0, 0);
@@ -64,7 +64,7 @@ LogWindow::LogWindow(QWidget* parent)
 
     _buttonBox = new DialogButtonBox(QDialogButtonBox::StandardButtons(QDialogButtonBox::Close), Qt::Horizontal, this);
 
-    _clearButton = new Button( tr("&Clear") );
+    _clearButton = new Button( tr("&Очистить") );
     _clearButton->setFocusPolicy(Qt::TabFocus);
     _buttonBox->addButton(_clearButton, QDialogButtonBox::ResetRole);
     QObject::connect( _clearButton, SIGNAL(clicked()), this, SLOT(onClearButtonClicked()) );

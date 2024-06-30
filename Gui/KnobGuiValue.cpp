@@ -450,7 +450,7 @@ KnobGuiValue::createWidget(QHBoxLayout* layout)
 
     if (isRectangleParam) {
         _imp->rectangleFormatButton = new Button(QIcon(), QString::fromUtf8("wh"), _imp->container);
-        _imp->rectangleFormatButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Switch between width/height and right/top notation"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+        _imp->rectangleFormatButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Переключение между шириной/высотой и правым/верхним"), NATRON_NAMESPACE::WhiteSpaceNormal) );
         _imp->rectangleFormatButton->setFixedSize(medSize);
         _imp->rectangleFormatButton->setIconSize(medIconSize);
         _imp->rectangleFormatButton->setFocusPolicy(Qt::NoFocus);
@@ -463,7 +463,7 @@ KnobGuiValue::createWidget(QHBoxLayout* layout)
 
     if ( (nDims > 1) && !isSliderDisabled() && sliderVisible ) {
         _imp->dimensionSwitchButton = new Button(QIcon(), QString::number(nDims), _imp->container);
-        _imp->dimensionSwitchButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Switch between a single value for all dimensions and multiple values."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+        _imp->dimensionSwitchButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Переключение между одним значением для всех измерений и несколькими значениями."), NATRON_NAMESPACE::WhiteSpaceNormal) );
         _imp->dimensionSwitchButton->setFixedSize(medSize);
         _imp->dimensionSwitchButton->setIconSize(medIconSize);
         _imp->dimensionSwitchButton->setFocusPolicy(Qt::NoFocus);

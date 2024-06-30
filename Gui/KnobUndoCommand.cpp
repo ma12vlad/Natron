@@ -118,13 +118,13 @@ PasteUndoCommand::PasteUndoCommand(const KnobGuiPtr& knob,
     QString text;
     switch (type) {
     case eKnobClipBoardTypeCopyAnim:
-        text = tr("Paste Animation to %1");
+        text = tr("Вставить анимацию в %1");
         break;
     case eKnobClipBoardTypeCopyValue:
-        text = tr("Paste Value to %1");
+        text = tr("Вставить значение в %1");
         break;
     case eKnobClipBoardTypeCopyLink:
-        text = tr("Paste Link to %1");
+        text = tr("Вставить ссылку на %1");
         break;
     }
     setText( text.arg( QString::fromUtf8( knob->getKnob()->getLabel().c_str() ) ) );
@@ -261,7 +261,7 @@ MultipleKnobEditsUndoCommand::MultipleKnobEditsUndoCommand(const KnobGuiPtr& kno
         holderName = QString::fromUtf8( effect->getNode()->getLabel().c_str() );
     }
 
-    setText( tr("Multiple edits of %1").arg(holderName) );
+    setText( tr("Множественные изменения %1").arg(holderName) );
 }
 
 MultipleKnobEditsUndoCommand::~MultipleKnobEditsUndoCommand()
@@ -642,9 +642,9 @@ RestoreDefaultsCommand::RestoreDefaultsCommand(bool isNodeReset,
     }
 
     if (_knobs.size() == 1) {
-        setText( tr("Reset %1.%2 to default").arg(holderName).arg( QString::fromUtf8( first->getLabel().c_str() ) ) );
+        setText( tr("Сбросить %1.%2 к значениям по умолчанию").arg(holderName).arg( QString::fromUtf8( first->getLabel().c_str() ) ) );
     } else {
-        setText( tr("Reset %1 to default").arg(holderName) );
+        setText( tr("Сбросить %1 к значениям по умолчанию").arg(holderName) );
     }
 }
 
@@ -813,7 +813,7 @@ SetExpressionCommand::SetExpressionCommand(const KnobIPtr & knob,
         _oldExprs.push_back( knob->getExpression(i) );
         _hadRetVar.push_back( knob->isExpressionUsingRetVariable(i) );
     }
-    setText( tr("Set expression") );
+    setText( tr("Установить выражение") );
 }
 
 void
@@ -828,7 +828,7 @@ SetExpressionCommand::undo()
         try {
             knob->setExpression(i, _oldExprs[i], _hadRetVar[i], false);
         } catch (...) {
-            Dialogs::errorDialog( tr("Expression").toStdString(), tr("The expression is invalid.").toStdString() );
+            Dialogs::errorDialog( tr("Выражение").toStdString(), tr("Выражение недопустимо.").toStdString() );
             break;
         }
     }
@@ -849,7 +849,7 @@ SetExpressionCommand::redo()
             try {
                 knob->setExpression(i, _newExpr, _hasRetVar, false);
             } catch (...) {
-                Dialogs::errorDialog( tr("Expression").toStdString(), tr("The expression is invalid.").toStdString() );
+                Dialogs::errorDialog( tr("Выражение").toStdString(), tr("Выражение недопустимо.").toStdString() );
                 break;
             }
         }
@@ -857,7 +857,7 @@ SetExpressionCommand::redo()
         try {
             knob->setExpression(_dimension, _newExpr, _hasRetVar, false);
         } catch (...) {
-            Dialogs::errorDialog( tr("Expression").toStdString(), tr("The expression is invalid.").toStdString() );
+            Dialogs::errorDialog( tr("Выражение").toStdString(), tr("Выражение недопустимо.").toStdString() );
         }
     }
     knob->evaluateValueChange(_dimension == -1 ? 0 : _dimension, knob->getCurrentTime(), ViewIdx(0), eValueChangedReasonNatronGuiEdited);

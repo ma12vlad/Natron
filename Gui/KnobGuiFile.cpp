@@ -105,7 +105,7 @@ KnobGuiFile::createWidget(QHBoxLayout* layout)
 
     _lineEdit = new LineEdit( layout->parentWidget() );
     //layout->parentWidget()->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-    _lineEdit->setPlaceholderText( tr("File path...") );
+    _lineEdit->setPlaceholderText( tr("Путь к файлу...") );
     _lineEdit->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
     ///set the copy/link actions in the right click menu
@@ -133,7 +133,7 @@ KnobGuiFile::createWidget(QHBoxLayout* layout)
         QPixmap pixRefresh;
         appPTR->getIcon(NATRON_PIXMAP_VIEWER_REFRESH, NATRON_MEDIUM_BUTTON_ICON_SIZE, &pixRefresh);
         _reloadButton->setIcon( QIcon(pixRefresh) );
-        _reloadButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Reload the file."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+        _reloadButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Перезагрузить файл."), NATRON_NAMESPACE::WhiteSpaceNormal) );
         QObject::connect( _reloadButton, SIGNAL(clicked()), this, SLOT(onReloadClicked()) );
         layout->addWidget(_reloadButton);
     }
@@ -281,8 +281,8 @@ KnobGuiFile::checkFileModificationAndWarnInternal(bool doCheck,
     if ( foundModificationDate != _lastModificationDates.end() ) {
         if ( doCheck && (date != foundModificationDate->second) ) {
             if (errorAndAbortRender) {
-                QString warn = tr("The file \"%1\" has changed on disk.\n"
-                                  "Press reload file to load the new version of the file").arg(qfilePath);
+                QString warn = tr("Файл \"%1\" изменился на диске.\n"
+                                  "Нажмите перезагрузить файл, чтобы загрузить новую версию файла.").arg(qfilePath);
                 effect->setPersistentMessage( eMessageTypeError, warn.toStdString() );
                 effect->abortAnyEvaluation();
             }
@@ -382,24 +382,24 @@ KnobGuiFile::getKnob() const
 void
 KnobGuiFile::addRightClickMenuEntries(QMenu* menu)
 {
-    QAction* makeAbsoluteAction = new QAction(tr("Make absolute"), menu);
+    QAction* makeAbsoluteAction = new QAction(tr("Сделать абсолютным"), menu);
     QObject::connect( makeAbsoluteAction, SIGNAL(triggered()), this, SLOT(onMakeAbsoluteTriggered()) );
 
-    makeAbsoluteAction->setToolTip( tr("Make the file-path absolute if it was previously relative to any project path") );
+    makeAbsoluteAction->setToolTip( tr("Сделайте путь к файлу абсолютным, если ранее он был относительно любого пути проекта") );
     menu->addAction(makeAbsoluteAction);
-    QAction* makeRelativeToProject = new QAction(tr("Make relative to project"), menu);
-    makeRelativeToProject->setToolTip( tr("Make the file-path relative to the [Project] path") );
+    QAction* makeRelativeToProject = new QAction(tr("Сделать относительно проекта"), menu);
+    makeRelativeToProject->setToolTip( tr("Укажите путь к файлу относительно пути к [Project]") );
     QObject::connect( makeRelativeToProject, SIGNAL(triggered()), this, SLOT(onMakeRelativeTriggered()) );
     menu->addAction(makeRelativeToProject);
-    QAction* simplify = new QAction(tr("Simplify"), menu);
+    QAction* simplify = new QAction(tr("Упростить"), menu);
     QObject::connect( simplify, SIGNAL(triggered()), this, SLOT(onSimplifyTriggered()) );
-    simplify->setToolTip( tr("Same as make relative but will pick the longest project variable to simplify") );
+    simplify->setToolTip( tr("То же, что и сделать относительным, но для упрощения будет выбрана самая длинная переменная проекта") );
     menu->addAction(simplify);
 
     menu->addSeparator();
     QMenu* qtMenu = _lineEdit->createStandardContextMenu();
     qtMenu->setFont( QApplication::font() ); // necessary
-    qtMenu->setTitle( tr("Edit") );
+    qtMenu->setTitle( tr("Редактировать") );
     menu->addMenu(qtMenu);
 }
 
@@ -506,7 +506,7 @@ KnobGuiOutputFile::createWidget(QHBoxLayout* layout)
 
     _lineEdit = new LineEdit( layout->parentWidget() );
     //layout->parentWidget()->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-    _lineEdit->setPlaceholderText( tr("File path...") );
+    _lineEdit->setPlaceholderText( tr("Путь к файлу...") );
     _lineEdit->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
     ///set the copy/link actions in the right click menu
@@ -534,7 +534,7 @@ KnobGuiOutputFile::createWidget(QHBoxLayout* layout)
         QPixmap pixRefresh;
         appPTR->getIcon(NATRON_PIXMAP_VIEWER_REFRESH, NATRON_MEDIUM_BUTTON_ICON_SIZE, &pixRefresh);
         _rewriteButton->setIcon( QIcon(pixRefresh) );
-        _rewriteButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Rewrite the file."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+        _rewriteButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Перезаписать файл."), NATRON_NAMESPACE::WhiteSpaceNormal) );
         QObject::connect( _rewriteButton, SIGNAL(clicked()), this, SLOT(onRewriteClicked()) );
         layout->addWidget(_rewriteButton);
     }
@@ -673,24 +673,24 @@ KnobGuiOutputFile::getKnob() const
 void
 KnobGuiOutputFile::addRightClickMenuEntries(QMenu* menu)
 {
-    QAction* makeAbsoluteAction = new QAction(tr("Make absolute"), menu);
+    QAction* makeAbsoluteAction = new QAction(tr("Сделать абсолютным"), menu);
     QObject::connect( makeAbsoluteAction, SIGNAL(triggered()), this, SLOT(onMakeAbsoluteTriggered()) );
 
-    makeAbsoluteAction->setToolTip( tr("Make the file-path absolute if it was previously relative to any project path") );
+    makeAbsoluteAction->setToolTip( tr("Сделайте путь к файлу абсолютным, если ранее он был относительно любого пути проекта") );
     menu->addAction(makeAbsoluteAction);
-    QAction* makeRelativeToProject = new QAction(tr("Make relative to project"), menu);
-    makeRelativeToProject->setToolTip( tr("Make the file-path relative to the [Project] path") );
+    QAction* makeRelativeToProject = new QAction(tr("Сделать относительно проекта"), menu);
+    makeRelativeToProject->setToolTip( tr("Укажите путь к файлу относительно пути к [Project]") );
     QObject::connect( makeRelativeToProject, SIGNAL(triggered()), this, SLOT(onMakeRelativeTriggered()) );
     menu->addAction(makeRelativeToProject);
-    QAction* simplify = new QAction(tr("Simplify"), menu);
+    QAction* simplify = new QAction(tr("Упростить"), menu);
     QObject::connect( simplify, SIGNAL(triggered()), this, SLOT(onSimplifyTriggered()) );
-    simplify->setToolTip( tr("Same as make relative but will pick the longest project variable to simplify") );
+    simplify->setToolTip( tr("То же, что и сделать относительным, но для упрощения будет выбрана самая длинная переменная проекта") );
     menu->addAction(simplify);
 
     menu->addSeparator();
     QMenu* qtMenu = _lineEdit->createStandardContextMenu();
     qtMenu->setFont( QApplication::font() ); // necessary
-    qtMenu->setTitle( tr("Edit") );
+    qtMenu->setTitle( tr("Редактировать") );
     menu->addMenu(qtMenu);
 }
 
@@ -809,7 +809,7 @@ KnobGuiPath::createWidget(QHBoxLayout* layout)
         enableRightClickMenu(_lineEdit, 0);
         _openFileButton = new Button( layout->parentWidget() );
         _openFileButton->setFixedSize(NATRON_MEDIUM_BUTTON_SIZE, NATRON_MEDIUM_BUTTON_SIZE);
-        _openFileButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Click to select a path to append to/replace this variable."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+        _openFileButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Щелкните, чтобы выбрать путь для добавления/замены этой переменной."), NATRON_NAMESPACE::WhiteSpaceNormal) );
         QPixmap pix;
         appPTR->getIcon(NATRON_PIXMAP_OPEN_FILE, NATRON_MEDIUM_BUTTON_ICON_SIZE, &pix);
         _openFileButton->setIcon( QIcon(pix) );
@@ -856,7 +856,7 @@ KnobGuiPath::addNewUserEntry(QStringList& row)
         updateLastOpened(path);
 
         int rc = rowCount();
-        QString varName = QString( tr("Path") + QString::fromUtf8("%1") ).arg(rc);
+        QString varName = QString( tr("Путь") + QString::fromUtf8("%1") ).arg(rc);
         row.push_back(varName);
         row.push_back(path);
 
@@ -1047,17 +1047,17 @@ KnobGuiPath::addRightClickMenuEntries(QMenu* menu)
         return;
     }
     if ( !knob->isMultiPath() ) {
-        QAction* makeAbsoluteAction = new QAction(tr("Make absolute"), menu);
+        QAction* makeAbsoluteAction = new QAction(tr("Сделать абсолютным"), menu);
         QObject::connect( makeAbsoluteAction, SIGNAL(triggered()), this, SLOT(onMakeAbsoluteTriggered()) );
-        makeAbsoluteAction->setToolTip( tr("Make the file-path absolute if it was previously relative to any project path") );
+        makeAbsoluteAction->setToolTip( tr("Сделайте путь к файлу абсолютным, если ранее он был относительно любого пути проекта") );
         menu->addAction(makeAbsoluteAction);
-        QAction* makeRelativeToProject = new QAction(tr("Make relative to project"), menu);
-        makeRelativeToProject->setToolTip( tr("Make the file-path relative to the [Project] path") );
+        QAction* makeRelativeToProject = new QAction(tr("Сделать относительно проекта"), menu);
+        makeRelativeToProject->setToolTip( tr("Укажите путь к файлу относительно пути к [Project]") );
         QObject::connect( makeRelativeToProject, SIGNAL(triggered()), this, SLOT(onMakeRelativeTriggered()) );
         menu->addAction(makeRelativeToProject);
-        QAction* simplify = new QAction(tr("Simplify"), menu);
+        QAction* simplify = new QAction(tr("Упростить"), menu);
         QObject::connect( simplify, SIGNAL(triggered()), this, SLOT(onSimplifyTriggered()) );
-        simplify->setToolTip( tr("Same as make relative but will pick the longest project variable to simplify") );
+        simplify->setToolTip( tr("То же, что и сделать относительным, но для упрощения будет выбрана самая длинная переменная проекта") );
         menu->addAction(simplify);
 
         menu->addSeparator();

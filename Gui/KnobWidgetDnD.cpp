@@ -247,9 +247,9 @@ KnobWidgetDnD::startDrag()
     bool isExprMult = ( mods & (Qt::ControlModifier | Qt::AltModifier | Qt::ShiftModifier) ) == (Qt::ControlModifier | Qt::ShiftModifier);
     QString textFirstLine;
     if (isExprMult) {
-        textFirstLine = tr("Linking (expression):");
+        textFirstLine = tr("Связывание (выражение):");
     } else {
-        textFirstLine = tr("Linking (hard-link) from:");
+        textFirstLine = tr("Связывание (жесткая ссылка) с:");
     }
 
 
@@ -269,7 +269,7 @@ KnobWidgetDnD::startDrag()
         } else {
             if (!isExprMult) {
                 knobLine += QLatin1Char(' ');
-                knobLine += tr("(all dimensions)");
+                knobLine += tr("(все размеры)");
             }
         }
     }
@@ -280,9 +280,9 @@ KnobWidgetDnD::startDrag()
 
     QString textThirdLine;
     if (dragDim == -1) {
-        textThirdLine = tr("Drag it to the label of another parameter of the same type");
+        textThirdLine = tr("Перетащите его на метку другого параметра того же типа");
     } else {
-        textThirdLine = tr("Drag it to a dimension of another parameter of the same type");
+        textThirdLine = tr("Перетащите его в измерение другого параметра того же типа");
     }
 
 #if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
@@ -363,21 +363,21 @@ KnobWidgetDnDPrivate::canDrop(bool warn,
 
         if ( !KnobI::areTypesCompatibleForSlave( source.get(), thisKnob.get() ) ) {
             if (warn) {
-                Dialogs::errorDialog( tr("Link").toStdString(), tr("You can only link parameters of the same type. To overcome this, use an expression instead.").toStdString() );
+                Dialogs::errorDialog( tr("Ссылка").toStdString(), tr("Вы можете связывать только параметры одного типа. Чтобы избежать этого, используйте вместо этого выражение.").toStdString() );
             }
             ret = false;
         }
 
         if ( ret && (srcDim != -1) && (targetDim == -1) ) {
             if (warn) {
-                Dialogs::errorDialog( tr("Link").toStdString(), tr("When linking on all dimensions, original and target parameters must have the same dimension.").toStdString() );
+                Dialogs::errorDialog( tr("Ссылка").toStdString(), tr("При связывании всех измерений исходный и целевой параметры должны иметь одинаковое измерение.").toStdString() );
             }
             ret = false;
         }
 
         if ( ret && ( (targetDim == -1) || (srcDim == -1) ) && ( source->getDimension() != thisKnob->getDimension() ) ) {
             if (warn) {
-                Dialogs::errorDialog( tr("Link").toStdString(), tr("When linking on all dimensions, original and target parameters must have the same dimension.").toStdString() );
+                Dialogs::errorDialog( tr("Ссылка").toStdString(), tr("При связывании всех измерений исходный и целевой параметры должны иметь одинаковое измерение.").toStdString() );
             }
             ret = false;
         }

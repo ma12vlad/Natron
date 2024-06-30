@@ -950,7 +950,7 @@ GuiApplicationManager::initGui(const CLArgs& args)
 
     _imp->fontconfigUpdateWatcher.reset(new QFutureWatcher<void>);
     QObject::connect( _imp->fontconfigUpdateWatcher.get(), SIGNAL(finished()), this, SLOT(onFontconfigCacheUpdateFinished()) );
-    setLoadingStatus( tr("Updating fontconfig cache...") );
+    setLoadingStatus( tr("Обновление кэша конфигурации шрифтов...") );
 
     QObject::connect( &_imp->updateSplashscreenTimer, SIGNAL(timeout()), this, SLOT(onFontconfigTimerTriggered()) );
     _imp->updateSplashscreenTimer.start(1000);
@@ -981,7 +981,7 @@ GuiApplicationManager::onFontconfigTimerTriggered()
 {
     _imp->fontconfigMessageDots = (_imp->fontconfigMessageDots + 1) % 4;
 
-    QString message = tr("Updating fontconfig cache");
+    QString message = tr("Обновление кэша конфигурации шрифтов");
     for (int i = 0; i < _imp->fontconfigMessageDots; ++i) {
         message.append( QLatin1Char('.') );
     }

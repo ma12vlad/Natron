@@ -230,25 +230,25 @@ KnobGui::pasteClipBoard(int targetDimension)
     }
 
     if ( !knob->isAnimationEnabled() && (type == eKnobClipBoardTypeCopyAnim) ) {
-        Dialogs::errorDialog( tr("Paste").toStdString(), tr("This parameter does not support animation").toStdString() );
+        Dialogs::errorDialog( tr("Вставить").toStdString(), tr("Этот параметр не поддерживает анимацию").toStdString() );
 
         return;
     }
 
     if ( !KnobI::areTypesCompatibleForSlave( fromKnob.get(), knob.get() ) ) {
-        Dialogs::errorDialog( tr("Paste").toStdString(), tr("You can only copy/paste between parameters of the same type. To overcome this, use an expression instead.").toStdString() );
+        Dialogs::errorDialog( tr("Вставить").toStdString(), tr("Можно копировать/вставлять только между параметрами одного типа. Чтобы избежать этого, используйте вместо этого выражение.").toStdString() );
 
         return;
     }
 
     if ( (cbDim != -1) && (targetDimension == -1) ) {
-        Dialogs::errorDialog( tr("Paste").toStdString(), tr("When copy/pasting on all dimensions, original and target parameters must have the same dimension.").toStdString() );
+        Dialogs::errorDialog( tr("Вставить").toStdString(), tr("При копировании/вставке  исходный и целевой параметры должны иметь одинаковые размеры.").toStdString() );
 
         return;
     }
 
     if ( ( (targetDimension == -1) || (cbDim == -1) ) && ( fromKnob->getDimension() != knob->getDimension() ) ) {
-        Dialogs::errorDialog( tr("Paste").toStdString(), tr("When copy/pasting on all dimensions, original and target parameters must have the same dimension.").toStdString() );
+        Dialogs::errorDialog( tr("Вставить").toStdString(), tr("При копировании/вставке  исходный и целевой параметры должны иметь одинаковые размеры.").toStdString() );
 
         return;
     }
@@ -295,7 +295,7 @@ KnobGui::linkTo(int dimension)
         if ( (i == dimension) || (dimension == -1) ) {
             std::string expr = thisKnob->getExpression(dimension);
             if ( !expr.empty() ) {
-                Dialogs::errorDialog( tr("Param Link").toStdString(), tr("This parameter already has an expression set, edit or clear it.").toStdString() );
+                Dialogs::errorDialog( tr("Связка параметров").toStdString(), tr("Для этого параметра уже задано выражение, отредактируйте или очистите его.").toStdString() );
 
                 return;
             }
@@ -308,7 +308,7 @@ KnobGui::linkTo(int dimension)
         KnobIPtr otherKnob = dialog.getSelectedKnobs();
         if (otherKnob) {
             if ( !thisKnob->isTypeCompatible(otherKnob) ) {
-                Dialogs::errorDialog( tr("Param Link").toStdString(), tr("Types are incompatible!").toStdString() );
+                Dialogs::errorDialog( tr("Связка параметров").toStdString(), tr("Типы несовместимы!").toStdString() );
 
                 return;
             }
@@ -317,8 +317,8 @@ KnobGui::linkTo(int dimension)
             for (int i = 0; i < thisKnob->getDimension(); ++i) {
                 std::pair<int, KnobIPtr> existingLink = thisKnob->getMaster(i);
                 if (existingLink.second) {
-                    Dialogs::errorDialog( tr("Param Link").toStdString(),
-                                          tr("Cannot link %1 because the knob is already linked to %2.")
+                    Dialogs::errorDialog( tr("Связка параметров").toStdString(),
+                                          tr("Невозможно связать %1, поскольку вывод уже связан с %2.")
                                           .arg( QString::fromUtf8( thisKnob->getLabel().c_str() ) )
                                           .arg( QString::fromUtf8( existingLink.second->getLabel().c_str() ) )
                                           .toStdString() );
@@ -892,7 +892,7 @@ KnobGui::onExprChanged(int dimension)
             if (invalid) {
                 QString toPrepend;
                 toPrepend += QString::fromUtf8("<p>");
-                toPrepend += tr("Invalid expression(s), value returned is the underlying curve:");
+                toPrepend += tr("Недопустимое выражение(я), возвращаемое значение — базовая кривая:");
                 toPrepend += QString::fromUtf8("</p>");
                 fullErrToolTip.prepend(toPrepend);
 

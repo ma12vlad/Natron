@@ -316,8 +316,8 @@ KnobGuiChoice::onItemNewSelected()
     if ( dialog.exec() ) {
         ImagePlaneDesc comps = dialog.getComponents();
         if ( comps == ImagePlaneDesc::getNoneComponents() ) {
-            Dialogs::errorDialog( tr("Layer").toStdString(), tr("A layer must contain at least 1 channel and channel names must be "
-                                                                "Python compliant.").toStdString() );
+            Dialogs::errorDialog( tr("Слой").toStdString(), tr("Слой должен содержать как минимум 1 канал, а названия каналов "
+                                                                "должны соответствовать Python.").toStdString() );
 
             return;
         }
@@ -332,7 +332,7 @@ KnobGuiChoice::onItemNewSelected()
         if (effect) {
             assert( effect->getNode() );
             if ( !effect->getNode()->addUserComponents(comps) ) {
-                Dialogs::errorDialog( tr("Layer").toStdString(), tr("A Layer with the same name already exists").toStdString() );
+                Dialogs::errorDialog( tr("Слой").toStdString(), tr("Слой с таким же названием уже существует").toStdString() );
             }
         }
     }
@@ -399,7 +399,7 @@ KnobGuiChoice::updateGUI(int /*dimension*/)
     if ( !activeEntry.id.empty() ) {
         bool activeIndexPresent = knob->isActiveEntryPresentInEntries();
         if (!activeIndexPresent) {
-            QString error = tr("The value %1 no longer exist in the menu.").arg(activeEntryLabel);
+            QString error = tr("Значение %1 больше не существует в меню.").arg(activeEntryLabel);
             setWarningValue( KnobGui::eKnobWarningChoiceMenuOutOfDate, NATRON_NAMESPACE::convertFromPlainText(error, NATRON_NAMESPACE::WhiteSpaceNormal) );
         } else {
             setWarningValue( KnobGui::eKnobWarningChoiceMenuOutOfDate, QString() );

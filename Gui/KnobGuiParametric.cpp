@@ -133,7 +133,7 @@ KnobGuiParametric::createWidget(QHBoxLayout* layout)
     treeColumnLayout->addWidget(_tree);
 
     _resetButton = new Button(QString::fromUtf8("Reset"), treeColumn);
-    _resetButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Reset the selected curves in the tree to their default shape."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _resetButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Восстановите выбранные кривые в дереве до их формы по умолчанию."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     QObject::connect( _resetButton, SIGNAL(clicked()), this, SLOT(resetSelectedCurves()) );
     treeColumnLayout->addWidget(_resetButton);
 

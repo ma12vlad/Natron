@@ -284,12 +284,12 @@ KnobGuiColor::addExtraWidgets(QHBoxLayout* containerLayout)
     KnobColorPtr knob = _knob.lock();
     _colorLabel = new ColorPickerLabel( _useSimplifiedUI ? NULL : this, containerLayout->widget() );
     if (!_useSimplifiedUI) {
-        _colorLabel->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("To pick a color on a viewer, click this and then press control + left click on any viewer.\n"
-                                                                   "You can also pick the average color of a given rectangle by holding control + shift + left click\n. "
-                                                                   "To deselect the picker left click anywhere."
-                                                                   "Note that by default %1 converts to linear the color picked\n"
-                                                                   "because all the processing pipeline is linear, but you can turn this off in the\n"
-                                                                   "preferences panel.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ), NATRON_NAMESPACE::WhiteSpaceNormal) );
+        _colorLabel->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Чтобы выбрать цвет для средства просмотра, щелкните его, а затем нажмите Control + щелкните ЛКМ по любому средству просмотра.\n"
+                                                                   "Вы также можете выбрать средний цвет данного прямоугольника, удерживая Control + Shift + щелчок ЛКМ\n. "
+                                                                   "Чтобы отменить выбор средства выбора, щелкните левой кнопкой мыши в любом месте"
+                                                                   "По умолчанию %1 преобразует выбранный цвет в линейный\n"
+                                                                   "потому что весь конвейер обработки линейный, но вы можете отключить это в\n"
+                                                                   "Панели настроек.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ), NATRON_NAMESPACE::WhiteSpaceNormal) );
     }
 
     QSize medSize( TO_DPIX(NATRON_MEDIUM_BUTTON_SIZE), TO_DPIY(NATRON_MEDIUM_BUTTON_SIZE) );
@@ -316,7 +316,7 @@ KnobGuiColor::addExtraWidgets(QHBoxLayout* containerLayout)
     _colorSelectorButton->setArrowType(Qt::NoArrow);
     _colorSelectorButton->setAutoRaise(false);
     _colorSelectorButton->setCheckable(false);
-    _colorSelectorButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Open Color Selector"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _colorSelectorButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Открыть выбор цвета"), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _colorSelectorButton->setFocusPolicy(Qt::NoFocus);
 
     _colorSelector = new ColorSelectorWidget( knob->getDimension() == 4, containerLayout->widget() );

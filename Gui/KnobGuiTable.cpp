@@ -256,18 +256,18 @@ KnobGuiTable::createWidget(QHBoxLayout* layout)
     QHBoxLayout* buttonsLayout = new QHBoxLayout(buttonsContainer);
     buttonsLayout->setContentsMargins(0, 0, 0, 0);
 
-    _imp->addPathButton = new Button( tr("Add..."), buttonsContainer );
-    _imp->addPathButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Add a new value"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->addPathButton = new Button( tr("Добавить..."), buttonsContainer );
+    _imp->addPathButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Добавить новое значение"), NATRON_NAMESPACE::WhiteSpaceNormal) );
 
     QObject::connect( _imp->addPathButton, SIGNAL(clicked()), this, SLOT(onAddButtonClicked()) );
 
-    _imp->removePathButton = new Button( tr("Remove"), buttonsContainer);
+    _imp->removePathButton = new Button( tr("Удалить"), buttonsContainer);
     QObject::connect( _imp->removePathButton, SIGNAL(clicked()), this, SLOT(onRemoveButtonClicked()) );
-    _imp->removePathButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Remove selected values"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->removePathButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Удалить выбранные значения"), NATRON_NAMESPACE::WhiteSpaceNormal) );
 
-    _imp->editPathButton = new Button( tr("Edit..."), buttonsContainer);
+    _imp->editPathButton = new Button( tr("Редактировать..."), buttonsContainer);
     QObject::connect( _imp->editPathButton, SIGNAL(clicked()), this, SLOT(onEditButtonClicked()) );
-    _imp->editPathButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Click to edit selected value."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->editPathButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Нажмите, чтобы отредактировать выбранное значение."), NATRON_NAMESPACE::WhiteSpaceNormal) );
 
 
     buttonsLayout->addWidget(_imp->addPathButton);
@@ -656,8 +656,8 @@ KnobGuiLayers::addNewUserEntry(QStringList& row)
     if ( dialog.exec() ) {
         ImagePlaneDesc comps = dialog.getComponents();
         if ( comps == ImagePlaneDesc::getNoneComponents() ) {
-            Dialogs::errorDialog( tr("Layer").toStdString(), tr("A layer must contain at least 1 channel and channel names must be "
-                                                                "Python compliant.").toStdString() );
+            Dialogs::errorDialog( tr("Слой").toStdString(), tr("Слой должен содержать хотя бы 1 канал, а имена каналов должны быть"
+                                                                "совместимы с Python.").toStdString() );
 
             return false;
         }
@@ -671,7 +671,7 @@ KnobGuiLayers::addNewUserEntry(QStringList& row)
         knob->getTable(&table);
         for (std::list<std::vector<std::string> >::iterator it = table.begin(); it != table.end(); ++it) {
             if ( (*it)[0] == comps.getPlaneLabel() ) {
-                Dialogs::errorDialog( tr("Layer").toStdString(), tr("A Layer with the same name already exists").toStdString() );
+                Dialogs::errorDialog( tr("Слой").toStdString(), tr("Слой с таким же названием уже существует").toStdString() );
 
                 return false;
             }
@@ -707,8 +707,8 @@ KnobGuiLayers::editUserEntry(QStringList& row)
     if ( dialog.exec() ) {
         ImagePlaneDesc comps = dialog.getComponents();
         if ( comps == ImagePlaneDesc::getNoneComponents() ) {
-            Dialogs::errorDialog( tr("Layer").toStdString(), tr("A layer must contain at least 1 channel and channel names must be "
-                                                                "Python compliant.").toStdString() );
+            Dialogs::errorDialog( tr("Слой").toStdString(), tr("Слой должен содержать хотя бы 1 канал, а имена каналов должны быть "
+                                                                "совместимы с Python .").toStdString() );
 
             return false;
         }
@@ -724,7 +724,7 @@ KnobGuiLayers::editUserEntry(QStringList& row)
         knob->getTable(&table);
         for (std::list<std::vector<std::string> >::iterator it = table.begin(); it != table.end(); ++it) {
             if ( ( (*it)[0] == comps.getPlaneLabel() ) && ( (*it)[0] != oldLayerName ) ) {
-                Dialogs::errorDialog( tr("Layer").toStdString(), tr("A Layer with the same name already exists").toStdString() );
+                Dialogs::errorDialog( tr("Layer").toStdString(), tr("Слой с таким же названием уже существует").toStdString() );
 
                 return false;
             }

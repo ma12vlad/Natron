@@ -337,41 +337,41 @@ KnobGui::createInterpolationMenu(QMenu* menu,
     QString title;
 
     if (dimension == -1) {
-        title = tr("Interpolation (all dimensions)");
+        title = tr("Интерполяция (все измерения)");
     } else {
-        title = tr("Interpolation");
+        title = tr("Интерполяция");
     }
     interpolationMenu->setTitle(title);
     if (!isEnabled) {
         interpolationMenu->menuAction()->setEnabled(false);
     }
 
-    QAction* constantInterpAction = new QAction(tr("Constant"), interpolationMenu);
+    QAction* constantInterpAction = new QAction(tr("Постоянный"), interpolationMenu);
     constantInterpAction->setData( QVariant(dimension) );
     QObject::connect( constantInterpAction, SIGNAL(triggered()), this, SLOT(onConstantInterpActionTriggered()) );
     interpolationMenu->addAction(constantInterpAction);
 
-    QAction* linearInterpAction = new QAction(tr("Linear"), interpolationMenu);
+    QAction* linearInterpAction = new QAction(tr("Линейный"), interpolationMenu);
     linearInterpAction->setData( QVariant(dimension) );
     QObject::connect( linearInterpAction, SIGNAL(triggered()), this, SLOT(onLinearInterpActionTriggered()) );
     interpolationMenu->addAction(linearInterpAction);
 
-    QAction* smoothInterpAction = new QAction(tr("Smooth"), interpolationMenu);
+    QAction* smoothInterpAction = new QAction(tr("Сглаживание"), interpolationMenu);
     smoothInterpAction->setData( QVariant(dimension) );
     QObject::connect( smoothInterpAction, SIGNAL(triggered()), this, SLOT(onSmoothInterpActionTriggered()) );
     interpolationMenu->addAction(smoothInterpAction);
 
-    QAction* catmullRomInterpAction = new QAction(tr("Catmull-Rom"), interpolationMenu);
+    QAction* catmullRomInterpAction = new QAction(tr("Кэтмулл-Ром"), interpolationMenu);
     catmullRomInterpAction->setData( QVariant(dimension) );
     QObject::connect( catmullRomInterpAction, SIGNAL(triggered()), this, SLOT(onCatmullromInterpActionTriggered()) );
     interpolationMenu->addAction(catmullRomInterpAction);
 
-    QAction* cubicInterpAction = new QAction(tr("Cubic"), interpolationMenu);
+    QAction* cubicInterpAction = new QAction(tr("Кубический"), interpolationMenu);
     cubicInterpAction->setData( QVariant(dimension) );
     QObject::connect( cubicInterpAction, SIGNAL(triggered()), this, SLOT(onCubicInterpActionTriggered()) );
     interpolationMenu->addAction(cubicInterpAction);
 
-    QAction* horizInterpAction = new QAction(tr("Horizontal"), interpolationMenu);
+    QAction* horizInterpAction = new QAction(tr("Горизонталь"), interpolationMenu);
     horizInterpAction->setData( QVariant(dimension) );
     QObject::connect( horizInterpAction, SIGNAL(triggered()), this, SLOT(onHorizontalInterpActionTriggered()) );
     interpolationMenu->addAction(horizInterpAction);
@@ -445,7 +445,7 @@ KnobGui::createAnimationMenu(QMenu* menu,
     if ( (knob->getDimension() > 1) && knob->isAnimationEnabled() && !hasDimensionSlaved && isAppKnob ) {
         ///Multi-dim actions
         if (!hasAllKeyframesAtTime) {
-            QAction* setKeyAction = new QAction(tr("Set Key") + QLatin1Char(' ') + tr("(all dimensions)"), menu);
+            QAction* setKeyAction = new QAction(tr("Установить ключ") + QLatin1Char(' ') + tr("(все размеры)"), menu);
             setKeyAction->setData(-1);
             QObject::connect( setKeyAction, SIGNAL(triggered()), this, SLOT(onSetKeyActionTriggered()) );
             menu->addAction(setKeyAction);
@@ -453,7 +453,7 @@ KnobGui::createAnimationMenu(QMenu* menu,
                 setKeyAction->setEnabled(false);
             }
         } else {
-            QAction* removeKeyAction = new QAction(tr("Remove Key") + QLatin1Char(' ') + tr("(all dimensions)"), menu);
+            QAction* removeKeyAction = new QAction(tr("Удалить ключ") + QLatin1Char(' ') + tr("(все размеры)"), menu);
             removeKeyAction->setData(-1);
             QObject::connect( removeKeyAction, SIGNAL(triggered()), this, SLOT(onRemoveKeyActionTriggered()) );
             menu->addAction(removeKeyAction);
@@ -463,7 +463,7 @@ KnobGui::createAnimationMenu(QMenu* menu,
         }
 
         if (hasAnimation) {
-            QAction* removeAnyAnimationAction = new QAction(tr("Remove animation") + QLatin1Char(' ') + tr("(all dimensions)"), menu);
+            QAction* removeAnyAnimationAction = new QAction(tr("Удалить анимацию") + QLatin1Char(' ') + tr("(все размеры)"), menu);
             removeAnyAnimationAction->setData(-1);
             QObject::connect( removeAnyAnimationAction, SIGNAL(triggered()), this, SLOT(onRemoveAnimationActionTriggered()) );
             if (!isEnabled) {
@@ -479,7 +479,7 @@ KnobGui::createAnimationMenu(QMenu* menu,
         {
             ///Single dim action
             if (!dimensionHasKeyframeAtTime) {
-                QAction* setKeyAction = new QAction(tr("Set Key"), menu);
+                QAction* setKeyAction = new QAction(tr("Установить ключ"), menu);
                 setKeyAction->setData(dimension);
                 QObject::connect( setKeyAction, SIGNAL(triggered()), this, SLOT(onSetKeyActionTriggered()) );
                 menu->addAction(setKeyAction);
@@ -487,7 +487,7 @@ KnobGui::createAnimationMenu(QMenu* menu,
                     setKeyAction->setEnabled(false);
                 }
             } else {
-                QAction* removeKeyAction = new QAction(tr("Remove Key"), menu);
+                QAction* removeKeyAction = new QAction(tr("Удалить ключ"), menu);
                 removeKeyAction->setData(dimension);
                 QObject::connect( removeKeyAction, SIGNAL(triggered()), this, SLOT(onRemoveKeyActionTriggered()) );
                 menu->addAction(removeKeyAction);
@@ -497,7 +497,7 @@ KnobGui::createAnimationMenu(QMenu* menu,
             }
 
             if (dimensionHasAnimation) {
-                QAction* removeAnyAnimationAction = new QAction(tr("Remove animation"), menu);
+                QAction* removeAnyAnimationAction = new QAction(tr("Удалить анимацию"), menu);
                 removeAnyAnimationAction->setData(dimension);
                 QObject::connect( removeAnyAnimationAction, SIGNAL(triggered()), this, SLOT(onRemoveAnimationActionTriggered()) );
                 menu->addAction(removeAnyAnimationAction);
@@ -512,7 +512,7 @@ KnobGui::createAnimationMenu(QMenu* menu,
     }
 
     if (hasAnimation && isAppKnob) {
-        QAction* showInCurveEditorAction = new QAction(tr("Show in curve editor"), menu);
+        QAction* showInCurveEditorAction = new QAction(tr("Показать в редакторе кривых"), menu);
         QObject::connect( showInCurveEditorAction, SIGNAL(triggered()), this, SLOT(onShowInCurveEditorActionTriggered()) );
         menu->addAction(showInCurveEditorAction);
         if (!isEnabled) {
@@ -534,25 +534,25 @@ KnobGui::createAnimationMenu(QMenu* menu,
 
     {
         Menu* copyMenu = new Menu(menu);
-        copyMenu->setTitle( tr("Copy") );
+        copyMenu->setTitle( tr("Копировать") );
 
         if (dimension != -1 || nDims == 1) {
             if (hasAnimation && isAppKnob) {
-                QAction* copyAnimationAction = new QAction(tr("Copy Animation"), copyMenu);
+                QAction* copyAnimationAction = new QAction(tr("Копировать анимацию"), copyMenu);
                 copyAnimationAction->setData(dimension);
                 QObject::connect( copyAnimationAction, SIGNAL(triggered()), this, SLOT(onCopyAnimationActionTriggered()) );
                 copyMenu->addAction(copyAnimationAction);
             }
 
 
-            QAction* copyValuesAction = new QAction(tr("Copy Value"), copyMenu);
+            QAction* copyValuesAction = new QAction(tr("Копировать значение"), copyMenu);
             copyValuesAction->setData( QVariant(dimension) );
             copyMenu->addAction(copyValuesAction);
             QObject::connect( copyValuesAction, SIGNAL(triggered()), this, SLOT(onCopyValuesActionTriggered()) );
 
 
             if (isAppKnob) {
-                QAction* copyLinkAction = new QAction(tr("Copy Link"), copyMenu);
+                QAction* copyLinkAction = new QAction(tr("Скопировать ссылку"), copyMenu);
                 copyLinkAction->setData( QVariant(dimension) );
                 copyMenu->addAction(copyLinkAction);
                 QObject::connect( copyLinkAction, SIGNAL(triggered()), this, SLOT(onCopyLinksActionTriggered()) );
@@ -561,18 +561,18 @@ KnobGui::createAnimationMenu(QMenu* menu,
 
         if (knob->getDimension() > 1) {
             if (hasAnimation && isAppKnob) {
-                QString title = tr("Copy Animation");
+                QString title = tr("Копировать анимацию");
                 title += QLatin1Char(' ');
-                title += tr("(all dimensions)");
+                title += tr("(все размеры)");
                 QAction* copyAnimationAction = new QAction(title, copyMenu);
                 copyAnimationAction->setData(-1);
                 QObject::connect( copyAnimationAction, SIGNAL(triggered()), this, SLOT(onCopyAnimationActionTriggered()) );
                 copyMenu->addAction(copyAnimationAction);
             }
             {
-                QString title = tr("Copy Values");
+                QString title = tr("Копировать значения");
                 title += QLatin1Char(' ');
-                title += tr("(all dimensions)");
+                title += tr("(все размеры)");
                 QAction* copyValuesAction = new QAction(title, copyMenu);
                 copyValuesAction->setData(-1);
                 copyMenu->addAction(copyValuesAction);
@@ -580,9 +580,9 @@ KnobGui::createAnimationMenu(QMenu* menu,
             }
 
             if (isAppKnob) {
-                QString title = tr("Copy Link");
+                QString title = tr("Скопировать ссылку");
                 title += QLatin1Char(' ');
-                title += tr("(all dimensions)");
+                title += tr("(все размеры)");
                 QAction* copyLinkAction = new QAction(title, copyMenu);
                 copyLinkAction->setData(-1);
                 copyMenu->addAction(copyLinkAction);
@@ -607,11 +607,11 @@ KnobGui::createAnimationMenu(QMenu* menu,
         if ( fromKnob->typeName() == knob->typeName() ) {
             QString titlebase;
             if (type == eKnobClipBoardTypeCopyValue) {
-                titlebase = tr("Paste Value");
+                titlebase = tr("Вставить значение");
             } else if (type == eKnobClipBoardTypeCopyAnim) {
-                titlebase = tr("Paste Animation");
+                titlebase = tr("Вставить анимацию");
             } else if (type == eKnobClipBoardTypeCopyLink) {
-                titlebase = tr("Paste Link");
+                titlebase = tr("Вставить связь");
             }
 
             bool ignorePaste = (!knob->isAnimationEnabled() && type == eKnobClipBoardTypeCopyAnim) ||
@@ -621,7 +621,7 @@ KnobGui::createAnimationMenu(QMenu* menu,
                     QString title = titlebase;
                     if (knob->getDimension() > 1) {
                         title += QLatin1Char(' ');
-                        title += tr("(all dimensions)");
+                        title += tr("(все размеры)");
                     }
                     QAction* pasteAction = new QAction(title, menu);
                     pasteAction->setData(-1);
@@ -646,7 +646,7 @@ KnobGui::createAnimationMenu(QMenu* menu,
     }
 
     if ( (knob->getDimension() > 1) && !hasDimensionSlaved ) {
-        QAction* resetDefaultAction = new QAction(tr("Reset to default") + QLatin1Char(' ') + tr("(all dimensions)"), _imp->copyRightClickMenu);
+        QAction* resetDefaultAction = new QAction(tr("Reset to default") + QLatin1Char(' ') + tr("(все размеры)"), _imp->copyRightClickMenu);
         resetDefaultAction->setData( QVariant(-1) );
         QObject::connect( resetDefaultAction, SIGNAL(triggered()), this, SLOT(onResetDefaultValuesActionTriggered()) );
         menu->addAction(resetDefaultAction);
@@ -679,8 +679,8 @@ KnobGui::createAnimationMenu(QMenu* menu,
         hasExpression |= !dimExpr.empty();
     }
     if ( (knob->getDimension() > 1) && !hasDimensionSlaved && isAppKnob ) {
-        QAction* setExprsAction = new QAction( ( hasExpression ? tr("Edit expression") :
-                                                 tr("Set expression") ) + QLatin1Char(' ') + tr("(all dimensions)"), menu );
+        QAction* setExprsAction = new QAction( ( hasExpression ? tr("Изменить выражение") :
+                                                 tr("Установить выражение") ) + QLatin1Char(' ') + tr("(все размеры)"), menu );
         setExprsAction->setData(-1);
         QObject::connect( setExprsAction, SIGNAL(triggered()), this, SLOT(onSetExprActionTriggered()) );
         if (!isEnabled) {
@@ -689,7 +689,7 @@ KnobGui::createAnimationMenu(QMenu* menu,
         menu->addAction(setExprsAction);
 
         if (hasExpression) {
-            QAction* clearExprAction = new QAction(tr("Clear expression") + QLatin1Char(' ') + tr("(all dimensions)"), menu);
+            QAction* clearExprAction = new QAction(tr("Ясное выражение") + QLatin1Char(' ') + tr("(все размеры)"), menu);
             QObject::connect( clearExprAction, SIGNAL(triggered()), this, SLOT(onClearExprActionTriggered()) );
             clearExprAction->setData(-1);
             if (!isEnabled) {
@@ -699,7 +699,7 @@ KnobGui::createAnimationMenu(QMenu* menu,
         }
     }
     if ( ( (dimension != -1) || (knob->getDimension() == 1) ) && !dimensionIsSlaved && isAppKnob ) {
-        QAction* setExprAction = new QAction(dimensionHasExpression ? tr("Edit expression...") : tr("Set expression..."), menu);
+        QAction* setExprAction = new QAction(dimensionHasExpression ? tr("Изменить выражение...") : tr("Установить выражение..."), menu);
         QObject::connect( setExprAction, SIGNAL(triggered()), this, SLOT(onSetExprActionTriggered()) );
         setExprAction->setData(dimension);
         if (!isEnabled) {
@@ -708,7 +708,7 @@ KnobGui::createAnimationMenu(QMenu* menu,
         menu->addAction(setExprAction);
 
         if (dimensionHasExpression) {
-            QAction* clearExprAction = new QAction(tr("Clear expression"), menu);
+            QAction* clearExprAction = new QAction(tr("Ясное выражение"), menu);
             QObject::connect( clearExprAction, SIGNAL(triggered()), this, SLOT(onClearExprActionTriggered()) );
             clearExprAction->setData(dimension);
             if (!isEnabled) {
@@ -770,9 +770,9 @@ KnobGui::createAnimationMenu(QMenu* menu,
         }
         QString actionText;
         if (aliasMaster) {
-            actionText.append( tr("Remove Alias link") );
+            actionText.append( tr("Удалить ссылку на псевдоним") );
         } else {
-            actionText.append( tr("Unlink") );
+            actionText.append( tr("Разъединить") );
         }
         if ( !knobName.empty() ) {
             actionText.append( QString::fromUtf8(" from ") );
@@ -788,13 +788,13 @@ KnobGui::createAnimationMenu(QMenu* menu,
     if ( !listeners.empty() ) {
         KnobIPtr listener = listeners.begin()->first.lock();
         if ( listener && (listener->getAliasMaster() == knob) ) {
-            QAction* removeAliasLink = new QAction(tr("Remove alias link"), menu);
+            QAction* removeAliasLink = new QAction(tr("Удалить псевдо-связи±±±"), menu);
             QObject::connect( removeAliasLink, SIGNAL(triggered()), this, SLOT(onRemoveAliasLinkActionTriggered()) );
             menu->addAction(removeAliasLink);
         }
     }
     if ( isCollecGroup && !knob->getAliasMaster() ) {
-        QAction* createMasterOnGroup = new QAction(tr("Create alias on group"), menu);
+        QAction* createMasterOnGroup = new QAction(tr("Создать псевдоним для группы"), menu);
         QObject::connect( createMasterOnGroup, SIGNAL(triggered()), this, SLOT(onCreateAliasOnGroupActionTriggered()) );
         menu->addAction(createMasterOnGroup);
     }
@@ -815,10 +815,9 @@ KnobGui::createDuplicateOnNode(EffectInstance* effect,
         for (int i = 0; i < knob->getDimension(); ++i) {
             std::string expr = knob->getExpression(i);
             if ( !expr.empty() ) {
-                StandardButtonEnum rep = Dialogs::questionDialog( tr("Expression").toStdString(), tr("This operation will create "
-                                                                                                     "an expression link between this parameter and the new parameter on the group"
-                                                                                                     " which will wipe the current expression(s).\n"
-                                                                                                     "Continue anyway?").toStdString(), false,
+                StandardButtonEnum rep = Dialogs::questionDialog( tr("Выражение").toStdString(), tr("Эта операция создаст связь выражения "
+                                                                                                     " между этим параметром и новым параметром в группе, которая удалит текущие выражения.".\n"
+                                                                                                     "Всё равно продолжить?").toStdString(), false,
                                                                   StandardButtons(eStandardButtonOk | eStandardButtonCancel) );
                 if (rep != eStandardButtonYes) {
                     return KnobIPtr();
@@ -846,7 +845,7 @@ KnobGui::createDuplicateOnNode(EffectInstance* effect,
                                             true,
                                             true);
     } catch (const std::exception& e) {
-        Dialogs::errorDialog( tr("Error while creating parameter").toStdString(), e.what() );
+        Dialogs::errorDialog( tr("Ошибка при создании параметра").toStdString(), e.what() );
 
         return KnobIPtr();
     }

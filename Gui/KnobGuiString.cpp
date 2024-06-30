@@ -421,7 +421,7 @@ KnobGuiString::createWidget(QHBoxLayout* layout)
 
             _fontCombo = new QFontComboBox(_richTextOptions);
             _fontCombo->setCurrentFont( QApplication::font() );
-            _fontCombo->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Font."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+            _fontCombo->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Шрифе."), NATRON_NAMESPACE::WhiteSpaceNormal) );
             _richTextOptionsLayout->addWidget(_fontCombo);
 
             _fontSizeSpinBox = new SpinBox(_richTextOptions);
@@ -429,7 +429,7 @@ KnobGuiString::createWidget(QHBoxLayout* layout)
             _fontSizeSpinBox->setMaximum(100);
             _fontSizeSpinBox->setValue(6);
             QObject::connect( _fontSizeSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onFontSizeChanged(double)) );
-            _fontSizeSpinBox->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Font size."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+            _fontSizeSpinBox->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Размер шрифта."), NATRON_NAMESPACE::WhiteSpaceNormal) );
             _richTextOptionsLayout->addWidget(_fontSizeSpinBox);
 
             QPixmap pixBoldChecked, pixBoldUnchecked, pixItalicChecked, pixItalicUnchecked;
@@ -443,7 +443,7 @@ KnobGuiString::createWidget(QHBoxLayout* layout)
             _setBoldButton = new Button(boldIcon, QString(), _richTextOptions);
             _setBoldButton->setIconSize( QSize(NATRON_MEDIUM_BUTTON_ICON_SIZE, NATRON_MEDIUM_BUTTON_ICON_SIZE) );
             _setBoldButton->setCheckable(true);
-            _setBoldButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Bold."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+            _setBoldButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Жирный."), NATRON_NAMESPACE::WhiteSpaceNormal) );
             _setBoldButton->setMaximumSize(18, 18);
             QObject::connect( _setBoldButton, SIGNAL(clicked(bool)), this, SLOT(boldChanged(bool)) );
             _richTextOptionsLayout->addWidget(_setBoldButton);
@@ -455,7 +455,7 @@ KnobGuiString::createWidget(QHBoxLayout* layout)
             _setItalicButton = new Button(italicIcon, QString(), _richTextOptions);
             _setItalicButton->setCheckable(true);
             _setItalicButton->setIconSize( QSize(NATRON_MEDIUM_BUTTON_ICON_SIZE, NATRON_MEDIUM_BUTTON_ICON_SIZE) );
-            _setItalicButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Italic."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+            _setItalicButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Курсивный.."), NATRON_NAMESPACE::WhiteSpaceNormal) );
             _setItalicButton->setMaximumSize(18, 18);
             QObject::connect( _setItalicButton, SIGNAL(clicked(bool)), this, SLOT(italicChanged(bool)) );
             _richTextOptionsLayout->addWidget(_setItalicButton);
@@ -465,7 +465,7 @@ KnobGuiString::createWidget(QHBoxLayout* layout)
             _fontColorButton = new Button(QIcon(pixBlack), QString(), _richTextOptions);
             _fontColorButton->setCheckable(false);
             _fontColorButton->setIconSize( QSize(NATRON_MEDIUM_BUTTON_ICON_SIZE, NATRON_MEDIUM_BUTTON_ICON_SIZE) );
-            _fontColorButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Font color."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+            _fontColorButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Цвет шрифта."), NATRON_NAMESPACE::WhiteSpaceNormal) );
             _fontColorButton->setMaximumSize(18, 18);
             QObject::connect( _fontColorButton, SIGNAL(clicked(bool)), this, SLOT(colorFontButtonClicked()) );
             _richTextOptionsLayout->addWidget(_fontColorButton);
@@ -1355,11 +1355,11 @@ KnobGuiString::updateToolTip()
             }
             bool useRichText = knob->usesRichText();
             if (useRichText) {
-                tt += tr("This text area supports html encoding. "
-                         "Please check <a href=http://qt-project.org/doc/qt-5/richtext-html-subset.html>Qt website</a> for more info.");
+                tt += tr("Эта текстовая область поддерживает кодировку html. Пожалуйста, проверьте. "
+                         "<a href=http://qt-project.org/doc/qt-5/richtext-html-subset.html>Qt website</a> for more info.");
             }
             QKeySequence seq(Qt::CTRL + Qt::Key_Return);
-            tt += tr("Use %1 to validate changes made to the text.").arg( seq.toString(QKeySequence::NativeText) );
+            tt += tr("Используйте %1 для проверки изменений, внесенных в текст.").arg( seq.toString(QKeySequence::NativeText) );
             _textEdit->setToolTip(tt);
         } else if (_lineEdit) {
             _lineEdit->setToolTip(tt);

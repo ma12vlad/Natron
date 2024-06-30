@@ -67,20 +67,20 @@ InfoViewerWidget::InfoViewerWidget(const QString & description,
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
 
 
-    QString tt = QString( tr("Information, from left to right:<br />"
+    QString tt = QString( tr("Информация слева направо:<br />"
                              "<br />"
-                             "<font color=orange>Input:</font> Specifies whether the information is for the input <b>A</b> or <b>B</b><br />"
-                             "<font color=orange>Image format:</font>  An identifier for the pixel components and bitdepth of the displayed image<br />"
-                             "<font color=orange>Format:</font>  The resolution of the input (where the image is displayed)<br />"
-                             "<font color=orange>RoD:</font>  The region of definition of the displayed image (where the data is defined)<br />"
-                             "<font color=orange>Fps:</font>  (Only active during playback) The frame-rate of the play-back sustained by the viewer<br />"
-                             "<font color=orange>Coordinates:</font>  The coordinates of the current mouse location<br />"
-                             "<font color=orange>RGBA:</font>  The RGBA color of the displayed image. Note that if some <b>?</b> are set instead of colors "
-                             "that means the underlying image cannot be accessed internally, you should refresh the viewer to make it available. "
-                             "Also sometimes you may notice the tilde '~' before the colors: it indicates whether the color indicated is the true "
-                             "color in the image (no tilde) or this is an approximated mipmap that has been filtered with a box filter (tilde), "
-                             "in which case this may not reflect exactly the underlying internal image. <br />"
-                             "<font color=orange>HSVL:</font>  For convenience the RGBA color is also displayed as HSV(L)"
+                             "<font color=orange>Input:</font> Указывает, предназначена ли информация для ввода <b>A</b> or <b>B</b><br />"
+                             "<font color=orange>Image format:</font>  Идентификатор компонентов пикселя и битовой глубины отображаемого изображения<br />"
+                             "<font color=orange>Format:</font>  Разрешение входного сигнала (при котором отображается изображение)<br />"
+                             "<font color=orange>RoD:</font>  Область определения отображаемого изображения (где определены данные)<br />"
+                             "<font color=orange>Fps:</font>  (Активен только во время воспроизведения) Частота кадров при воспроизведении, поддерживаемая пользователем<br />"
+                             "<font color=orange>Coordinates:</font>  Координаты текущего местоположения мыши<br />"
+                             "<font color=orange>RGBA:</font>  Цвет RGBA отображаемого изображения. Обратите внимание: если вместо цветов установлены <b>?</b> "
+                             "это означает, что к базовому изображению нельзя получить внутренний доступ, вам следует обновить средство просмотра, чтобы оно стало доступным. "
+                             "Также иногда перед цветами можно заметить тильду «~»: она указывает, является ли указанный цвет истинным. "
+                             "цвет изображения (без тильды) или это приблизительное MIP-изображение, отфильтрованное с помощью прямоугольного фильтра (тильда), "
+                             "в этом случае это может не точно отражать основной внутренний образ. <br />"
+                             "<font color=orange>HSVL:</font>  Для удобства цвет RGBA также отображается в виде HSV(L)"
                              "") );
     setToolTip(tt);
 

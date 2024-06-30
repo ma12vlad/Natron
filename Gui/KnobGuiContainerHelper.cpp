@@ -192,7 +192,7 @@ KnobGuiContainerHelper::getOrCreateDefaultPage()
     // The plug-in didn't specify any page, it should have been caught before in Node::getOrCreateMainPage for nodes
     // Anyway create one.
 
-    KnobPagePtr mainPage = AppManager::createKnob<KnobPage>( _imp->holder, KnobHolder::tr("Settings") );
+    KnobPagePtr mainPage = AppManager::createKnob<KnobPage>( _imp->holder, KnobHolder::tr("Настройки") );
     if (mainPage) {
         return getOrCreatePage(mainPage);
     }

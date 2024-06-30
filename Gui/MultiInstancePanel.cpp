@@ -567,13 +567,13 @@ MultiInstancePanel::createMultiInstanceGui(QVBoxLayout* layout)
     _imp->addButton = new Button(QIcon(), QString::fromUtf8("+"), _imp->buttonsContainer);
     _imp->addButton->setFixedSize(NATRON_SMALL_BUTTON_SIZE, NATRON_SMALL_BUTTON_SIZE);
     _imp->addButton->setIconSize( QSize(NATRON_SMALL_BUTTON_ICON_SIZE, NATRON_SMALL_BUTTON_ICON_SIZE) );
-    _imp->addButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Add new."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->addButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Добавить новый."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->buttonsLayout->addWidget(_imp->addButton);
 
     QObject::connect( _imp->addButton, SIGNAL(clicked(bool)), this, SLOT(onAddButtonClicked()) );
 
     _imp->removeButton = new Button(QIcon(), QString::fromUtf8("-"), _imp->buttonsContainer);
-    _imp->removeButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Remove selection."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->removeButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Удалить выбранное."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->removeButton->setFixedSize(NATRON_SMALL_BUTTON_SIZE, NATRON_SMALL_BUTTON_SIZE);
     _imp->removeButton->setIconSize( QSize(NATRON_SMALL_BUTTON_ICON_SIZE, NATRON_SMALL_BUTTON_ICON_SIZE) );
     _imp->buttonsLayout->addWidget(_imp->removeButton);
@@ -584,7 +584,7 @@ MultiInstancePanel::createMultiInstanceGui(QVBoxLayout* layout)
     _imp->selectAll = new Button(QIcon(selectAll), QString(), _imp->buttonsContainer);
     _imp->selectAll->setFixedSize(NATRON_SMALL_BUTTON_SIZE, NATRON_SMALL_BUTTON_SIZE);
     _imp->selectAll->setIconSize( QSize(NATRON_SMALL_BUTTON_ICON_SIZE, NATRON_SMALL_BUTTON_ICON_SIZE) );
-    _imp->selectAll->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Select all."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->selectAll->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Выбрать всё."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->buttonsLayout->addWidget(_imp->selectAll);
 
     QObject::connect( _imp->selectAll, SIGNAL(clicked(bool)), this, SLOT(onSelectAllButtonClicked()) );
@@ -592,7 +592,7 @@ MultiInstancePanel::createMultiInstanceGui(QVBoxLayout* layout)
     _imp->resetTracksButton = new Button(QString::fromUtf8("Reset"), _imp->buttonsContainer);
     QObject::connect( _imp->resetTracksButton, SIGNAL(clicked(bool)), this, SLOT(resetSelectedInstances()) );
     _imp->buttonsLayout->addWidget(_imp->resetTracksButton);
-    _imp->resetTracksButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Reset selected items."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->resetTracksButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Сбросить выбранные элементы."), NATRON_NAMESPACE::WhiteSpaceNormal) );
 
     layout->addWidget(_imp->buttonsContainer);
     appendButtons(_imp->buttonsLayout);
@@ -637,7 +637,7 @@ public:
         _panel->removeRow(index);
         _node->deactivate();
         _panel->getMainInstance()->getApp()->redrawAllViewers();
-        setText( tr("Add %1").arg( QString::fromUtf8( _node->getLabel().c_str() ) ) );
+        setText( tr("Добавить %1").arg( QString::fromUtf8( _node->getLabel().c_str() ) ) );
     }
 
     virtual void redo() OVERRIDE FINAL
@@ -648,7 +648,7 @@ public:
             _panel->getMainInstance()->getApp()->redrawAllViewers();
         }
         _firstRedoCalled = true;
-        setText( tr("Add %1").arg( QString::fromUtf8( _node->getLabel().c_str() ) ) );
+        setText( tr("Добавить %1").arg( QString::fromUtf8( _node->getLabel().c_str() ) ) );
     }
 };
 
@@ -757,7 +757,7 @@ MultiInstancePanelPrivate::addTableRow(const NodePtr & node)
     {
         TableItem* newItem = new TableItem;
         view->setItem(newRowIndex, COL_SCRIPT_NAME, newItem);
-        newItem->setToolTip( tr("The script-name of the item as exposed to Python scripts") );
+        newItem->setToolTip( tr("Имя скрипта-элемента, доступного для скриптов Python") );
         newItem->setText( QString::fromUtf8( node->getScriptName().c_str() ) );
         newItem->setFlags(newItem->flags() & ~Qt::ItemIsEditable);
         view->resizeColumnToContents(COL_ENABLED);
@@ -910,7 +910,7 @@ public:
         , _panel(panel)
         , _nodes(nodes)
     {
-        setText( tr("Remove instance(s)") );
+        setText( tr("Удалить экземпляр(ы)") );
     }
 
     virtual ~RemoveNodeCommand()
@@ -1793,7 +1793,7 @@ TrackerPanelV1::appendExtraGui(QVBoxLayout* layout)
         return;
     }
 
-    _imp->exportLabel = new Label( tr("Export data"), layout->parentWidget() );
+    _imp->exportLabel = new Label( tr("Экспорт данных"), layout->parentWidget() );
     layout->addWidget(_imp->exportLabel);
     layout->addSpacing(10);
     _imp->exportContainer = new QWidget( layout->parentWidget() );
@@ -1802,13 +1802,13 @@ TrackerPanelV1::appendExtraGui(QVBoxLayout* layout)
 
     _imp->exportChoice = new ComboBox(_imp->exportContainer);
 
-    _imp->exportChoice->setToolTip(QString::fromUtf8("<p><b>") + tr("CornerPinOFX (Use current frame):") + QString::fromUtf8("</p></b>")
-                                   + QString::fromUtf8("<p>") + tr("Warp the image according to the relative transform using the current frame as reference.") + QString::fromUtf8("</p>") +
-                                   QString::fromUtf8("<p><b>") + tr("CornerPinOFX (Use transform ref frame):") + QString::fromUtf8("</p></b>") +
-                                   QString::fromUtf8("<p>") + tr("Warp the image according to the relative transform using the "
-                                                                 "reference frame specified in the transform tab.") + QString::fromUtf8("</p>") +
-                                   QString::fromUtf8("<p><b>") + tr("CornerPinOFX (Stabilize):") + QString::fromUtf8("</p></b>") +
-                                   QString::fromUtf8("<p>") + tr("Transform the image so that the tracked points do not move.") + QString::fromUtf8("</p>")
+    _imp->exportChoice->setToolTip(QString::fromUtf8("<p><b>") + tr("CornerPinOFX (Использовать текущий кадр):") + QString::fromUtf8("</p></b>")
+                                   + QString::fromUtf8("<p>") + tr("Деформируйте изображение в соответствии с относительным преобразованием, используя текущий кадр в качестве ссылки.") + QString::fromUtf8("</p>") +
+                                   QString::fromUtf8("<p><b>") + tr("CornerPinOFX (используйте преобразование ref-кадра):") + QString::fromUtf8("</p></b>") +
+                                   QString::fromUtf8("<p>") + tr("Искривление изображения в соответствии с относительным преобразованием с использованием системы отсчета "
+                                                                 " указанный на вкладке преобразование.") + QString::fromUtf8("</p>") +
+                                   QString::fromUtf8("<p><b>") + tr("CornerPinOFX (Стабилизировать):") + QString::fromUtf8("</p></b>") +
+                                   QString::fromUtf8("<p>") + tr("Преобразуйте изображение таким образом, чтобы отслеживаемые точки не перемещались.") + QString::fromUtf8("</p>")
 //                                      "<p><b>" + tr("Transform (Stabilize):</p></b>"
 //                                      "<p>" + tr("Transform the image so that the tracked points do not move.") + "</p>"
 //                                      "<p><b>" + tr("Transform (Match-move):</p></b>"
@@ -1819,27 +1819,27 @@ TrackerPanelV1::appendExtraGui(QVBoxLayout* layout)
     std::vector<std::string> choices;
     std::vector<std::string> helps;
 
-    choices.push_back( tr("CornerPin (Use current frame. Linked)").toStdString() );
-    helps.push_back( tr("Warp the image according to the relative transform using the current frame as reference.").toStdString() );
+    choices.push_back( tr("CornerPin (Использовать текущий кадр. Связано)").toStdString() );
+    helps.push_back( tr("Деформируйте изображение в соответствии с относительным преобразованием, используя текущий кадр в качестве исходного.").toStdString() );
     //
     //    choices.push_back(tr("CornerPinOFX (Use transform ref frame. Linked)").toStdString());
     //    helps.push_back(tr("Warp the image according to the relative transform using the "
     //                       "reference frame specified in the transform tab.").toStdString());
 
-    choices.push_back( tr("CornerPin (Stabilize. Linked)").toStdString() );
-    helps.push_back( tr("Transform the image so that the tracked points do not move.").toStdString() );
+    choices.push_back( tr("CornerPin (Стабилизировать. Связано)").toStdString() );
+    helps.push_back( tr("Преобразуйте изображение так, чтобы отслеживаемые точки не перемещались.").toStdString() );
 
-    choices.push_back( tr("CornerPin (Use current frame. Copy)").toStdString() );
-    helps.push_back( tr("Same as the linked version except that it copies values instead of "
-                        "referencing them via a link to the track").toStdString() );
+    choices.push_back( tr("CornerPin (Использовать текущий кадр. Копировать)").toStdString() );
+    helps.push_back( tr("То же, что и в связанной версии, за исключением того, что она копирует значения вместо "
+                        ", ссылаясь на них через ссылку на трек").toStdString() );
 
-    choices.push_back( tr("CornerPin (Stabilize. Copy)").toStdString() );
-    helps.push_back( tr("Same as the linked version except that it copies values instead of "
-                        "referencing them via a link to the track").toStdString() );
+    choices.push_back( tr("CornerPin (Стабилизировать. Копировать)").toStdString() );
+    helps.push_back( tr("То же, что и в связанной версии, за исключением того, что она копирует значения вместо "
+                        ", ссылаясь на них через ссылку на трек").toStdString() );
 
     choices.push_back( tr("CornerPin (Use transform ref frame. Copy)").toStdString() );
-    helps.push_back( tr("Same as the linked version except that it copies values instead of "
-                        "referencing them via a link to the track").toStdString() );
+    helps.push_back( tr("То же, что и в связанной версии, за исключением того, что она копирует значения вместо "
+                        ", ссылаясь на них через ссылку на трек").toStdString() );
 
 
     //    choices.push_back(tr("Transform (Stabilize. Linked)").toStdString());
@@ -1860,7 +1860,7 @@ TrackerPanelV1::appendExtraGui(QVBoxLayout* layout)
     }
     _imp->exportLayout->addWidget(_imp->exportChoice);
 
-    _imp->exportButton = new Button(tr("Export"), _imp->exportContainer);
+    _imp->exportButton = new Button(tr("Экспорт"), _imp->exportContainer);
     QObject::connect( _imp->exportButton, SIGNAL(clicked(bool)), this, SLOT(onExportButtonClicked()) );
     _imp->exportLayout->addWidget(_imp->exportButton);
     _imp->exportLayout->addStretch();
@@ -1873,8 +1873,8 @@ TrackerPanelV1::appendButtons(QHBoxLayout* buttonLayout)
     if ( !getMainInstance()->isPointTrackerNode() ) {
         return;
     }
-    _imp->averageTracksButton = new Button( tr("Average tracks"), buttonLayout->parentWidget() );
-    _imp->averageTracksButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Make a new track which is the average of the selected tracks."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->averageTracksButton = new Button( tr("Средние треки"), buttonLayout->parentWidget() );
+    _imp->averageTracksButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Создайте новый трек, который будет представлять собой среднее значение из выбранных треков."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     QObject::connect( _imp->averageTracksButton, SIGNAL(clicked(bool)), this, SLOT(onAverageTracksButtonClicked()) );
     buttonLayout->addWidget(_imp->averageTracksButton);
 }
@@ -1885,11 +1885,11 @@ TrackerPanelV1::initializeExtraKnobs()
     if ( !getMainInstance()->isPointTrackerNode() ) {
         return;
     }
-    _imp->transformPage = AppManager::createKnob<KnobPage>(this, tr("Transform"), 1, false);
+    _imp->transformPage = AppManager::createKnob<KnobPage>(this, tr("Трансформация"), 1, false);
 
-    _imp->referenceFrame = AppManager::createKnob<KnobInt>(this, tr("Reference Frame"), 1, false);
+    _imp->referenceFrame = AppManager::createKnob<KnobInt>(this, tr("Система отсчета"), 1, false);
     _imp->referenceFrame->setAnimationEnabled(false);
-    _imp->referenceFrame->setHintToolTip( tr("This is the frame number at which the transform will be an identity.") );
+    _imp->referenceFrame->setHintToolTip( tr("Это номер кадра, при котором преобразование будет идентичным.") );
     _imp->transformPage->addKnob(_imp->referenceFrame);
 }
 
@@ -1916,7 +1916,7 @@ TrackerPanelV1::onAverageTracksButtonClicked()
 
     getSelectedInstances(&selectedInstances);
     if ( selectedInstances.empty() ) {
-        Dialogs::warningDialog( tr("Average").toStdString(), tr("No tracks selected").toStdString() );
+        Dialogs::warningDialog( tr("Средний").toStdString(), tr("Треки не выбраны").toStdString() );
 
         return;
     }
@@ -2028,7 +2028,7 @@ TrackerPanelV1::onTrackingStarted(int /*step*/)
     ///freeze the tracker node
     setKnobsFrozen(true);
     if ( getGui() ) {
-        getGui()->progressStart(getMainInstance(), tr("Tracking...").toStdString(), "");
+        getGui()->progressStart(getMainInstance(), tr("Отслеживание...").toStdString(), "");
     }
 }
 
@@ -2050,7 +2050,7 @@ TrackerPanelPrivateV1::getTrackInstancesForButton(std::vector<KnobButton*>* trac
 
     publicInterface->getSelectedInstances(&selectedInstances);
     if ( selectedInstances.empty() ) {
-        Dialogs::warningDialog( tr("Tracker").toStdString(), tr("You must select something to track first").toStdString() );
+        Dialogs::warningDialog( tr("Трекер").toStdString(), tr("Сначала вы должны выбрать что-то для отслеживания").toStdString() );
 
         return false;
     }
@@ -2078,7 +2078,7 @@ TrackerPanelPrivateV1::getTrackInstancesForButton(std::vector<KnobButton*>* trac
 bool
 TrackerPanelV1::trackBackward(ViewerInstance* /*viewer*/)
 {
-    Dialogs::errorDialog( tr("Tracker").toStdString(), tr("TrackerPM is now depecrated and can only be used to retrieve animation tracked from older projects, please use the Tracker node from now on.").toStdString() );
+    Dialogs::errorDialog( tr("Трекер").toStdString(), tr("TrackerPM теперь недоступен и может использоваться только для извлечения анимации, отслеживаемой из старых проектов, пожалуйста, отныне используйте узел Tracker.").toStdString() );
 
     return false;
 #if 0
@@ -2104,7 +2104,7 @@ TrackerPanelV1::trackBackward(ViewerInstance* /*viewer*/)
 bool
 TrackerPanelV1::trackForward(ViewerInstance* /*viewer*/)
 {
-    Dialogs::errorDialog( tr("Tracker").toStdString(), tr("TrackerPM is now depecrated and can only be used to retrieve animation tracked from older projects, please use the Tracker node from now on.").toStdString() );
+    Dialogs::errorDialog( tr("Трекер").toStdString(), tr("TrackerPM теперь недоступен и может использоваться только для извлечения анимации, отслеживаемой из старых проектов, пожалуйста, отныне используйте узел Tracker.").toStdString() );
 
     return false;
 #if 0
@@ -2143,7 +2143,7 @@ TrackerPanelV1::isTracking() const
 bool
 TrackerPanelV1::trackPrevious(ViewerInstance* /*viewer*/)
 {
-    Dialogs::errorDialog( tr("Tracker").toStdString(), tr("TrackerPM is now depecrated and can only be used to retrieve animation tracked from older projects, please use the Tracker node from now on.").toStdString() );
+    Dialogs::errorDialog( tr("Трекер").toStdString(), tr("TrackerPM теперь недоступен и может использоваться только для извлечения анимации, отслеживаемой из старых проектов, пожалуйста, отныне используйте узел Tracker.").toStdString() );
 
     return false;
 #if 0
@@ -2173,7 +2173,7 @@ TrackerPanelV1::trackPrevious(ViewerInstance* /*viewer*/)
 bool
 TrackerPanelV1::trackNext(ViewerInstance* /*viewer*/)
 {
-    Dialogs::errorDialog( tr("Tracker").toStdString(), tr("TrackerPM is now depecrated and can only be used to retrieve animation tracked from older projects, please use the Tracker node from now on.").toStdString() );
+    Dialogs::errorDialog( tr("Трекер").toStdString(), tr("TrackerPM теперь недоступен и может использоваться только для извлечения анимации, отслеживаемой из старых проектов, пожалуйста, отныне используйте узел Tracker.").toStdString() );
 
     return false;
 #if 0
@@ -2338,8 +2338,8 @@ TrackerPanelPrivateV1::createCornerPinFromSelection(const std::list<Node*> & sel
                                                     bool invert)
 {
     if ( (selection.size() > 4) || selection.empty() ) {
-        Dialogs::errorDialog( tr("Export").toStdString(),
-                              tr("Export to corner pin needs between 1 and 4 selected tracks.").toStdString() );
+        Dialogs::errorDialog( tr("Экспорт").toStdString(),
+                              tr("Для экспорта в corner pin требуется от 1 до 4 выбранных дорожек.").toStdString() );
 
         return;
     }
@@ -2431,7 +2431,7 @@ TrackerPanelV1::showMenuForInstance(Node* instance)
     Menu menu( getGui() );
 
     //menu.setFont( QFont(appFont,appFontSize) );
-    QAction* copyTrackAnimation = new QAction(tr("Copy track animation"), &menu);
+    QAction* copyTrackAnimation = new QAction(tr("Копировать трек анимации"), &menu);
     menu.addAction(copyTrackAnimation);
 
     QAction* ret = menu.exec( QCursor::pos() );

@@ -275,7 +275,7 @@ GuiAppInstance::loadInternal(const CLArgs& cl,
                              bool makeEmptyInstance)
 {
     if (getAppID() == 0) {
-        appPTR->setLoadingStatus( tr("Creating user interface...") );
+        appPTR->setLoadingStatus( tr("Создание пользовательского интерфейса...") );
     }
 
     try {
@@ -310,23 +310,23 @@ GuiAppInstance::loadInternal(const CLArgs& cl,
     {
         QSettings settings( QString::fromUtf8(NATRON_ORGANIZATION_NAME), QString::fromUtf8(NATRON_APPLICATION_NAME) );
         if ( !settings.contains( QString::fromUtf8("checkForUpdates") ) ) {
-            StandardButtonEnum reply = Dialogs::questionDialog(tr("Updates").toStdString(),
-                                                               tr("Do you want %1 to check for updates "
-                                                                  "on launch of the application?").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString(), false);
+            StandardButtonEnum reply = Dialogs::questionDialog(tr("Обновления").toStdString(),
+                                                               tr("Хотите, чтобы %1 проверил наличие обновлений "
+                                                                  "при запуске приложения?").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString(), false);
             bool checkForUpdates = reply == eStandardButtonYes;
             nSettings->setCheckUpdatesEnabled(checkForUpdates);
         }
 
         if ( nSettings->isCheckForUpdatesEnabled() ) {
-            appPTR->setLoadingStatus( tr("Checking if updates are available...") );
+            appPTR->setLoadingStatus( tr("Проверяем наличие обновлений...") );
             checkForNewVersion();
         }
     }
 
     if ( nSettings->isDefaultAppearanceOutdated() ) {
-        StandardButtonEnum reply = Dialogs::questionDialog(tr("Appearance").toStdString(),
-                                                           tr("The default appearance of %1 changed since last version.\n"
-                                                              "Would you like to use the new default appearance?").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString(), false);
+        StandardButtonEnum reply = Dialogs::questionDialog(tr("Внешний вид").toStdString(),
+                                                           tr("Внешний вид %1 по умолчанию изменился со времени последней версии.\n"
+                                                              "Хотите использовать новый внешний вид по умолчанию?").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString(), false);
         if (reply == eStandardButtonYes) {
             nSettings->restoreDefaultAppearance();
         }
@@ -346,10 +346,10 @@ GuiAppInstance::loadInternal(const CLArgs& cl,
         appPTR->getCurrentSettings()->doOCIOStartupCheckIfNeeded();
 
         if ( !appPTR->isShorcutVersionUpToDate() ) {
-            StandardButtonEnum reply = questionDialog(tr("Shortcuts").toStdString(),
-                                                      tr("Default shortcuts for %1 have changed, "
-                                                         "would you like to set them to their defaults?\n"
-                                                         "Clicking no will keep the old shortcuts hence if a new shortcut has been "
+            StandardButtonEnum reply = questionDialog(tr("Клавиатурные сочетания").toStdString(),
+                                                      tr("Ярлыки по умолчанию для %1 изменились, "
+                                                         "установить для них значения по умолчанию?\n"
+                                                         "Нажатие кнопки Нет сохранит старые ярлыки, поэтому, если был создан новый ярлык,"
                                                          "set to something else than an empty shortcut you will not benefit of it.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString(),
                                                       false,
                                                       StandardButtons(eStandardButtonYes | eStandardButtonNo),
@@ -387,7 +387,7 @@ GuiAppInstance::loadInternal(const CLArgs& cl,
         }
     } else {
         if ( info.suffix() == QString::fromUtf8("py") ) {
-            appPTR->setLoadingStatus( tr("Loading script: ") + cl.getScriptFilename() );
+            appPTR->setLoadingStatus( tr("Загружающий скрипт: ") + cl.getScriptFilename() );
 
             ///If this is a Python script, execute it
             loadPythonScript(info);
@@ -397,13 +397,13 @@ GuiAppInstance::loadInternal(const CLArgs& cl,
             QString name = info.fileName();
             QString path = info.path();
             StrUtils::ensureLastPathSeparator(path);
-            appPTR->setLoadingStatus(tr("Loading project: ") + path + name);
+            appPTR->setLoadingStatus(tr("Загрузка проекта:  ") + path + name);
             getProject()->loadProject(path, name);
             ///remove any file open event that might have occurred
             appPTR->setFileToOpen( QString() );
         } else {
-            Dialogs::errorDialog( tr("Invalid file").toStdString(),
-                                  tr("%1 only accepts python scripts or .ntp project files").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString() );
+            Dialogs::errorDialog( tr("Неверный файл").toStdString(),
+                                  tr("%1 принимает только скрипты python или файлы проекта .ntp").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString() );
             execOnProjectCreatedCallback();
         }
     }
@@ -443,11 +443,11 @@ GuiAppInstance::findAndTryLoadUntitledAutoSave()
         return false;
     }
 
-    QString text = tr("An auto-saved project was found with no associated project file.\n"
-                      "Would you like to restore it?\n"
-                      "Clicking No will remove this auto-save.");
+    QString text = tr("Обнаружен автоматически сохраненный проект без связанного файла проекта.\n"
+                      "Хотели бы вы восстановить его?\n"
+                      "Нажатие кнопки Нет приведет к удалению этого автоматического сохранения.");
 
-    StandardButtonEnum ret = Dialogs::questionDialog(tr("Auto-save").toStdString(),
+    StandardButtonEnum ret = Dialogs::questionDialog(tr("Автосохранение").toStdString(),
                                                      text.toStdString(), false, StandardButtons(eStandardButtonYes | eStandardButtonNo),
                                                      eStandardButtonYes);
     if ( (ret == eStandardButtonNo) || (ret == eStandardButtonEscape) ) {
@@ -1269,7 +1269,7 @@ GuiAppInstance::handleFileOpenEvent(const std::string &filename)
     if ( ext == QString::fromUtf8(NATRON_PROJECT_FILE_EXT) ) {
         AppInstancePtr app = getGui()->openProject(filename);
         if (!app) {
-            Dialogs::errorDialog(tr("Project").toStdString(), tr("Failed to open project").toStdString() + ' ' + filename);
+            Dialogs::errorDialog(tr("Прект").toStdString(), tr("Не удалось открыть проект").toStdString() + ' ' + filename);
         }
     } else {
         appPTR->handleImageFileOpenRequest(filename);

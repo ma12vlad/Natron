@@ -190,38 +190,38 @@ ManageUserParamsDialog::ManageUserParamsDialog(DockablePanel* panel,
     _imp->buttonsContainer = new QWidget(this);
     _imp->buttonsLayout = new QVBoxLayout(_imp->buttonsContainer);
 
-    _imp->addButton = new Button(tr("Add..."), _imp->buttonsContainer);
-    _imp->addButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Add a new parameter, group or page"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->addButton = new Button(tr("Добавить..."), _imp->buttonsContainer);
+    _imp->addButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Добавить новый параметр, группу или страницу"), NATRON_NAMESPACE::WhiteSpaceNormal) );
     QObject::connect( _imp->addButton, SIGNAL(clicked(bool)), this, SLOT(onAddClicked()) );
     _imp->buttonsLayout->addWidget(_imp->addButton);
 
-    _imp->pickButton = new Button(tr("Pick..."), _imp->buttonsContainer);
-    _imp->pickButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Add a new parameter that is directly copied from/linked to another parameter"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->pickButton = new Button(tr("Выбирать..."), _imp->buttonsContainer);
+    _imp->pickButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Добавьте новый параметр, который напрямую скопирован из другого параметра или связан с ним"), NATRON_NAMESPACE::WhiteSpaceNormal) );
     QObject::connect( _imp->pickButton, SIGNAL(clicked(bool)), this, SLOT(onPickClicked()) );
     _imp->buttonsLayout->addWidget(_imp->pickButton);
 
-    _imp->editButton = new Button(tr("Edit..."), _imp->buttonsContainer);
-    _imp->editButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Edit the selected parameter"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->editButton = new Button(tr("Редактировать..."), _imp->buttonsContainer);
+    _imp->editButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Редактировать выбранный параметр"), NATRON_NAMESPACE::WhiteSpaceNormal) );
     QObject::connect( _imp->editButton, SIGNAL(clicked(bool)), this, SLOT(onEditClicked()) );
     _imp->buttonsLayout->addWidget(_imp->editButton);
 
-    _imp->removeButton = new Button(tr("Delete"), _imp->buttonsContainer);
-    _imp->removeButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Delete the selected parameter"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->removeButton = new Button(tr("Удалить"), _imp->buttonsContainer);
+    _imp->removeButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Удалить выбранный параметр"), NATRON_NAMESPACE::WhiteSpaceNormal) );
     QObject::connect( _imp->removeButton, SIGNAL(clicked(bool)), this, SLOT(onDeleteClicked()) );
     _imp->buttonsLayout->addWidget(_imp->removeButton);
 
-    _imp->upButton = new Button(tr("Up"), _imp->buttonsContainer);
-    _imp->upButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Move the selected parameter one level up in the layout"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->upButton = new Button(tr("Вверх"), _imp->buttonsContainer);
+    _imp->upButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Переместить выбранный параметр на один уровень вверх в макете"), NATRON_NAMESPACE::WhiteSpaceNormal) );
     QObject::connect( _imp->upButton, SIGNAL(clicked(bool)), this, SLOT(onUpClicked()) );
     _imp->buttonsLayout->addWidget(_imp->upButton);
 
-    _imp->downButton = new Button(tr("Down"), _imp->buttonsContainer);
-    _imp->downButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Move the selected parameter one level down in the layout"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->downButton = new Button(tr("Вниз"), _imp->buttonsContainer);
+    _imp->downButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Переместить выбранный параметр на один уровень вниз в макете"), NATRON_NAMESPACE::WhiteSpaceNormal) );
     QObject::connect( _imp->downButton, SIGNAL(clicked(bool)), this, SLOT(onDownClicked()) );
     _imp->buttonsLayout->addWidget(_imp->downButton);
 
-    _imp->closeButton = new Button(tr("Close"), _imp->buttonsContainer);
-    _imp->closeButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Close this dialog"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->closeButton = new Button(tr("Закрыть"), _imp->buttonsContainer);
+    _imp->closeButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Закрыть диалог"), NATRON_NAMESPACE::WhiteSpaceNormal) );
     QObject::connect( _imp->closeButton, SIGNAL(clicked(bool)), this, SLOT(onCloseClicked()) );
     _imp->buttonsLayout->addWidget(_imp->closeButton);
 
@@ -301,8 +301,8 @@ ManageUserParamsDialog::ensureHasUserPage()
         return true;
     }
 
-    Dialogs::warningDialog(tr("User Page").toStdString(), tr("This node does not have a user page yet. You need to create one "
-                                                                                       "to add custom parameters to it.").toStdString());
+    Dialogs::warningDialog(tr("Страница пользователя").toStdString(), tr("У этого узла еще нет страницы пользователя. Вам необходимо создать его, "
+                                                                                       "чтобы добавить к нему пользовательские параметры.").toStdString());
     return false;
 }
 
@@ -355,7 +355,7 @@ ManageUserParamsDialog::onAddClicked()
         AddKnobDialog dialog(_imp->panel, KnobIPtr(), std::string(), std::string(), this);
         dialog.setVisibleType(false);
         dialog.setType(AddKnobDialog::eParamDataTypePage);
-        dialog.setWindowTitle(tr("Add Page"));
+        dialog.setWindowTitle(tr("Добавить страницу"));
         if (!dialog.exec() ) {
             return;
         }
@@ -470,12 +470,12 @@ ManageUserParamsDialog::onDeleteClicked()
             for (std::list<TreeItem>::iterator it = _imp->items.begin(); it != _imp->items.end(); ++it) {
                 if (it->item == selection[i]) {
                     QString question;
-                    question.append( tr("Removing") );
+                    question.append( tr("Удаление") );
                     question += QLatin1Char(' ');
                     question += QString::fromUtf8( it->knob->getName().c_str() );
                     question += QLatin1Char(' ');
-                    question += tr("cannot be undone. Are you sure you want to continue?");
-                    StandardButtonEnum rep = Dialogs::questionDialog(tr("Remove parameter").toStdString(), question.toStdString(), false,
+                    question += tr("отменить нельзя. Вы уверены, что хотите продолжить?");
+                    StandardButtonEnum rep = Dialogs::questionDialog(tr("Удалить параметр").toStdString(), question.toStdString(), false,
                                                                      StandardButtons(eStandardButtonYes | eStandardButtonNo), eStandardButtonYes);
                     if (rep != eStandardButtonYes) {
                         return;
