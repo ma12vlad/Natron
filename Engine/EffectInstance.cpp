@@ -2738,7 +2738,7 @@ EffectInstance::Implementation::renderHandler(const EffectTLSDataPtr& tls,
         if ( frameArgs->doNansHandling && it->second.tmpImage->checkForNaNsAndFix(actionArgs.roi) ) {
             QString warning = QString::fromUtf8( _publicInterface->getNode()->getScriptName_mt_safe().c_str() );
             warning.append( QString::fromUtf8(": ") );
-            warning.append( tr("rendered rectangle (") );
+            warning.append( tr("визуализированный прямоугольник (") );
             warning.append( QString::number(actionArgs.roi.x1) );
             warning.append( QChar::fromLatin1(',') );
             warning.append( QString::number(actionArgs.roi.y1) );
@@ -2747,7 +2747,7 @@ EffectInstance::Implementation::renderHandler(const EffectTLSDataPtr& tls,
             warning.append( QChar::fromLatin1(',') );
             warning.append( QString::number(actionArgs.roi.y2) );
             warning.append( QString::fromUtf8(") ") );
-            warning.append( tr("contains NaN values. They have been converted to 1.") );
+            warning.append( tr("содержит значения NaN. Они были преобразованы в 1.") );
             _publicInterface->setPersistentMessage( eMessageTypeWarning, warning.toStdString() );
         }
         if (it->second.isAllocatedOnTheFly) {
@@ -5778,8 +5778,8 @@ EffectInstance::Implementation::checkMetadata(NodeMetadata &md)
 
 
     ///Set a warning on the node if the bitdepth conversion from one of the input clip to the output clip is lossy
-    QString bitDepthWarning = tr("This nodes converts higher bit depths images from its inputs to work. As "
-                                 "a result of this process, the quality of the images is degraded. The following conversions are done:");
+    QString bitDepthWarning = tr("Этот узел преобразует изображения с более высокой битовой глубиной из входных данных в рабочие. Поскольку "
+                                 "в результате этого процесса качество изображений ухудшается. Выполняются следующие преобразования:");
     bitDepthWarning.append( QChar::fromLatin1('\n') );
     bool setBitDepthWarning = false;
     const bool supportsMultipleClipDepths = _publicInterface->supportsMultipleClipDepths();
@@ -5865,18 +5865,18 @@ EffectInstance::Implementation::checkMetadata(NodeMetadata &md)
     }
 
     if (mustWarnFPS && nbConnectedInputs > 1) {
-        QString fpsWarning = tr("One or multiple inputs have a frame rate different of the output. "
-                                "It is not handled correctly by this node. To remove this warning make sure all inputs have "
-                                "the same frame-rate, either by adjusting project settings or the upstream Read node.");
+        QString fpsWarning = tr("Частота кадров на одном или нескольких входах отличается от частоты кадров на выходе. "
+                                "Узел неправильно обрабатывает это сообщение. Убедитесь, что все входные данные имеют "
+                                "одинаковую частоту кадров, либо изменив настройки проекта, либо восходящий узел чтения.");
         warnings[Node::eStreamWarningFrameRate] = fpsWarning;
     } else {
         warnings[Node::eStreamWarningFrameRate] = QString();
     }
 
     if (mustWarnPAR && nbConnectedInputs > 1) {
-        QString parWarnings = tr("One or multiple input have a pixel aspect ratio different of the output. It is not "
-                                 "handled correctly by this node and may yield unwanted results. Please adjust the "
-                                 "pixel aspect ratios of the inputs so that they match by using a Reformat node.");
+        QString parWarnings = tr("Соотношение сторон входных данных в пикселях отличается от выходного. Это неправильно обрабатывается "
+                                 "данным узлом и может привести к ошибкам. Измените соотношение сторон входных данных в пикселях "
+                                 "таким образом, чтобы они совпадали, используя узел переформатирования.");
         warnings[Node::eStreamWarningPixelAspectRatio] = parWarnings;
     } else {
         warnings[Node::eStreamWarningPixelAspectRatio] = QString();

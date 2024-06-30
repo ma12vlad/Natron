@@ -56,20 +56,20 @@ Backdrop::~Backdrop()
 std::string
 Backdrop::getPluginDescription() const
 {
-    return tr("The Backdrop node is useful to group nodes and identify them in the node graph.\n"
-              "You can also move all the nodes inside the backdrop.").toStdString();
+    return tr("Узел фона полезен для группировки узлов и их идентификации на схеме узлов.\n"
+              "Вы также можете переместить все узлы внутри фона.").toStdString();
 }
 
 void
 Backdrop::initializeKnobs()
 {
-    KnobPagePtr page = AppManager::createKnob<KnobPage>( this, tr("Controls") );
-    KnobStringPtr knobLabel = AppManager::createKnob<KnobString>( this, tr("Label") );
+    KnobPagePtr page = AppManager::createKnob<KnobPage>( this, tr("Управление") );
+    KnobStringPtr knobLabel = AppManager::createKnob<KnobString>( this, tr("Метка") );
 
     knobLabel->setAnimationEnabled(false);
     knobLabel->setAsMultiLine();
     knobLabel->setUsesRichText(true);
-    knobLabel->setHintToolTip( tr("Text to display on the backdrop.") );
+    knobLabel->setHintToolTip( tr("Текст для отображения на фоне.") );
     knobLabel->setEvaluateOnChange(false);
     page->addKnob(knobLabel);
     _imp->knobLabel = knobLabel;

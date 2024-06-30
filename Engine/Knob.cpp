@@ -633,7 +633,7 @@ KnobHelper::deleteKnob()
             knob->setKnobAsAliasOfThis(aliasKnob, false);
         }
         for (int i = 0; i < knob->getDimension(); ++i) {
-            knob->setExpressionInvalid( i, false, tr("%1: parameter does not exist").arg( QString::fromUtf8( getName().c_str() ) ).toStdString() );
+            knob->setExpressionInvalid( i, false, tr("%1: параметр не существует").arg( QString::fromUtf8( getName().c_str() ) ).toStdString() );
             knob->unSlave(i, false);
         }
     }
@@ -3210,7 +3210,7 @@ KnobHelper::setName(const std::string & name,
             PyObject* obj = NATRON_PYTHON_NAMESPACE::getAttrRecursive(newPotentialQualifiedName, appPTR->getMainModule(), &isAttrDefined);
             Q_UNUSED(obj);
             if (isAttrDefined) {
-                QString message = tr("A Python attribute with the name %1 already exists.").arg(QString::fromUtf8(newPotentialQualifiedName.c_str()));
+                QString message = tr("Атрибут Python с именем %1 уже существует.").arg(QString::fromUtf8(newPotentialQualifiedName.c_str()));
                 if (throwExceptions) {
                     throw std::runtime_error( message.toStdString() );
                 } else {

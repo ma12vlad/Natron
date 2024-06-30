@@ -1562,12 +1562,12 @@ Node::makeInfoForInput(int inputNumber) const
         if (inputNumber != -1) {
             inputName = QString::fromUtf8( getInputLabel(inputNumber).c_str() );
         } else {
-            inputName = tr("Output");
+            inputName = tr("Выход");
         }
         ss << "<b><font color=\"orange\">" << tr("%1:").arg(inputName).toStdString() << "</font></b><br />";
     }
     { // image format
-        ss << "<b>" << tr("Layers:").toStdString() << "</b> <font color=#c8c8c8>";
+        ss << "<b>" << tr("Слои:").toStdString() << "</b> <font color=#c8c8c8>";
         std::list<ImagePlaneDesc> availableLayers;
         input->getAvailableLayers(time, ViewIdx(0), -1, &availableLayers); // get the layers in the input's output (thus the -1)!
         std::list<ImagePlaneDesc>::iterator next = availableLayers.begin();
@@ -1586,7 +1586,7 @@ Node::makeInfoForInput(int inputNumber) const
     }
     {
         ImageBitDepthEnum depth = _imp->effect->getBitDepth(inputNumber);
-        QString depthStr = tr("unknown");
+        QString depthStr = tr("неизвестный");
         switch (depth) {
             case eImageBitDepthByte:
                 depthStr = tr("8u");
@@ -1602,43 +1602,43 @@ Node::makeInfoForInput(int inputNumber) const
             case eImageBitDepthNone:
                 break;
         }
-        ss << "<b>" << tr("BitDepth:").toStdString() << "</b> <font color=#c8c8c8>" << depthStr.toStdString() << "</font><br />";
+        ss << "<b>" << tr("Разрядность:").toStdString() << "</b> <font color=#c8c8c8>" << depthStr.toStdString() << "</font><br />";
     }
     { // premult
         ImagePremultiplicationEnum premult = input->getPremult();
-        QString premultStr = tr("unknown");
+        QString premultStr = tr("неизвестный");
         switch (premult) {
         case eImagePremultiplicationOpaque:
-            premultStr = tr("opaque");
+            premultStr = tr("непрозрачный");
             break;
         case eImagePremultiplicationPremultiplied:
-            premultStr = tr("premultiplied");
+            premultStr = tr("преумноженный");
             break;
         case eImagePremultiplicationUnPremultiplied:
-            premultStr = tr("unpremultiplied");
+            premultStr = tr("непреумноженный");
             break;
         }
-        ss << "<b>" << tr("Alpha premultiplication:").toStdString() << "</b> <font color=#c8c8c8>" << premultStr.toStdString() << "</font><br />";
+        ss << "<b>" << tr("Альфа-преумножение:").toStdString() << "</b> <font color=#c8c8c8>" << premultStr.toStdString() << "</font><br />";
     }
     {
         RectI format = input->getOutputFormat();
         if ( !format.isNull() ) {
-            ss << "<b>" << tr("Format (pixels):").toStdString() << "</b> <font color=#c8c8c8>";
-            ss << tr("left = %1 bottom = %2 right = %3 top = %4").arg(format.x1).arg(format.y1).arg(format.x2).arg(format.y2).toStdString() << "</font><br />";
+            ss << "<b>" << tr("Формат (пиксели):").toStdString() << "</b> <font color=#c8c8c8>";
+            ss << tr("слева = %1 внизу = %2 справа = %3 вверху = %4").arg(format.x1).arg(format.y1).arg(format.x2).arg(format.y2).toStdString() << "</font><br />";
         }
     }
     { // par
         double par = input->getAspectRatio(-1);
-        ss << "<b>" << tr("Pixel aspect ratio:").toStdString() << "</b> <font color=#c8c8c8>" << par << "</font><br />";
+        ss << "<b>" << tr("Соотношение сторон пикселей:").toStdString() << "</b> <font color=#c8c8c8>" << par << "</font><br />";
     }
     { // fps
         double fps = input->getFrameRate();
-        ss << "<b>" << tr("Frame rate:").toStdString() << "</b> <font color=#c8c8c8>" << tr("%1fps").arg(fps).toStdString() << "</font><br />";
+        ss << "<b>" << tr("Частота кадров:").toStdString() << "</b> <font color=#c8c8c8>" << tr("%1 кадр/с").arg(fps).toStdString() << "</font><br />";
     }
     {
         double first = 1., last = 1.;
         input->getFrameRange_public(getHashValue(), &first, &last);
-        ss << "<b>" << tr("Frame range:").toStdString() << "</b> <font color=#c8c8c8>" << first << " - " << last << "</font><br />";
+        ss << "<b>" << tr("Диапазон кадров:").toStdString() << "</b> <font color=#c8c8c8>" << first << " - " << last << "</font><br />";
     }
     {
         RectD rod;
@@ -1647,8 +1647,8 @@ Node::makeInfoForInput(int inputNumber) const
                                                               time,
                                                               RenderScale::identity, ViewIdx(0), &rod, &isProjectFormat);
         if (stat != eStatusFailed) {
-            ss << "<b>" << tr("Region of Definition (at t=%1):").arg(time).toStdString() << "</b> <font color=#c8c8c8>";
-            ss << tr("left = %1 bottom = %2 right = %3 top = %4").arg(rod.x1).arg(rod.y1).arg(rod.x2).arg(rod.y2).toStdString() << "</font><br />";
+            ss << "<b>" << tr("Область определения (при t=%1):").arg(time).toStdString() << "</b> <font color=#c8c8c8>";
+            ss << tr("слева = %1 внизу = %2 справа = %3 вверху = %4").arg(rod.x1).arg(rod.y1).arg(rod.x2).arg(rod.y2).toStdString() << "</font><br />";
         }
     }
 
@@ -1726,7 +1726,7 @@ Node::findPluginFormatKnobs(const KnobsVec & knobs,
 void
 Node::createNodePage(const KnobPagePtr& settingsPage)
 {
-    KnobBoolPtr hideInputs = AppManager::createKnob<KnobBool>(_imp->effect.get(), tr("Hide inputs"), 1, false);
+    KnobBoolPtr hideInputs = AppManager::createKnob<KnobBool>(_imp->effect.get(), tr("Скрыть входные данные"), 1, false);
 
     hideInputs->setName("hideInputs");
     hideInputs->setDefaultValue(false);
@@ -1734,24 +1734,24 @@ Node::createNodePage(const KnobPagePtr& settingsPage)
     hideInputs->setAddNewLine(false);
     hideInputs->setIsPersistent(true);
     hideInputs->setEvaluateOnChange(false);
-    hideInputs->setHintToolTip( tr("When checked, the input arrows of the node in the nodegraph will be hidden") );
+    hideInputs->setHintToolTip( tr("Если этот флажок установлен, стрелки ввода узла в графе узлов будут скрыты") );
     _imp->hideInputs = hideInputs;
     settingsPage->addKnob(hideInputs);
 
 
-    KnobBoolPtr fCaching = AppManager::createKnob<KnobBool>(_imp->effect.get(), tr("Force caching"), 1, false);
+    KnobBoolPtr fCaching = AppManager::createKnob<KnobBool>(_imp->effect.get(), tr("Принудительное кэширование"), 1, false);
     fCaching->setName("forceCaching");
     fCaching->setDefaultValue(false);
     fCaching->setAnimationEnabled(false);
     fCaching->setAddNewLine(false);
     fCaching->setIsPersistent(true);
     fCaching->setEvaluateOnChange(false);
-    fCaching->setHintToolTip( tr("When checked, the output of this node will always be kept in the RAM cache for fast access of already computed "
+    fCaching->setHintToolTip( tr("Если этот флажок установлен, выходные данные этого узла всегда будут храниться в кэше ОЗУ для быстрого доступа к уже вычисленным изображениям."
                                  "images.") );
     _imp->forceCaching = fCaching;
     settingsPage->addKnob(fCaching);
 
-    KnobBoolPtr previewEnabled = AppManager::createKnob<KnobBool>(_imp->effect.get(), tr("Preview"), 1, false);
+    KnobBoolPtr previewEnabled = AppManager::createKnob<KnobBool>(_imp->effect.get(), tr("Предпросмотр"), 1, false);
     assert(previewEnabled);
     previewEnabled->setDefaultValue( makePreviewByDefault() );
     previewEnabled->setName(kEnablePreviewKnobName);
@@ -1759,33 +1759,33 @@ Node::createNodePage(const KnobPagePtr& settingsPage)
     previewEnabled->setAddNewLine(false);
     previewEnabled->setIsPersistent(false);
     previewEnabled->setEvaluateOnChange(false);
-    previewEnabled->setHintToolTip( tr("Whether to show a preview on the node box in the node-graph.") );
+    previewEnabled->setHintToolTip( tr("Показывать ли предпросмотр поля узла в Схеме узлов.") );
     settingsPage->addKnob(previewEnabled);
     _imp->previewEnabledKnob = previewEnabled;
 
-    KnobBoolPtr disableNodeKnob = AppManager::createKnob<KnobBool>(_imp->effect.get(), tr("Disable"), 1, false);
+    KnobBoolPtr disableNodeKnob = AppManager::createKnob<KnobBool>(_imp->effect.get(), tr("Отключить"), 1, false);
     assert(disableNodeKnob);
     disableNodeKnob->setAnimationEnabled(false);
     disableNodeKnob->setIsMetadataSlave(true);
     disableNodeKnob->setName(kDisableNodeKnobName);
     disableNodeKnob->setAddNewLine(false);
-    disableNodeKnob->setHintToolTip( tr("When disabled, this node acts as a pass through.") );
+    disableNodeKnob->setHintToolTip( tr("Когда этот узел отключен, он действует как сквозной.") );
     settingsPage->addKnob(disableNodeKnob);
     _imp->disableNodeKnob = disableNodeKnob;
 
 
 
-    KnobBoolPtr useFullScaleImagesWhenRenderScaleUnsupported = AppManager::createKnob<KnobBool>(_imp->effect.get(), tr("Render high def. upstream"), 1, false);
+    KnobBoolPtr useFullScaleImagesWhenRenderScaleUnsupported = AppManager::createKnob<KnobBool>(_imp->effect.get(), tr("Рендеринг с высокой четкостью выше по потоку"), 1, false);
     useFullScaleImagesWhenRenderScaleUnsupported->setAnimationEnabled(false);
     useFullScaleImagesWhenRenderScaleUnsupported->setDefaultValue(false);
     useFullScaleImagesWhenRenderScaleUnsupported->setName("highDefUpstream");
-    useFullScaleImagesWhenRenderScaleUnsupported->setHintToolTip( tr("This node does not support rendering images at a scale lower than 1, it "
-                                                                     "can only render high definition images. When checked this parameter controls "
-                                                                     "whether the rest of the graph upstream should be rendered with a high quality too or at "
-                                                                     "the most optimal resolution for the current viewer's viewport. Typically checking this "
-                                                                     "means that an image will be slow to be rendered, but once rendered it will stick in the cache "
-                                                                     "whichever zoom level you are using on the Viewer, whereas when unchecked it will be much "
-                                                                     "faster to render but will have to be recomputed when zooming in/out in the Viewer.") );
+    useFullScaleImagesWhenRenderScaleUnsupported->setHintToolTip( tr("Этот узел не поддерживает рендеринг изображений в масштабе меньше 1, он "
+                                                                     "может выполняйте рендеринг только изображений высокой четкости. Если этот параметр установлен, он определяет "
+                                                                     ", будет ли остальная часть графика находиться выше по потоку. изображение также должно быть отрисовано с высоким качеством или с "
+                                                                     "наиболее оптимальным разрешением для текущего окна просмотра пользователя. Обычно проверка этого параметра "
+                                                                     "означает, что рендеринг изображения будет медленным, но после рендеринга он сохранится в кэше"
+                                                                     "независимо от того, какой уровень масштабирования вы используете в режиме просмотра, тогда как при снятии флажка рендеринг будет намного "
+                                                                     "быстрее, но придется пересчитывать при увеличении / уменьшении масштаба в программе просмотра.") );
     if ( ( isRenderScaleSupportEnabledForPlugin() ) && (getEffectInstance()->supportsRenderScaleMaybe() == EffectInstance::eSupportsYes) ) {
         useFullScaleImagesWhenRenderScaleUnsupported->setSecretByDefault(true);
     }
@@ -1793,25 +1793,25 @@ Node::createNodePage(const KnobPagePtr& settingsPage)
     _imp->useFullScaleImagesWhenRenderScaleUnsupported = useFullScaleImagesWhenRenderScaleUnsupported;
 
 
-    KnobIntPtr lifeTimeKnob = AppManager::createKnob<KnobInt>(_imp->effect.get(), tr("Lifetime Range"), 2, false);
+    KnobIntPtr lifeTimeKnob = AppManager::createKnob<KnobInt>(_imp->effect.get(), tr("Время жизни"), 2, false);
     assert(lifeTimeKnob);
     lifeTimeKnob->setAnimationEnabled(false);
     lifeTimeKnob->setIsMetadataSlave(true);
     lifeTimeKnob->setName(kLifeTimeNodeKnobName);
     lifeTimeKnob->setAddNewLine(false);
-    lifeTimeKnob->setHintToolTip( tr("This is the frame range during which the node will be active if Enable Lifetime is checked") );
+    lifeTimeKnob->setHintToolTip( tr("Это диапазон кадров, в течение которого узел будет активен, если установлен флажок Включить время жизни") );
     settingsPage->addKnob(lifeTimeKnob);
     _imp->lifeTimeKnob = lifeTimeKnob;
 
 
-    KnobBoolPtr enableLifetimeNodeKnob = AppManager::createKnob<KnobBool>(_imp->effect.get(), tr("Enable Lifetime"), 1, false);
+    KnobBoolPtr enableLifetimeNodeKnob = AppManager::createKnob<KnobBool>(_imp->effect.get(), tr("Включить Время жизни"), 1, false);
     assert(enableLifetimeNodeKnob);
     enableLifetimeNodeKnob->setAnimationEnabled(false);
     enableLifetimeNodeKnob->setDefaultValue(false);
     enableLifetimeNodeKnob->setIsMetadataSlave(true);
     enableLifetimeNodeKnob->setName(kEnableLifeTimeNodeKnobName);
-    enableLifetimeNodeKnob->setHintToolTip( tr("When checked, the node is only active during the specified frame range by the Lifetime Range parameter. "
-                                               "Outside of this frame range, it behaves as if the Disable parameter is checked") );
+    enableLifetimeNodeKnob->setHintToolTip( tr("Если этот флажок установлен, узел активен только в течение диапазона кадров, указанного параметром Время жизни. "
+                                               "За пределами этого диапазона кадров он ведет себя так, как будто установлен флажок Отключить.") );
     settingsPage->addKnob(enableLifetimeNodeKnob);
     _imp->enableLifeTimeKnob = enableLifetimeNodeKnob;
 
@@ -1820,52 +1820,52 @@ Node::createNodePage(const KnobPagePtr& settingsPage)
         glSupport = _imp->plugin->getPluginOpenGLRenderSupport();
     }
     if (glSupport != ePluginOpenGLRenderSupportNone) {
-        KnobChoicePtr openglRenderingKnob = AppManager::createKnob<KnobChoice>(_imp->effect.get(), tr("GPU Rendering"), 1, false);
+        KnobChoicePtr openglRenderingKnob = AppManager::createKnob<KnobChoice>(_imp->effect.get(), tr("Рендеринг на GPU"), 1, false);
         assert(openglRenderingKnob);
         openglRenderingKnob->setAnimationEnabled(false);
         {
             std::vector<ChoiceOption> entries;
-            entries.push_back(ChoiceOption("Enabled", "", tr("If a plug-in support GPU rendering, prefer rendering using the GPU if possible.").toStdString() ));
-            entries.push_back(ChoiceOption("Disabled", "", tr("Disable GPU rendering for all plug-ins.").toStdString()));
-            entries.push_back(ChoiceOption("Disabled if background", "", tr("Disable GPU rendering when rendering with NatronRenderer but not in GUI mode.").toStdString()));
+            entries.push_back(ChoiceOption("Enabled", "", tr("Если подключаемый модуль поддерживает рендеринг на графическом процессоре, по возможности выбирайте его.").toStdString() ));
+            entries.push_back(ChoiceOption("Disabled", "", tr("Отключить Рендеринг на GPU для всех плагинов.").toStdString()));
+            entries.push_back(ChoiceOption("Disabled if background", "", tr("Отключить Рендеринг на GPU при рендеринге с помощью NatronRenderer, но не в режиме графического интерфейса.").toStdString()));
             openglRenderingKnob->populateChoices(entries);
 
         }
 
         openglRenderingKnob->setName("enableGPURendering");
-        openglRenderingKnob->setHintToolTip( tr("Select when to activate GPU rendering for this node. Note that if the GPU Rendering parameter in the Project settings is set to disabled then GPU rendering will not be activated regardless of that value.") );
+        openglRenderingKnob->setHintToolTip( tr("Выберите, когда активировать Рендеринг на GPU для этого узла. Если для параметра Рендеринг на GPU в настройках установлено значение Отключить, то Рендеринг на GPU не будет активирован независимо от этого значения.") );
         settingsPage->addKnob(openglRenderingKnob);
         _imp->openglRenderingEnabledKnob = openglRenderingKnob;
     }
 
 
-    KnobStringPtr knobChangedCallback = AppManager::createKnob<KnobString>(_imp->effect.get(), tr("After param changed callback"), 1, false);
-    knobChangedCallback->setHintToolTip( tr("Name of a Python function to be called at each  "
-                                            "parameter change. Either define this function in the Script Editor "
-                                            "or in the init.py script or even in the script of a Python group plug-in.\n"
-                                            "The signature of the callback is: callback(thisParam, thisNode, thisGroup, app, userEdited) where:\n"
-                                            "- thisParam: The parameter which just had its value changed\n"
-                                            "- userEdited: A boolean informing whether the change was due to user interaction or "
-                                            "because something internally triggered the change.\n"
-                                            "- thisNode: The node holding the parameter\n"
-                                            "- app: points to the current application instance\n"
-                                            "- thisGroup: The group holding thisNode (only if thisNode belongs to a group)") );
+    KnobStringPtr knobChangedCallback = AppManager::createKnob<KnobString>(_imp->effect.get(), tr("Обратный вызов после изменения параметра"), 1, false);
+    knobChangedCallback->setHintToolTip( tr("Имя функции Python, которая будет вызываться при каждом  "
+                                            "изменение параметра. Либо определите эту функцию в редакторе скриптов "
+                                            "или в скрипте init.py, или даже в скрипте плагина группы Python.\n"
+                                            "Подпись обратного вызова: callback(thisParam, thisNode, thisGroup, app, userEdited) где:\n"
+                                            "- thisParam: параметр, значение которого только что изменилось\n"
+                                            "- userEdited: логическое значение, сообщающее, произошло ли изменение из-за взаимодействия с пользователем или "
+                                            "потому что что-то внутреннее вызвало изменение.\n"
+                                            "- thisNode: узел, содержащий параметр\n"
+                                            "- app: указывает на текущий экземпляр приложения\n"
+                                            "- thisGroup: группа, содержащая thisNode (только если thisNode принадлежит группе)") );
     knobChangedCallback->setAnimationEnabled(false);
     knobChangedCallback->setName("onParamChanged");
     settingsPage->addKnob(knobChangedCallback);
     _imp->knobChangedCallback = knobChangedCallback;
 
-    KnobStringPtr inputChangedCallback = AppManager::createKnob<KnobString>(_imp->effect.get(), tr("After input changed callback"), 1, false);
-    inputChangedCallback->setHintToolTip( tr("Name of a Python function to be called after "
-                                             "an input connection of the node is changed. "
-                                             "Either define this function in the Script Editor "
-                                             "or in the init.py script or even in the script of a Python group plug-in.\n"
-                                             "The signature of the callback is: callback(inputIndex, thisNode, thisGroup, app):\n"
-                                             "- inputIndex: the index of the input which changed, you can query the node "
-                                             "connected to the input by calling the getInput(...) function.\n"
-                                             "- thisNode: The node holding the parameter\n"
-                                             "- app: points to the current application instance\n"
-                                             "- thisGroup: The group holding thisNode (only if thisNode belongs to a group)") );
+    KnobStringPtr inputChangedCallback = AppManager::createKnob<KnobString>(_imp->effect.get(), tr("После ввода изменен обратный вызов"), 1, false);
+    inputChangedCallback->setHintToolTip( tr("Имя функции Python, которая будет вызываться после "
+                                             "изменяется входное соединение узла. "
+                                             "Либо определите эту функцию в редакторе сценариев. "
+                                             "В скрипте init.py или даже в скрипте плагина группы Python.\n"
+                                             "Подпись обратного вызова: callback(inputIndex, thisNode, thisGroup, appе):\n"
+                                             "- inputIndex: индекс входа, который изменился, вы можете запросить узел "
+                                             "подключен к входу путем вызова функции getInput(...).\n"
+                                             "- thisNode: Узел, содержащий параметр\n"
+                                             "- app: указывает на текущий экземпляр приложения\n"
+                                             "- thisGroup: Группа, содержащая thisNode (только если thisNode принадлежит группе).") );
 
     inputChangedCallback->setAnimationEnabled(false);
     inputChangedCallback->setName("onInputChanged");
@@ -1874,31 +1874,31 @@ Node::createNodePage(const KnobPagePtr& settingsPage)
 
     NodeGroup* isGroup = dynamic_cast<NodeGroup*>( _imp->effect.get() );
     if (isGroup) {
-        KnobStringPtr onNodeCreated = AppManager::createKnob<KnobString>(_imp->effect.get(), tr("After Node Created"), 1, false);
+        KnobStringPtr onNodeCreated = AppManager::createKnob<KnobString>(_imp->effect.get(), tr("После создания узла"), 1, false);
         onNodeCreated->setName("afterNodeCreated");
-        onNodeCreated->setHintToolTip( tr("Name of a Python function to be called each time a node "
-                                          "is created in the group. This is called in addition to the After Node Created "
-                                          " callback of the project for the group node and all nodes within it (not recursively).\n"
-                                          "The boolean variable userEdited is set to True if the node was created "
-                                          "by the user or False otherwise (such as when loading a project, or pasting a node).\n"
-                                          "The signature of the callback is: callback(thisNode, app, userEdited) where:\n"
-                                          "- thisNode: the node which has just been created\n"
-                                          "- userEdited: a boolean indicating whether the node was created by user interaction or from "
-                                          "a script/project load/copy-paste\n"
-                                          "- app: points to the current application instance.") );
+        onNodeCreated->setHintToolTip( tr("Имя функции Python, которая будет вызываться каждый раз при открытии узла "
+                                          "создается в группе. Вызывается в дополнение к после создания узла. "
+                                          " обратный вызов проекта для узла группы и всех узлов внутри него (не рекурсивно).\n"
+                                          "Логическая переменная userEdited имеет значение True, если узел был создан. "
+                                          "пользователем или False в противном случае (например, при загрузке проекта или вставке узла).\n"
+                                          "Подпись обратного вызова: callback(thisNode, app, userEdited) где:\n"
+                                          "- thisNode: узел, который только что был создан\n"
+                                          "- userEdited: логическое значение, указывающее, был ли узел создан посредством взаимодействия с пользователем или из "
+                                          "скрипт/проект загрузка/копирование-вставка\n"
+                                          "- app: указывает на текущий экземпляр приложения.") );
         onNodeCreated->setAnimationEnabled(false);
         _imp->nodeCreatedCallback = onNodeCreated;
         settingsPage->addKnob(onNodeCreated);
 
-        KnobStringPtr onNodeDeleted = AppManager::createKnob<KnobString>(_imp->effect.get(), tr("Before Node Removal"), 1, false);
+        KnobStringPtr onNodeDeleted = AppManager::createKnob<KnobString>(_imp->effect.get(), tr("Перед удалением узла"), 1, false);
         onNodeDeleted->setName("beforeNodeRemoval");
-        onNodeDeleted->setHintToolTip( tr("Add here the name of a Python-defined function that will be called each time a node "
-                                          "is about to be deleted. This will be called in addition to the Before Node Removal "
-                                          " callback of the project for the group node and all nodes within it (not recursively).\n"
-                                          "This function will not be called when the project is closing.\n"
-                                          "The signature of the callback is: callback(thisNode, app) where:\n"
-                                          "- thisNode: the node about to be deleted\n"
-                                          "- app: points to the current application instance.") );
+        onNodeDeleted->setHintToolTip( tr("Добавьте сюда имя функции, определенной на Python, которая будет вызываться каждый раз, когда узел "
+                                          "собирается быть удаленным. Это будет вызвано в дополнение к операции Перед удалением Узла "
+                                          " обратный вызов проекта для узла группы и всех узлов внутри него (не рекурсивно).\n"
+                                          "Эта функция не будет вызвана при закрытии проекта.\n"
+                                          "Подпись обратного вызова такова: обратный вызов(thisNode, app), где:\n"
+                                          "- thisNode: узел, который будет удален\n"
+                                          "- app: указывает на текущий экземпляр приложения.") );
         onNodeDeleted->setAnimationEnabled(false);
         _imp->nodeRemovalCallback = onNodeDeleted;
         settingsPage->addKnob(onNodeDeleted);
@@ -1908,51 +1908,51 @@ Node::createNodePage(const KnobPagePtr& settingsPage)
         && !getIOContainer()
 #endif
         ) {
-        KnobStringPtr beforeFrameRender =  AppManager::createKnob<KnobString>(_imp->effect.get(), tr("Before frame render"), 1, false);
+        KnobStringPtr beforeFrameRender =  AppManager::createKnob<KnobString>(_imp->effect.get(), tr("Перед рендерингом кадра"), 1, false);
 
         beforeFrameRender->setName("beforeFrameRender");
         beforeFrameRender->setAnimationEnabled(false);
-        beforeFrameRender->setHintToolTip( tr("Add here the name of a Python defined function that will be called before rendering "
-                                              "any frame.\n "
-                                              "The signature of the callback is: callback(frame, thisNode, app) where:\n"
-                                              "- frame: the frame to be rendered\n"
-                                              "- thisNode: points to the writer node\n"
-                                              "- app: points to the current application instance") );
+        beforeFrameRender->setHintToolTip( tr("Добавьте сюда имя функции, определенной Python, которая будет вызываться перед рендерингом "
+                                              "любой кадр.\n "
+                                              "Сигнатура обратного вызова: callback(frame, thisNode, app) где:\n"
+                                              "- frame: кадр для рендеринга\n"
+                                              "- thisNode: указывает на узел записи\n"
+                                              "- app: указывает на текущий экземпляр приложения") );
         settingsPage->addKnob(beforeFrameRender);
         _imp->beforeFrameRender = beforeFrameRender;
 
-        KnobStringPtr beforeRender =  AppManager::createKnob<KnobString>(_imp->effect.get(), tr("Before render"), 1, false);
+        KnobStringPtr beforeRender =  AppManager::createKnob<KnobString>(_imp->effect.get(), tr("Перед рендерингом"), 1, false);
         beforeRender->setName("beforeRender");
         beforeRender->setAnimationEnabled(false);
-        beforeRender->setHintToolTip( tr("Add here the name of a Python defined function that will be called once when "
-                                         "starting rendering.\n "
-                                         "The signature of the callback is: callback(thisNode, app) where:\n"
-                                         "- thisNode: points to the writer node\n"
-                                         "- app: points to the current application instance") );
+        beforeRender->setHintToolTip( tr("Добавьте сюда имя определенной на Python функции, которая будет вызвана "
+                                         "один раз при запуске рендеринга.\n "
+                                         "Подпись обратного вызова: callback(thisNode, app) where:\n"
+                                         "- thisNode: указывает на узел записи\n"
+                                         "- app: указывает на текущий экземпляр приложения") );
         settingsPage->addKnob(beforeRender);
         _imp->beforeRender = beforeRender;
 
-        KnobStringPtr afterFrameRender =  AppManager::createKnob<KnobString>(_imp->effect.get(), tr("After frame render"), 1, false);
+        KnobStringPtr afterFrameRender =  AppManager::createKnob<KnobString>(_imp->effect.get(), tr("После рендеринга кадра"), 1, false);
         afterFrameRender->setName("afterFrameRender");
         afterFrameRender->setAnimationEnabled(false);
-        afterFrameRender->setHintToolTip( tr("Add here the name of a Python defined function that will be called after rendering "
-                                             "any frame.\n "
-                                             "The signature of the callback is: callback(frame, thisNode, app) where:\n"
-                                             "- frame: the frame that has been rendered\n"
-                                             "- thisNode: points to the writer node\n"
-                                             "- app: points to the current application instance") );
+        afterFrameRender->setHintToolTip( tr("Добавьте сюда имя функции, определенной на Python, которая будет вызвана после  "
+                                             "рендеринга любого кадра.\n "
+                                             "Подпись обратного вызова: callback(frame, thisNode, app) where:\n"
+                                             "- frame: кадр, который был отрисован\n"
+                                             "- thisNode: указывает на узел записи\n"
+                                             "- app: указывает на текущий экземпляр приложения") );
         settingsPage->addKnob(afterFrameRender);
         _imp->afterFrameRender = afterFrameRender;
 
-        KnobStringPtr afterRender =  AppManager::createKnob<KnobString>(_imp->effect.get(), tr("After render"), 1, false);
+        KnobStringPtr afterRender =  AppManager::createKnob<KnobString>(_imp->effect.get(), tr("После рендера"), 1, false);
         afterRender->setName("afterRender");
         afterRender->setAnimationEnabled(false);
         afterRender->setHintToolTip( tr("Add here the name of a Python defined function that will be called once when the rendering "
                                         "is finished.\n "
-                                        "The signature of the callback is: callback(aborted, thisNode, app) where:\n"
-                                        "- aborted: True if the render ended because it was aborted, False upon completion\n"
-                                        "- thisNode: points to the writer node\n"
-                                        "- app: points to the current application instance") );
+                                        "Подпись обратного вызова: callback(aborted, thisNode, app) where:\n"
+                                        "- aborted: True, если рендеринг завершился из-за того, что он был прерван, False после завершения\n"
+                                        "- thisNode: указывает на узел записи\n"
+                                        "- app: указывает на текущий экземпляр приложения") );
         settingsPage->addKnob(afterRender);
         _imp->afterRender = afterRender;
     }
@@ -1961,7 +1961,7 @@ Node::createNodePage(const KnobPagePtr& settingsPage)
 void
 Node::createInfoPage()
 {
-    KnobPagePtr infoPage = AppManager::createKnob<KnobPage>(_imp->effect.get(), tr("Info").toStdString(), 1, false);
+    KnobPagePtr infoPage = AppManager::createKnob<KnobPage>(_imp->effect.get(), tr("Инфо").toStdString(), 1, false);
 
     infoPage->setName(NATRON_PARAMETER_PAGE_NAME_INFO);
     _imp->infoPage = infoPage;
@@ -1973,12 +1973,12 @@ Node::createInfoPage()
     nodeInfos->setAsMultiLine();
     nodeInfos->setAsCustomHTMLText(true);
     nodeInfos->setEvaluateOnChange(false);
-    nodeInfos->setHintToolTip( tr("Input and output information, press Refresh to update them with current values") );
+    nodeInfos->setHintToolTip( tr("Вводите и выводите информацию, нажмите кнопку Обновить, чтобы обновить их текущими значениями") );
     infoPage->addKnob(nodeInfos);
     _imp->nodeInfos = nodeInfos;
 
 
-    KnobButtonPtr refreshInfoButton = AppManager::createKnob<KnobButton>(_imp->effect.get(), tr("Refresh Info"), 1, false);
+    KnobButtonPtr refreshInfoButton = AppManager::createKnob<KnobButton>(_imp->effect.get(), tr("Обноввить Инфо"), 1, false);
     refreshInfoButton->setName("refreshButton");
     refreshInfoButton->setEvaluateOnChange(false);
     infoPage->addKnob(refreshInfoButton);
@@ -1988,10 +1988,10 @@ Node::createInfoPage()
 void
 Node::createHostMixKnob(const KnobPagePtr& mainPage)
 {
-    KnobDoublePtr mixKnob = AppManager::createKnob<KnobDouble>(_imp->effect.get(), tr("Mix"), 1, false);
+    KnobDoublePtr mixKnob = AppManager::createKnob<KnobDouble>(_imp->effect.get(), tr("Смесь"), 1, false);
 
     mixKnob->setName("hostMix");
-    mixKnob->setHintToolTip( tr("Mix between the source image at 0 and the full effect at 1.") );
+    mixKnob->setHintToolTip( tr("Смешайте исходное изображение в 0 с полным эффектом в 1.") );
     mixKnob->setMinimum(0.);
     mixKnob->setMaximum(1.);
     mixKnob->setDefaultValue(1.);
@@ -2024,13 +2024,13 @@ Node::createMaskSelectors(const std::vector<std::pair<bool, bool> >& hasMaskChan
         if (hasMaskChannelSelector[i].second) {
             std::string enableMaskName(std::string(kEnableMaskKnobName) + "_" + inputLabels[i]);
             enabled->setName(enableMaskName);
-            enabled->setHintToolTip( tr("Enable the mask to come from the channel named by the choice parameter on the right. "
-                                        "Turning this off will act as though the mask was disconnected.") );
+            enabled->setHintToolTip( tr("Включите передачу маски из канала, указанного в параметре выбора справа. "
+                                        "При отключении этой функции маска будет действовать так, как если бы она была отключена.") );
         } else {
             std::string enableMaskName(std::string(kEnableInputKnobName) + "_" + inputLabels[i]);
             enabled->setName(enableMaskName);
-            enabled->setHintToolTip( tr("Enable the image to come from the channel named by the choice parameter on the right. "
-                                        "Turning this off will act as though the input was disconnected.") );
+            enabled->setHintToolTip( tr("Включите передачу изображения из канала, указанного в параметре выбора справа. "
+                                        "При отключении этой функции вход будет работать так, как если бы он был отключен.") );
         }
         enabled->setAnimationEnabled(false);
         if (mainPage) {
@@ -2044,8 +2044,8 @@ Node::createMaskSelectors(const std::vector<std::pair<bool, bool> >& hasMaskChan
         // By default if connected it should be filled with None, Color.R, Color.G, Color.B, Color.A (@see refreshChannelSelectors)
         channel->setDefaultValue(4);
         channel->setAnimationEnabled(false);
-        channel->setHintToolTip( tr("Use this channel from the original input to mix the output with the original input. "
-                                    "Setting this to None is the same as disconnecting the input.") );
+        channel->setHintToolTip( tr("Используйте этот канал исходного входа, чтобы микшировать выходной сигнал с исходным входным сигналом "
+                                    "Установка значения Нет - это то же самое, что отключение входа.") );
         if (hasMaskChannelSelector[i].second) {
             std::string channelMaskName(std::string(kMaskChannelKnobName) + "_" + inputLabels[i]);
             channel->setName(channelMaskName);
@@ -2118,7 +2118,7 @@ Node::getOrCreateMainPage()
         }
     }
     if (!mainPage) {
-        mainPage = AppManager::createKnob<KnobPage>( _imp->effect.get(), tr("Settings") );
+        mainPage = AppManager::createKnob<KnobPage>( _imp->effect.get(), tr("Установки") );
     }
 
     return mainPage;
@@ -2136,7 +2136,7 @@ Node::createLabelKnob(const KnobPagePtr& settingsPage,
     nodeLabel->setEvaluateOnChange(false);
     nodeLabel->setAsMultiLine();
     nodeLabel->setUsesRichText(true);
-    nodeLabel->setHintToolTip( tr("This label gets appended to the node name on the node graph.") );
+    nodeLabel->setHintToolTip( tr("Эта метка добавляется к имени узла в Схеме Узлов.") );
     settingsPage->addKnob(nodeLabel);
     _imp->nodeLabelKnob = nodeLabel;
 }
@@ -2208,11 +2208,11 @@ Node::findOrCreateChannelEnabled(const KnobPagePtr& mainPage)
         premultWarning->setAsLabel();
         premultWarning->setEvaluateOnChange(false);
         premultWarning->setIsPersistent(false);
-        premultWarning->setHintToolTip( tr("The alpha checkbox is checked and the RGB "
-                                           "channels in output are alpha-premultiplied. Any of the unchecked RGB channel "
-                                           "may be incorrect because the alpha channel changed but their value did not. "
-                                           "To fix this, either check all RGB channels (or uncheck alpha) or unpremultiply the "
-                                           "input image first.").toStdString() );
+        premultWarning->setHintToolTip( tr("Флажок альфа установлен, а RGB "
+                                           "каналы на выходе предварительно умножаются на альфа-канал. Любой из непроверенных каналов RGB "
+                                           "может быть неверно, потому что альфа-канал изменился, а их значение нет "
+                                           "Отметьте все каналы RGB (или снимите флажок с альфа-канала), либо отмените умножение "
+                                           "сначала введите изображение.").toStdString() );
         mainPage->insertKnob(4, premultWarning);
         _imp->premultWarning = premultWarning;
     }
@@ -2248,7 +2248,7 @@ Node::initializeDefaultKnobs(bool loadingSerialization)
 
     //Create the "Label" knob
     Backdrop* isBackdropNode = dynamic_cast<Backdrop*>( _imp->effect.get() );
-    QString labelKnobLabel = isBackdropNode ? tr("Name label") : tr("Label");
+    QString labelKnobLabel = isBackdropNode ? tr("Имяметки") : tr("Метка");
     createLabelKnob( settingsPage, labelKnobLabel.toStdString() );
 
     if (isBackdropNode) {
@@ -2399,8 +2399,8 @@ Node::initializeDefaultKnobs(bool loadingSerialization)
             mainPage = getOrCreateMainPage();
         }
 
-        KnobButtonPtr renderButton = AppManager::createKnob<KnobButton>(_imp->effect.get(), tr("Render"), 1, false);
-        renderButton->setHintToolTip( tr("Starts rendering the specified frame range.") );
+        KnobButtonPtr renderButton = AppManager::createKnob<KnobButton>(_imp->effect.get(), tr("Рендер"), 1, false);
+        renderButton->setHintToolTip( tr("Запускает рендеринг указанного диапазона кадров.") );
         renderButton->setAsRenderButton();
         renderButton->setName(kNatronWriteParamStartRender);
         renderButton->setEvaluateOnChange(false);
@@ -2455,7 +2455,7 @@ Node::Implementation::createChannelSelector(int inputNb,
 {
     ChannelSelector sel;
 
-    KnobChoicePtr layer = AppManager::createKnob<KnobChoice>(effect.get(), isOutput ? tr("Output Layer") : tr("%1 Layer").arg( QString::fromUtf8( inputName.c_str() ) ), 1, false);
+    KnobChoicePtr layer = AppManager::createKnob<KnobChoice>(effect.get(), isOutput ? tr("Выходной слой") : tr("%1 слой").arg( QString::fromUtf8( inputName.c_str() ) ), 1, false);
     layer->setHostCanAddOptions(isOutput);
     if (!isOutput) {
         layer->setName( inputName + std::string("_") + std::string(kOutputChannelsKnobName) );
@@ -2463,9 +2463,9 @@ Node::Implementation::createChannelSelector(int inputNb,
         layer->setName(kOutputChannelsKnobName);
     }
     if (isOutput) {
-        layer->setHintToolTip( tr("Select here the layer onto which the processing should occur.") );
+        layer->setHintToolTip( tr("Выберите здесь слой, на котором должна выполняться обработка.") );
     } else {
-        layer->setHintToolTip( tr("Select here the layer that will be used in input by %1.").arg( QString::fromUtf8( inputName.c_str() ) ) );
+        layer->setHintToolTip( tr("Выберите здесь слой, который будет использоваться на входе %1.").arg( QString::fromUtf8( inputName.c_str() ) ) );
     }
     layer->setAnimationEnabled(false);
     layer->setSecretByDefault(!isOutput);
@@ -2855,10 +2855,10 @@ Node::deactivate(const std::list<NodePtr> & outputsToDisconnect,
                     std::string hasExpr = listener->getExpression(dim);
                     if ( !hasExpr.empty() ) {
                         std::stringstream ss;
-                        ss << tr("Missing node ").toStdString();
+                        ss << tr("Отсутствует узел ").toStdString();
                         ss << getFullyQualifiedName();
                         ss << ' ';
-                        ss << tr("in expression.").toStdString();
+                        ss << tr("в выражении.").toStdString();
                         listener->setExpressionInvalid( dim, false, ss.str() );
                     }
                 }
@@ -4757,9 +4757,9 @@ Node::refreshCreatedViews(KnobI* knob, bool silent)
             }
             ss << std::endl;
             ss << std::endl;
-            ss << tr("These views are in %1 but do not exist in the project.\nWould you like to create them?").arg( QString::fromUtf8( filename.c_str() ) ).toStdString();
+            ss << tr("Эти представления находятся в %1, но не существуют в проекте.\nСоздать их?").arg( QString::fromUtf8( filename.c_str() ) ).toStdString();
             std::string question  = ss.str();
-            StandardButtonEnum rep = Dialogs::questionDialog(tr("Views available").toStdString(), question, false, StandardButtons(eStandardButtonYes | eStandardButtonNo), eStandardButtonYes);
+            StandardButtonEnum rep = Dialogs::questionDialog(tr("Доступные просмотры").toStdString(), question, false, StandardButtons(eStandardButtonYes | eStandardButtonNo), eStandardButtonYes);
             if (rep == eStandardButtonYes) {
                 std::vector<std::string> viewsToCreate;
                 for (QStringList::Iterator it = missingViews.begin(); it != missingViews.end(); ++it) {
@@ -4950,61 +4950,61 @@ Node::onEffectKnobValueChanged(KnobI* what,
         ssinfo << outputInfo << "<br />";
         std::string cacheInfo = makeCacheInfo();
         ssinfo << cacheInfo << "<br />";
-        ssinfo << "<b>" << tr("Supports tiles:").toStdString() << "</b> <font color=#c8c8c8>";
-        ssinfo << ( getCurrentSupportTiles() ? tr("Yes") : tr("No") ).toStdString() << "</font><br />";
+        ssinfo << "<b>" << tr("Поддерживает плитки:").toStdString() << "</b> <font color=#c8c8c8>";
+        ssinfo << ( getCurrentSupportTiles() ? tr("Да") : tr("Нет") ).toStdString() << "</font><br />";
         if (_imp->effect) {
-            ssinfo << "<b>" << tr("Supports multiresolution:").toStdString() << "</b> <font color=#c8c8c8>";
-            ssinfo << ( _imp->effect->supportsMultiResolution() ? tr("Yes") : tr("No") ).toStdString() << "</font><br />";
-            ssinfo << "<b>" << tr("Supports renderscale:").toStdString() << "</b> <font color=#c8c8c8>";
+            ssinfo << "<b>" << tr("Поддерживает мультиразрешение:").toStdString() << "</b> <font color=#c8c8c8>";
+            ssinfo << ( _imp->effect->supportsMultiResolution() ? tr("Да") : tr("Нет") ).toStdString() << "</font><br />";
+            ssinfo << "<b>" << tr("Поддерживает масштаб рендеринга:").toStdString() << "</b> <font color=#c8c8c8>";
             switch ( _imp->effect->supportsRenderScaleMaybe() ) {
                 case EffectInstance::eSupportsMaybe:
-                    ssinfo << tr("Maybe").toStdString();
+                    ssinfo << tr("Возможно").toStdString();
                     break;
 
                 case EffectInstance::eSupportsNo:
-                    ssinfo << tr("No").toStdString();
+                    ssinfo << tr("Нет").toStdString();
                     break;
 
                 case EffectInstance::eSupportsYes:
-                    ssinfo << tr("Yes").toStdString();
+                    ssinfo << tr("Да").toStdString();
                     break;
             }
             ssinfo << "</font><br />";
-            ssinfo << "<b>" << tr("Supports multiple clip PARs:").toStdString() << "</b> <font color=#c8c8c8>";
-            ssinfo << ( _imp->effect->supportsMultipleClipPARs() ? tr("Yes") : tr("No") ).toStdString() << "</font><br />";
-            ssinfo << "<b>" << tr("Supports multiple clip depths:").toStdString() << "</b> <font color=#c8c8c8>";
-            ssinfo << ( _imp->effect->supportsMultipleClipDepths() ? tr("Yes") : tr("No") ).toStdString() << "</font><br />";
+            ssinfo << "<b>" << tr("Поддерживает несколько клипов PARs:").toStdString() << "</b> <font color=#c8c8c8>";
+            ssinfo << ( _imp->effect->supportsMultipleClipPARs() ? tr("Да") : tr("Нет") ).toStdString() << "</font><br />";
+            ssinfo << "<b>" << tr("Поддерживает несколько клипов глубины:").toStdString() << "</b> <font color=#c8c8c8>";
+            ssinfo << ( _imp->effect->supportsMultipleClipDepths() ? tr("Нет") : tr("Нет") ).toStdString() << "</font><br />";
         }
-        ssinfo << "<b>" << tr("Render thread safety:").toStdString() << "</b> <font color=#c8c8c8>";
+        ssinfo << "<b>" << tr("Безопасность рендеринга потоков:").toStdString() << "</b> <font color=#c8c8c8>";
         switch ( getCurrentRenderThreadSafety() ) {
             case eRenderSafetyUnsafe:
-                ssinfo << tr("Unsafe").toStdString();
+                ssinfo << tr("Небезопасный").toStdString();
                 break;
 
             case eRenderSafetyInstanceSafe:
-                ssinfo << tr("Safe").toStdString();
+                ssinfo << tr("Безопасный").toStdString();
                 break;
 
             case eRenderSafetyFullySafe:
-                ssinfo << tr("Fully safe").toStdString();
+                ssinfo << tr("Полностью безопасный").toStdString();
                 break;
 
             case eRenderSafetyFullySafeFrame:
-                ssinfo << tr("Fully safe frame").toStdString();
+                ssinfo << tr("Полностью безопасный кадр").toStdString();
                 break;
         }
         ssinfo << "</font><br />";
-        ssinfo << "<b>" << tr("OpenGL Rendering Support:").toStdString() << "</b>: <font color=#c8c8c8>";
+        ssinfo << "<b>" << tr("Поддержка рендеринга OpenGL:").toStdString() << "</b>: <font color=#c8c8c8>";
         PluginOpenGLRenderSupport glSupport = getCurrentOpenGLRenderSupport();
         switch (glSupport) {
             case ePluginOpenGLRenderSupportNone:
-                ssinfo << tr("No").toStdString();
+                ssinfo << tr("Нет").toStdString();
                 break;
             case ePluginOpenGLRenderSupportNeeded:
-                ssinfo << tr("Yes but CPU rendering is not supported").toStdString();
+                ssinfo << tr("Да, но рендеринг процессора не поддерживается").toStdString();
                 break;
             case ePluginOpenGLRenderSupportYes:
-                ssinfo << tr("Yes").toStdString();
+                ssinfo << tr("Нет").toStdString();
                 break;
             default:
                 break;
@@ -7016,7 +7016,7 @@ Node::Implementation::runInputChangedCallback(int index,
     std::string script = ss.str();
     std::string output;
     if ( !NATRON_PYTHON_NAMESPACE::interpretPythonScript(script, &error, &output) ) {
-        _publicInterface->getApp()->appendToScriptEditor( tr("Failed to execute callback: %1").arg( QString::fromUtf8( error.c_str() ) ).toStdString() );
+        _publicInterface->getApp()->appendToScriptEditor( tr("Не удалось выполнить обратный вызов: %1").arg( QString::fromUtf8( error.c_str() ) ).toStdString() );
     } else {
         if ( !output.empty() ) {
             _publicInterface->getApp()->appendToScriptEditor(output);

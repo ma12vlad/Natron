@@ -2420,7 +2420,7 @@ KnobTable::decodeFromKnobTableFormat(const std::string& value,
                     }
                 }
                 knobName += QString::fromUtf8(getName().c_str());
-                QString err = tr("%1 table is wrongly encoded, check your project file or report an issue to the developers").arg(knobName);
+                QString err = tr("Таблица %1 закодирована неправильно. Проверьте файл проекта или сообщите о проблеме разработчикам.").arg(knobName);
                 throw std::logic_error(err.toStdString());
             }
 
@@ -2453,7 +2453,7 @@ KnobTable::decodeFromKnobTableFormat(const std::string& value,
                 }
             }
             knobName += QString::fromUtf8(getName().c_str());
-            QString err = tr("%1 table is wrongly encoded, check your project file or report an issue to the developers").arg(knobName);
+            QString err = tr("Таблица %1 закодирована неправильно. Проверьте файл проекта или сообщите о проблеме разработчикам.").arg(knobName);
             throw std::logic_error(err.toStdString());
 
         }

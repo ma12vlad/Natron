@@ -792,7 +792,7 @@ EffectInstance::renderRoI(const RenderRoIArgs & args,
         // Enable GPU render if the plug-in cannot render another way or if all conditions are met
 
         if (openGLSupport == ePluginOpenGLRenderSupportNeeded && !getNode()->getPlugin()->isOpenGLEnabled()) {
-            QString message = tr("OpenGL render is required for  %1 but was disabled in the Preferences for this plug-in, please enable it and restart %2").arg(QString::fromUtf8(getNode()->getLabel().c_str())).arg(QString::fromUtf8(NATRON_APPLICATION_NAME));
+            QString message = tr("Рендеринг OpenGL требуется для %1, но он отключен в настройках этого плагина. Включите его и перезапустите %2").arg(QString::fromUtf8(getNode()->getLabel().c_str())).arg(QString::fromUtf8(NATRON_APPLICATION_NAME));
             setPersistentMessage(eMessageTypeError, message.toStdString());
             return eRenderRoIRetCodeFailed;
         }
@@ -856,7 +856,7 @@ EffectInstance::renderRoI(const RenderRoIArgs & args,
             }
         }
     } else if ( appPTR->isOpenGLLoaded() && !appPTR->getCurrentSettings()->isOpenGLRenderingEnabled() && openGLSupport == ePluginOpenGLRenderSupportNeeded ) {
-        QString message = tr("OpenGL render is required for a plugin but it's currently disabled, please consider passing `--opengl enabled` to %1").arg(QString::fromUtf8(NATRON_APPLICATION_NAME));
+        QString message = tr("Для плагина требуется рендеринг OpenGL, но в данный момент он отключен, подумайте о том, чтобы указать значение --opengl enabled в %1").arg(QString::fromUtf8(NATRON_APPLICATION_NAME));
         setPersistentMessage(eMessageTypeError, message.toStdString());
         return eRenderRoIRetCodeFailed;
     }

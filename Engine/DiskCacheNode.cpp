@@ -88,8 +88,8 @@ DiskCacheNode::shouldCacheOutput(bool /*isFrameVaryingOrAnimated*/,
 void
 DiskCacheNode::initializeKnobs()
 {
-    KnobPagePtr page = AppManager::createKnob<KnobPage>( this, tr("Controls") );
-    KnobChoicePtr frameRange = AppManager::createKnob<KnobChoice>( this, tr("Frame range") );
+    KnobPagePtr page = AppManager::createKnob<KnobPage>( this, tr("Управление") );
+    KnobChoicePtr frameRange = AppManager::createKnob<KnobChoice>( this, tr("Диапазон кадров") );
 
     frameRange->setName("frameRange");
     frameRange->setAnimationEnabled(false);
@@ -105,7 +105,7 @@ DiskCacheNode::initializeKnobs()
     page->addKnob(frameRange);
     _imp->frameRange = frameRange;
 
-    KnobIntPtr firstFrame = AppManager::createKnob<KnobInt>( this, tr("First Frame") );
+    KnobIntPtr firstFrame = AppManager::createKnob<KnobInt>( this, tr("Первый кадр") );
     firstFrame->setAnimationEnabled(false);
     firstFrame->setName("firstFrame");
     firstFrame->disableSlider();
@@ -116,7 +116,7 @@ DiskCacheNode::initializeKnobs()
     page->addKnob(firstFrame);
     _imp->firstFrame = firstFrame;
 
-    KnobIntPtr lastFrame = AppManager::createKnob<KnobInt>( this, tr("Last Frame") );
+    KnobIntPtr lastFrame = AppManager::createKnob<KnobInt>( this, tr("Последний кадр") );
     lastFrame->setAnimationEnabled(false);
     lastFrame->setName("LastFrame");
     lastFrame->disableSlider();
@@ -126,10 +126,10 @@ DiskCacheNode::initializeKnobs()
     page->addKnob(lastFrame);
     _imp->lastFrame = lastFrame;
 
-    KnobButtonPtr preRender = AppManager::createKnob<KnobButton>( this, tr("Pre-cache") );
+    KnobButtonPtr preRender = AppManager::createKnob<KnobButton>( this, tr("Предварительное кэширование") );
     preRender->setName("preRender");
     preRender->setEvaluateOnChange(false);
-    preRender->setHintToolTip( tr("Cache the frame range specified by rendering images at zoom-level 100% only.") );
+    preRender->setHintToolTip( tr("Кэшируйте диапазон кадров, указанный при рендеринге изображений только с масштабированием 100%.") );
     page->addKnob(preRender);
     _imp->preRender = preRender;
 }

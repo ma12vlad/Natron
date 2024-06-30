@@ -568,7 +568,7 @@ FileSystemModel::initialize(SortableViewI* view)
 {
     assert(view);
     assert( _imp->headers.isEmpty() );
-    _imp->headers << tr("Name") << tr("Size") << tr("Type") << tr("Date Modified");
+    _imp->headers << tr("Имя") << tr("Размер") << tr("Тип") << tr("Дата изменения");
 
     _imp->ordering = view->sortIndicatorOrder();
     _imp->sortSection = view->sortIndicatorSection();

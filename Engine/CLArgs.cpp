@@ -275,10 +275,10 @@ CLArgs::isEmpty() const
 void
 CLArgs::printBackGroundWelcomeMessage()
 {
-    QString msg = tr("%1 Version %2\n"
-                     "(C) 2018-2023 The Natron developers\n"
+    QString msg = tr("%1 версия %2\n"
+                     "(C) 2018-2023 Разработчики Natron\n"
                      "(C) 2013-2018 INRIA and Alexandre Gauthier-Foichat\n"
-                     ">>>Use the --help or -h option to print usage.<<<").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).arg( QString::fromUtf8(NATRON_VERSION_STRING) );
+                     ">>>Используйте --help или -h, чтобы вывести информацию об использовании.<<<").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).arg( QString::fromUtf8(NATRON_VERSION_STRING) );
     std::cout << msg.toStdString() << std::endl;
 }
 
@@ -653,7 +653,7 @@ CLArgsPrivate::hasOutputToken(QString& indexStr)
                 indexStr.toInt(&ok);
                 if (!ok) {
                     error = 1;
-                    std::cout << tr("Wrong formatting for the -o option").toStdString() << std::endl;
+                    std::cout << tr("Неверное форматирование опции -o").toStdString() << std::endl;
 
                     return args.end();
                 }
@@ -676,7 +676,7 @@ CLArgsPrivate::hasOutputToken(QString& indexStr)
                     indexStr.toInt(&ok);
                     if (!ok) {
                         error = 1;
-                        std::cout << tr("Wrong formatting for the -o option").toStdString() << std::endl;
+                        std::cout << tr("Неверное форматирование опции -o").toStdString() << std::endl;
 
                         return args.end();
                     }
@@ -786,9 +786,9 @@ CLArgsPrivate::parse()
         if ( it != args.end() ) {
             it = args.erase(it);
 
-            QString msg = tr("%1 version %2 at commit %3 on branch %4").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).arg( QString::fromUtf8(NATRON_VERSION_STRING) ).arg( QString::fromUtf8(GIT_COMMIT) ).arg( QString::fromUtf8(GIT_BRANCH) );
+            QString msg = tr("%1 версия %2 при фиксации %3 в ветке %4").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).arg( QString::fromUtf8(NATRON_VERSION_STRING) ).arg( QString::fromUtf8(GIT_COMMIT) ).arg( QString::fromUtf8(GIT_BRANCH) );
 #         if defined(NATRON_CONFIG_SNAPSHOT) || defined(DEBUG)
-            msg += tr(" built on %1").arg( QString::fromUtf8(__DATE__) );
+            msg += tr(" построен на %1").arg( QString::fromUtf8(__DATE__) );
 #         endif
             std::cout << msg.toStdString() << std::endl;
             error = 1;
@@ -852,7 +852,7 @@ CLArgsPrivate::parse()
 
             isInterpreterMode = true;
             isBackground = true;
-            std::cout << tr("Note: -t argument given, loading in command-line interpreter mode, only Python commands / scripts are accepted").toStdString()
+            std::cout << tr("Примечание. Указан аргумент -t, загрузка в режиме интерпретатора командной строки, принимаются только команды/скрипты Python.").toStdString()
                       << std::endl;
         }
     }
@@ -873,7 +873,7 @@ CLArgsPrivate::parse()
             it = args.erase(it);
 
             if ( it == args.end() ) {
-                std::cout << tr("You must specify the breakpad process executable file path").toStdString() << std::endl;
+                std::cout << tr("Нужно указать путь к исполняемому файлу процесса Breakpad.").toStdString() << std::endl;
                 error = 1;
 
                 return;
@@ -888,7 +888,7 @@ CLArgsPrivate::parse()
         if ( it != args.end() ) {
             it = args.erase(it);
             if ( it == args.end() || it->startsWith( QChar::fromLatin1('-') ) ) {
-                std::cout << tr("You must specify the breakpad process executable file path").toStdString() << std::endl;
+                std::cout << tr("Нужно указать путь к исполняемому файлу процесса Breakpad.").toStdString() << std::endl;
                 error = 1;
 
                 return;
@@ -904,7 +904,7 @@ CLArgsPrivate::parse()
             it = args.erase(it);
 
             if ( it == args.end() || it->startsWith( QChar::fromLatin1('-') ) ) {
-                std::cout << tr("You must specify the breakpad pipe client FD").toStdString() << std::endl;
+                std::cout << tr("Вы должны указать клиентский FD канала разрывной панели.").toStdString() << std::endl;
                 error = 1;
 
                 return;
@@ -920,7 +920,7 @@ CLArgsPrivate::parse()
             it = args.erase(it);
 
             if ( it == args.end() || it->startsWith( QChar::fromLatin1('-') ) ) {
-                std::cout << tr("You must specify the breakpad pipe path").toStdString() << std::endl;
+                std::cout << tr("Вы должны указать путь к трубе разрывной панели").toStdString() << std::endl;
                 error = 1;
 
                 return;
@@ -935,7 +935,7 @@ CLArgsPrivate::parse()
         if ( it != args.end() ) {
             it = args.erase(it);
             if ( it == args.end() || it->startsWith( QChar::fromLatin1('-') ) ) {
-                std::cout << tr("You must specify the breakpad communication pipe path").toStdString() << std::endl;
+                std::cout << tr("Вы должны указать путь к каналу связи с разрывной панелью.").toStdString() << std::endl;
                 error = 1;
 
                 return;
@@ -952,7 +952,7 @@ CLArgsPrivate::parse()
             it = args.erase(it);
 
             if ( it == args.end() || it->startsWith( QChar::fromLatin1('-') ) ) {
-                std::cout << tr("You must specify the doc dir path").toStdString() << std::endl;
+                std::cout << tr("Вы должны указать путь к каталогу документа.").toStdString() << std::endl;
                 error = 1;
 
                 return;
@@ -968,7 +968,7 @@ CLArgsPrivate::parse()
         if ( it != args.end() ) {
             it = args.erase(it);
             if ( it == args.end() || it->startsWith( QChar::fromLatin1('-') ) ) {
-                std::cout << tr("You must specify the IPC pipe filename").toStdString() << std::endl;
+                std::cout << tr("Вы должны указать имя файла канала IPC.").toStdString() << std::endl;
                 error = 1;
 
                 return;
@@ -984,7 +984,7 @@ CLArgsPrivate::parse()
             it = args.erase(it);
 
             if ( it == args.end() || it->startsWith( QChar::fromLatin1('-') ) ) {
-                std::cout << tr("--onload or -l specified, you must enter a script filename afterwards.").toStdString() << std::endl;
+                std::cout << tr("Указан параметр --onload или -l, после этого необходимо ввести имя файла сценария.").toStdString() << std::endl;
                 error = 1;
 
                 return;
@@ -997,14 +997,14 @@ CLArgsPrivate::parse()
 #endif
             QFileInfo fi(defaultOnProjectLoadedScript);
             if ( !fi.exists() ) {
-                std::cout << tr("WARNING: --onload %1 ignored because the file does not exist.").arg(defaultOnProjectLoadedScript).toStdString() << std::endl;
+                std::cout << tr("ВНИМАНИЕ: --onload %1 игнорируется, файла не существует.").arg(defaultOnProjectLoadedScript).toStdString() << std::endl;
                 defaultOnProjectLoadedScript.clear();
             } else {
                 defaultOnProjectLoadedScript = fi.canonicalFilePath();
             }
 
             if ( !defaultOnProjectLoadedScript.endsWith( QString::fromUtf8(".py") ) ) {
-                std::cout << tr("The optional on project load script must be a Python script (filename ending with .py).").toStdString() << std::endl;
+                std::cout << tr("Необязательный сценарий загрузки проекта должен быть сценарием Python (расширение файла .py).").toStdString() << std::endl;
                 error = 1;
 
                 return;
@@ -1018,7 +1018,7 @@ CLArgsPrivate::parse()
             it = args.erase(it);
 
             if ( it == args.end() || it->startsWith( QChar::fromLatin1('-') ) ) {
-                std::cout << tr("You must specify a choice when using the --opengl option").toStdString() << std::endl;
+                std::cout << tr("Вы должны указать выбор при использовании параметра --opengl").toStdString() << std::endl;
                 error = 1;
 
                 return;
@@ -1028,7 +1028,7 @@ CLArgsPrivate::parse()
             it = args.erase(it);
 
             if (choice != QString::fromUtf8("enabled") && choice != QString::fromUtf8("disabled") && choice != QString::fromUtf8("foreground")) {
-                std::cout << tr("Valid options for --opengl are enabled, disabled and foreground").toStdString() << std::endl;
+                std::cout << tr("Допустимыми параметрами для --opengl являются enabled, disabled и foreground").toStdString() << std::endl;
                 error = 1;
 
                 return;
@@ -1048,14 +1048,14 @@ CLArgsPrivate::parse()
         it = args.erase(it);
         
         if ( it == args.end() || it->startsWith( QChar::fromLatin1('-') ) ) {
-            std::cout << tr("You must specify a setting name and value as \"name=value\" when using the --setting option").toStdString() << std::endl;
+            std::cout << tr("При использовании параметра --setting необходимо указать имя и значение параметра как «имя=значение».").toStdString() << std::endl;
             error = 1;
 
             return;
         }
         int pos = it->indexOf( QLatin1Char('=') );
         if (pos == -1) {
-            std::cout << tr("You must specify a setting name and value as \"name=value\" when using the --setting option").toStdString() << std::endl;
+            std::cout << tr("При использовании параметра --setting необходимо указать имя и значение параметра как «имя=значение».").toStdString() << std::endl;
             error = 1;
 
             return;
@@ -1081,7 +1081,7 @@ CLArgsPrivate::parse()
         it = args.erase(it);
 
         if ( it == args.end() || it->startsWith( QChar::fromLatin1('-') ) ) {
-            std::cout << tr("You must specify a command when using the -c option").toStdString() << std::endl;
+            std::cout << tr("Вы должны указать команду при использовании опции -c").toStdString() << std::endl;
             error = 1;
 
             return;
@@ -1099,7 +1099,7 @@ CLArgsPrivate::parse()
         }
 
         if (!isBackground || isInterpreterMode) {
-            std::cout << tr("You cannot use the -w option in interactive or interpreter mode").toStdString() << std::endl;
+            std::cout << tr("Вы не можете использовать опцию -w в интерактивном режиме или режиме переводчика.").toStdString() << std::endl;
             error = 1;
 
             return;
@@ -1108,7 +1108,7 @@ CLArgsPrivate::parse()
         it = args.erase(it);
 
         if ( it == args.end() || it->startsWith( QChar::fromLatin1('-') ) ) {
-            std::cout << tr("You must specify the name of a Write node when using the -w option").toStdString() << std::endl;
+            std::cout << tr("При использовании параметра -w необходимо указать имя узла записи").toStdString() << std::endl;
             error = 1;
 
             return;
@@ -1118,8 +1118,8 @@ CLArgsPrivate::parse()
         //Check that the name is conform to a Python acceptable script name
         std::string pythonConform = NATRON_PYTHON_NAMESPACE::makeNameScriptFriendlyWithDots( it->toStdString() );
         if (it->toStdString() != pythonConform) {
-            std::cout << tr("The name of the Write node specified is not valid: it cannot contain non alpha-numerical "
-                            "characters and must not start with a digit.").toStdString() << std::endl;
+            std::cout << tr("Указанное имя узла записи недопустимо: оно не может содержать буквенно-цифровых символов, "
+                            "и не должно начинаться с цифры.").toStdString() << std::endl;
             error = 1;
 
             return;
@@ -1160,7 +1160,7 @@ CLArgsPrivate::parse()
         }
 
         if (!isBackground || isInterpreterMode) {
-            std::cout << tr("You cannot use the -i option in interactive or interpreter mode").toStdString() << std::endl;
+            std::cout << tr("Вы не можете использовать опцию -i в интерактивном режиме или режиме переводчика.").toStdString() << std::endl;
             error = 1;
 
             return;
@@ -1169,7 +1169,7 @@ CLArgsPrivate::parse()
         it = args.erase(it);
 
         if ( it == args.end() || it->startsWith( QChar::fromLatin1('-') ) ) {
-            std::cout << tr("You must specify the name of a Read node when using the -i option").toStdString() << std::endl;
+            std::cout << tr("Вы должны указать имя узла чтения при использовании опции -i.").toStdString() << std::endl;
             error = 1;
 
             return;
@@ -1179,8 +1179,8 @@ CLArgsPrivate::parse()
         //Check that the name is conform to a Python acceptable script name
         std::string pythonConform = NATRON_PYTHON_NAMESPACE::makeNameScriptFriendly( it->toStdString() );
         if (it->toStdString() != pythonConform) {
-            std::cout << tr("The name of the Read node specified is not valid: it cannot contain non alpha-numerical "
-                            "characters and must not start with a digit.").toStdString() << std::endl;
+            std::cout << tr("Указанное имя узла чтения недопустимо: оно не может содержать небуквенно-цифровые "
+                            "символы и не должны начинаться с цифры.").toStdString() << std::endl;
             error = 1;
 
             return;
@@ -1191,7 +1191,7 @@ CLArgsPrivate::parse()
         it = args.erase(it);
 
         if ( it == args.end() || it->startsWith( QChar::fromLatin1('-') ) ) {
-            std::cout << tr("You must specify the filename for the following Read node: ").toStdString()  << r.name.toStdString() << std::endl;
+            std::cout << tr("Вы должны указать имя файла для следующего узла чтения: ").toStdString()  << r.name.toStdString() << std::endl;
             error = 1;
 
             return;
@@ -1221,7 +1221,7 @@ CLArgsPrivate::parse()
         }
 
         if (!isBackground) {
-            std::cout << tr("You cannot use the -o option in interactive or interpreter mode").toStdString() << std::endl;
+            std::cout << tr("Вы не можете использовать опцию -o в интерактивном режиме или режиме переводчика.").toStdString() << std::endl;
             error = 1;
 
             return;
@@ -1236,7 +1236,7 @@ CLArgsPrivate::parse()
         it = args.erase(it);
 
         if ( it == args.end() || it->startsWith( QChar::fromLatin1('-') ) ) {
-            std::cout << tr("Filename is not optional with the -o option").toStdString() << std::endl;
+            std::cout << tr("Имя файла не является обязательным с опцией -o").toStdString() << std::endl;
             error = 1;
 
             return;
@@ -1268,7 +1268,7 @@ CLArgsPrivate::parse()
             if (it != args.end()) {
                 isPythonScript = true;
             } else if (!isInterpreterMode && isBackground) {
-                std::cout << tr("You must specify the filename of a script or %1 project. (.%2)").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).arg( QString::fromUtf8(NATRON_PROJECT_FILE_EXT) ).toStdString() << std::endl;
+                std::cout << tr("Необходимо указать имя файла сценария или проекта %1. (.%2)").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).arg( QString::fromUtf8(NATRON_PROJECT_FILE_EXT) ).toStdString() << std::endl;
                 error = 1;
 
                 return;
@@ -1348,14 +1348,14 @@ CLArgsPrivate::parse()
 #endif // DEBUG
 
     if (atLeastOneOutput && !rangeSet) {
-        std::cout << tr("A frame range must be set when using the -o option").toStdString() << std::endl;
+        std::cout << tr("Диапазон кадров должен быть установлен при использовании опции -o").toStdString() << std::endl;
         error = 1;
 
         return;
     }
 
     if ( !args.empty() ) {
-        std::cout << tr("Some command-line arguments could not be parsed (use option -h for help):").toStdString() << std::endl;
+        std::cout << tr("Некоторые аргументы командной строки не удалось проанализировать (для справки используйте опцию -h):").toStdString() << std::endl;
         for (QStringList::iterator it = args.begin(); it != args.end(); ++it) {
             std::cout << it->toStdString() << std::endl;
         }

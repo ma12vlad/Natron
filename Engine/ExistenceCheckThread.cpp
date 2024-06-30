@@ -159,7 +159,7 @@ ExistenceCheckerThread::run()
             }
 
             if (!receivedAcknowledgement) {
-                std::cerr << tr("Crash reporter process does not seem to be responding anymore. This pipe %1 might be used somewhere else.").arg(_imp->comServerPipePath).toStdString() << std::endl;
+                std::cerr << tr("Для плагина требуется рендеринг OpenGL, но в настоящее время он отключен, рассмотрите возможность передачи `--opengl Enabled` в %1").arg(_imp->comServerPipePath).toStdString() << std::endl;
                 /*
                    We did not receive the acknowledgement, hence quit
                  */

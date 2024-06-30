@@ -893,19 +893,19 @@ AppManagerPrivate::addOpenGLRequirementsString(QString& str, OpenGLRequirementsT
     switch (type) {
         case eOpenGLRequirementsTypeViewer: {
             str += QLatin1Char('\n');
-            str += tr("%1 requires at least OpenGL %2.%3 with the following extensions so the viewer works appropriately:").arg(QLatin1String(NATRON_APPLICATION_NAME)).arg(NATRON_OPENGL_VERSION_REQUIRED_MAJOR).arg(NATRON_OPENGL_VERSION_REQUIRED_MINOR);
+            str += tr("Для %1 требуется как минимум OpenGL %2.%3 со следующими расширениями, чтобы средство просмотра работало корректно:").arg(QLatin1String(NATRON_APPLICATION_NAME)).arg(NATRON_OPENGL_VERSION_REQUIRED_MAJOR).arg(NATRON_OPENGL_VERSION_REQUIRED_MINOR);
             str += QLatin1Char('\n');
             str += QString::fromUtf8("GL_ARB_vertex_buffer_object,GL_ARB_pixel_buffer_object");
             str += QLatin1Char('\n');
 #ifdef __NATRON_WIN32__
-            str += tr("To fix this: Re-start the installer, select \"Package manager\" and then install the \"Software OpenGL\" component.\n");
-            str += tr("If you don't have the installer you can manually copy opengl32.dll located in the \"bin\\mesa\" directory of your %1 installation to the \"bin\" directory.").arg(QLatin1String(NATRON_APPLICATION_NAME));
+            str += tr("Чтобы это исправить: перезапустите установщик, выберите \"Package manager\" а затем установите \"Software OpenGL\" компонент.\n");
+            str += tr("Если у вас нет установщика, можно вручную скопировать opengl32.dll, из папки \"bin\\mesa\" каталог вашего %1 и установить в \"bin\" каталог.").arg(QLatin1String(NATRON_APPLICATION_NAME));
 #endif
             break;
         }
         case eOpenGLRequirementsTypeRendering: {
             str += QLatin1Char('\n');
-            str += tr("%1 requires at least OpenGL %2.%3 with the following extensions to perform OpenGL rendering:").arg(QLatin1String(NATRON_APPLICATION_NAME)).arg(NATRON_OPENGL_VERSION_REQUIRED_MAJOR).arg(NATRON_OPENGL_VERSION_REQUIRED_MINOR);
+            str += tr("%1 требуется как минимум OpenGL %2.%3 со следующими расширениями для выполнения рендеринга OpenGL:").arg(QLatin1String(NATRON_APPLICATION_NAME)).arg(NATRON_OPENGL_VERSION_REQUIRED_MAJOR).arg(NATRON_OPENGL_VERSION_REQUIRED_MINOR);
             str += QLatin1Char('\n');
             str += QString::fromUtf8("GL_ARB_vertex_buffer_object <br /> GL_ARB_pixel_buffer_object <br /> GL_ARB_vertex_array_object or GL_APPLE_vertex_array_object <br /> GL_ARB_framebuffer_object or GL_EXT_framebuffer_object <br /> GL_ARB_texture_float");
             str += QLatin1Char('\n');
@@ -916,16 +916,16 @@ AppManagerPrivate::addOpenGLRequirementsString(QString& str, OpenGLRequirementsT
     OSGLContext::getGPUInfos(openGLRenderers);
     if ( !openGLRenderers.empty() ) {
         str += QLatin1Char('\n');
-        str += tr("Available OpenGL renderers:");
+        str += tr("Доступные средства визуализации OpenGL:");
         str += QLatin1Char('\n');
         for (std::list<OpenGLRendererInfo>::iterator it = openGLRenderers.begin(); it != openGLRenderers.end(); ++it) {
-            str += (tr("Vendor:") + QString::fromUtf8(" ") + QString::fromUtf8( it->vendorName.c_str() ) +
+            str += (tr("Продавец:") + QString::fromUtf8(" ") + QString::fromUtf8( it->vendorName.c_str() ) +
                     QLatin1Char('\n') +
-                    tr("Renderer:") + QString::fromUtf8(" ") + QString::fromUtf8( it->rendererName.c_str() ) +
+                    tr("Визуализация:") + QString::fromUtf8(" ") + QString::fromUtf8( it->rendererName.c_str() ) +
                     QLatin1Char('\n') +
-                    tr("OpenGL Version:") + QString::fromUtf8(" ") + QString::fromUtf8( it->glVersionString.c_str() ) +
+                    tr("Версия OpenGL:") + QString::fromUtf8(" ") + QString::fromUtf8( it->glVersionString.c_str() ) +
                     QLatin1Char('\n') +
-                    tr("GLSL Version:") + QString::fromUtf8(" ") + QString::fromUtf8( it->glslVersionString.c_str() ) );
+                    tr("Версия GLSL:") + QString::fromUtf8(" ") + QString::fromUtf8( it->glslVersionString.c_str() ) );
             str += QLatin1Char('\n');
             str += QLatin1Char('\n');
         }
@@ -1129,7 +1129,7 @@ AppManagerPrivate::initGl(bool checkRenderingReq)
         !GLAD_GL_ARB_pixel_buffer_object ||
         !GLAD_GL_ARB_vertex_buffer_object) {
 
-        viewerReq.error = tr("Failed to load OpenGL.");
+        viewerReq.error = tr("Не удалось загрузить OpenGL.");
         addOpenGLRequirementsString(viewerReq.error, eOpenGLRequirementsTypeViewer);
         viewerReq.hasRequirements = false;
         renderingReq.hasRequirements = false;
@@ -1146,7 +1146,7 @@ AppManagerPrivate::initGl(bool checkRenderingReq)
             (!GLAD_GL_ARB_vertex_array_object && !GLAD_GL_APPLE_vertex_array_object))
         {
             renderingReq.error += QLatin1String("<p>");
-            renderingReq.error += tr("Failed to load OpenGL.");
+            renderingReq.error += tr("Не удалось загрузить OpenGL.");
             addOpenGLRequirementsString(renderingReq.error, eOpenGLRequirementsTypeRendering);
 
 

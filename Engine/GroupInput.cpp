@@ -45,20 +45,20 @@ GroupInput::getPluginDescription() const
 void
 GroupInput::initializeKnobs()
 {
-    KnobPagePtr page = AppManager::createKnob<KnobPage>( this, tr("Controls") );
+    KnobPagePtr page = AppManager::createKnob<KnobPage>( this, tr("Управление") );
 
     page->setName("controls");
 
-    KnobBoolPtr optKnob = AppManager::createKnob<KnobBool>( this, tr("Optional") );
-    optKnob->setHintToolTip( tr("When checked, this input of the group will be optional, i.e. it will not be required that it is connected "
-                                "for the render to work.") );
+    KnobBoolPtr optKnob = AppManager::createKnob<KnobBool>( this, tr("Необязательно") );
+    optKnob->setHintToolTip( tr("Если этот флажок установлен, то этот ввод группы будет необязательным, т.е. для работы рендера не потребуется "
+                                "чтобы он был подключен.") );
     optKnob->setAnimationEnabled(false);
     optKnob->setName(kNatronGroupInputIsOptionalParamName);
     page->addKnob(optKnob);
     optional = optKnob;
 
-    KnobBoolPtr maskKnob = AppManager::createKnob<KnobBool>( this, tr("Mask") );
-    maskKnob->setHintToolTip( tr("When checked, this input of the group will be considered as a mask. A mask is always optional.") );
+    KnobBoolPtr maskKnob = AppManager::createKnob<KnobBool>( this, tr("Маска") );
+    maskKnob->setHintToolTip( tr("Если этот флажок установлен, этот вход группы будет рассматриваться как маска. Маска всегда необязательна.") );
     maskKnob->setAnimationEnabled(false);
     maskKnob->setName(kNatronGroupInputIsMaskParamName);
     page->addKnob(maskKnob);
