@@ -83,7 +83,7 @@ NodeGraph::togglePreviewsForSelectedNodes()
     }
 
     if (empty) {
-        Dialogs::warningDialog( tr("Toggle Preview").toStdString(), tr("You must select a node first").toStdString() );
+        Dialogs::warningDialog( tr("Переключить предпросмотр").toStdString(), tr("Сначала выберите узел").toStdString() );
     }
 }
 
@@ -125,7 +125,7 @@ void
 NodeGraph::copySelectedNodes()
 {
     if ( _imp->_selection.empty() ) {
-        Dialogs::warningDialog( tr("Copy").toStdString(), tr("You must select at least a node to copy first.").toStdString() );
+        Dialogs::warningDialog( tr("Копировать").toStdString(), tr("Сначала выбрите хотя бы один узел для копирования.").toStdString() );
 
         return;
     }
@@ -154,7 +154,7 @@ void
 NodeGraph::cutSelectedNodes()
 {
     if ( _imp->_selection.empty() ) {
-        Dialogs::warningDialog( tr("Cut").toStdString(), tr("You must select at least a node to cut first.").toStdString() );
+        Dialogs::warningDialog( tr("Обрезать").toStdString(), tr("Сначала выбрите хотя бы один узел, который нужно обрезать.").toStdString() );
 
         return;
     }
@@ -209,7 +209,7 @@ void
 NodeGraph::duplicateSelectedNodes(const QPointF& pos)
 {
     if ( _imp->_selection.empty() && _imp->_selection.empty() ) {
-        Dialogs::warningDialog( tr("Duplicate").toStdString(), tr("You must select at least a node to duplicate first.").toStdString() );
+        Dialogs::warningDialog( tr("Дублировать").toStdString(), tr("Сначала выбрите хотя бы узел для дублирования.").toStdString() );
 
         return;
     }
@@ -233,7 +233,7 @@ void
 NodeGraph::cloneSelectedNodes(const QPointF& scenePos)
 {
     if ( _imp->_selection.empty() ) {
-        Dialogs::warningDialog( tr("Clone").toStdString(), tr("You must select at least a node to clone first.").toStdString() );
+        Dialogs::warningDialog( tr("Клонировать").toStdString(), tr("Сначала выбрите хотя бы узел для клонирования.").toStdString() );
 
         return;
     }
@@ -245,7 +245,7 @@ NodeGraph::cloneSelectedNodes(const QPointF& scenePos)
     NodesGuiList nodesToCopy = _imp->_selection;
     for (NodesGuiList::iterator it = _imp->_selection.begin(); it != _imp->_selection.end(); ++it) {
         if ( (*it)->getNode()->getMasterNode() ) {
-            Dialogs::errorDialog( tr("Clone").toStdString(), tr("You cannot clone a node which is already a clone.").toStdString() );
+            Dialogs::errorDialog( tr("Клонировать").toStdString(), tr("Нельзя клонировать узел, который уже является клоном.").toStdString() );
 
             return;
         }
@@ -279,19 +279,19 @@ NodeGraph::cloneSelectedNodes(const QPointF& scenePos)
 
     for (NodesGuiList::iterator it = nodesToCopy.begin(); it != nodesToCopy.end(); ++it) {
         if ( (*it)->getNode()->getEffectInstance()->isSlave() ) {
-            Dialogs::errorDialog( tr("Clone").toStdString(), tr("You cannot clone a node which is already a clone.").toStdString() );
+            Dialogs::errorDialog( tr("Клонировать").toStdString(), tr("Нельзя клонировать узел, который уже является клоном.").toStdString() );
 
             return;
         }
         ViewerInstance* isViewer = (*it)->getNode()->isEffectViewer();
         if (isViewer) {
-            Dialogs::errorDialog( tr("Clone").toStdString(), tr("Cloning a viewer is not a valid operation.").toStdString() );
+            Dialogs::errorDialog( tr("Клонировать").toStdString(), tr("Клонирование средства просмотра невозможно.").toStdString() );
 
             return;
         }
         if ( (*it)->getNode()->isMultiInstance() ) {
-            QString err = QString::fromUtf8("%1 cannot be cloned.").arg( QString::fromUtf8( (*it)->getNode()->getLabel().c_str() ) );
-            Dialogs::errorDialog( tr("Clone").toStdString(),
+            QString err = QString::fromUtf8("%1 невозможно клонировать.").arg( QString::fromUtf8( (*it)->getNode()->getLabel().c_str() ) );
+            Dialogs::errorDialog( tr("Клонировать").toStdString(),
                                   tr( err.toStdString().c_str() ).toStdString() );
 
             return;
@@ -349,7 +349,7 @@ void
 NodeGraph::decloneSelectedNodes()
 {
     if ( _imp->_selection.empty() ) {
-        Dialogs::warningDialog( tr("Declone").toStdString(), tr("You must select at least a node to declone first.").toStdString() );
+        Dialogs::warningDialog( tr("Деклонировать").toStdString(), tr("Сначала нужно выбрать хотя бы узел деклонирования.").toStdString() );
 
         return;
     }

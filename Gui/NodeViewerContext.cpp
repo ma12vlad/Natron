@@ -417,7 +417,7 @@ NodeViewerContextPrivate::addToolBarTool(const std::string& toolID,
             std::list<QKeySequence> keybinds = getKeybind( shortcutGroup, QString::fromUtf8( toolID.c_str() ) );
             if (keybinds.size() >= 1) {
                 toolTip += QString::fromUtf8("<p><b>");
-                toolTip += tr("Keyboard shortcut: %1").arg( keybinds.front().toString(QKeySequence::NativeText) );
+                toolTip += tr("Клавиатурные сочетания: %1").arg( keybinds.front().toString(QKeySequence::NativeText) );
                 toolTip += QString::fromUtf8("</b></p>");
             }
         }

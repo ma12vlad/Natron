@@ -369,7 +369,7 @@ NodeCreationDialog::NodeCreationDialog(const QString& initialFilter,
     : QDialog(parent)
     , _imp( new NodeCreationDialogPrivate() )
 {
-    setWindowTitle( tr("Node Creation Tool") );
+    setWindowTitle( tr("Инструмент создания узла") );
     setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
     setObjectName( QString::fromUtf8("nodeCreationDialog") );
     setAttribute(Qt::WA_DeleteOnClose, true);

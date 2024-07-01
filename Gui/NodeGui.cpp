@@ -689,8 +689,8 @@ NodeGui::createGui()
     exprGrad.push_back( qMakePair( 0.3, QColor(Qt::green) ) );
     exprGrad.push_back( qMakePair( 1., QColor(69, 96, 63) ) );
     _expressionIndicator.reset( new NodeGuiIndicator(getDagGui(), depth + 2, QString::fromUtf8("E"), bbox.topRight(), ellipseDiam, ellipseDiam, exprGrad, QColor(255, 255, 255), this) );
-    _expressionIndicator->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("This node has one or several expression(s) involving values of parameters of other "
-                                                                        "nodes in the project. Hover the mouse on the green connections to see what are the effective links."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _expressionIndicator->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Этот узел содержит одно или несколько выражений, включающих значения параметров других узлов в проекте. "
+                                                                        "Наведите курсор мыши на зеленые соединения, чтобы увидеть, какие из них являются эффективными"), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _expressionIndicator->setActive(false);
 
     _availableViewsIndicator.reset( new NodeGuiIndicator(getDagGui(), depth + 2, QString::fromUtf8("V"), bbox.topLeft(), ellipseDiam, ellipseDiam, exprGrad, QColor(255, 255, 255), this) );
@@ -2184,11 +2184,11 @@ NodeGui::onPersistentMessageChanged()
         setToolTip( QString() );
     } else {
         if (type == 1) {
-            _persistentMessage->setText( tr("ERROR") );
+            _persistentMessage->setText( tr("ОШИБКА") );
             QColor errColor(128, 0, 0, 255);
             _persistentMessage->setBrush(errColor);
         } else if (type == 2) {
-            _persistentMessage->setText( tr("WARNING") );
+            _persistentMessage->setText( tr("ПРЕДУПРЕЖДЕНИЕ") );
             QColor warColor(180, 180, 0, 255);
             _persistentMessage->setBrush(warColor);
         } else {
@@ -2856,7 +2856,7 @@ NodeGui::onStreamWarningsChanged()
         if ( it->second.isEmpty() ) {
             continue;
         }
-        QString tt = QString::fromUtf8("<p><b>") + tr("Stream issue:") + QString::fromUtf8("</b></p>");
+        QString tt = QString::fromUtf8("<p><b>") + tr("Проблема с потоком:") + QString::fromUtf8("</b></p>");
         tt += NATRON_NAMESPACE::convertFromPlainText(it->second.trimmed(), NATRON_NAMESPACE::WhiteSpaceNormal);
         tooltip += tt;
     }
@@ -3174,7 +3174,7 @@ NodeGui::onOutputLayerChanged()
         processAll = processAllKnob->getValue();
         if (processAll) {
             //extraLayerStr.append( QString::fromUtf8("<br />") );
-            extraLayerStr += tr("(All)");
+            extraLayerStr += tr("(все)");
         }
     }
     KnobChoicePtr layerKnob = internalNode->getChannelSelectorKnob(-1);
@@ -3474,7 +3474,7 @@ NodeGui::setName(const QString & newName)
     try {
         node->setScriptName(stdName);
     } catch (const std::exception& e) {
-        Dialogs::errorDialog(tr("Rename").toStdString(), tr("Could not set node script-name to ").toStdString() + stdName + ": " + e.what());
+        Dialogs::errorDialog(tr("Переименовать").toStdString(), tr("Не удалось установить имя сценария узла на ").toStdString() + stdName + ": " + e.what());
         return;
     }
 
@@ -3851,7 +3851,7 @@ NodeGui::onAvailableViewsChanged()
     }
 
     QString toolTip;
-    toolTip.append( tr("The following views are available in this node:") );
+    toolTip.append( tr("В этом узле доступны следующие представления:") );
     toolTip.append( QString::fromUtf8(" ") );
     for (std::size_t i = 0; i < views.size(); ++i) {
         ///Try to find a match in the project views to have the same case sensitivity
@@ -3919,7 +3919,7 @@ NodeGui::onIdentityStateChanged(int inputNb)
 
     _passThroughIndicator->setActive(ptInput.get() != 0);
     if (ptInput) {
-        QString tooltip = tr("This node is a pass-through and produces the same results as %1.").arg( QString::fromUtf8( ptInput->getLabel().c_str() ) );
+        QString tooltip = tr("Этот узел является сквозным и дает те же результаты, что и %1.").arg( QString::fromUtf8( ptInput->getLabel().c_str() ) );
         _passThroughIndicator->setToolTip(tooltip);
         for (std::size_t i = 0; i < _inputEdges.size(); ++i) {
             if ( (int)i != inputNb ) {

@@ -252,7 +252,7 @@ NodeGraph::removeNode(const NodeGuiPtr & node)
                 std::string masterNodeName = node->getNode()->getFullyQualifiedName();
                 std::string master = masterNodeName + "." + knobs[i]->getName();
                 std::string slave = isEffect->getNode()->getFullyQualifiedName() + "." + listener->getName();
-                foundLinkedErrorMessage = tr("%1 is linked to %2 through a link or expression. Deleting %3 may break this link.\nContinue anyway?").arg(QString::fromUtf8(slave.c_str())).arg(QString::fromUtf8(master.c_str())).arg(QString::fromUtf8(masterNodeName.c_str())).toStdString();
+                foundLinkedErrorMessage = tr("%1 связан с %2 с помощью ссылки или выражения. Удаление %3 сломает эту ссылку.\nВсе равно продолжить?").arg(QString::fromUtf8(slave.c_str())).arg(QString::fromUtf8(master.c_str())).arg(QString::fromUtf8(masterNodeName.c_str())).toStdString();
                 break;
             }
 
@@ -261,7 +261,7 @@ NodeGraph::removeNode(const NodeGuiPtr & node)
             
         }
         if (!foundLinkedErrorMessage.empty()) {
-            StandardButtonEnum reply = Dialogs::questionDialog( tr("Delete").toStdString(), foundLinkedErrorMessage, false );
+            StandardButtonEnum reply = Dialogs::questionDialog( tr("Удалить").toStdString(), foundLinkedErrorMessage, false );
             if (reply == eStandardButtonNo) {
                 return;
             }
@@ -335,13 +335,13 @@ NodeGraph::deleteSelection()
                             std::string masterNodeName = (*it)->getNode()->getFullyQualifiedName();
                             std::string master = masterNodeName + "." + knobs[i]->getName();
                             std::string slave = isEffect->getNode()->getFullyQualifiedName() + "." + listener->getName();
-                            foundLinkedErrorMessage = tr("%1 is linked to %2 through a link or expression. Deleting %3 may break this link.\nContinue anyway?").arg(QString::fromUtf8(slave.c_str())).arg(QString::fromUtf8(master.c_str())).arg(QString::fromUtf8(masterNodeName.c_str())).toStdString();
+                            foundLinkedErrorMessage = tr("%1 связан с %2 с помощью ссылки или выражения. Удаление %3 сломает эту ссылку.\nВсе равно продолжить?").arg(QString::fromUtf8(slave.c_str())).arg(QString::fromUtf8(master.c_str())).arg(QString::fromUtf8(masterNodeName.c_str())).toStdString();
                             break;
                         }
                     }
                 }
                 if (!foundLinkedErrorMessage.empty()) {
-                    StandardButtonEnum reply = Dialogs::questionDialog( tr("Delete").toStdString(),
+                    StandardButtonEnum reply = Dialogs::questionDialog( tr("Удалить").toStdString(),
                                                                        foundLinkedErrorMessage, false);
                     if (reply == eStandardButtonNo) {
                         return;

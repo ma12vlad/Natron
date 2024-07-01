@@ -221,19 +221,19 @@ QDirModelPrivate_size(quint64 bytes)
     const quint64 tb = 1024 * gb;
 
     if (bytes >= tb) {
-        return QFileSystemModel::tr("%1 TB").arg( QLocale().toString(qreal(bytes) / tb, 'f', 3) );
+        return QFileSystemModel::tr("%1 TБ").arg( QLocale().toString(qreal(bytes) / tb, 'f', 3) );
     }
     if (bytes >= gb) {
-        return QFileSystemModel::tr("%1 GB").arg( QLocale().toString(qreal(bytes) / gb, 'f', 2) );
+        return QFileSystemModel::tr("%1 ГБ").arg( QLocale().toString(qreal(bytes) / gb, 'f', 2) );
     }
     if (bytes >= mb) {
-        return QFileSystemModel::tr("%1 MB").arg( QLocale().toString(qreal(bytes) / mb, 'f', 1) );
+        return QFileSystemModel::tr("%1 MБ").arg( QLocale().toString(qreal(bytes) / mb, 'f', 1) );
     }
     if (bytes >= kb) {
-        return QFileSystemModel::tr("%1 KB").arg( QLocale().toString(bytes / kb) );
+        return QFileSystemModel::tr("%1 KБ").arg( QLocale().toString(bytes / kb) );
     }
 
-    return QFileSystemModel::tr("%1 byte(s)").arg( QLocale().toString(bytes) );
+    return QFileSystemModel::tr("%1 байт)").arg( QLocale().toString(bytes) );
 }
 
 void
@@ -263,7 +263,7 @@ NodeGraph::updateCacheSizeText()
     QString cacheSizeStr = QDirModelPrivate_size(cacheSize);
     quint64 diskSize = appPTR->getCachesTotalDiskSize();
     QString diskCacheSizeStr = QDirModelPrivate_size(diskSize);
-    QString newText = tr("Memory cache: %1 / Disk cache: %2").arg(cacheSizeStr).arg(diskCacheSizeStr);
+    QString newText = tr("Кэш памяти: %1 / Кэш диска: %2").arg(cacheSizeStr).arg(diskCacheSizeStr);
     if (newText != oldText) {
         _imp->_cacheSizeText->setText(newText);
     }
@@ -326,7 +326,7 @@ NodeGraph::showMenu(const QPoint & pos)
 
 
     //QFont font(appFont,appFontSize);
-    Menu* editMenu = new Menu(tr("Edit"), _imp->_menu);
+    Menu* editMenu = new Menu(tr("Редактировать"), _imp->_menu);
     //editMenu->setFont(font);
     _imp->_menu->addAction( editMenu->menuAction() );
 
@@ -400,7 +400,7 @@ NodeGraph::showMenu(const QPoint & pos)
 
 
     //QFont font(appFont,appFontSize);
-    Menu* viewMenu = new Menu(tr("View"), _imp->_menu);
+    Menu* viewMenu = new Menu(tr("Просмотр"), _imp->_menu);
     //editMenu->setFont(font);
     _imp->_menu->addAction( viewMenu->menuAction() );
 

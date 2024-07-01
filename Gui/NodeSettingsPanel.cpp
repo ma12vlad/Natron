@@ -95,7 +95,7 @@ NodeSettingsPanel::NodeSettingsPanel(const MultiInstancePanelPtr & multiPanel,
     _settingsButton = new Button( QIcon(pixSettings), QString(), getHeaderWidget() );
     _settingsButton->setFixedSize(mediumBSize);
     _settingsButton->setIconSize(mediumIconSize);
-    _settingsButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Settings and presets."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _settingsButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Настройки и предустановки"), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _settingsButton->setFocusPolicy(Qt::NoFocus);
     QObject::connect( _settingsButton, SIGNAL(clicked()), this, SLOT(onSettingsButtonClicked()) );
     insertHeaderWidget(1, _settingsButton);
@@ -174,25 +174,25 @@ NodeSettingsPanel::onSettingsButtonClicked()
     //menu.setFont(QFont(appFont,appFontSize));
     NodeGuiPtr node = getNode();
     NodePtr master = node->getNode()->getMasterNode();
-    QAction* importPresets = new QAction(tr("Import presets"), &menu);
+    QAction* importPresets = new QAction(tr("Импорт предустановок"), &menu);
     QObject::connect( importPresets, SIGNAL(triggered()), this, SLOT(onImportPresetsActionTriggered()) );
-    QAction* exportAsPresets = new QAction(tr("Export as presets"), &menu);
+    QAction* exportAsPresets = new QAction(tr("Экспорт в виде предустановок"), &menu);
     QObject::connect( exportAsPresets, SIGNAL(triggered()), this, SLOT(onExportPresetsActionTriggered()) );
 
     menu.addAction(importPresets);
     menu.addAction(exportAsPresets);
     menu.addSeparator();
 
-    QAction* manageUserParams = new QAction(tr("Manage user parameters..."), &menu);
+    QAction* manageUserParams = new QAction(tr("Управление параметрами пользователя..."), &menu);
     QObject::connect( manageUserParams, SIGNAL(triggered()), this, SLOT(onManageUserParametersActionTriggered()) );
     menu.addAction(manageUserParams);
 
     menu.addSeparator();
 
 
-    QAction* setKeyOnAll = new QAction(tr("Set key on all parameters"), &menu);
+    QAction* setKeyOnAll = new QAction(tr("Установить ключ на все параметры"), &menu);
     QObject::connect( setKeyOnAll, SIGNAL(triggered()), this, SLOT(setKeyOnAllParameters()) );
-    QAction* removeAnimationOnAll = new QAction(tr("Remove animation on all parameters"), &menu);
+    QAction* removeAnimationOnAll = new QAction(tr("Удалить анимацию по всем параметрам"), &menu);
     QObject::connect( removeAnimationOnAll, SIGNAL(triggered()), this, SLOT(removeAnimationOnAllParameters()) );
     menu.addAction(setKeyOnAll);
     menu.addAction(removeAnimationOnAll);
@@ -222,7 +222,7 @@ NodeSettingsPanel::onImportPresetsActionTriggered()
     FStreamsSupport::ifstream ifile;
     FStreamsSupport::open(&ifile, filename);
     if (!ifile) {
-        Dialogs::errorDialog( tr("Presets").toStdString(), tr("Failed to open file: ").toStdString() + filename, false );
+        Dialogs::errorDialog( tr("Предустановки").toStdString(), tr("Не удалось открыть файл: ").toStdString() + filename, false );
 
         return;
     }
@@ -245,11 +245,11 @@ NodeSettingsPanel::onImportPresetsActionTriggered()
 
     NodeGuiPtr node = getNode();
     if ( nodeSerialization.front()->getPluginID() != node->getNode()->getPluginID() ) {
-        QString err = tr("You cannot load %1 which are presets for the plug-in %2 on the plug-in %3.")
+        QString err = tr("Можно загрузить %1, который является предустановленным для подключаемого модуля %2, в подключаемый модуль %3.")
                       .arg( QString::fromUtf8( filename.c_str() ) )
                       .arg( QString::fromUtf8( nodeSerialization.front()->getPluginID().c_str() ) )
                       .arg( QString::fromUtf8( node->getNode()->getPluginID().c_str() ) );
-        Dialogs::errorDialog( tr("Presets").toStdString(), err.toStdString() );
+        Dialogs::errorDialog( tr("Предустановки").toStdString(), err.toStdString() );
 
         return;
     }
@@ -284,8 +284,8 @@ NodeSettingsPanel::onExportPresetsActionTriggered()
     FStreamsSupport::ofstream ofile;
     FStreamsSupport::open(&ofile, filename);
     if (!ofile) {
-        Dialogs::errorDialog( tr("Presets").toStdString(),
-                              tr("Failed to open file %1.").arg( QString::fromUtf8( filename.c_str() ) ).toStdString(), false );
+        Dialogs::errorDialog( tr("Предустановки").toStdString(),
+                              tr("Не удалось открыть файл %1.").arg( QString::fromUtf8( filename.c_str() ) ).toStdString(), false );
 
         return;
     }

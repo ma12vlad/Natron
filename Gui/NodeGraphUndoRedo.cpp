@@ -79,7 +79,7 @@ MoveMultipleNodesCommand::move(double dx,
         QPointF pos = (*it)->getPos_mt_safe();
         (*it)->setPosition(pos.x() + dx, pos.y() + dy);
     }
-    setText( tr("Move node(s)") );
+    setText( tr("Переместить узел(ы)") );
 }
 
 void
@@ -133,7 +133,7 @@ AddMultipleNodesCommand::~AddMultipleNodesCommand()
             }
         }
     }
-    setText( tr("Add node") );
+    setText( tr("Добавить узел") );
 }
 
 void
@@ -249,7 +249,7 @@ RemoveMultipleNodesCommand::RemoveMultipleNodesCommand(NodeGraph* graph,
         }
         _nodes.push_back(n);
     }
-    setText( tr("Remove node(s)") );
+    setText( tr("Удалить узел(ы)") );
 }
 
 RemoveMultipleNodesCommand::~RemoveMultipleNodesCommand()
@@ -424,10 +424,10 @@ ConnectCommand::ConnectCommand(NodeGraph* graph,
     NodeGuiPtr dst = _dst.lock();
     assert(dst);
     if (newSrc) {
-        setText( tr("Connect %1 to %2")
+        setText( tr("Подключить %1 к %2")
                  .arg( QString::fromUtf8( dst->getNode()->getLabel().c_str() ) ).arg( QString::fromUtf8( newSrc->getNode()->getLabel().c_str() ) ) );
     } else {
-        setText( tr("Disconnect %1")
+        setText( tr("Отключить %1")
                  .arg( QString::fromUtf8( dst->getNode()->getLabel().c_str() ) ) );
     }
 }
@@ -537,7 +537,7 @@ InsertNodeCommand::InsertNodeCommand(NodeGraph* graph,
     , _inputEdge(0)
 {
     assert(newSrc);
-    setText( tr("Insert node") );
+    setText( tr("Вставить узел") );
 }
 
 void
@@ -642,7 +642,7 @@ ResizeBackdropCommand::ResizeBackdropCommand(const NodeGuiPtr& bd,
 
     _oldW = bbox.width();
     _oldH = bbox.height();
-    setText( tr("Resize %1").arg( QString::fromUtf8( _bd->getNode()->getLabel().c_str() ) ) );
+    setText( tr("Изменить размер %1").arg( QString::fromUtf8( _bd->getNode()->getLabel().c_str() ) ) );
 }
 
 ResizeBackdropCommand::~ResizeBackdropCommand()
@@ -692,7 +692,7 @@ DecloneMultipleNodesCommand::DecloneMultipleNodesCommand(NodeGraph* graph,
         assert( n.master.lock() );
         _nodes.push_back(n);
     }
-    setText( tr("Declone node(s)") );
+    setText( tr("Отклонить узлы") );
 }
 
 DecloneMultipleNodesCommand::~DecloneMultipleNodesCommand()
@@ -1037,7 +1037,7 @@ RearrangeNodesCommand::RearrangeNodesCommand(const std::list<NodeGuiPtr> & nodes
             _nodes.push_back(n);
         }
     }
-    setText( tr("Rearrange nodes") );
+    setText( tr("Переставить узлы") );
 }
 
 void
@@ -1064,7 +1064,7 @@ DisableNodesCommand::DisableNodesCommand(const std::list<NodeGuiPtr> & nodes,
     for (std::list<NodeGuiPtr> ::const_iterator it = nodes.begin(); it != nodes.end(); ++it) {
         _nodes.push_back(*it);
     }
-    setText( tr("Disable node(s)") );
+    setText( tr("Отключить узлы") );
 }
 
 void
@@ -1091,7 +1091,7 @@ EnableNodesCommand::EnableNodesCommand(const std::list<NodeGuiPtr> & nodes,
     for (std::list<NodeGuiPtr> ::const_iterator it = nodes.begin(); it != nodes.end(); ++it) {
         _nodes.push_back(*it);
     }
-    setText( tr("Enable node(s)") );
+    setText( tr("Включить узлы") );
 }
 
 void
@@ -1119,7 +1119,7 @@ LoadNodePresetsCommand::LoadNodePresetsCommand(const NodeGuiPtr & node,
     , _node(node)
     , _newSerializations(serialization)
 {
-    setText( tr("Load presets") );
+    setText( tr("Загрузить предустановки") );
 }
 
 void
@@ -1220,7 +1220,7 @@ RenameNodeUndoRedoCommand::RenameNodeUndoRedoCommand(const NodeGuiPtr & node,
     , _newName(newName)
 {
     assert(node);
-    setText( tr("Rename node") );
+    setText( tr("Переименовать узел") );
 }
 
 RenameNodeUndoRedoCommand::~RenameNodeUndoRedoCommand()
@@ -1327,7 +1327,7 @@ ExtractNodeUndoRedoCommand::ExtractNodeUndoRedoCommand(NodeGraph* graph,
     , _trees()
 {
     extractTreesFromNodes(nodes, _trees);
-    setText( tr("Extract node") );
+    setText( tr("Извлечь узел") );
 }
 
 ExtractNodeUndoRedoCommand::~ExtractNodeUndoRedoCommand()
@@ -1487,7 +1487,7 @@ GroupFromSelectionCommand::GroupFromSelectionCommand(NodeGraph* graph,
     , _firstRedoCalled(false)
     , _isRedone(false)
 {
-    setText( tr("Group from selection") );
+    setText( tr("Группа из выборки") );
 
     assert( !nodes.empty() );
     for (NodesGuiList::const_iterator it = nodes.begin(); it != nodes.end(); ++it) {
@@ -1797,7 +1797,7 @@ InlineGroupCommand::InlineGroupCommand(NodeGraph* graph,
     , _groupNodes()
     , _firstRedoCalled(false)
 {
-    setText( tr("Inline group(s)") );
+    setText( tr("Встроенная группа(ы)") );
 
     for (std::list<NodeGuiPtr> ::const_iterator it = groupNodes.begin(); it != groupNodes.end(); ++it) {
         NodeGroup* group = (*it)->getNode()->isEffectGroup();

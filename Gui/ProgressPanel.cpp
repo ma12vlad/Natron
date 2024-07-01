@@ -162,16 +162,16 @@ ProgressPanel::ProgressPanel(Gui* gui)
     _imp->mainLayout->addWidget(_imp->headerContainer);
 
 
-    _imp->queueTasksCheckbox = new QCheckBox(tr("Queue Renders"), _imp->headerContainer);
-    _imp->queueTasksCheckbox->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("When checked, renders will be queued in the Progress Panel and will start only when all other prior renders are done. This does not apply to other tasks such as Tracking or analysis."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->queueTasksCheckbox = new QCheckBox(tr("Очередь рендеринга"), _imp->headerContainer);
+    _imp->queueTasksCheckbox->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Если этот флажок установлен, рендеринг будет поставлен в очередь на панели выполнения и начнется только после завершения всех остальных предыдущих рендерингов. Это не относится к другим задачам, таким как отслеживание или анализ."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->queueTasksCheckbox->setChecked( appPTR->getCurrentSettings()->isRenderQueuingEnabled() );
     QObject::connect( _imp->queueTasksCheckbox, SIGNAL(stateChanged(int)), this, SLOT(onQueueRendersCheckboxChecked()) );
     _imp->headerLayout->addWidget(_imp->queueTasksCheckbox);
 
     _imp->headerLayout->addSpacing( TO_DPIX(20) );
 
-    _imp->removeTasksAfterFinishCheckbox = new QCheckBox(tr("Remove Finished Tasks"), _imp->headerContainer);
-    _imp->removeTasksAfterFinishCheckbox->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("When checked, finished tasks that can be paused"  " will be automatically removed from the task list when they are finished. When unchecked, the tasks may be restarted."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->removeTasksAfterFinishCheckbox = new QCheckBox(tr("Удалить завершенные задачи"), _imp->headerContainer);
+    _imp->removeTasksAfterFinishCheckbox->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Если этот флажок установлен, завершенные задачи, которые можно приостановить, будут автоматически удалены из списка задач по завершении. Если флажок снят, задачи могут быть перезапущены."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->removeTasksAfterFinishCheckbox->setChecked(false);
     _imp->headerLayout->addWidget(_imp->removeTasksAfterFinishCheckbox);
 
@@ -190,13 +190,13 @@ ProgressPanel::ProgressPanel(Gui* gui)
     QObject::connect( _imp->view, SIGNAL(itemRightClicked(TableItem*)), this, SLOT(onItemRightClicked(TableItem*)) );
     QStringList dimensionNames;
     dimensionNames
-        << tr("Node")
-        << tr("Progress")
-        << tr("Status")
-        << tr("Controls")
-        << tr("Time remaining")
-        << tr("Frame Range")
-        << tr("Task");
+        << tr("Узел")
+        << tr("Прогресс")
+        << tr("Статус")
+        << tr("Управление")
+        << tr("Оставшееся время")
+        << tr("Диапазон кадров")
+        << tr("Задача");
 
     _imp->view->setColumnCount( dimensionNames.size() );
     _imp->view->setHorizontalHeaderLabels(dimensionNames);
@@ -643,7 +643,7 @@ ProgressPanel::onItemRightClicked(TableItem* item)
     Menu m(this);
     QAction* showLogAction = 0;
     if (hasProcess) {
-        showLogAction = new QAction(tr("Show Process Log"), &m);
+        showLogAction = new QAction(tr("Показать журнал процесса"), &m);
         m.addAction(showLogAction);
     }
 
@@ -654,7 +654,7 @@ ProgressPanel::onItemRightClicked(TableItem* item)
     if ( (triggered == showLogAction) && showLogAction ) {
         const QString& log = hasProcess->getProcessLog();
         LogWindowModal window(log,this);
-        window.setWindowTitle( tr("Background Render Log") );
+        window.setWindowTitle( tr("Журнал фонового рендеринга") );
         ignore_result(window.exec());
     }
 }

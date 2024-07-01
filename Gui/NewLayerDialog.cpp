@@ -126,27 +126,27 @@ NewLayerDialog::NewLayerDialog(const ImagePlaneDesc& original,
     , _imp( new NewLayerDialogPrivate() )
 {
     _imp->mainLayout = new QGridLayout(this);
-    _imp->layerLabel = new Label(tr("Layer Name"), this);
+    _imp->layerLabel = new Label(tr("Название слоя"), this);
     _imp->layerEdit = new LineEdit(this);
 
-    _imp->numCompsLabel = new Label(tr("No. Channels"), this);
+    _imp->numCompsLabel = new Label(tr("Номер Канала"), this);
     _imp->numCompsBox = new SpinBox(this, SpinBox::eSpinBoxTypeInt);
     QObject::connect( _imp->numCompsBox, SIGNAL(valueChanged(double)), this, SLOT(onNumCompsChanged(double)) );
     _imp->numCompsBox->setMinimum(1);
     _imp->numCompsBox->setMaximum(4);
     _imp->numCompsBox->setValue(4);
 
-    _imp->rLabel = new Label(tr("1st Channel"), this);
+    _imp->rLabel = new Label(tr("1й канал"), this);
     _imp->rEdit = new LineEdit(this);
-    _imp->gLabel = new Label(tr("2nd Channel"), this);
+    _imp->gLabel = new Label(tr("2й канал"), this);
     _imp->gEdit = new LineEdit(this);
-    _imp->bLabel = new Label(tr("3rd Channel"), this);
+    _imp->bLabel = new Label(tr("3й канал"), this);
     _imp->bEdit = new LineEdit(this);
-    _imp->aLabel = new Label(tr("4th Channel"), this);
+    _imp->aLabel = new Label(tr("4й канал"), this);
     _imp->aEdit = new LineEdit(this);
 
     _imp->setRgbaButton = new Button(this);
-    _imp->setRgbaButton->setText( tr("Set RGBA") );
+    _imp->setRgbaButton->setText( tr("Установить RGBA") );
     QObject::connect( _imp->setRgbaButton, SIGNAL(clicked(bool)), this, SLOT(onRGBAButtonClicked()) );
 
     _imp->buttons = new DialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, this);

@@ -90,7 +90,7 @@ NodeGraph::toggleHideInputs()
     const NodesGuiList& selectedNodes = getSelectedNodes();
 
     if ( selectedNodes.empty() ) {
-        Dialogs::warningDialog( tr("Hide Inputs").toStdString(), tr("You must select a node first").toStdString() );
+        Dialogs::warningDialog( tr("Скрыть входы").toStdString(), tr("Сначала необходимо выбрать узел").toStdString() );
 
         return;
     }
@@ -218,7 +218,7 @@ NodeGraph::renameNode()
     if (_imp->_selection.size() == 1) {
         node = _imp->_selection.front();
     } else {
-        Dialogs::errorDialog( tr("Rename node").toStdString(), tr("You must select exactly 1 node to rename.").toStdString() );
+        Dialogs::errorDialog( tr("Переименовать узел").toStdString(), tr("Нужно выбрать ровно 1 узел для переименования.").toStdString() );
 
         return;
     }
@@ -303,27 +303,27 @@ FindNodeDialog::FindNodeDialog(NodeGraph* graph,
     _imp->mainLayout = new QVBoxLayout(this);
     _imp->mainLayout->setContentsMargins(0, 0, 0, 0);
 
-    _imp->label = new Label(tr("Select all nodes matching:"), this);
+    _imp->label = new Label(tr("Выберите все соответствующие узлы:"), this);
     //_imp->label->setFont(QFont(appFont,appFontSize));
     _imp->mainLayout->addWidget(_imp->label);
 
     _imp->filter = new LineEdit(this);
-    _imp->filter->setToolTip( tr("Search pattern. May contain wildcards:\n"
-                                 "? Matches any single character.\n"
-                                 "* Matches zero or more of any characters.\n"
-                                 "[...] Matches any character within the set in square brackets.") );
+    _imp->filter->setToolTip( tr("Шаблон поиска. Может содержать подстановочные знаки:\n"
+                                 "? Соответствует любому отдельному символу.\n"
+                                 "* Соответствует нулю или более любым символам.\n"
+                                 "[...] Соответствует любому символу из набора в квадратных скобках..") );
     QObject::connect( _imp->filter, SIGNAL(editingFinished()), this, SLOT(updateFindResultsWithCurrentFilter()) );
     QObject::connect( _imp->filter, SIGNAL(textEdited(QString)), this, SLOT(updateFindResults(QString)) );
 
     _imp->mainLayout->addWidget(_imp->filter);
 
-    _imp->matchWhole = new QCheckBox(tr("Match whole pattern"), this);
-    _imp->filter->setToolTip( tr("When checked, the given pattern must match the whole node name.") );
+    _imp->matchWhole = new QCheckBox(tr("Сопоставить весь шаблон"), this);
+    _imp->filter->setToolTip( tr("Если этот флажок установлен, данный шаблон должен соответствовать полному имени узла.") );
     _imp->matchWhole->setChecked(false);
     QObject::connect( _imp->matchWhole, SIGNAL(toggled(bool)), this, SLOT(forceUpdateFindResults()) );
     _imp->mainLayout->addWidget(_imp->matchWhole);
 
-    _imp->caseSensitivity = new QCheckBox(tr("Case sensitive"), this);
+    _imp->caseSensitivity = new QCheckBox(tr("С учетом регистра"), this);
     _imp->caseSensitivity->setChecked(false);
     QObject::connect( _imp->caseSensitivity, SIGNAL(toggled(bool)), this, SLOT(forceUpdateFindResults()) );
     _imp->mainLayout->addWidget(_imp->caseSensitivity);
@@ -334,7 +334,7 @@ FindNodeDialog::FindNodeDialog(NodeGraph* graph,
     //_imp->resultLabel->setFont(QFont(appFont,appFontSize));
 
     _imp->buttons = new DialogButtonBox(QDialogButtonBox::NoButton, Qt::Horizontal, this);
-    _imp->nextButton = _imp->buttons->addButton(tr("&Next"), QDialogButtonBox::ActionRole);
+    _imp->nextButton = _imp->buttons->addButton(tr("&Следующий"), QDialogButtonBox::ActionRole);
     QObject::connect( _imp->buttons, SIGNAL(clicked(QAbstractButton*)), this, SLOT(onButtonClicked(QAbstractButton*)) );
 
     _imp->mainLayout->addWidget(_imp->buttons);
@@ -585,7 +585,7 @@ NodeGraph::expandSelectedGroups()
     if ( !nodes.empty() ) {
         pushUndoCommand( new InlineGroupCommand(this, nodes) );
     } else {
-        Dialogs::warningDialog( tr("Expand group").toStdString(), tr("You must select a group to expand first").toStdString() );
+        Dialogs::warningDialog( tr("Расширить группу").toStdString(), tr("Сначала нужно выбрать группу для расширения").toStdString() );
     }
 }
 

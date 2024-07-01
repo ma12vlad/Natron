@@ -486,12 +486,12 @@ PreferencesPanel::createPluginsView(QGridLayout* pluginsFrameLayout)
     _imp->pluginsView = new QTreeWidget(this);
     _imp->pluginsView->setAttribute(Qt::WA_MacShowFocusRect, 0);
 
-    Label* restartWarningLabel = new Label(tr("<i>Changing any plug-in property requires a restart of %1</i>").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ), this);
+    Label* restartWarningLabel = new Label(tr("<i>Изменение любого свойства плагина требует перезапуска %1</i>").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ), this);
     pluginsFrameLayout->addWidget(restartWarningLabel, pluginsFrameLayout->rowCount(), 0, 1, 2);
 
-    _imp->pluginFilterLabel = new Label(tr("Plugin Filter"), this);
+    _imp->pluginFilterLabel = new Label(tr("Фильтр плагинов"), this);
 
-    QString filterTt = tr("Display only plug-ins labels containing the letters in the filter much like the Tab menu in the Node Graph");
+    QString filterTt = tr("Отображать только метки плагинов, содержащие буквы в фильтре, аналогично меню вкладок в Схеме Узлов.");
     _imp->pluginFilterLabel->setToolTip(filterTt);
 
     _imp->pluginFilterEdit = new LineEdit(this);
@@ -504,19 +504,19 @@ PreferencesPanel::createPluginsView(QGridLayout* pluginsFrameLayout)
     pluginsFrameLayout->addWidget(_imp->pluginsView, pluginsFrameLayout->rowCount(), 0, 1, 2);
 
     QTreeWidgetItem* treeHeader = new QTreeWidgetItem;
-    treeHeader->setToolTip(COL_PLUGIN_LABEL, tr("The label of the plug-in"));
-    treeHeader->setText( COL_PLUGIN_LABEL, tr("Label") );
-    treeHeader->setToolTip(COL_PLUGINID, tr("The ID of the plug-in"));
+    treeHeader->setToolTip(COL_PLUGIN_LABEL, tr("Ярлык плагина"));
+    treeHeader->setText( COL_PLUGIN_LABEL, tr("Ярлык") );
+    treeHeader->setToolTip(COL_PLUGINID, tr("Идентификатор плагина"));
     treeHeader->setText( COL_PLUGINID, tr("ID") );
-    treeHeader->setToolTip(COL_VERSION, tr("The version of the plug-in"));
-    treeHeader->setText( COL_VERSION, tr("Version") );
-    treeHeader->setToolTip(COL_ENABLED, tr("If unchecked, the user will not be able to use a node with this plug-in"));
+    treeHeader->setToolTip(COL_VERSION, tr("Версия плагина"));
+    treeHeader->setText( COL_VERSION, tr("Версия") );
+    treeHeader->setToolTip(COL_ENABLED, tr("Если флажок снят, пользователь не сможет использовать узел с этим плагином"));
     treeHeader->setText( COL_ENABLED, tr("Enabled") );
-    treeHeader->setToolTip(COL_RS_ENABLED, tr("If unchecked, renders will always be made at full image resolution for this plug-in"));
+    treeHeader->setToolTip(COL_RS_ENABLED, tr("Если этот флажок не установлен, рендеринг всегда будет выполняться с полным разрешением изображения для этого плагина."));
     treeHeader->setText( COL_RS_ENABLED, tr("R-S") );
-    treeHeader->setToolTip(COL_MT_ENABLED, tr("If unchecked, there can only be a single render issued at a time for a node of this plug-in. This can alter performances a lot."));
+    treeHeader->setToolTip(COL_MT_ENABLED, tr("Если этот флажок снят, для узла этого плагина одновременно может быть выполнен только один рендеринг. Это может сильно изменить производительность."));
     treeHeader->setText( COL_MT_ENABLED, tr("M-T") );
-    treeHeader->setToolTip(COL_GL_ENABLED, tr("If unchecked, OpenGL rendering is disabled for any node with this plug-in. If the checkbox is disabled, the plug-in does not support OpenGL rendering"));
+    treeHeader->setToolTip(COL_GL_ENABLED, tr("Если этот флажок не установлен, рендеринг OpenGL отключен для любого узла с этим плагином. Если флажок снят, плагин не поддерживает рендеринг OpenGL."));
     treeHeader->setText( COL_GL_ENABLED, tr("OpenGL") );
     _imp->pluginsView->setHeaderItem(treeHeader);
     _imp->pluginsView->setSelectionMode(QAbstractItemView::NoSelection);
@@ -627,19 +627,19 @@ PreferencesPanel::createShortcutEditor(QTreeWidgetItem* uiPageTreeItem)
     _imp->shortcutsTree = new HackedTreeWidget(_imp->shortcutsFrame);
     _imp->shortcutsTree->setColumnCount(3);
     QStringList headers;
-    headers << tr("Command") << tr("Shortcut") << tr("Alt. Shortcut");
+    headers << tr("Команда") << tr("Клавиатурные сочетания") << tr("альтернативные Кл. сочетания");
     _imp->shortcutsTree->setHeaderLabels(headers);
     _imp->shortcutsTree->setSelectionMode(QAbstractItemView::SingleSelection);
     _imp->shortcutsTree->setAttribute(Qt::WA_MacShowFocusRect, 0);
     _imp->shortcutsTree->setSortingEnabled(false);
     _imp->shortcutsTree->setToolTip( NATRON_NAMESPACE::convertFromPlainText(
-                                         tr("In this table is represented each action of the application that can have a possible keybind/mouse shortcut."
-                                            " Note that this table also have some special assignments which also involve the mouse. "
-                                            "You cannot assign a keybind to a shortcut involving the mouse and vice versa. "
-                                            "Note that internally %1 does an emulation of a three-button mouse "
-                                            "if your computer doesn't have one, that is: \n"
-                                            "---> Middle mouse button is emulated by holding down Options (alt) coupled with a left click.\n "
-                                            "---> Right mouse button is emulated by holding down Command (cmd) coupled with a left click.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ), NATRON_NAMESPACE::WhiteSpaceNormal) );
+                                         tr("В таблице действие приложения, которое может иметь возможное сочетание клавиш/мыши."
+                                            "В таблице также есть некоторые специальные задания, в которых также задействована мышь. "
+                                            "Можно назначить привязку клавиш к сочетанию клавиш с использованием мыши и наоборот "
+                                            "Внутренне %1 выполняет эмуляцию трехкнопочной мыши "
+                                            "если на вашем компьютере её нет, то это:: \n"
+                                            "---> СКМ эмулируется с помощью удерживание нажатой клавиши Options(alt) в сочетании с щелчком ЛКМ.\n "
+                                            "---> Эмуляция ПКМ осуществляется путем удержания команда Вниз(cmd) в сочетании с щелчком ЛКМ.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->shortcutsTree->setItemDelegate( new ShortcutDelegate(_imp->shortcutsTree) );
 
     const AppShortcuts & appShortcuts = appPTR->getAllShortcuts();
@@ -665,12 +665,12 @@ PreferencesPanel::createShortcutEditor(QTreeWidgetItem* uiPageTreeItem)
     _imp->shortcutGroupLayout->setContentsMargins(0, 0, 0, 0);
 
     _imp->shortcutLabel = new Label(_imp->shortcutGroup);
-    _imp->shortcutLabel->setText( tr("Sequence:") );
+    _imp->shortcutLabel->setText( tr("Последовательность:") );
     _imp->shortcutGroupLayout->addWidget(_imp->shortcutLabel);
 
     _imp->shortcutEditor = new KeybindRecorder(_imp->shortcutGroup);
     _imp->shortcutEditor->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-    _imp->shortcutEditor->setPlaceholderText( tr("Type to set shortcut") );
+    _imp->shortcutEditor->setPlaceholderText( tr("Тип для установки Клавиатурных сочетаний") );
     _imp->shortcutGroupLayout->addWidget(_imp->shortcutEditor);
 
     _imp->altShortcutGroup = new QWidget(this);
@@ -680,25 +680,25 @@ PreferencesPanel::createShortcutEditor(QTreeWidgetItem* uiPageTreeItem)
     _imp->altShortcutGroupLayout->setContentsMargins(0, 0, 0, 0);
 
     _imp->altShortcutLabel = new Label(_imp->altShortcutGroup);
-    _imp->altShortcutLabel->setText( tr("Alternative Sequence:") );
+    _imp->altShortcutLabel->setText( tr("Альтернативная последовательность:") );
     _imp->altShortcutGroupLayout->addWidget(_imp->altShortcutLabel);
 
     _imp->altShortcutEditor = new KeybindRecorder(_imp->altShortcutGroup);
     _imp->altShortcutEditor->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-    _imp->altShortcutEditor->setPlaceholderText( tr("Type to set an alternative shortcut") );
+    _imp->altShortcutEditor->setPlaceholderText( tr("Задать альтернативные Кл. Сочетания") );
     _imp->altShortcutGroupLayout->addWidget(_imp->altShortcutEditor);
 
 
-    _imp->validateShortcutButton = new Button(tr("Validate"), _imp->shortcutGroup);
-    _imp->validateShortcutButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Validates the shortcut on the field editor and set the selected shortcut."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->validateShortcutButton = new Button(tr("Подтвердить"), _imp->shortcutGroup);
+    _imp->validateShortcutButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Проверяет КС в редакторе полей и устанавливает выбранные КС."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->shortcutGroupLayout->addWidget(_imp->validateShortcutButton);
     QObject::connect( _imp->validateShortcutButton, SIGNAL(clicked(bool)), this, SLOT(onValidateShortcutButtonClicked()) );
 
-    _imp->clearShortcutButton = new Button(tr("Clear"), _imp->shortcutGroup);
+    _imp->clearShortcutButton = new Button(tr("Очистить"), _imp->shortcutGroup);
     QObject::connect( _imp->clearShortcutButton, SIGNAL(clicked(bool)), this, SLOT(onClearShortcutButtonClicked()) );
     _imp->shortcutGroupLayout->addWidget(_imp->clearShortcutButton);
 
-    _imp->resetShortcutButton = new Button(tr("Reset"), _imp->shortcutGroup);
+    _imp->resetShortcutButton = new Button(tr("Сбросить"), _imp->shortcutGroup);
     QObject::connect( _imp->resetShortcutButton, SIGNAL(clicked(bool)), this, SLOT(onResetShortcutButtonClicked()) );
     _imp->shortcutGroupLayout->addWidget(_imp->resetShortcutButton);
 
@@ -707,7 +707,7 @@ PreferencesPanel::createShortcutEditor(QTreeWidgetItem* uiPageTreeItem)
 
     _imp->shortcutsLayout->addWidget(_imp->shortcutButtonsContainer);
 
-    _imp->restoreShortcutsDefaultsButton = new Button(tr("Restore Default Shortcuts"), _imp->restoreShortcutsDefaultsButton);
+    _imp->restoreShortcutsDefaultsButton = new Button(tr("Восстановить КС по умолчанию"), _imp->restoreShortcutsDefaultsButton);
     QObject::connect( _imp->restoreShortcutsDefaultsButton, SIGNAL(clicked(bool)), this, SLOT(onRestoreDefaultShortcutsButtonClicked()) );
     _imp->shortcutButtonsLayout->addWidget(_imp->restoreShortcutsDefaultsButton);
     _imp->shortcutButtonsLayout->addStretch();
@@ -719,7 +719,7 @@ PreferencesPanel::createShortcutEditor(QTreeWidgetItem* uiPageTreeItem)
     tab.tab = _imp->shortcutsFrame;
     tab.tab->hide();
     tab.treeItem = new QTreeWidgetItem(uiPageTreeItem);
-    tab.treeItem->setText( 0, tr("Shortcut Editor") );
+    tab.treeItem->setText( 0, tr("Редактор Клавиатурных сочетаний") );
     tab.page = page;
     _imp->tabs.push_back(tab);
 } // PreferencesPanel::createShortcutEditor
@@ -736,7 +736,7 @@ PreferencesPanel::createGui()
     //setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
 
     setWindowFlags(Qt::Window);
-    setWindowTitle( tr("Preferences") );
+    setWindowTitle( tr("Предпочтения") );
     _imp->mainLayout = new QVBoxLayout(this);
 
     _imp->splitter = new Splitter(Qt::Horizontal, this);
@@ -777,16 +777,16 @@ PreferencesPanel::createGui()
     _imp->tree->setFixedWidth(maxLength + 100);
 
     _imp->buttonBox = new DialogButtonBox(Qt::Horizontal);
-    _imp->restoreDefaultsB = new Button( tr("Restore Defaults") );
-    _imp->restoreDefaultsB->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Restore default values for all preferences."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->restoreDefaultsB = new Button( tr("Восстановить значения по умолчанию") );
+    _imp->restoreDefaultsB->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Восстановить значения по умолчанию для всех настроек."), NATRON_NAMESPACE::WhiteSpaceNormal) );
 
-    _imp->prefsHelp = new Button( tr("Help") );
-    _imp->prefsHelp->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Display help for preferences in an external browser."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->prefsHelp = new Button( tr("Помощь") );
+    _imp->prefsHelp->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Отображать справку по настройкам во внешнем браузере."), NATRON_NAMESPACE::WhiteSpaceNormal) );
 
-    _imp->cancelB = new Button( tr("Discard") );
-    _imp->cancelB->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Cancel changes that were not saved and close the window."), NATRON_NAMESPACE::WhiteSpaceNormal) );
-    _imp->okB = new Button( tr("Save") );
-    _imp->okB->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Save changes on disk and close the window."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->cancelB = new Button( tr("Отказаться") );
+    _imp->cancelB->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Отменить изменения, которые не были сохранены, и закройте окно."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->okB = new Button( tr("Сохранить") );
+    _imp->okB->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Сохранить изменения на диске и закрыть окно."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->buttonBox->addButton(_imp->restoreDefaultsB, QDialogButtonBox::ResetRole);
     _imp->buttonBox->addButton(_imp->prefsHelp, QDialogButtonBox::HelpRole);
     _imp->buttonBox->addButton(_imp->cancelB, QDialogButtonBox::RejectRole);
@@ -1156,7 +1156,7 @@ PreferencesPanel::openHelp()
         QDesktopServices::openUrl( QUrl(remoteUrl) );
         break;
     case 2:
-        Dialogs::informationDialog(tr("Missing documentation").toStdString(), tr("Missing documentation, please go to settings and select local or online documentation source.").toStdString(), true);
+        Dialogs::informationDialog(tr("Отсутствующая документация").toStdString(), tr("Отсутствует документация, перейдите в настройки и выберите локальный или онлайн-источник документации.").toStdString(), true);
         break;
     }
 #else
@@ -1167,8 +1167,8 @@ PreferencesPanel::openHelp()
 void
 PreferencesPanel::restoreDefaults()
 {
-    StandardButtonEnum reply = Dialogs::questionDialog( tr("Preferences").toStdString(),
-                                                        tr("Restoring the settings will delete any custom configuration, are you sure you want to do this?").toStdString(), false );
+    StandardButtonEnum reply = Dialogs::questionDialog( tr("Предпочтения").toStdString(),
+                                                        tr("Восстановление настроек приведет к удалению любой пользовательской конфигурации, вы уверены, что хотите это сделать?").toStdString(), false );
 
     if (reply == eStandardButtonYes) {
         appPTR->getCurrentSettings()->restoreDefault();
@@ -1362,8 +1362,8 @@ PreferencesPanelPrivate::makeGuiActionForShortcut(GuiAppShorcuts::iterator guiGr
         assert(false);
     }
     if (!action->editable) {
-        guiAction.item->setToolTip( 0, tr("This action is standard and its shortcut cannot be edited.") );
-        guiAction.item->setToolTip( 1, tr("This action is standard and its shortcut cannot be edited.") );
+        guiAction.item->setToolTip( 0, tr("Это стандартное действие, и его КС нельзя редактировать.") );
+        guiAction.item->setToolTip( 1, tr("Это стандартное действие, и его КС нельзя редактировать.") );
         guiAction.item->setDisabled(true);
     }
     guiAction.item->setExpanded(true);
@@ -1483,7 +1483,7 @@ PreferencesPanel::onShortcutsSelectionChanged()
 
     if ( items.empty() ) {
         _imp->shortcutEditor->setText( QString() );
-        _imp->shortcutEditor->setPlaceholderText( tr("Type to set shortcut") );
+        _imp->shortcutEditor->setPlaceholderText( tr("Установка Клавиатурных Сочетаний") );
         _imp->shortcutEditor->setReadOnly_NoFocusRect(true);
 
         return;
@@ -1555,7 +1555,7 @@ PreferencesPanel::onValidateShortcutButtonClicked()
                             QString err = QString::fromUtf8("Cannot bind this shortcut because the following action is already using it: %1")
                                           .arg( it2->item->text(0) );
                             _imp->shortcutEditor->clear();
-                            Dialogs::errorDialog( tr("Shortcuts Editor").toStdString(), tr( err.toStdString().c_str() ).toStdString() );
+                            Dialogs::errorDialog( tr("Редактор КС").toStdString(), tr( err.toStdString().c_str() ).toStdString() );
 
                             return;
                         }
@@ -1590,9 +1590,9 @@ PreferencesPanel::onClearShortcutButtonClicked()
 
     if ( items.empty() ) {
         _imp->shortcutEditor->setText( QString() );
-        _imp->shortcutEditor->setPlaceholderText( tr("Type to set shortcut") );
+        _imp->shortcutEditor->setPlaceholderText( tr("Установка Клавиатурных Сочетаний") );
         _imp->altShortcutEditor->setText( QString() );
-        _imp->altShortcutEditor->setPlaceholderText( tr("Type to set an alternative shortcut") );
+        _imp->altShortcutEditor->setPlaceholderText( tr("Установка альтернативных КС") );
 
         return;
     }
@@ -1625,7 +1625,7 @@ PreferencesPanel::onResetShortcutButtonClicked()
 
     if ( items.empty() ) {
         _imp->shortcutEditor->setText( QString() );
-        _imp->shortcutEditor->setPlaceholderText( tr("Type to set shortcut") );
+        _imp->shortcutEditor->setPlaceholderText( tr("Установка Клавиатурных Сочетаний") );
 
         return;
     }
@@ -1650,9 +1650,9 @@ PreferencesPanel::onResetShortcutButtonClicked()
 void
 PreferencesPanel::onRestoreDefaultShortcutsButtonClicked()
 {
-    StandardButtonEnum reply = Dialogs::questionDialog( tr("Restore defaults").toStdString(), tr("Restoring default shortcuts "
-                                                                                                 "will wipe all the current configuration "
-                                                                                                 "are you sure you want to do this?").toStdString(), false );
+    StandardButtonEnum reply = Dialogs::questionDialog( tr("Восстановить значения по умолчанию").toStdString(), tr("Восстановление КС по умолчанию "
+                                                                                                 "удалит всю текущую конфигурацию "
+                                                                                                 "Вы уверены, что хотите это сделать?").toStdString(), false );
 
     if (reply == eStandardButtonYes) {
         appPTR->restoreDefaultShortcuts();

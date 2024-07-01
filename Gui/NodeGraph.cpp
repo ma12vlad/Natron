@@ -106,7 +106,7 @@ NodeGraph::NodeGraph(Gui* gui,
         QObject::connect( isGrp->getNode().get(), SIGNAL(scriptNameChanged(QString)), this, SLOT(onGroupScriptNameChanged(QString)) );
     } else {
         setScriptName(kNodeGraphObjectName);
-        setLabel( tr("Node Graph").toStdString() );
+        setLabel( tr("Схема Узлов").toStdString() );
     }
 
     QObject::connect( &_imp->autoScrollTimer, SIGNAL(timeout()), this, SLOT(onAutoScrollTimerTriggered()) );

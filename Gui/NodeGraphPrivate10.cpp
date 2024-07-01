@@ -120,15 +120,15 @@ NodeGraphPrivate::pasteNodesInternal(const NodeClipBoard & clipboard,
             if (internalNodesClipBoard.size() != newNodes->size()) {
                 std::ostringstream message;
                 if (!missingNodePlugins.empty()) {
-                    message << QObject::tr("Following plugins are missing:").toStdString() << std::endl << std::endl << "<ul>";
+                    message << QObject::tr("Отсутствуют следующие плагины:").toStdString() << std::endl << std::endl << "<ul>";
                     for (std::set<std::string>::const_iterator it = missingNodePlugins.begin(); it != missingNodePlugins.end(); ++it) {
                         message << "<li>" << *it << "</li>";
                     }
                     message << "</ul>";
                 } else {
-                    message << QObject::tr("Unknown error").toStdString() << std::endl;
+                    message << QObject::tr("Неизвестная ошибка").toStdString() << std::endl;
                 }
-                _publicInterface->getGui()->informationDialog(QObject::tr("Paste error").toStdString(), message.str(), true);
+                _publicInterface->getGui()->informationDialog(QObject::tr("Ошибка вставки").toStdString(), message.str(), true);
                 return;
             }
 

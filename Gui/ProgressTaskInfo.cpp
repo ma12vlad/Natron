@@ -240,24 +240,24 @@ ProgressTaskInfo::cancelTask(bool calledFromRenderEngine,
         _imp->canceled = true;
     }
     if (_imp->timeRemainingItem) {
-        _imp->timeRemainingItem->setText( tr("N/A") );
+        _imp->timeRemainingItem->setText( tr("Н/Д") );
     }
     if (_imp->statusItem) {
         if (!calledFromRenderEngine) {
             _imp->statusItem->setTextColor( QColor(243, 147, 0) );
             if (_imp->canBePaused) {
-                _imp->statusItem->setText( tr("Paused") );
+                _imp->statusItem->setText( tr("Приостановлено") );
                 _imp->status = eProgressTaskStatusPaused;
                 updateTaskBarState(retCode == 1 ? TaskBar::PausedProgress : TaskBar::NoProgress);
             } else {
-                _imp->statusItem->setText( tr("Canceled") );
+                _imp->statusItem->setText( tr("Отменено") );
                 _imp->status = eProgressTaskStatusCanceled;
                 updateTaskBarState(TaskBar::NoProgress);
             }
         } else {
             if (retCode == 0) {
                 _imp->statusItem->setTextColor(Qt::black);
-                _imp->statusItem->setText( tr("Finished") );
+                _imp->statusItem->setText( tr("Завершено") );
                 _imp->status = eProgressTaskStatusFinished;
                 if (_imp->progressBar) {
                     _imp->progressBar->setValue(100);
@@ -265,7 +265,7 @@ ProgressTaskInfo::cancelTask(bool calledFromRenderEngine,
                 updateTaskBarState(TaskBar::NormalProgress);
             } else {
                 _imp->statusItem->setTextColor(Qt::red);
-                _imp->statusItem->setText( tr("Failed") );
+                _imp->statusItem->setText( tr("Неудачно") );
                 _imp->status = eProgressTaskStatusFinished;
                 updateTaskBarState(TaskBar::ErrorProgress);
             }
@@ -323,7 +323,7 @@ ProgressTaskInfo::restartTask()
         w.isRestart = true;
         _imp->statusItem->setTextColor(Qt::yellow);
         _imp->status = eProgressTaskStatusQueued;
-        _imp->statusItem->setText( tr("Queued") );
+        _imp->statusItem->setText( tr("В очереди") );
         _imp->refreshButtons();
         std::list<AppInstance::RenderWork> works;
         works.push_back(w);
@@ -468,7 +468,7 @@ ProgressTaskInfo::onRefreshLabelTimeout()
     }
     QString timeStr;
     if (_imp->timeRemaining == -1) {
-        timeStr += tr("N/A");
+        timeStr += tr("Н/Д");
     } else {
         timeStr += Timer::printAsTime(_imp->timeRemaining, true);
     }
@@ -519,7 +519,7 @@ ProgressTaskInfoPrivate::createItems()
         item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         assert(item);
         item->setTextColor(Qt::yellow);
-        item->setText( tr("Queued") );
+        item->setText( tr("В очереди") );
         statusItem = item;
     }
     {
@@ -529,14 +529,14 @@ ProgressTaskInfoPrivate::createItems()
         if (nodeUI) {
             item->setIcon( QIcon() );
         }
-        item->setText( canBePaused ? tr("Yes") : tr("No") );
+        item->setText( canBePaused ? tr("Да") : tr("Нет") );
         controlsItem = item;
     }
     {
         TableItem* item = new TableItem;
         item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         assert(item);
-        item->setText( tr("N/A") );
+        item->setText( tr("Н/Д") );
         timeRemainingItem = item;
     }
     {
@@ -550,7 +550,7 @@ ProgressTaskInfoPrivate::createItems()
             frames.append( QString::number(lastFrame) );
             item->setText(frames);
         } else {
-            item->setText( tr("N/A") );
+            item->setText( tr("Н/Д") );
         }
         frameRangeItem = item;
     }
@@ -598,7 +598,7 @@ ProgressTaskInfo::updateProgressBar(double totalProgress,
         _imp->updatedProgressOnce = true;
         _imp->statusItem->setTextColor(Qt::green);
         _imp->status = eProgressTaskStatusRunning;
-        _imp->statusItem->setText( tr("Running") );
+        _imp->statusItem->setText( tr("Выполняемый") );
         _imp->refreshButtons();
     }
 
@@ -678,8 +678,8 @@ ProgressTaskInfo::createCellWidgets()
     _imp->pauseTasksButton->setFixedSize(medButtonSize);
     _imp->pauseTasksButton->setIconSize(medButtonIconSize);
     _imp->pauseTasksButton->setFocusPolicy(Qt::NoFocus);
-    _imp->pauseTasksButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Pause the task. Tasks that can be paused "
-                                                                          "may be restarted with the restart button."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->pauseTasksButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Приостановите задачу. Задачи, которые можно приостановить "
+                                                                          "можно перезапустить с помощью кнопки Перезапустить задачу."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     QObject::connect( _imp->pauseTasksButton, SIGNAL(clicked(bool)), this, SLOT(onPauseTriggered()) );
     _imp->pauseTasksButton->setEnabled(_imp->canBePaused);
     layout->addWidget(_imp->pauseTasksButton);
@@ -688,7 +688,7 @@ ProgressTaskInfo::createCellWidgets()
     _imp->restartTasksButton->setFixedSize(medButtonSize);
     _imp->restartTasksButton->setIconSize(medButtonIconSize);
     _imp->restartTasksButton->setFocusPolicy(Qt::NoFocus);
-    _imp->restartTasksButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Restart task"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->restartTasksButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Перезапустить задачу"), NATRON_NAMESPACE::WhiteSpaceNormal) );
     QObject::connect( _imp->restartTasksButton, SIGNAL(clicked(bool)), this, SLOT(onRestartTriggered()) );
     _imp->restartTasksButton->setEnabled(false);
     layout->addWidget(_imp->restartTasksButton);
@@ -698,7 +698,7 @@ ProgressTaskInfo::createCellWidgets()
     _imp->cancelTasksButton->setFixedSize(medButtonSize);
     _imp->cancelTasksButton->setIconSize(medButtonIconSize);
     _imp->cancelTasksButton->setFocusPolicy(Qt::NoFocus);
-    _imp->cancelTasksButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Cancel and remove the task from the list"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->cancelTasksButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Отменить и удалить задачу из списка"), NATRON_NAMESPACE::WhiteSpaceNormal) );
     QObject::connect( _imp->cancelTasksButton, SIGNAL(clicked(bool)), this, SLOT(onCancelTriggered()) );
     layout->addWidget(_imp->cancelTasksButton);
 
