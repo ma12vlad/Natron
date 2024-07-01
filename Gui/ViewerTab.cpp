@@ -141,10 +141,10 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
     _imp->mainLayout->addWidget(_imp->firstSettingsRow);
 
     _imp->layerChoice = new ComboBox(_imp->firstSettingsRow);
-    _imp->layerChoice->setToolTip( QString::fromUtf8("<p><b>") + tr("Layer:") + QString::fromUtf8("</b></p><p>")
-                                   + tr("The layer that the Viewer node will fetch upstream in the tree. "
-                                        "The channels of the layer will be mapped to the RGBA channels of the viewer according to "
-                                        "its number of channels. (e.g: UV would be mapped to RG)") + QString::fromUtf8("</p>") );
+    _imp->layerChoice->setToolTip( QString::fromUtf8("<p><b>") + tr("Слой:") + QString::fromUtf8("</b></p><p>")
+                                   + tr("Слой, который узел просмотра будет получать вверх по течению в дереве "
+                                        "Каналы слоя будут сопоставлены с каналами RGBA средства просмотра в соответствии с  "
+                                        "количество каналов. (например: UV будет сопоставлено с RG)") + QString::fromUtf8("</p>") );
     QObject::connect( _imp->layerChoice, SIGNAL(currentIndexChanged(int)), this, SLOT(onLayerComboChanged(int)) );
 #if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
     _imp->layerChoice->setFixedWidth( fm.horizontalAdvance( QString::fromUtf8("Color.Toto.RGBA") ) + 3 * TO_DPIX(DROP_DOWN_ICON_SIZE) );
@@ -155,9 +155,9 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
     _imp->firstRowLayout->addWidget(_imp->layerChoice);
 
     _imp->alphaChannelChoice = new ComboBox(_imp->firstSettingsRow);
-    _imp->alphaChannelChoice->setToolTip( QString::fromUtf8("<p><b>") + tr("Alpha channel:") + QString::fromUtf8("</b></p><p>")
-                                          + tr("Select here a channel of any layer that will be used when displaying the "
-                                               "alpha channel with the <b>Channels</b> choice on the right.") + QString::fromUtf8("</p>") );
+    _imp->alphaChannelChoice->setToolTip( QString::fromUtf8("<p><b>") + tr("Альфа-канал:") + QString::fromUtf8("</b></p><p>")
+                                          + tr("Выберите здесь канал любого слоя, который будет использоваться при отображении "
+                                               "альфа-канал с выбором <b>каналы</b> справа.") + QString::fromUtf8("</p>") );
 #if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
     _imp->alphaChannelChoice->setFixedWidth( fm.horizontalAdvance( QString::fromUtf8("Color.alpha") ) + 3 * TO_DPIX(DROP_DOWN_ICON_SIZE) );
 #else
@@ -168,8 +168,8 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
     _imp->firstRowLayout->addWidget(_imp->alphaChannelChoice);
 
     _imp->viewerChannels = new ChannelsComboBox(_imp->firstSettingsRow);
-    _imp->viewerChannels->setToolTip( QString::fromUtf8("<p><b>") + tr("Display Channels:") + QString::fromUtf8("</b></p><p>")
-                                      + tr("The channels to display on the viewer.") + QString::fromUtf8("</p>") );
+    _imp->viewerChannels->setToolTip( QString::fromUtf8("<p><b>") + tr("Отображение каналов:") + QString::fromUtf8("</b></p><p>")
+                                      + tr("Каналы для отображения в средстве просмотра.") + QString::fromUtf8("</p>") );
     _imp->firstRowLayout->addWidget(_imp->viewerChannels);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
     _imp->viewerChannels->setFixedWidth( fm.horizontalAdvance( QString::fromUtf8("Luminance") ) + 3 * TO_DPIX(DROP_DOWN_ICON_SIZE) );
@@ -180,7 +180,7 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
 
     addSpacer(_imp->firstRowLayout);
 
-    QAction* lumiAction = new ActionWithShortcut(kShortcutGroupViewer, kShortcutIDActionLuminance, tr("Luminance").toStdString(), _imp->viewerChannels);
+    QAction* lumiAction = new ActionWithShortcut(kShortcutGroupViewer, kShortcutIDActionLuminance, tr("Яркость").toStdString(), _imp->viewerChannels);
     QAction* rgbAction = new QAction(QIcon(), QString::fromUtf8("RGB"), _imp->viewerChannels);
     QAction* rAction = new ActionWithShortcut(kShortcutGroupViewer, kShortcutIDActionRed, "Red", _imp->viewerChannels);
     QAction* gAction = new ActionWithShortcut(kShortcutGroupViewer, kShortcutIDActionGreen, "Green", _imp->viewerChannels);
@@ -199,8 +199,8 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
     QObject::connect( _imp->viewerChannels, SIGNAL(currentIndexChanged(int)), this, SLOT(onViewerChannelsChanged(int)) );
 
     _imp->zoomCombobox = new ComboBox(_imp->firstSettingsRow);
-    _imp->zoomCombobox->setToolTip( QString::fromUtf8("<p><b>") + tr("Zoom:") + QString::fromUtf8("</b></p>")
-                                    + tr("The zoom applied to the image on the viewer.") + QString::fromUtf8("</p>") );
+    _imp->zoomCombobox->setToolTip( QString::fromUtf8("<p><b>") + tr("Увеличение:") + QString::fromUtf8("</b></p>")
+                                    + tr("Масштаб, примененный к изображению в средстве просмотра.") + QString::fromUtf8("</p>") );
 
 
     // Keyboard shortcuts should be made visible to the user, not only in the shortcut editor, but also at logical places in the GUI.
@@ -245,7 +245,7 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
 
     _imp->syncViewerButton = new Button(lockIcon, QString(), _imp->firstSettingsRow);
     _imp->syncViewerButton->setCheckable(true);
-    _imp->syncViewerButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("When enabled, all viewers will be synchronized to the same portion of the image in the viewport."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->syncViewerButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Если эта функция включена, все средства просмотра будут синхронизированы с одной и той же частью изображения на экране просмотра."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->syncViewerButton->setFixedSize(buttonSize);
     _imp->syncViewerButton->setIconSize(buttonIconSize);
     _imp->syncViewerButton->setFocusPolicy(Qt::NoFocus);
@@ -295,11 +295,11 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
     _imp->activateRenderScale->setFixedSize(buttonSize);
     _imp->activateRenderScale->setIconSize(buttonIconSize);
     setToolTipWithShortcut(kShortcutGroupViewer, kShortcutIDActionProxyEnabled,
-                           "<p><b>" + tr("Proxy mode:").toStdString() + "</b></p><p>" +
-                           tr("Activates the downscaling by the amount indicated by the value on the right. "
-                              "The rendered images are degraded and as a result of this the whole rendering pipeline "
-                              "is much faster.").toStdString() + "</p>" +
-                           "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p>", _imp->activateRenderScale);
+                           "<p><b>" + tr("Режим прокси:").toStdString() + "</b></p><p>" +
+                           tr("Активирует уменьшение масштаба на величину, указанную значением справа. "
+                              "Отрисованные изображения ухудшаются, и в результате этого весь конвейер рендеринга "
+                              "гораздо быстрее.").toStdString() + "</p>" +
+                           "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b></p>", _imp->activateRenderScale);
 
     _imp->activateRenderScale->setCheckable(true);
     _imp->activateRenderScale->setChecked(false);
@@ -308,8 +308,8 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
 
     _imp->renderScaleCombo = new ComboBox(_imp->firstSettingsRow);
     _imp->renderScaleCombo->setFocusPolicy(Qt::NoFocus);
-    _imp->renderScaleCombo->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("When proxy mode is activated, it scales down the rendered image by this factor "
-                                                                          "to accelerate the rendering."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->renderScaleCombo->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Когда активирован режим прокси, он уменьшает визуализированное изображение на этот коэффициент. "
+                                                                          "для ускорения рендеринга."), NATRON_NAMESPACE::WhiteSpaceNormal) );
 
     QAction* proxy2 = new ActionWithShortcut(kShortcutGroupViewer, kShortcutIDActionProxyLevel2, "2", _imp->renderScaleCombo);
     QAction* proxy4 = new ActionWithShortcut(kShortcutGroupViewer, kShortcutIDActionProxyLevel4, "4", _imp->renderScaleCombo);
@@ -335,10 +335,10 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
         std::list<std::string> refreshActions;
         refreshActions.push_back(kShortcutIDActionRefresh);
         refreshActions.push_back(kShortcutIDActionRefreshWithStats);
-        setToolTipWithShortcut2(kShortcutGroupViewer, refreshActions, "<p>" + tr("Forces a new render of the current frame.").toStdString() +
-                                "</p>" + "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p><p>" +
-                                tr("Press %2 to activate in-depth render statistics useful "
-                                   "for debugging the composition.").toStdString() + "</p>", _imp->refreshButton);
+        setToolTipWithShortcut2(kShortcutGroupViewer, refreshActions, "<p>" + tr("Вызывает новый рендер текущего кадра.").toStdString() +
+                                "</p>" + "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b></p><p>" +
+                                tr("Нажмите %2, чтобы активировать полезную подробную статистику рендеринга "
+                                   "для отладки состава.").toStdString() + "</p>", _imp->refreshButton);
     }
     _imp->firstRowLayout->addWidget(_imp->refreshButton);
 
@@ -355,11 +355,11 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
         actions.push_back(kShortcutIDActionPauseViewerInputA);
         actions.push_back(kShortcutIDActionPauseViewer);
         setToolTipWithShortcut2(kShortcutGroupViewer, actions,
-                                "<p><b>" + tr("Pause Updates:").toStdString() + "</b></p><p>" +
-                                tr("When activated the viewer will not update after any change that would modify the image "
-                                   "displayed in the viewport.").toStdString() + "</p>" +
-                                "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p>" +
-                                tr("Use %2 to pause both input A and B").toStdString() + "</b></p>", _imp->pauseButton);
+                                "<p><b>" + tr("Приостановить обновления:").toStdString() + "</b></p><p>" +
+                                tr("При активации программа просмотра не будет обновляться после любых изменений, которые могли бы изменить изображение "
+                                   "отображается в окне просмотра.").toStdString() + "</p>" +
+                                "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b></p>" +
+                                tr("Используйте %2, чтобы приостановить оба ввода A и B").toStdString() + "</b></p>", _imp->pauseButton);
     }
     _imp->firstRowLayout->addWidget(_imp->pauseButton);
 
@@ -367,7 +367,7 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
     addSpacer(_imp->firstRowLayout);
 
     _imp->firstInputLabel = new Label(QString::fromUtf8("A:"), _imp->firstSettingsRow);
-    _imp->firstInputLabel->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Viewer input A."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->firstInputLabel->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Просмотрщик A."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->firstRowLayout->addWidget(_imp->firstInputLabel);
 
     _imp->firstInputImage = new ComboBox(_imp->firstSettingsRow);
@@ -386,7 +386,7 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
     appPTR->getIcon(NATRON_PIXMAP_MERGE_GROUPING, pixmapIconSize, &pixMerge);
     _imp->compositingOperatorLabel = new Label(QString(), _imp->firstSettingsRow);
     _imp->compositingOperatorLabel->setPixmap(pixMerge);
-    _imp->compositingOperatorLabel->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Operation applied between viewer inputs A and B. a and b are the alpha components of each input. d is the wipe dissolve factor, controlled by the arc handle."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->compositingOperatorLabel->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Операция, применяемая между входами просмотра A и B. a и b — альфа-компоненты каждого входа. d — коэффициент растворения вытеснения, контролируемый рукояткой дуги"), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->firstRowLayout->addWidget(_imp->compositingOperatorLabel);
 
 
@@ -399,22 +399,22 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
 #endif
     _imp->compositingOperator->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     _imp->compositingOperator->setToolTip( _imp->compositingOperatorLabel->toolTip() );
-    _imp->compositingOperator->addItem( tr(" - "), QIcon(), QKeySequence(), tr("No wipe or composite: A") );
+    _imp->compositingOperator->addItem( tr(" - "), QIcon(), QKeySequence(), tr("Не протирать и не смешивать: A") );
     ActionWithShortcut* actionWipe = new ActionWithShortcut(kShortcutGroupViewer, kShortcutIDToggleWipe, "W-Under", _imp->compositingOperator);
-    actionWipe->setToolTip( tr("Wipe under: A(1 - d) + Bd") );
+    actionWipe->setToolTip( tr("Протереть под: A(1 - d) + Bd") );
     _imp->compositingOperator->addAction(actionWipe);
-    _imp->compositingOperator->addItem( tr("W-Over"), QIcon(), QKeySequence(), tr("Wipe over: A + B(1 - a)d") );
-    _imp->compositingOperator->addItem( tr("W-Minus"), QIcon(), QKeySequence(), tr("Wipe minus: A - B") );
-    _imp->compositingOperator->addItem( tr("W-OnionSkin"), QIcon(), QKeySequence(), tr("Wipe onion skin: A + B") );
-    _imp->compositingOperator->addItem( tr("S-Under"), QIcon(), QKeySequence(), tr("Stack under: B") );
-    _imp->compositingOperator->addItem( tr("S-Over"), QIcon(), QKeySequence(), tr("Stack over: A + B(1 - a)") );
-    _imp->compositingOperator->addItem( tr("S-Minus"), QIcon(), QKeySequence(), tr("Stack minus: A - B") );
-    _imp->compositingOperator->addItem( tr("S-OnionSkin"), QIcon(), QKeySequence(), tr("Stack onion skin: A + B") );
+    _imp->compositingOperator->addItem( tr("П-Over"), QIcon(), QKeySequence(), tr("Протереть: A + B(1 - a)d") );
+    _imp->compositingOperator->addItem( tr("П-минус"), QIcon(), QKeySequence(), tr("Протереть минус: A - B") );
+    _imp->compositingOperator->addItem( tr("П-ЛукШел"), QIcon(), QKeySequence(), tr("Протереть луковую шелуху: A + B") );
+    _imp->compositingOperator->addItem( tr("У-под"), QIcon(), QKeySequence(), tr("Укладывать под: B") );
+    _imp->compositingOperator->addItem( tr("У-поверх"), QIcon(), QKeySequence(), tr("Укладывать поверх: A + B(1 - a)") );
+    _imp->compositingOperator->addItem( tr("У-минус"), QIcon(), QKeySequence(), tr("Укладывать минус: A - B") );
+    _imp->compositingOperator->addItem( tr("У-ЛукШел"), QIcon(), QKeySequence(), tr("Укладывать луковую шелуху: A + B") );
 
     _imp->firstRowLayout->addWidget(_imp->compositingOperator);
 
     _imp->secondInputLabel = new Label(QString::fromUtf8("B:"), _imp->firstSettingsRow);
-    _imp->secondInputLabel->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Viewer input B."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->secondInputLabel->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Просмотрщик B."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->firstRowLayout->addWidget(_imp->secondInputLabel);
 
     _imp->secondInputImage = new ComboBox(_imp->firstSettingsRow);
@@ -452,12 +452,12 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
     _imp->toggleGainButton->setFocusPolicy(Qt::NoFocus);
     _imp->toggleGainButton->setFixedSize(buttonSize);
     _imp->toggleGainButton->setIconSize(buttonIconSize);
-    _imp->toggleGainButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Switch between \"neutral\" 1.0 gain f-stop and the previous setting."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->toggleGainButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Переключаться между \"neutral\" 1.0 установите f-stop и предыдущую настройку."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->secondRowLayout->addWidget(_imp->toggleGainButton);
     QObject::connect( _imp->toggleGainButton, SIGNAL(clicked(bool)), this, SLOT(onGainToggled(bool)) );
 
     _imp->gainBox = new SpinBox(_imp->secondSettingsRow, SpinBox::eSpinBoxTypeDouble);
-    QString gainTt =  QString::fromUtf8("<p><b>") + tr("Gain:") + QString::fromUtf8("</b></p><p>") + tr("Gain is shown as f-stops. The image is multiplied by pow(2,value) before display.") + QString::fromUtf8("</p>");
+    QString gainTt =  QString::fromUtf8("<p><b>") + tr("Прирост:") + QString::fromUtf8("</b></p><p>") + tr("Усиление отображается в виде диафрагмы. Перед отображением изображение умножается на pow(2,value).") + QString::fromUtf8("</p>");
     _imp->gainBox->setToolTip(gainTt);
     _imp->gainBox->setIncrement(0.1);
     _imp->gainBox->setValue(0.0);
@@ -469,9 +469,9 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
     _imp->gainSlider->setToolTip(gainTt);
     _imp->secondRowLayout->addWidget(_imp->gainSlider);
 
-    QString autoContrastToolTip( QString::fromUtf8("<p><b>") + tr("Auto-contrast:") + QString::fromUtf8("</b></p><p>") + tr(
-                                     "Automatically adjusts the gain and the offset applied "
-                                     "to the colors of the visible image portion on the viewer.") + QString::fromUtf8("</p>") );
+    QString autoContrastToolTip( QString::fromUtf8("<p><b>") + tr("Автоконтраст:") + QString::fromUtf8("</b></p><p>") + tr(
+                                     "Автоматически регулирует усиление и применяемое смещение "
+                                     "к цветам видимой части изображения в средстве просмотра.") + QString::fromUtf8("</p>") );
     QPixmap acOn, acOff;
     appPTR->getIcon(NATRON_PIXMAP_VIEWER_AUTOCONTRAST_DISABLED, pixmapIconSize, &acOff);
     appPTR->getIcon(NATRON_PIXMAP_VIEWER_AUTOCONTRAST_ENABLED, pixmapIconSize, &acOn);
@@ -501,11 +501,11 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
     _imp->toggleGammaButton->setFocusPolicy(Qt::NoFocus);
     _imp->toggleGammaButton->setFixedSize(buttonSize);
     _imp->toggleGammaButton->setIconSize(buttonIconSize);
-    _imp->toggleGammaButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Viewer gamma correction: switch between gamma=1.0 and user setting."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->toggleGammaButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Гамма-коррекция средства просмотра: переключение между гаммой = 1,0 и пользовательской настройкой."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->secondRowLayout->addWidget(_imp->toggleGammaButton);
 
     _imp->gammaBox = new SpinBox(_imp->secondSettingsRow, SpinBox::eSpinBoxTypeDouble);
-    QString gammaTt = NATRON_NAMESPACE::convertFromPlainText(tr("Viewer gamma correction level (applied after gain and before colorspace correction)."), NATRON_NAMESPACE::WhiteSpaceNormal);
+    QString gammaTt = NATRON_NAMESPACE::convertFromPlainText(tr("Уровень гамма-коррекции средства просмотра (применяется после усиления и перед коррекцией цветового пространства)."), NATRON_NAMESPACE::WhiteSpaceNormal);
     _imp->gammaBox->setToolTip(gammaTt);
     QObject::connect( _imp->gammaBox, SIGNAL(valueChanged(double)), this, SLOT(onGammaSpinBoxValueChanged(double)) );
     _imp->gammaBox->setValue(1.0);
@@ -518,11 +518,11 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
     _imp->secondRowLayout->addWidget(_imp->gammaSlider);
 
     _imp->viewerColorSpace = new ComboBox(_imp->secondSettingsRow);
-    _imp->viewerColorSpace->setToolTip( QString::fromUtf8( "<p><b>") + tr("Viewer color process:") + QString::fromUtf8("</b></p><p>") + tr(
-                                            "The operation applied to the image before it is displayed "
-                                            "on screen. All the color pipeline "
-                                            "is linear, thus the process converts from linear "
-                                            "to your monitor's colorspace.") + QString::fromUtf8("</p>") );
+    _imp->viewerColorSpace->setToolTip( QString::fromUtf8( "<p><b>") + tr("Просмотрщик цветового процесса:") + QString::fromUtf8("</b></p><p>") + tr(
+                                            "Операция, применяемая к изображению перед его отображением "
+                                            "на экране. Весь цветной конвейер "
+                                            "линейный, поэтому процесс преобразуется из линейного "
+                                            "в цветовое пространство вашего монитора.") + QString::fromUtf8("</p>") );
     _imp->secondRowLayout->addWidget(_imp->viewerColorSpace);
 
     _imp->viewerColorSpace->addItem( QString::fromUtf8("Linear(None)") );
@@ -542,15 +542,15 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
     _imp->checkerboardButton->setCheckable(true);
     _imp->checkerboardButton->setChecked(false);
     _imp->checkerboardButton->setDown(false);
-    _imp->checkerboardButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("If checked, the viewer draws a checkerboard under input A instead of black (disabled under the wipe area and in stack modes)."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->checkerboardButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Если этот флажок установлен, средство просмотра рисует шахматную доску под входом A вместо черного (отключено под областью вытеснения и в режимах стека)."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->checkerboardButton->setFixedSize(buttonSize);
     _imp->checkerboardButton->setIconSize(buttonIconSize);
     QObject::connect( _imp->checkerboardButton, SIGNAL(clicked(bool)), this, SLOT(onCheckerboardButtonClicked()) );
     _imp->secondRowLayout->addWidget(_imp->checkerboardButton);
 
     _imp->viewsComboBox = new ComboBox(_imp->secondSettingsRow);
-    _imp->viewsComboBox->setToolTip( QString::fromUtf8("<p><b>") + tr("Active view:") + QString::fromUtf8("</b></p>") + tr(
-                                         "Tells the viewer what view should be displayed.") );
+    _imp->viewsComboBox->setToolTip( QString::fromUtf8("<p><b>") + tr("Активный просмотр:") + QString::fromUtf8("</b></p>") + tr(
+                                         "Сообщает зрителю, какой вид следует отобразить.") );
     _imp->secondRowLayout->addWidget(_imp->viewsComboBox);
     _imp->viewsComboBox->hide();
 
@@ -566,7 +566,7 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
     _imp->pickerButton->setCheckable(true);
     _imp->pickerButton->setChecked(true);
     _imp->pickerButton->setDown(true);
-    _imp->pickerButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Show/Hide information bar in the bottom of the viewer and if unchecked deactivate any active color picker."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->pickerButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Показать/скрыть инфопанель в нижней части Просмотрщика и, если флажок не установлен, отключите любую активную палитру цветов."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->pickerButton->setFixedSize(buttonSize);
     _imp->pickerButton->setIconSize(buttonIconSize);
     QObject::connect( _imp->pickerButton, SIGNAL(clicked(bool)), this, SLOT(onPickerButtonClicked(bool)) );
@@ -639,30 +639,30 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
     _imp->currentFrameBox = new SpinBox(_imp->playerButtonsContainer, SpinBox::eSpinBoxTypeInt);
     _imp->currentFrameBox->setValue(0);
     _imp->currentFrameBox->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
-    _imp->currentFrameBox->setToolTip( QString::fromUtf8("<p><b>") + tr("Current frame number") + QString::fromUtf8("</b></p>") );
+    _imp->currentFrameBox->setToolTip( QString::fromUtf8("<p><b>") + tr("Текущий номер кадра") + QString::fromUtf8("</b></p>") );
 
     _imp->firstFrame_Button = new Button(_imp->playerButtonsContainer);
     _imp->firstFrame_Button->setFocusPolicy(Qt::NoFocus);
     _imp->firstFrame_Button->setFixedSize(buttonSize);
     _imp->firstFrame_Button->setIconSize(buttonIconSize);
-    setToolTipWithShortcut(kShortcutGroupPlayer, kShortcutIDActionPlayerFirst, "<p>" + tr("First frame").toStdString() + "</p>" +
-                           "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p>", _imp->firstFrame_Button);
+    setToolTipWithShortcut(kShortcutGroupPlayer, kShortcutIDActionPlayerFirst, "<p>" + tr("Первый кадр").toStdString() + "</p>" +
+                           "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b></p>", _imp->firstFrame_Button);
 
 
     _imp->previousKeyFrame_Button = new Button(_imp->playerButtonsContainer);
     _imp->previousKeyFrame_Button->setFocusPolicy(Qt::NoFocus);
     _imp->previousKeyFrame_Button->setFixedSize(buttonSize);
     _imp->previousKeyFrame_Button->setIconSize(buttonIconSize);
-    setToolTipWithShortcut(kShortcutGroupPlayer, kShortcutIDActionPlayerPrevKF, "<p>" + tr("Previous Keyframe").toStdString() + "</p>" +
-                           "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p>", _imp->previousKeyFrame_Button);
+    setToolTipWithShortcut(kShortcutGroupPlayer, kShortcutIDActionPlayerPrevKF, "<p>" + tr("Предыдущий ключевой кадр").toStdString() + "</p>" +
+                           "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b></p>", _imp->previousKeyFrame_Button);
 
 
     _imp->previousFrame_Button = new Button(_imp->playerButtonsContainer);
     _imp->previousFrame_Button->setFocusPolicy(Qt::NoFocus);
     _imp->previousFrame_Button->setFixedSize(buttonSize);
     _imp->previousFrame_Button->setIconSize(buttonIconSize);
-    setToolTipWithShortcut(kShortcutGroupPlayer, kShortcutIDActionPlayerPrevious, "<p>" + tr("Previous frame").toStdString() + "</p>" +
-                           "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p>", _imp->previousFrame_Button);
+    setToolTipWithShortcut(kShortcutGroupPlayer, kShortcutIDActionPlayerPrevious, "<p>" + tr("Предыдущий кадр").toStdString() + "</p>" +
+                           "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b></p>", _imp->previousFrame_Button);
 
 
     _imp->play_Backward_Button = new Button(_imp->playerButtonsContainer);
@@ -673,9 +673,9 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
         std::list<std::string> actions;
         actions.push_back(kShortcutIDActionPlayerBackward);
         actions.push_back(kShortcutIDActionPlayerStop);
-        setToolTipWithShortcut2(kShortcutGroupPlayer, actions, "<p>" + tr("Play backward").toStdString() + "</p>" +
-                                "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b> " +
-                                tr("(%2 to stop)").toStdString() + "</p>", _imp->play_Backward_Button);
+        setToolTipWithShortcut2(kShortcutGroupPlayer, actions, "<p>" + tr("Воспроизведение назад").toStdString() + "</p>" +
+                                "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b> " +
+                                tr("(%2 остановиться)").toStdString() + "</p>", _imp->play_Backward_Button);
     }
     _imp->play_Backward_Button->setCheckable(true);
     _imp->play_Backward_Button->setDown(false);
@@ -688,9 +688,9 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
         std::list<std::string> actions;
         actions.push_back(kShortcutIDActionPlayerForward);
         actions.push_back(kShortcutIDActionPlayerStop);
-        setToolTipWithShortcut2(kShortcutGroupPlayer, actions, "<p>" + tr("Play forward").toStdString() + "</p>" +
-                                "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b> " +
-                                tr("(%2 to stop)").toStdString() + "</p>", _imp->play_Forward_Button);
+        setToolTipWithShortcut2(kShortcutGroupPlayer, actions, "<p>" + tr("Воспроизведение вперёд").toStdString() + "</p>" +
+                                "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b> " +
+                                tr("(%2 остановиться)").toStdString() + "</p>", _imp->play_Forward_Button);
     }
     _imp->play_Forward_Button->setCheckable(true);
     _imp->play_Forward_Button->setDown(false);
@@ -700,74 +700,74 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
     _imp->nextFrame_Button->setFocusPolicy(Qt::NoFocus);
     _imp->nextFrame_Button->setFixedSize(buttonSize);
     _imp->nextFrame_Button->setIconSize(buttonIconSize);
-    setToolTipWithShortcut(kShortcutGroupPlayer, kShortcutIDActionPlayerNext, "<p>" + tr("Next frame").toStdString() + "</p>" +
-                           "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p>", _imp->nextFrame_Button);
+    setToolTipWithShortcut(kShortcutGroupPlayer, kShortcutIDActionPlayerNext, "<p>" + tr("Следующий кадр").toStdString() + "</p>" +
+                           "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b></p>", _imp->nextFrame_Button);
 
 
     _imp->nextKeyFrame_Button = new Button(_imp->playerButtonsContainer);
     _imp->nextKeyFrame_Button->setFocusPolicy(Qt::NoFocus);
     _imp->nextKeyFrame_Button->setFixedSize(buttonSize);
     _imp->nextKeyFrame_Button->setIconSize(buttonIconSize);
-    setToolTipWithShortcut(kShortcutGroupPlayer, kShortcutIDActionPlayerNextKF, "<p>" + tr("Next Keyframe").toStdString() + "</p>" +
-                           "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p>", _imp->nextKeyFrame_Button);
+    setToolTipWithShortcut(kShortcutGroupPlayer, kShortcutIDActionPlayerNextKF, "<p>" + tr("Следующий ключевой кадр").toStdString() + "</p>" +
+                           "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b></p>", _imp->nextKeyFrame_Button);
 
 
     _imp->lastFrame_Button = new Button(_imp->playerButtonsContainer);
     _imp->lastFrame_Button->setFocusPolicy(Qt::NoFocus);
     _imp->lastFrame_Button->setFixedSize(buttonSize);
     _imp->lastFrame_Button->setIconSize(buttonIconSize);
-    setToolTipWithShortcut(kShortcutGroupPlayer, kShortcutIDActionPlayerLast, "<p>" + tr("Last Frame").toStdString() + "</p>" +
-                           "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p>", _imp->lastFrame_Button);
+    setToolTipWithShortcut(kShortcutGroupPlayer, kShortcutIDActionPlayerLast, "<p>" + tr("Последний кадр").toStdString() + "</p>" +
+                           "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b></p>", _imp->lastFrame_Button);
 
 
     _imp->previousIncrement_Button = new Button(_imp->playerButtonsContainer);
     _imp->previousIncrement_Button->setFocusPolicy(Qt::NoFocus);
     _imp->previousIncrement_Button->setFixedSize(buttonSize);
     _imp->previousIncrement_Button->setIconSize(buttonIconSize);
-    setToolTipWithShortcut(kShortcutGroupPlayer, kShortcutIDActionPlayerPrevIncr, "<p>" + tr("Previous Increment").toStdString() + "</p>" +
-                           "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p>", _imp->previousIncrement_Button);
+    setToolTipWithShortcut(kShortcutGroupPlayer, kShortcutIDActionPlayerPrevIncr, "<p>" + tr("Предыдущий прирост").toStdString() + "</p>" +
+                           "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b></p>", _imp->previousIncrement_Button);
 
 
     _imp->incrementSpinBox = new SpinBox(_imp->playerButtonsContainer);
     _imp->incrementSpinBox->setValue(10);
     _imp->incrementSpinBox->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
-    _imp->incrementSpinBox->setToolTip( QString::fromUtf8("<p><b>") + tr("Frame increment:") + QString::fromUtf8("</b></p>") + tr(
-                                            "The previous/next increment buttons step"
-                                            " with this increment.") );
+    _imp->incrementSpinBox->setToolTip( QString::fromUtf8("<p><b>") + tr("Приращение кадра:") + QString::fromUtf8("</b></p>") + tr(
+                                            "Предыдущий/следующий шаг кнопок увеличения "
+                                            "с этим шагом.") );
 
 
     _imp->nextIncrement_Button = new Button(_imp->playerButtonsContainer);
     _imp->nextIncrement_Button->setFocusPolicy(Qt::NoFocus);
     _imp->nextIncrement_Button->setFixedSize(buttonSize);
     _imp->nextIncrement_Button->setIconSize(buttonIconSize);
-    setToolTipWithShortcut(kShortcutGroupPlayer, kShortcutIDActionPlayerNextIncr, "<p>" + tr("Next Increment").toStdString() + "</p>" +
-                           "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p>", _imp->nextIncrement_Button);
+    setToolTipWithShortcut(kShortcutGroupPlayer, kShortcutIDActionPlayerNextIncr, "<p>" + tr("Следующий шаг").toStdString() + "</p>" +
+                           "<p><b>" + tr("Клавиатурные сочетанияt: %1").toStdString() + "</b></p>", _imp->nextIncrement_Button);
 
     _imp->playBackInputButton = new Button(_imp->playerButtonsContainer);
     _imp->playBackInputButton->setFocusPolicy(Qt::NoFocus);
     _imp->playBackInputButton->setFixedSize(buttonSize);
     _imp->playBackInputButton->setIconSize(buttonIconSize);
-    setToolTipWithShortcut(kShortcutGroupPlayer, kShortcutIDActionPlayerPlaybackIn, "<p>" + tr("Set the playback in point at the current frame.").toStdString() + "</p>" + "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p>", _imp->playBackInputButton);
+    setToolTipWithShortcut(kShortcutGroupPlayer, kShortcutIDActionPlayerPlaybackIn, "<p>" + tr("Установите точку воспроизведения на текущем кадре.").toStdString() + "</p>" + "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b></p>", _imp->playBackInputButton);
 
     _imp->playBackOutputButton = new Button(_imp->playerButtonsContainer);
     _imp->playBackOutputButton->setFocusPolicy(Qt::NoFocus);
     _imp->playBackOutputButton->setFixedSize(buttonSize);
     _imp->playBackOutputButton->setIconSize(buttonIconSize);
-    setToolTipWithShortcut(kShortcutGroupPlayer, kShortcutIDActionPlayerPlaybackOut, "<p>" + tr("Set the playback out point at the current frame.").toStdString() + "</p>" + "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p>", _imp->playBackOutputButton);
+    setToolTipWithShortcut(kShortcutGroupPlayer, kShortcutIDActionPlayerPlaybackOut, "<p>" + tr("Установите точку окончания воспроизведения на текущем кадре.").toStdString() + "</p>" + "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b></p>", _imp->playBackOutputButton);
 
     _imp->playBackInputSpinbox = new SpinBox(_imp->playerButtonsContainer);
-    _imp->playBackInputSpinbox->setToolTip( tr("The playback in point") );
+    _imp->playBackInputSpinbox->setToolTip( tr("Воспроизведение в точку") );
     _imp->playBackInputSpinbox->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
 
     _imp->playBackOutputSpinbox = new SpinBox(_imp->playerButtonsContainer);
-    _imp->playBackOutputSpinbox->setToolTip( tr("The playback out point") );
+    _imp->playBackOutputSpinbox->setToolTip( tr("Воспроизведение из точки") );
     _imp->playBackOutputSpinbox->setAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
 
     _imp->playbackMode_Button = new Button(_imp->playerButtonsContainer);
     _imp->playbackMode_Button->setFocusPolicy(Qt::NoFocus);
     _imp->playbackMode_Button->setFixedSize(buttonSize);
     _imp->playbackMode_Button->setIconSize(buttonIconSize);
-    _imp->playbackMode_Button->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Behaviour to adopt when the playback hit the end of the range: loop,bounce or stop."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->playbackMode_Button->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Поведение, которое необходимо применить, когда воспроизведение достигает конца диапазона: зацикливание, отказ или остановка."), NATRON_NAMESPACE::WhiteSpaceNormal) );
 
 
     TimeLinePtr timeline = getGui()->getApp()->getTimeLine();
@@ -779,7 +779,7 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
     tripleSyncIc.addPixmap(tripleSyncUnlockPix, QIcon::Normal, QIcon::Off);
     tripleSyncIc.addPixmap(tripleSyncLockedPix, QIcon::Normal, QIcon::On);
     _imp->tripleSyncButton = new Button(tripleSyncIc, QString(), _imp->playerButtonsContainer);
-    _imp->tripleSyncButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("When activated, the timeline frame-range is synchronized with the Dope Sheet and the Curve Editor."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->tripleSyncButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("При активации диапазон кадров временной шкалы синхронизируется с листом Dope Sheet и редактором кривых."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->tripleSyncButton->setCheckable(true);
     _imp->tripleSyncButton->setChecked(false);
     _imp->tripleSyncButton->setFixedSize(buttonSize);
@@ -790,9 +790,9 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
 
     _imp->canEditFpsBox = new QCheckBox(_imp->playerButtonsContainer);
 
-    QString canEditFpsBoxTT = NATRON_NAMESPACE::convertFromPlainText(tr("When unchecked, the playback frame rate is automatically set from "
-                                                                " the Viewer A input.  "
-                                                                "When checked, the user setting is used.")
+    QString canEditFpsBoxTT = NATRON_NAMESPACE::convertFromPlainText(tr("Флажок снят- частота кадров воспроизведения автоматически устанавливается"
+                                                                " со входа Просмотрщика А  "
+                                                                "Флажок установлен- используются пользовательские настройки.")
                                                              , NATRON_NAMESPACE::WhiteSpaceNormal);
 
     _imp->canEditFpsBox->setFixedSize(buttonSize);
@@ -801,7 +801,7 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
     _imp->canEditFpsBox->setChecked(!_imp->fpsLocked);
     QObject::connect( _imp->canEditFpsBox, SIGNAL(clicked(bool)), this, SLOT(onCanSetFPSClicked(bool)) );
 
-    _imp->canEditFpsLabel = new ClickableLabel(tr("fps:"), _imp->playerButtonsContainer);
+    _imp->canEditFpsLabel = new ClickableLabel(tr("кадр/с:"), _imp->playerButtonsContainer);
     QObject::connect( _imp->canEditFpsLabel, SIGNAL(clicked(bool)), this, SLOT(onCanSetFPSLabelClicked(bool)) );
     _imp->canEditFpsLabel->setToolTip(canEditFpsBoxTT);
     //_imp->canEditFpsLabel->setFont(font);
@@ -813,14 +813,14 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
     _imp->userFps = 24.;
     _imp->fpsBox->setValue(_imp->userFps);
     _imp->fpsBox->setIncrement(0.1);
-    _imp->fpsBox->setToolTip( QString::fromUtf8("<p><b>") + tr("fps:") + QString::fromUtf8("</b></p>") + tr(
-                                  "Viewer playback framerate, in frames per second.") );
+    _imp->fpsBox->setToolTip( QString::fromUtf8("<p><b>") + tr("кадр/с:") + QString::fromUtf8("</b></p>") + tr(
+                                  "Частота кадров при воспроизведении Просмотрщика в кадрах в секунду.") );
 
     _imp->timeFormat = new ComboBox(_imp->playerButtonsContainer);
-    _imp->timeFormat->addItem(tr("TC"), QIcon(), QKeySequence(), tr("Timecode") );
-    _imp->timeFormat->addItem(tr("TF"), QIcon(), QKeySequence(), tr("Timeline Frames") );
+    _imp->timeFormat->addItem(tr("TК"), QIcon(), QKeySequence(), tr("Таймкод") );
+    _imp->timeFormat->addItem(tr("ВР"), QIcon(), QKeySequence(), tr("Временные рамки") );
     _imp->timeFormat->setCurrentIndex_no_emit(1);
-    _imp->timeFormat->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Set the time display format.")
+    _imp->timeFormat->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Установите формат отображения времени.")
                                                                          , NATRON_NAMESPACE::WhiteSpaceNormal));
     const QSize timeFormatSize( TO_DPIX(NATRON_LARGE_BUTTON_SIZE), TO_DPIY(NATRON_MEDIUM_BUTTON_SIZE) );
     _imp->timeFormat->setFixedSize(timeFormatSize);
@@ -837,9 +837,9 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
     _imp->turboButton->setDown(false);
     _imp->turboButton->setFixedSize(buttonSize);
     _imp->turboButton->setIconSize(buttonIconSize);
-    _imp->turboButton->setToolTip( QString::fromUtf8("<p><b>") + tr("Turbo mode:") + QString::fromUtf8("</p></b><p>") +
-                                   tr("When checked, only the viewer is redrawn during playback, "
-                                      "for maximum efficiency.") + QString::fromUtf8("</p>") );
+    _imp->turboButton->setToolTip( QString::fromUtf8("<p><b>") + tr("Турбо-режим:") + QString::fromUtf8("</p></b><p>") +
+                                   tr("Если флажок установлен, во время воспроизведения перерисовывается только средство просмотра "
+                                      "для максимальной эффективности.") + QString::fromUtf8("</p>") );
     _imp->turboButton->setFocusPolicy(Qt::NoFocus);
     QObject::connect( _imp->turboButton, SIGNAL (clicked(bool)), getGui(), SLOT(onFreezeUIButtonClicked(bool)) );
     QPixmap pixFirst;
@@ -950,27 +950,27 @@ ViewerTab::ViewerTab(const std::list<NodeGuiPtr> & existingNodesContext,
     _imp->pauseButton->setIcon(icPauseViewer);
 
     setToolTipWithShortcut(kShortcutGroupViewer, kShortcutIDActionFitViewer, "<p>" +
-                           tr("Scales the image so it doesn't exceed the size of the viewer and centers it.").toStdString() + "</p>" +
-                           "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p>", _imp->centerViewerButton);
+                           tr("Масштабирует изображение так, чтобы оно не превышало размер средства просмотра, и центрирует его.").toStdString() + "</p>" +
+                           "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b></p>", _imp->centerViewerButton);
 
     setToolTipWithShortcut(kShortcutGroupViewer, kShortcutIDActionClipEnabled, "<p>" +
-                           tr("Clips the portion of the image displayed "
-                              "on the viewer to the input stream format.").toStdString() + "</p>" +
-                           "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p>", _imp->clipToProjectFormatButton);
+                           tr("Вырезает отображаемую часть изображения "
+                              "в средстве просмотра в формат входного потока.").toStdString() + "</p>" +
+                           "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b></p>", _imp->clipToProjectFormatButton);
 
     setToolTipWithShortcut(kShortcutGroupViewer, kShortcutIDActionFullFrameProc, "<p>" +
-                           tr("When checked, the viewer will render the image in its entirety and not just the visible portion.").toStdString() + "</p>" +
-                           "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p>", _imp->fullFrameProcessingButton);
+                           tr("Если флажок установлен, средство просмотра будет отображать изображение целиком, а не только видимую часть.").toStdString() + "</p>" +
+                           "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b></p>", _imp->fullFrameProcessingButton);
 
 
     std::list<std::string> roiActions;
     roiActions.push_back(kShortcutIDActionROIEnabled);
     roiActions.push_back(kShortcutIDActionNewROI);
     setToolTipWithShortcut2(kShortcutGroupViewer, roiActions, "<p>" +
-                            tr("When active, enables the region of interest that limits"
-                               " the portion of the viewer that is kept updated.").toStdString() + "</p>" +
-                            "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p>" +
-                            "<p>" + tr("Press %2 to activate and drag a new region.").toStdString() + "</p>", _imp->enableViewerRoI);
+                            tr("Когда активно, включает область интереса, которая ограничивает"
+                               " часть средства просмотра, которая постоянно обновляется.").toStdString() + "</p>" +
+                            "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b></p>" +
+                            "<p>" + tr("Нажмите %2, чтобы активировать и перетащить новый регион.").toStdString() + "</p>", _imp->enableViewerRoI);
 
 
     _imp->playerLayout->addWidget(_imp->playBackInputButton);

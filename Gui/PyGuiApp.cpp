@@ -377,7 +377,7 @@ GuiApp::setSelection(const std::list<Effect*>& nodes)
         selection.push_back(nodeUi);
     }
     if (printWarn) {
-        getInternalGuiApp()->appendToScriptEditor( tr("Python: Invalid selection from setSelection(): Some nodes in the list do not belong to the same group.").toStdString() );
+        getInternalGuiApp()->appendToScriptEditor( tr("Python: Неверный выбор из setSelection(): некоторые узлы в списке не принадлежат к одной группе.").toStdString() );
     } else {
         NodeGroup* isGroup = dynamic_cast<NodeGroup*>( collection.get() );
         NodeGraph* graph = 0;

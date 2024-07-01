@@ -237,9 +237,9 @@ SequenceFileDialog::SequenceFileDialog( QWidget* parent, // necessary to transmi
     _buttonsLayout = new QHBoxLayout(_buttonsWidget);
     _buttonsWidget->setLayout(_buttonsLayout);
     if (mode == eFileDialogModeOpen) {
-        _lookInLabel = new Label(tr("Look in:"), _buttonsWidget);
+        _lookInLabel = new Label(tr("Смотреть в:"), _buttonsWidget);
     } else {
-        _lookInLabel = new Label(tr("Save in:"), _buttonsWidget);
+        _lookInLabel = new Label(tr("Сохранить в:"), _buttonsWidget);
     }
     _buttonsLayout->addWidget(_lookInLabel);
 
@@ -259,28 +259,28 @@ SequenceFileDialog::SequenceFileDialog( QWidget* parent, // necessary to transmi
     _previousButton = new Button(style()->standardIcon(QStyle::SP_ArrowBack), QString(), _buttonsWidget);
     _previousButton->setFixedSize(buttonSize);
     _previousButton->setIconSize(buttonIconSize);
-    _previousButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Go back in the directory history."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _previousButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Вернуться в историю каталогов."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _buttonsLayout->addWidget(_previousButton);
     QObject::connect( _previousButton, SIGNAL(clicked()), this, SLOT(previousFolder()) );
 
     _nextButton = new Button(style()->standardIcon(QStyle::SP_ArrowForward), QString(), _buttonsWidget);
     _nextButton->setFixedSize(buttonSize);
     _nextButton->setIconSize(buttonIconSize);
-    _nextButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Go forward in the directory history."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _nextButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Перейти вперед по истории каталогов."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _buttonsLayout->addWidget(_nextButton);
     QObject::connect( _nextButton, SIGNAL(clicked()), this, SLOT(nextFolder()) );
 
     _upButton = new Button(style()->standardIcon(QStyle::SP_ArrowUp), QString(), _buttonsWidget);
     _upButton->setIconSize(buttonIconSize);
     _upButton->setFixedSize(buttonSize);
-    _upButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Go to the parent directory."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _upButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Перейти в родительский каталог."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _buttonsLayout->addWidget(_upButton);
     QObject::connect( _upButton, SIGNAL(clicked()), this, SLOT(parentFolder()) );
 
     _createDirButton = new Button(style()->standardIcon(QStyle::SP_FileDialogNewFolder), QString(), _buttonsWidget);
     _createDirButton->setIconSize(buttonIconSize);
     _createDirButton->setFixedSize(buttonSize);
-    _createDirButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Create a new directory here."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _createDirButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Создать здесь новый каталог."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _buttonsLayout->addWidget(_createDirButton);
     QObject::connect( _createDirButton, SIGNAL(clicked()), this, SLOT(createDir()) );
 
@@ -310,13 +310,13 @@ SequenceFileDialog::SequenceFileDialog( QWidget* parent, // necessary to transmi
 
     _addFavoriteButton = new Button(QString::fromUtf8(" + "), this);
     _addFavoriteButton->setMaximumSize(20, 20);
-    _addFavoriteButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Add the current directory to the favorites list."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _addFavoriteButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Добавить текущий каталог в список избранного."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _favoriteButtonsLayout->addWidget(_addFavoriteButton);
     QObject::connect( _addFavoriteButton, SIGNAL(clicked()), this, SLOT(addFavorite()) );
 
     _removeFavoriteButton = new Button(QString::fromUtf8(" - "), this);
     _removeFavoriteButton->setMaximumSize(20, 20);
-    _removeFavoriteButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Remove the selected directory from the favorites list."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _removeFavoriteButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Удалить выбранный каталог из списка избранного."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _favoriteButtonsLayout->addWidget(_removeFavoriteButton);
     QObject::connect( _removeFavoriteButton, SIGNAL(clicked()), _favoriteView, SLOT(removeEntry()) );
 
@@ -333,14 +333,14 @@ SequenceFileDialog::SequenceFileDialog( QWidget* parent, // necessary to transmi
     _selectionLayout->setContentsMargins(0, 0, 0, 0);
     _selectionWidget->setLayout(_selectionLayout);
 
-    _relativeLabel = new Label(tr("Relative to:"), _selectionWidget);
+    _relativeLabel = new Label(tr("Относительно:"), _selectionWidget);
     _selectionLayout->addWidget(_relativeLabel);
 
     _relativeChoice = new ComboBox(_selectionWidget);
     QObject::connect( _relativeChoice, SIGNAL(currentIndexChanged(int)), this, SLOT(onRelativeChoiceChanged(int)) );
-    _relativeChoice->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("This controls how the selected file path is referred to. It can be either Absolute, or relative to one of the project paths. Note that the [Project] path exists only once the project is saved, so it is best to save an empty project before opening any external file."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _relativeChoice->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Это контролирует способ ссылки на выбранный путь к файлу. Оно может быть либо абсолютным, либо относительным к одному из путей проекта. Обратите внимание, что путь [Проект] существует только после сохранения проекта, поэтому лучше всего сохранить пустой проект перед открытием любого внешнего файла."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _selectionLayout->addWidget(_relativeChoice);
-    _relativeChoice->addItem( tr("Absolute") );
+    _relativeChoice->addItem( tr("Абсолютный") );
     std::map<std::string, std::string> projectPaths;
     gui->getApp()->getProject()->getEnvironmentVariables(projectPaths);
     int i = 1;
@@ -357,9 +357,9 @@ SequenceFileDialog::SequenceFileDialog( QWidget* parent, // necessary to transmi
     }
 
     _sequenceButton = new ComboBox(_selectionWidget);
-    _sequenceButton->addItem( tr("Sequence:") );
-    _sequenceButton->addItem( tr("File:") );
-    _sequenceButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Control whether to select a file sequence or a single file."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _sequenceButton->addItem( tr("Последовательность:") );
+    _sequenceButton->addItem( tr("Файл:") );
+    _sequenceButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Управляйте выбором: последовательность файлов или один файл."), NATRON_NAMESPACE::WhiteSpaceNormal) );
 
 
     if (isSequenceDialog) {
@@ -441,7 +441,7 @@ SequenceFileDialog::SequenceFileDialog( QWidget* parent, // necessary to transmi
     _filterLineLayout->setContentsMargins(0, 0, 0, 0);
     _filterLineWidget->setLayout(_filterLineLayout);
 
-    _filterLabel = new Label(tr("Filter:"), _filterLineWidget);
+    _filterLabel = new Label(tr("Фильтр:"), _filterLineWidget);
     _filterLineLayout->addWidget(_filterLabel);
 
     _filterWidget = new QWidget(_filterLineWidget);
@@ -469,9 +469,9 @@ SequenceFileDialog::SequenceFileDialog( QWidget* parent, // necessary to transmi
     _filterLineLayout->addWidget(_filterWidget);
 
     if ( (mode == SequenceFileDialog::eFileDialogModeOpen) || (mode == SequenceFileDialog::eFileDialogModeDir) ) {
-        _openButton = new Button(tr("Open"), _filterLineWidget);
+        _openButton = new Button(tr("Открыть"), _filterLineWidget);
     } else {
-        _openButton = new Button(tr("Save"), _filterLineWidget);
+        _openButton = new Button(tr("Сохранить"), _filterLineWidget);
     }
     _openButton->setFocusPolicy(Qt::TabFocus);
     _filterLineLayout->addWidget(_openButton);
@@ -482,7 +482,7 @@ SequenceFileDialog::SequenceFileDialog( QWidget* parent, // necessary to transmi
         QObject::connect( _openButton, SIGNAL(clicked()), this, SLOT(selectDirectory()) );
     }
 
-    _cancelButton = new Button(tr("Cancel"), _filterLineWidget);
+    _cancelButton = new Button(tr("Отменить"), _filterLineWidget);
     _filterLineLayout->addWidget(_cancelButton);
     QObject::connect( _cancelButton, SIGNAL(clicked()), this, SLOT(cancelSlot()) );
 
@@ -518,18 +518,18 @@ SequenceFileDialog::SequenceFileDialog( QWidget* parent, // necessary to transmi
 
     if (_dialogMode == eFileDialogModeOpen) {
         if (isSequenceDialog) {
-            setWindowTitle( tr("Open Sequence") );
+            setWindowTitle( tr("Открытая последовательность") );
         } else {
-            setWindowTitle( tr("Open File") );
+            setWindowTitle( tr("Открыть файл") );
         }
     } else if (_dialogMode == eFileDialogModeSave) {
         if (isSequenceDialog) {
-            setWindowTitle( tr("Save Sequence") );
+            setWindowTitle( tr("Сохранить последовательность") );
         } else {
-            setWindowTitle( tr("Save File") );
+            setWindowTitle( tr("Сохранить файл") );
         }
     } else {
-        setWindowTitle( tr("Select Directory") );
+        setWindowTitle( tr("Выберать каталог") );
     }
     QSettings settings( QString::fromUtf8(NATRON_ORGANIZATION_NAME), QString::fromUtf8(NATRON_APPLICATION_NAME) );
     bool hasRestoredDir;
@@ -730,7 +730,7 @@ SequenceFileDialog::setFileExtensionOnLineEdit(const QString & ext)
     }
 
     if ( isDirectory(str) ) {
-        QString text = _selectionLineEdit->text() + tr("Untitled");
+        QString text = _selectionLineEdit->text() + tr("Без названия");
         if ( sequenceModeEnabled() ) {
             text.append( QLatin1Char('#') );
         }
@@ -803,11 +803,11 @@ SequenceFileDialog::createMenuActions()
 
     _showHiddenAction = new QAction(this);
     _showHiddenAction->setCheckable(true);
-    _showHiddenAction->setText( tr("Show hidden files") );
+    _showHiddenAction->setText( tr("Показать скрытые файлы") );
     QObject::connect( _showHiddenAction, SIGNAL(triggered()), this, SLOT(showHidden()) );
 
     _newFolderAction = new QAction(this);
-    _newFolderAction->setText( tr("New folder") );
+    _newFolderAction->setText( tr("Новая папка") );
     QObject::connect( _newFolderAction, SIGNAL(triggered()), this, SLOT(createDir()) );
 }
 
@@ -1331,7 +1331,7 @@ SequenceFileDialog::createDir()
     _favoriteView->clearSelection();
 
     NATRON_PYTHON_NAMESPACE::PyModalDialog dialog(_gui);
-    dialog.setWindowTitle( tr("New Folder") );
+    dialog.setWindowTitle( tr("Новая папка") );
     NATRON_PYTHON_NAMESPACE::StringParamPtr folderName( dialog.createStringParam( QString::fromUtf8("folderName"), QString::fromUtf8("Folder Name") ) );
     dialog.refreshUserParamsGUI();
     if ( dialog.exec() ) {
@@ -1431,12 +1431,12 @@ SequenceFileDialog::openSelectedFiles()
                         std::map<int, std::string> & views = sequence.begin()->second;
                         assert( !views.empty() );
 
-                        text = tr("The file %1 already exists.\nWould you like to replace it?").arg( QString::fromUtf8( views.begin()->second.c_str() ) );
+                        text = tr("Файл %1 уже существует.\nЗаменить его?").arg( QString::fromUtf8( views.begin()->second.c_str() ) );
                     } else {
-                        text = tr("The sequence %1 already exists.\nWould you like to replace it?").arg(str);
+                        text = tr("Последовательность %1 уже существует.\nЗаменить его?").arg(str);
                     }
 
-                    QMessageBox ques(QMessageBox::Question, tr("Existing file"), text, QMessageBox::Yes | QMessageBox::No,
+                    QMessageBox ques(QMessageBox::Question, tr("Существующий файл"), text, QMessageBox::Yes | QMessageBox::No,
                                      this, Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint | Qt::WindowStaysOnTopHint);
                     Gui::setQMessageBoxAppropriateFont(&ques);
                     ques.setDefaultButton(QMessageBox::Yes);
@@ -2509,7 +2509,7 @@ FileDialogComboBox::showPopup()
         model()->insertRow( model()->rowCount() );
         idx = model()->index(model()->rowCount() - 1, 0);
         // ### TODO maybe add a horizontal line before this
-        model()->setData( idx, tr("Recent Places") );
+        model()->setData( idx, tr("Недавние места") );
         QStandardItemModel *m = qobject_cast<QStandardItemModel*>( model() );
         if (m) {
             Qt::ItemFlags flags = m->flags(idx);

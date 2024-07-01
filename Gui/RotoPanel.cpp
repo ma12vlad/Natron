@@ -517,7 +517,7 @@ RotoPanel::RotoPanel(const NodeGuiPtr&  n,
 
     _imp->splineLayout = new QHBoxLayout(_imp->splineContainer);
     _imp->splineLayout->setSpacing(2);
-    _imp->splineLabel = new ClickableLabel(tr("Spline keyframe:"), _imp->splineContainer);
+    _imp->splineLabel = new ClickableLabel(tr("Ключевой кадр сплайна:"), _imp->splineContainer);
     _imp->splineLabel->setSunken(false);
     _imp->splineLabel->setEnabled(false);
     _imp->splineLayout->addWidget(_imp->splineLabel);
@@ -525,7 +525,7 @@ RotoPanel::RotoPanel(const NodeGuiPtr&  n,
     _imp->currentKeyframe = new SpinBox(_imp->splineContainer, SpinBox::eSpinBoxTypeDouble);
     _imp->currentKeyframe->setEnabled(false);
     _imp->currentKeyframe->setReadOnly_NoFocusRect(true);
-    _imp->currentKeyframe->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("The current keyframe for the selected shape(s)."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->currentKeyframe->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Текущий ключевой кадр для выбранных фигур."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->splineLayout->addWidget(_imp->currentKeyframe);
 
     _imp->ofLabel = new ClickableLabel(QString::fromUtf8("of"), _imp->splineContainer);
@@ -535,7 +535,7 @@ RotoPanel::RotoPanel(const NodeGuiPtr&  n,
     _imp->totalKeyframes = new SpinBox(_imp->splineContainer, SpinBox::eSpinBoxTypeInt);
     _imp->totalKeyframes->setEnabled(false);
     _imp->totalKeyframes->setReadOnly_NoFocusRect(true);
-    _imp->totalKeyframes->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("The keyframe count for all the selected shapes."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->totalKeyframes->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Количество ключевых кадров для всех выбранных фигур."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->splineLayout->addWidget(_imp->totalKeyframes);
 
     int medIconSize = TO_DPIY(NATRON_MEDIUM_BUTTON_ICON_SIZE);
@@ -549,7 +549,7 @@ RotoPanel::RotoPanel(const NodeGuiPtr&  n,
     _imp->prevKeyframe = new Button(QIcon(prevPix), QString(), _imp->splineContainer);
     _imp->prevKeyframe->setFixedSize(medButtonSize);
     _imp->prevKeyframe->setIconSize(medButtonIconSize);
-    _imp->prevKeyframe->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Go to the previous keyframe."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->prevKeyframe->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Перейти к предыдущему ключевому кадру."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->prevKeyframe->setEnabled(false);
     QObject::connect( _imp->prevKeyframe, SIGNAL(clicked(bool)), this, SLOT(onGoToPrevKeyframeButtonClicked()) );
     _imp->splineLayout->addWidget(_imp->prevKeyframe);
@@ -557,7 +557,7 @@ RotoPanel::RotoPanel(const NodeGuiPtr&  n,
     _imp->nextKeyframe = new Button(QIcon(nextPix), QString(), _imp->splineContainer);
     _imp->nextKeyframe->setFixedSize(medButtonSize);
     _imp->nextKeyframe->setIconSize(medButtonIconSize);
-    _imp->nextKeyframe->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Go to the next keyframe."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->nextKeyframe->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Перейти к следующему ключевому кадру."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->nextKeyframe->setEnabled(false);
     QObject::connect( _imp->nextKeyframe, SIGNAL(clicked(bool)), this, SLOT(onGoToNextKeyframeButtonClicked()) );
     _imp->splineLayout->addWidget(_imp->nextKeyframe);
@@ -565,7 +565,7 @@ RotoPanel::RotoPanel(const NodeGuiPtr&  n,
     _imp->addKeyframe = new Button(QIcon(addPix), QString(), _imp->splineContainer);
     _imp->addKeyframe->setFixedSize(medButtonSize);
     _imp->addKeyframe->setIconSize(medButtonIconSize);
-    _imp->addKeyframe->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Add keyframe at the current timeline's time."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->addKeyframe->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Добавить ключевой кадр во время текущей временной шкалы."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->addKeyframe->setEnabled(false);
     QObject::connect( _imp->addKeyframe, SIGNAL(clicked(bool)), this, SLOT(onAddKeyframeButtonClicked()) );
     _imp->splineLayout->addWidget(_imp->addKeyframe);
@@ -573,7 +573,7 @@ RotoPanel::RotoPanel(const NodeGuiPtr&  n,
     _imp->removeKeyframe = new Button(QIcon(removePix), QString(), _imp->splineContainer);
     _imp->removeKeyframe->setFixedSize(medButtonSize);
     _imp->removeKeyframe->setIconSize(medButtonIconSize);
-    _imp->removeKeyframe->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Remove keyframe at the current timeline's time."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->removeKeyframe->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Удалить ключевой кадр на текущей временной шкале."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->removeKeyframe->setEnabled(false);
     QObject::connect( _imp->removeKeyframe, SIGNAL(clicked(bool)), this, SLOT(onRemoveKeyframeButtonClicked()) );
     _imp->splineLayout->addWidget(_imp->removeKeyframe);
@@ -581,7 +581,7 @@ RotoPanel::RotoPanel(const NodeGuiPtr&  n,
     _imp->clearAnimation = new Button(QIcon(clearAnimPix), QString(), _imp->splineContainer);
     _imp->clearAnimation->setFixedSize(medButtonSize);
     _imp->clearAnimation->setIconSize(medButtonIconSize);
-    _imp->clearAnimation->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Remove all animation for the selected shape(s)."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->clearAnimation->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Удалить всю анимацию для выбранных фигур"), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->clearAnimation->setEnabled(false);
     QObject::connect( _imp->clearAnimation, SIGNAL(clicked(bool)), this, SLOT(onRemoveAnimationButtonClicked()) );
     _imp->splineLayout->addWidget(_imp->clearAnimation);
@@ -597,14 +597,14 @@ RotoPanel::RotoPanel(const NodeGuiPtr&  n,
     _imp->tree->setDragEnabled(true);
     _imp->tree->setExpandsOnDoubleClick(false);
     _imp->tree->setAttribute(Qt::WA_MacShowFocusRect, 0);
-    QString treeToolTip = NATRON_NAMESPACE::convertFromPlainText(tr("This tree contains the hierarchy of shapes, strokes and layers along with some "
-                                                            "most commonly used attributes for each of them. "
-                                                            "Each attribute can be found in the parameters above in the panel.\n"
-                                                            "You can reorder items by drag and dropping them and can also right click "
-                                                            "each item for more options.\n"
-                                                            "The items are rendered from bottom to top always, so that the first shape in "
-                                                            "this list will always be the last one rendered "
-                                                            "(generally on top of everything else)."), NATRON_NAMESPACE::WhiteSpaceNormal);
+    QString treeToolTip = NATRON_NAMESPACE::convertFromPlainText(tr("Это дерево содержит иерархию фигур, штрихов и слоев, а также некоторые "
+                                                            "наиболее часто используемые атрибуты для каждого из них. "
+                                                            "Каждый атрибут можно найти в параметрах выше на панели\n"
+                                                            "Вы можете изменить порядок элементов, перетаскивая их, а также щелкая ПКМ "
+                                                            "каждый элемент для дополнительных опций.\n"
+                                                            "Элементы всегда визуализируются снизу вверх, так что первая фигура в "
+                                                            "этот список всегда будет отображаться последним "
+                                                            "(обычно поверх всего остального)."), NATRON_NAMESPACE::WhiteSpaceNormal);
     _imp->tree->setToolTip(treeToolTip);
 
     _imp->mainLayout->addWidget(_imp->tree);
@@ -619,7 +619,7 @@ RotoPanel::RotoPanel(const NodeGuiPtr&  n,
 
     _imp->tree->setColumnCount(MAX_COLS);
     _imp->treeHeader = new QTreeWidgetItem;
-    _imp->treeHeader->setText( COL_LABEL, tr("Label") );
+    _imp->treeHeader->setText( COL_LABEL, tr("Метка") );
 
     QPixmap pixLayer, pixBezier, pixVisible, pixUnvisible, pixLocked, pixUnlocked, pixInverted, pixUninverted, pixWheel, pixDefault, pixmerge;
     QPixmap pixPaintBrush, pixEraser, pixBlur, pixSmear, pixSharpen, pixDodge, pixBurn, pixClone, pixReveal;
@@ -686,13 +686,13 @@ RotoPanel::RotoPanel(const NodeGuiPtr&  n,
 
     _imp->addLayerButton = new Button(QString::fromUtf8("+"), _imp->buttonContainer);
     _imp->addLayerButton->setFixedSize(medButtonSize);
-    _imp->addLayerButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Add a new layer."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->addLayerButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Добавить новый слой."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->buttonLayout->addWidget(_imp->addLayerButton);
     QObject::connect( _imp->addLayerButton, SIGNAL(clicked(bool)), this, SLOT(onAddLayerButtonClicked()) );
 
     _imp->removeItemButton = new Button(QString::fromUtf8("-"), _imp->buttonContainer);
     _imp->removeItemButton->setFixedSize(medButtonSize);
-    _imp->removeItemButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Remove selected items."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->removeItemButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Удалить выбранные элементы."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->buttonLayout->addWidget(_imp->removeItemButton);
     QObject::connect( _imp->removeItemButton, SIGNAL(clicked(bool)), this, SLOT(onRemoveItemButtonClicked()) );
 
@@ -1140,8 +1140,8 @@ RotoPanelPrivate::insertItemRecursively(double time,
 
 
     treeItem->setIcon(COL_ACTIVATED, item->isGloballyActivated() ? iconVisible : iconUnvisible);
-    treeItem->setToolTip( COL_ACTIVATED, NATRON_NAMESPACE::convertFromPlainText(tr("Controls whether the overlay should be visible on the viewer for "
-                                                                           "the shape."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    treeItem->setToolTip( COL_ACTIVATED, NATRON_NAMESPACE::convertFromPlainText(tr("Управляет тем, должно ли наложение быть видимым "
+                                                                           "в средстве просмотра фигуры."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     treeItem->setIcon(COL_LOCKED, item->getLocked() ? iconLocked : iconUnlocked);
     treeItem->setToolTip( COL_LOCKED, NATRON_NAMESPACE::convertFromPlainText(tr(kRotoLockedHint), NATRON_NAMESPACE::WhiteSpaceNormal) );
 
@@ -2233,22 +2233,22 @@ RotoPanel::showItemMenu(QTreeWidgetItem* item,
     Menu menu(this);
     //menu.setFont( QFont(appFont,appFontSize) );
     menu.setShortcutEnabled(false);
-    QAction* addLayerAct = menu.addAction( tr("Add layer") );
+    QAction* addLayerAct = menu.addAction( tr("Добавить слой") );
     QObject::connect( addLayerAct, SIGNAL(triggered()), this, SLOT(onAddLayerActionTriggered()) );
-    QAction* deleteAct = menu.addAction( tr("Delete") );
+    QAction* deleteAct = menu.addAction( tr("Удалить") );
     deleteAct->setShortcut( QKeySequence(Qt::Key_Backspace) );
     QObject::connect( deleteAct, SIGNAL(triggered()), this, SLOT(onDeleteItemActionTriggered()) );
-    QAction* cutAct = menu.addAction( tr("Cut") );
+    QAction* cutAct = menu.addAction( tr("Обрезать") );
     cutAct->setShortcut( QKeySequence(Qt::Key_X + Qt::CTRL) );
     QObject::connect( cutAct, SIGNAL(triggered()), this, SLOT(onCutItemActionTriggered()) );
-    QAction* copyAct = menu.addAction( tr("Copy") );
+    QAction* copyAct = menu.addAction( tr("Копировать") );
     copyAct->setShortcut( QKeySequence(Qt::Key_C + Qt::CTRL) );
     QObject::connect( copyAct, SIGNAL(triggered()), this, SLOT(onCopyItemActionTriggered()) );
-    QAction* pasteAct = menu.addAction( tr("Paste") );
+    QAction* pasteAct = menu.addAction( tr("Вставить") );
     pasteAct->setShortcut( QKeySequence(Qt::Key_V + Qt::CTRL) );
     QObject::connect( pasteAct, SIGNAL(triggered()), this, SLOT(onPasteItemActionTriggered()) );
     pasteAct->setEnabled( !_imp->clipBoard.empty() );
-    QAction* duplicateAct = menu.addAction( tr("Duplicate") );
+    QAction* duplicateAct = menu.addAction( tr("Дублировать") );
     duplicateAct->setShortcut( QKeySequence(Qt::Key_C + Qt::ALT) );
     QObject::connect( duplicateAct, SIGNAL(triggered()), this, SLOT(onDuplicateItemActionTriggered()) );
 
@@ -2582,7 +2582,7 @@ RemoveItemsUndoCommand::undo()
         it->treeItem->setHidden(false);
     }
     _roto->getContext()->evaluateChange();
-    setText( tr("Remove items of %2").arg( QString::fromUtf8( _roto->getNodeName().c_str() ) ) );
+    setText( tr("Удалить элементы из %2").arg( QString::fromUtf8( _roto->getNodeName().c_str() ) ) );
 }
 
 void
@@ -2603,7 +2603,7 @@ RemoveItemsUndoCommand::redo()
         }
     }
     _roto->getContext()->evaluateChange();
-    setText( tr("Remove items of %2").arg( QString::fromUtf8( _roto->getNodeName().c_str() ) ) );
+    setText( tr("Удалить элементы из %2").arg( QString::fromUtf8( _roto->getNodeName().c_str() ) ) );
 }
 
 /////////////////////////////
@@ -2635,7 +2635,7 @@ AddLayerUndoCommand::undo()
     _roto->getContext()->removeItem(_layer, RotoItem::eSelectionReasonSettingsPanel);
     _roto->clearSelection();
     _roto->getContext()->evaluateChange();
-    setText( tr("Add layer to %2").arg( QString::fromUtf8( _roto->getNodeName().c_str() ) ) );
+    setText( tr("Добавить слой в %2").arg( QString::fromUtf8( _roto->getNodeName().c_str() ) ) );
 }
 
 void
@@ -2660,7 +2660,7 @@ AddLayerUndoCommand::redo()
     _roto->clearSelection();
     _roto->getContext()->select(_layer, RotoItem::eSelectionReasonOther);
     _roto->getContext()->evaluateChange();
-    setText( tr("Add layer to %2").arg( QString::fromUtf8( _roto->getNodeName().c_str() ) ) );
+    setText( tr("Добавить слой в %2").arg( QString::fromUtf8( _roto->getNodeName().c_str() ) ) );
     _firstRedoCalled = true;
 }
 
@@ -2734,7 +2734,7 @@ DragItemsUndoCommand::undo()
     _roto->getContext()->refreshRotoPaintTree();
     _roto->getContext()->evaluateChange();
 
-    setText( tr("Re-organize items of %2").arg( QString::fromUtf8( _roto->getNodeName().c_str() ) ) );
+    setText( tr("Реорганизовать элементы %2").arg( QString::fromUtf8( _roto->getNodeName().c_str() ) ) );
 }
 
 void
@@ -2755,7 +2755,7 @@ DragItemsUndoCommand::redo()
     }
     _roto->getContext()->refreshRotoPaintTree();
     _roto->getContext()->evaluateChange();
-    setText( tr("Re-organize items of %2").arg( QString::fromUtf8( _roto->getNodeName().c_str() ) ) );
+    setText( tr("Реорганизовать элементы %2").arg( QString::fromUtf8( _roto->getNodeName().c_str() ) ) );
 }
 
 //////////////////////
@@ -2887,7 +2887,7 @@ PasteItemUndoCommand::undo()
         }
     }
     _roto->getContext()->evaluateChange();
-    setText( tr("Paste item(s) of %2").arg( QString::fromUtf8( _roto->getNodeName().c_str() ) ) );
+    setText( tr("Вставить элемент(ы) из %2").arg( QString::fromUtf8( _roto->getNodeName().c_str() ) ) );
 }
 
 void
@@ -2929,7 +2929,7 @@ PasteItemUndoCommand::redo()
     }
 
     _roto->getContext()->evaluateChange();
-    setText( tr("Paste item(s) of %2").arg( QString::fromUtf8( _roto->getNodeName().c_str() ) ) );
+    setText( tr("Вставить элемент(ы) из %2").arg( QString::fromUtf8( _roto->getNodeName().c_str() ) ) );
 }
 
 //////////////////
@@ -2984,7 +2984,7 @@ DuplicateItemUndoCommand::undo()
 {
     _roto->getContext()->removeItem(_item.duplicatedItem, RotoItem::eSelectionReasonOther);
     _roto->getContext()->evaluateChange();
-    setText( tr("Duplicate item(s) of %2").arg( QString::fromUtf8( _roto->getNodeName().c_str() ) ) );
+    setText( tr("Дублировать элемент(ы) из %2").arg( QString::fromUtf8( _roto->getNodeName().c_str() ) ) );
 }
 
 void
@@ -2994,7 +2994,7 @@ DuplicateItemUndoCommand::redo()
                                  0, _item.duplicatedItem, RotoItem::eSelectionReasonOther);
 
     _roto->getContext()->evaluateChange();
-    setText( tr("Duplicate item(s) of %2").arg( QString::fromUtf8( _roto->getNodeName().c_str() ) ) );
+    setText( tr("Дублировать элемент(ы) из %2").arg( QString::fromUtf8( _roto->getNodeName().c_str() ) ) );
 }
 
 NATRON_NAMESPACE_EXIT

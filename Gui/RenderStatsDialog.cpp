@@ -190,7 +190,7 @@ public:
             } else {
                 item = new TableItem;
 
-                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("The label of the node as it appears on the nodegraph."), NATRON_NAMESPACE::WhiteSpaceNormal);
+                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("Метка узла, как она отображается на Схеме Узлов."), NATRON_NAMESPACE::WhiteSpaceNormal);
                 item->setToolTip(tt);
                 item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
             }
@@ -213,7 +213,7 @@ public:
                 item = view->item(row, COL_PLUGIN_ID);
             } else {
                 item = new TableItem;
-                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("The ID of the plug-in embedded in the node."), NATRON_NAMESPACE::WhiteSpaceNormal);
+                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("Идентификатор плагина, встроенного в узел."), NATRON_NAMESPACE::WhiteSpaceNormal);
                 item->setToolTip(tt);
                 item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
             }
@@ -237,7 +237,7 @@ public:
                 timeSoFar += stats.getTotalTimeSpentRendering();
             } else {
                 item = new TableItem;
-                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("The time spent rendering by this node across all threads."), NATRON_NAMESPACE::WhiteSpaceNormal);
+                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("Время, затраченное на рендеринг этим узлом во всех потоках."), NATRON_NAMESPACE::WhiteSpaceNormal);
                 item->setToolTip(tt);
                 timeSoFar = stats.getTotalTimeSpentRendering();
                 item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
@@ -260,7 +260,7 @@ public:
                 item = view->item(row, COL_SUPPORT_TILES);
             } else {
                 item = new TableItem;
-                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("Whether this node has tiles (portions of the final image) support or not."), NATRON_NAMESPACE::WhiteSpaceNormal);
+                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("Имеет ли этот узел поддержку тайлов (частей конечного изображения) или нет."), NATRON_NAMESPACE::WhiteSpaceNormal);
                 item->setToolTip(tt);
                 item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
             }
@@ -286,9 +286,9 @@ public:
                 item = view->item(row, COL_SUPPORT_RS);
             } else {
                 item = new TableItem;
-                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("Whether this node has render scale support or not.\n"
-                                                               "When activated, that means the node can render an image at a "
-                                                               "lower scale."), NATRON_NAMESPACE::WhiteSpaceNormal);
+                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("Имеет ли этот узел поддержку масштабирования рендеринга или нет.\n"
+                                                               "При активации это означает, что узел может отображать изображение "
+                                                               "в более низком масштабе."), NATRON_NAMESPACE::WhiteSpaceNormal);
                 item->setToolTip(tt);
                 item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
             }
@@ -315,8 +315,8 @@ public:
                 item = view->item(row, COL_MIPMAP_LEVEL);
             } else {
                 item = new TableItem;
-                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("The mipmaplevel rendered (See render-scale). 0 means scale = 100%, "
-                                                               "1 means scale = 50%, 2 means scale = 25%, etc."), NATRON_NAMESPACE::WhiteSpaceNormal);
+                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("Визуализируется mipmaplevel (см. раздел рендеринг-масштабирование). "
+                                                               "0 масштаб = 100%, 1 масштаб = 50%, 2 масштаб = 25% и т.д."), NATRON_NAMESPACE::WhiteSpaceNormal);
                 item->setToolTip(tt);
                 item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
             }
@@ -341,7 +341,7 @@ public:
                 item = view->item(row, COL_CHANNELS);
             } else {
                 item = new TableItem;
-                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("The channels processed by this node (corresponding to the RGBA checkboxes)."), NATRON_NAMESPACE::WhiteSpaceNormal);
+                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("Каналы, обрабатываемые этим узлом (соответствующие флажкам RGBA)."), NATRON_NAMESPACE::WhiteSpaceNormal);
                 item->setToolTip(tt);
                 item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
             }
@@ -376,7 +376,7 @@ public:
                 item = view->item(row, COL_PREMULT);
             } else {
                 item = new TableItem;
-                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("The alpha premultiplication of the image produced by this node."), NATRON_NAMESPACE::WhiteSpaceNormal);
+                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("Альфа-предумножение изображения, созданного этим узлом."), NATRON_NAMESPACE::WhiteSpaceNormal);
                 item->setToolTip(tt);
                 item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
             }
@@ -409,7 +409,7 @@ public:
                 item = view->item(row, COL_ROD);
             } else {
                 item = new TableItem;
-                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("The region of definition of the image produced."), NATRON_NAMESPACE::WhiteSpaceNormal);
+                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("Область четкости создаваемого изображения."), NATRON_NAMESPACE::WhiteSpaceNormal);
                 item->setToolTip(tt);
                 item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
             }
@@ -431,8 +431,8 @@ public:
                 item = view->item(row, COL_IDENTITY);
             } else {
                 item = new TableItem;
-                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("When different of \"-\", this node does not render but rather "
-                                                               "directly returns the image produced by the node indicated by its label."), NATRON_NAMESPACE::WhiteSpaceNormal);
+                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("Если этот узел отличается от \"-\", этот узел не отображается, а "
+                                                               "непосредственно возвращает изображение, созданное узлом, указанным его меткой."), NATRON_NAMESPACE::WhiteSpaceNormal);
                 item->setToolTip(tt);
                 item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
             }
@@ -463,8 +463,8 @@ public:
                 tilesInfo = item->data( (int)eItemsRoleIdentityTilesInfo ).toString();
             } else {
                 item = new TableItem;
-                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("The list of the tiles that were identity in the image.\n"
-                                                               "Double-click for more info."), NATRON_NAMESPACE::WhiteSpaceNormal);
+                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("Список плиток, которые были идентичны на изображении.\n"
+                                                               "Двойной щелчок для дополнительной информации."), NATRON_NAMESPACE::WhiteSpaceNormal);
                 item->setToolTip(tt);
                 item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
             }
@@ -500,8 +500,8 @@ public:
                 tilesInfo = item->data( (int)eItemsRoleRenderedTilesInfo ).toString();
             } else {
                 item = new TableItem;
-                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("The list of the tiles effectivly rendered.\n"
-                                                               "Double-click for more infos"), NATRON_NAMESPACE::WhiteSpaceNormal);
+                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("Список эффективно отображаемых плиток.\n"
+                                                               "Двойной щелчок для дополнительной информации"), NATRON_NAMESPACE::WhiteSpaceNormal);
                 item->setToolTip(tt);
                 item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
             }
@@ -534,7 +534,7 @@ public:
                 item = view->item(row, COL_RENDERED_PLANES);
             } else {
                 item = new TableItem;
-                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("The list of the planes rendered by this node."), NATRON_NAMESPACE::WhiteSpaceNormal);
+                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("Список плоскостей, отображаемых этим узлом."), NATRON_NAMESPACE::WhiteSpaceNormal);
                 item->setToolTip(tt);
                 item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
             }
@@ -564,7 +564,7 @@ public:
                 nb = item->text().toInt();
             } else {
                 item = new TableItem;
-                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("The number of cache hits."), NATRON_NAMESPACE::WhiteSpaceNormal);
+                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("Количество обращений к кэшу."), NATRON_NAMESPACE::WhiteSpaceNormal);
                 item->setToolTip(tt);
                 item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
             }
@@ -593,8 +593,8 @@ public:
                 }
             } else {
                 item = new TableItem;
-                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("The number of cache access hits but at higher scale "
-                                                               "hence requiring downscaling."), NATRON_NAMESPACE::WhiteSpaceNormal);
+                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("Увеличивается количество обращений к кэшу, но в более высоком масштабе, "
+                                                               "что требует уменьшения масштаба."), NATRON_NAMESPACE::WhiteSpaceNormal);
                 item->setToolTip(tt);
                 item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
             }
@@ -625,7 +625,7 @@ public:
                 }
             } else {
                 item = new TableItem;
-                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("The number of cache misses."), NATRON_NAMESPACE::WhiteSpaceNormal);
+                QString tt = NATRON_NAMESPACE::convertFromPlainText(tr("Количество промахов в кэше."), NATRON_NAMESPACE::WhiteSpaceNormal);
                 item->setToolTip(tt);
                 item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
             }
@@ -755,29 +755,22 @@ RenderStatsDialog::RenderStatsDialog(Gui* gui)
     , _imp( new RenderStatsDialogPrivate(gui) )
 {
     setWindowFlags(Qt::Tool);
-    setWindowTitle( tr("Render statistics") );
+    setWindowTitle( tr("Статистика рендеринга") );
 
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
 
     _imp->mainLayout = new QVBoxLayout(this);
 
     QString statsDesc = NATRON_NAMESPACE::convertFromPlainText(tr(
-                                                           "Statistics are accumulated over each frame rendered by default.\nIf you want to display statistics of the last "
-                                                           "frame rendered, uncheck the \"Accumulate\" checkbox.\nIf you want to have more detailed information besides the time spent "
-                                                           "rendering for each node,\ncheck the \"Advanced\" checkbox.\n The \"Time spent to render\" is the time spent "
-                                                           "to render a frame (or more if \"Accumulate\" is checked).\nIf there are multiple parallel renders (see preferences) "
-                                                           "the time will be accumulated across each threads.\nHover the mouse over each column header to have detailed information "
-                                                           "for each statistic.\nBy default, nodes are sorted by decreasing time spent to render.\nClicking on a node will center "
-                                                           "the node-graph on it.\nWhen in \"Advanced\" mode, double-clicking on the \"Rendered Tiles\" or "
-                                                           "the \"Identity Tiles\" cell\nwill open-up a window containing detailed information about the tiles rendered.\n"), NATRON_NAMESPACE::WhiteSpaceNormal);
+                                                           "Статистика накапливается для каждого отрисованного кадра.\nЕсли Нужно отображать статистику последнего отрисованного кадра, снимите флажок «Накапливать».\nЕсли Нужно иметь более подробную информацию, помимо времени, затраченного на рендеринг для каждого узла, \nустановите флажок «Дополнительно».\n «Время, затраченное на рендеринг» — это время, затраченное на рендеринг кадра (или больше, если установлен флажок «Накапливать»).\nЕсли существует несколько параллельных рендерингов ( см. настройки) время будет суммироваться для каждого потока.\nНаведите указатель мыши на заголовок каждого столбца, для подробной информации по каждой статистике.\nПо умолчанию узлы сортируются по уменьшению времени, затрачиваемого на рендеринг.\nНажатие на узел приведет к центрированию узла. постройте на нем график.\nВ режиме «Расширенный» двойной щелчок по ячейке «Визуализированные плитки» или ячейке «Идентификационные плитки»\nоткроется окно, содержащее подробную информацию об отображаемых плитках.\n"), NATRON_NAMESPACE::WhiteSpaceNormal);
     _imp->descriptionLabel = new Label(statsDesc, this);
     _imp->mainLayout->addWidget(_imp->descriptionLabel);
 
     _imp->globalInfosContainer = new QWidget(this);
     _imp->globalInfosLayout = new QHBoxLayout(_imp->globalInfosContainer);
 
-    QString accTt = NATRON_NAMESPACE::convertFromPlainText(tr("When checked, stats are not cleared between the computation of frames."), NATRON_NAMESPACE::WhiteSpaceNormal);
-    _imp->accumulateLabel = new Label(tr("Accumulate:"), _imp->globalInfosContainer);
+    QString accTt = NATRON_NAMESPACE::convertFromPlainText(tr("Если флажок установлен, статистика не очищается между вычислениями кадров."), NATRON_NAMESPACE::WhiteSpaceNormal);
+    _imp->accumulateLabel = new Label(tr("Накапливать:"), _imp->globalInfosContainer);
     _imp->accumulateLabel->setToolTip(accTt);
     _imp->accumulateCheckbox = new QCheckBox(_imp->globalInfosContainer);
     _imp->accumulateCheckbox->setChecked(true);
@@ -788,8 +781,8 @@ RenderStatsDialog::RenderStatsDialog(Gui* gui)
 
     _imp->globalInfosLayout->addSpacing(10);
 
-    QString adTt = NATRON_NAMESPACE::convertFromPlainText(tr("When checked, more statistics are displayed. Useful mainly for debugging purposes."), NATRON_NAMESPACE::WhiteSpaceNormal);
-    _imp->advancedLabel = new Label(tr("Advanced:"), _imp->globalInfosContainer);
+    QString adTt = NATRON_NAMESPACE::convertFromPlainText(tr("Если флажок установлен, отображается дополнительная статистика. Полезно для отладки."), NATRON_NAMESPACE::WhiteSpaceNormal);
+    _imp->advancedLabel = new Label(tr("Накапливать:"), _imp->globalInfosContainer);
     _imp->advancedLabel->setToolTip(adTt);
     _imp->advancedCheckbox = new QCheckBox(_imp->globalInfosContainer);
     _imp->advancedCheckbox->setChecked(false);
@@ -801,9 +794,9 @@ RenderStatsDialog::RenderStatsDialog(Gui* gui)
 
     _imp->globalInfosLayout->addSpacing(20);
 
-    QString wallTimett = NATRON_NAMESPACE::convertFromPlainText(tr("This is the time spent to compute the frame for the whole tree.\n "
+    QString wallTimett = NATRON_NAMESPACE::convertFromPlainText(tr("Это время, затраченное на вычисление кадра для всего дерева.\n "
                                                            ), NATRON_NAMESPACE::WhiteSpaceNormal);
-    _imp->totalTimeSpentDescLabel = new Label(tr("Time spent to render:"), _imp->globalInfosContainer);
+    _imp->totalTimeSpentDescLabel = new Label(tr("Время, потраченное на рендеринг:"), _imp->globalInfosContainer);
     _imp->totalTimeSpentDescLabel->setToolTip(wallTimett);
     _imp->totalTimeSpentValueLabel = new Label(QString::fromUtf8("0.0 sec"), _imp->globalInfosContainer);
     _imp->totalTimeSpentValueLabel->setToolTip(wallTimett);
@@ -811,8 +804,8 @@ RenderStatsDialog::RenderStatsDialog(Gui* gui)
     _imp->globalInfosLayout->addWidget(_imp->totalTimeSpentDescLabel);
     _imp->globalInfosLayout->addWidget(_imp->totalTimeSpentValueLabel);
 
-    _imp->resetButton = new Button(tr("Reset"), _imp->globalInfosContainer);
-    _imp->resetButton->setToolTip( tr("Clears the statistics.") );
+    _imp->resetButton = new Button(tr("Сброс"), _imp->globalInfosContainer);
+    _imp->resetButton->setToolTip( tr("Очищает статистику.") );
     QObject::connect( _imp->resetButton, SIGNAL(clicked(bool)), this, SLOT(resetStats()) );
     _imp->globalInfosLayout->addWidget(_imp->resetButton);
 
@@ -823,15 +816,15 @@ RenderStatsDialog::RenderStatsDialog(Gui* gui)
     _imp->filterContainer = new QWidget(this);
     _imp->filterLayout = new QHBoxLayout(_imp->filterContainer);
 
-    _imp->filtersLabel = new Label(tr("Filters:"), _imp->filterContainer);
+    _imp->filtersLabel = new Label(tr("Фильтры:"), _imp->filterContainer);
     _imp->filterLayout->addWidget(_imp->filtersLabel);
 
     _imp->filterLayout->addSpacing(10);
 
-    QString nameFilterTt = NATRON_NAMESPACE::convertFromPlainText(tr("If unix wildcards are enabled, show only nodes "
-                                                             "with a label matching the filter.\nOtherwise if unix wildcards are disabled, "
-                                                             "show only nodes with a label containing the text in the filter."), NATRON_NAMESPACE::WhiteSpaceNormal);
-    _imp->nameFilterLabel = new Label(tr("Name:"), _imp->filterContainer);
+    QString nameFilterTt = NATRON_NAMESPACE::convertFromPlainText(tr("Если включены подстановочные знаки unix, показывать только узлы "
+                                                             "с меткой, соответствующей фильтру.\nВ противном случае, если подстановочные знаки unix отключены, "
+                                                             "показывать только узлы с меткой, содержащей текст в фильтре"), NATRON_NAMESPACE::WhiteSpaceNormal);
+    _imp->nameFilterLabel = new Label(tr("Имя:"), _imp->filterContainer);
     _imp->nameFilterLabel->setToolTip(nameFilterTt);
     _imp->nameFilterEdit = new LineEdit(_imp->filterContainer);
     _imp->nameFilterEdit->setToolTip(nameFilterTt);
@@ -843,10 +836,10 @@ RenderStatsDialog::RenderStatsDialog(Gui* gui)
 
     _imp->filterLayout->addSpacing(20);
 
-    QString idFilterTt = NATRON_NAMESPACE::convertFromPlainText(tr("If unix wildcards are enabled, show only nodes "
-                                                           "with a plugin ID matching the filter.\nOtherwise if unix wildcards are disabled, "
-                                                           "show only nodes with a plugin ID containing the text in the filter."), NATRON_NAMESPACE::WhiteSpaceNormal);
-    _imp->idFilterLabel = new Label(tr("Plugin ID:"), _imp->idFilterLabel);
+    QString idFilterTt = NATRON_NAMESPACE::convertFromPlainText(tr("Если включены подстановочные знаки unix, показывать только узлы "
+                                                           "с ID плагина, соответствующим фильтру.\nВ противном случае, если подстановочные знаки unix отключены, "
+                                                           "показать только узлы с ID плагина, содержащим текст в фильтре."), NATRON_NAMESPACE::WhiteSpaceNormal);
+    _imp->idFilterLabel = new Label(tr("Идентификатор плагина:"), _imp->idFilterLabel);
     _imp->idFilterLabel->setToolTip(idFilterTt);
     _imp->idFilterEdit = new LineEdit(_imp->idFilterEdit);
     _imp->idFilterEdit->setToolTip(idFilterTt);
@@ -856,7 +849,7 @@ RenderStatsDialog::RenderStatsDialog(Gui* gui)
     _imp->filterLayout->addWidget(_imp->idFilterLabel);
     _imp->filterLayout->addWidget(_imp->idFilterEdit);
 
-    _imp->useUnixWildcardsLabel = new Label(tr("Use Unix wildcards (*, ?, etc..)"), _imp->filterContainer);
+    _imp->useUnixWildcardsLabel = new Label(tr("Используйте подстановочные знаки Unix (*, ?, etc..)"), _imp->filterContainer);
     _imp->useUnixWildcardsCheckbox = new QCheckBox(_imp->filterContainer);
     _imp->useUnixWildcardsCheckbox->setChecked(false);
     QObject::connect( _imp->useUnixWildcardsCheckbox, SIGNAL(toggled(bool)), this, SLOT(updateVisibleRows()) );
@@ -876,22 +869,22 @@ RenderStatsDialog::RenderStatsDialog(Gui* gui)
     QStringList dimensionNames;
 
     dimensionNames
-        << tr("Node")
-        << tr("Plugin ID")
-        << tr("Time Spent")
-        << tr("Tiles Support")
-        << tr("Render-scale Support")
-        << tr("Mipmap Level(s)")
-        << tr("Channels")
-        << tr("Output Premult")
+        << tr("Узел")
+        << tr("Идентификатор плагина")
+        << tr("Потраченное время")
+        << tr("Поддержка плиток")
+        << tr("Поддержка масштабирования рендеринга")
+        << tr("Уровень MIP-карты")
+        << tr("Каналы")
+        << tr("Выходной премульт")
         << tr("RoD")
-        << tr("Identity")
-        << tr("Identity Tiles")
-        << tr("Rendered Tiles")
-        << tr("Rendered Planes")
-        << tr("Cache Hits")
-        << tr("Cache Hits Higher Scale")
-        << tr("Cache Misses");
+        << tr("Идентичность")
+        << tr("Идентификационные плитки")
+        << tr("Отрисованные плитки")
+        << tr("Визуализированные плоскости")
+        << tr("Попадания в кэш")
+        << tr("Кэш достигает более высокого масштаба")
+        << tr("Промахи в кэше");
 
     _imp->view->setColumnCount( dimensionNames.size() );
     _imp->view->setHorizontalHeaderLabels(dimensionNames);

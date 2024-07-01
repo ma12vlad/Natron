@@ -119,8 +119,8 @@ ProjectGui::create(ProjectPtr projectInternal,
                                DockablePanel::eHeaderModeReadOnlyName,
                                false,
                                QUndoStackPtr(),
-                               tr("Project Settings"),
-                               tr("The settings of the current project."),
+                               tr("Настройки проекта"),
+                               tr("Настройки текущего проекта."),
                                parent);
 
 
@@ -159,7 +159,7 @@ AddFormatDialog::AddFormatDialog(Project *project,
     _mainLayout->setSpacing(0);
     _mainLayout->setContentsMargins(5, 5, 0, 0);
     setLayout(_mainLayout);
-    setWindowTitle( tr("New Format") );
+    setWindowTitle( tr("Новый формат") );
 
     _fromViewerLine = new QWidget(this);
     _fromViewerLineLayout = new QHBoxLayout(_fromViewerLine);
@@ -175,11 +175,11 @@ AddFormatDialog::AddFormatDialog(Project *project,
     }
     _fromViewerLineLayout->addWidget(_copyFromViewerCombo);
 
-    _copyFromViewerButton = new Button(tr("Copy from"), _fromViewerLine);
+    _copyFromViewerButton = new Button(tr("Копировать из"), _fromViewerLine);
     _copyFromViewerButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(
-                                           tr("Fill the new format with the currently"
-                                              " displayed region of definition of the viewer"
-                                              " indicated on the left."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+                                           tr("Заполните новый формат текущей"
+                                              " отображаемой областью определения средства просмотра, "
+                                              " указанной слева."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     QObject::connect( _copyFromViewerButton, SIGNAL(clicked()), this, SLOT(onCopyFromViewer()) );
     _mainLayout->addWidget(_fromViewerLine);
 
@@ -206,7 +206,7 @@ AddFormatDialog::AddFormatDialog(Project *project,
     _parametersLineLayout->addWidget(_heightSpinBox);
 
 
-    _pixelAspectLabel = new Label(tr("pixel aspect:"), _parametersLine);
+    _pixelAspectLabel = new Label(tr("пиксельный аспект:"), _parametersLine);
     _parametersLineLayout->addWidget(_pixelAspectLabel);
     _pixelAspectSpinBox = new SpinBox(this, SpinBox::eSpinBoxTypeDouble);
     _pixelAspectSpinBox->setMinimum(0.);
@@ -220,7 +220,7 @@ AddFormatDialog::AddFormatDialog(Project *project,
     _mainLayout->addWidget(_formatNameLine);
 
 
-    _nameLabel = new Label(tr("Name:"), _formatNameLine);
+    _nameLabel = new Label(tr("Имя:"), _formatNameLine);
     _formatNameLayout->addWidget(_nameLabel);
     _nameLineEdit = new LineEdit(_formatNameLine);
     _formatNameLayout->addWidget(_nameLineEdit);

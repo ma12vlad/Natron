@@ -371,23 +371,23 @@ TrackerPanel::TrackerPanel(const NodeGuiPtr& n,
 
     QHBoxLayout* trackLayout = new QHBoxLayout(trackContainer);
     trackLayout->setSpacing(2);
-    _imp->trackLabel = new ClickableLabel(tr("Track keyframe:"), trackContainer);
+    _imp->trackLabel = new ClickableLabel(tr("Ключевой кадр трека:"), trackContainer);
     _imp->trackLabel->setSunken(false);
     trackLayout->addWidget(_imp->trackLabel);
 
     _imp->currentKeyframe = new SpinBox(trackContainer, SpinBox::eSpinBoxTypeDouble);
     _imp->currentKeyframe->setEnabled(false);
     _imp->currentKeyframe->setReadOnly_NoFocusRect(true);
-    _imp->currentKeyframe->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("The current keyframe of the pattern for the selected track(s)."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->currentKeyframe->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Текущий ключевой кадр шаблона для выбранных дорожек."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     trackLayout->addWidget(_imp->currentKeyframe);
 
-    _imp->ofLabel = new ClickableLabel(tr("of"), trackContainer);
+    _imp->ofLabel = new ClickableLabel(tr("из"), trackContainer);
     trackLayout->addWidget(_imp->ofLabel);
 
     _imp->totalKeyframes = new SpinBox(trackContainer, SpinBox::eSpinBoxTypeInt);
     _imp->totalKeyframes->setEnabled(false);
     _imp->totalKeyframes->setReadOnly_NoFocusRect(true);
-    _imp->totalKeyframes->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("The pattern keyframe count for all the selected tracks."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->totalKeyframes->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Количество ключевых кадров шаблона для всех выбранных дорожек."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     trackLayout->addWidget(_imp->totalKeyframes);
 
     int medIconSize = TO_DPIY(NATRON_MEDIUM_BUTTON_ICON_SIZE);
@@ -401,7 +401,7 @@ TrackerPanel::TrackerPanel(const NodeGuiPtr& n,
     _imp->prevKeyframe = new Button(QIcon(prevPix), QString(), trackContainer);
     _imp->prevKeyframe->setFixedSize(medButtonSize);
     _imp->prevKeyframe->setIconSize(medButtonIconSize);
-    _imp->prevKeyframe->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Go to the previous pattern keyframe."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->prevKeyframe->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Перейдите к предыдущему ключевому кадру шаблона."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->prevKeyframe->setEnabled(false);
     QObject::connect( _imp->prevKeyframe, SIGNAL(clicked(bool)), this, SLOT(onGoToPrevKeyframeButtonClicked()) );
     trackLayout->addWidget(_imp->prevKeyframe);
@@ -409,7 +409,7 @@ TrackerPanel::TrackerPanel(const NodeGuiPtr& n,
     _imp->nextKeyframe = new Button(QIcon(nextPix), QString(), trackContainer);
     _imp->nextKeyframe->setFixedSize(medButtonSize);
     _imp->nextKeyframe->setIconSize(medButtonIconSize);
-    _imp->nextKeyframe->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Go to the next pattern keyframe."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->nextKeyframe->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Перейдите к следующему ключевому кадру шаблона."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->nextKeyframe->setEnabled(false);
     QObject::connect( _imp->nextKeyframe, SIGNAL(clicked(bool)), this, SLOT(onGoToNextKeyframeButtonClicked()) );
     trackLayout->addWidget(_imp->nextKeyframe);
@@ -417,7 +417,7 @@ TrackerPanel::TrackerPanel(const NodeGuiPtr& n,
     _imp->addKeyframe = new Button(QIcon(addPix), QString(), trackContainer);
     _imp->addKeyframe->setFixedSize(medButtonSize);
     _imp->addKeyframe->setIconSize(medButtonIconSize);
-    _imp->addKeyframe->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Add a keyframe to the pattern at the current timeline's time."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->addKeyframe->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Добавьте ключевой кадр к шаблону на текущей временной шкале."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->addKeyframe->setEnabled(false);
     QObject::connect( _imp->addKeyframe, SIGNAL(clicked(bool)), this, SLOT(onAddKeyframeButtonClicked()) );
     trackLayout->addWidget(_imp->addKeyframe);
@@ -425,7 +425,7 @@ TrackerPanel::TrackerPanel(const NodeGuiPtr& n,
     _imp->removeKeyframe = new Button(QIcon(removePix), QString(), trackContainer);
     _imp->removeKeyframe->setFixedSize(medButtonSize);
     _imp->removeKeyframe->setIconSize(medButtonIconSize);
-    _imp->removeKeyframe->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Remove keyframe on the pattern at the current timeline's time."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->removeKeyframe->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Удалите ключевой кадр из шаблона на текущей временной шкале."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->removeKeyframe->setEnabled(false);
     QObject::connect( _imp->removeKeyframe, SIGNAL(clicked(bool)), this, SLOT(onRemoveKeyframeButtonClicked()) );
     trackLayout->addWidget(_imp->removeKeyframe);
@@ -433,7 +433,7 @@ TrackerPanel::TrackerPanel(const NodeGuiPtr& n,
     _imp->clearAnimation = new Button(QIcon(clearAnimPix), QString(), trackContainer);
     _imp->clearAnimation->setFixedSize(medButtonSize);
     _imp->clearAnimation->setIconSize(medButtonIconSize);
-    _imp->clearAnimation->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Remove all keyframes on the pattern for the selected track(s)."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->clearAnimation->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Удалите все ключевые кадры в шаблоне для выбранных дорожек."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->clearAnimation->setEnabled(false);
     QObject::connect( _imp->clearAnimation, SIGNAL(clicked(bool)), this, SLOT(onRemoveAnimationButtonClicked()) );
     trackLayout->addWidget(_imp->clearAnimation);
@@ -460,9 +460,9 @@ TrackerPanel::TrackerPanel(const NodeGuiPtr& n,
     QObject::connect( selectionModel, SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this,
                       SLOT(onModelSelectionChanged(QItemSelection,QItemSelection)) );
     QStringList dimensionNames;
-    dimensionNames << tr("Enabled") << tr("Label") << tr("Motion-Model") <<
-        tr("Center X") << tr("Center Y") << tr("Offset X") << tr("Offset Y") <<
-        tr("Error");
+    dimensionNames << tr("Включить") << tr("Метка") << tr("Модель движения") <<
+        tr("Центр X") << tr("Центр Y") << tr("Смещение X") << tr("Смещение Y") <<
+        tr("Ошибка");
     _imp->view->setColumnCount( dimensionNames.size() );
     _imp->view->setHorizontalHeaderLabels(dimensionNames);
 
@@ -487,12 +487,12 @@ TrackerPanel::TrackerPanel(const NodeGuiPtr& n,
     _imp->addButton = new Button(QIcon(), QString::fromUtf8("+"), _imp->buttonsContainer);
     _imp->addButton->setFixedSize(medButtonSize);
     _imp->addButton->setIconSize(smallButtonIconSize);
-    _imp->addButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Add new track"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->addButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Добавить новый трек"), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->buttonsLayout->addWidget(_imp->addButton);
     QObject::connect( _imp->addButton, SIGNAL(clicked(bool)), this, SLOT(onAddButtonClicked()) );
 
     _imp->removeButton = new Button(QIcon(), QString::fromUtf8("-"), _imp->buttonsContainer);
-    _imp->removeButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Remove selected tracks"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->removeButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Удаление выбранных дорожек"), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->removeButton->setFixedSize(medButtonSize);
     _imp->removeButton->setIconSize(smallButtonIconSize);
     _imp->buttonsLayout->addWidget(_imp->removeButton);
@@ -503,19 +503,19 @@ TrackerPanel::TrackerPanel(const NodeGuiPtr& n,
     _imp->selectAllButton = new Button(QIcon(selectAll), QString(), _imp->buttonsContainer);
     _imp->selectAllButton->setFixedSize(medButtonSize);
     _imp->selectAllButton->setIconSize(smallButtonIconSize);
-    _imp->selectAllButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Select all tracks"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->selectAllButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Выберите все треки"), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->buttonsLayout->addWidget(_imp->selectAllButton);
     QObject::connect( _imp->selectAllButton, SIGNAL(clicked(bool)), this, SLOT(onSelectAllButtonClicked()) );
 
-    _imp->resetTracksButton = new Button(tr("Reset"), _imp->buttonsContainer);
+    _imp->resetTracksButton = new Button(tr("Сброс"), _imp->buttonsContainer);
     QObject::connect( _imp->resetTracksButton, SIGNAL(clicked(bool)), this, SLOT(onResetButtonClicked()) );
     _imp->buttonsLayout->addWidget(_imp->resetTracksButton);
-    _imp->resetTracksButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Reset selected tracks"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->resetTracksButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Сброс выбранных дорожек"), NATRON_NAMESPACE::WhiteSpaceNormal) );
 
-    _imp->averageTracksButton = new Button(tr("Average"), _imp->buttonsContainer);
+    _imp->averageTracksButton = new Button(tr("Средний"), _imp->buttonsContainer);
     QObject::connect( _imp->averageTracksButton, SIGNAL(clicked(bool)), this, SLOT(onAverageButtonClicked()) );
     _imp->buttonsLayout->addWidget(_imp->averageTracksButton);
-    _imp->averageTracksButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Creates a new track as the average of the selected tracks"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->averageTracksButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Создает новый трек в качестве среднего значения выбранных треков"), NATRON_NAMESPACE::WhiteSpaceNormal) );
 
     _imp->buttonsLayout->addStretch();
 
@@ -609,7 +609,7 @@ TrackerPanelPrivate::makeTrackRowItems(const TrackMarker& marker,
         QObject::connect( checkbox, SIGNAL(clicked(bool)), _publicInterface, SLOT(onItemEnabledCheckBoxChecked(bool)) );
         TableItem* newItem = new TableItem;
         newItem->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsUserCheckable);
-        newItem->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("When unchecked, this track will no longer be tracked even if selected. Also the transform parameters in the Transform tab will not take this track into account"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+        newItem->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Если флажок снят, этот трек больше не будет отслеживаться, даже если он установлен. Кроме того, параметры преобразования на вкладке Преобразование не будут учитывать этот трек"), NATRON_NAMESPACE::WhiteSpaceNormal) );
         d.item = newItem;
         d.dimension = -1;
         view->setCellWidget(row, COL_ENABLED, checkboxContainer);
@@ -992,7 +992,7 @@ TrackerPanel::onAverageButtonClicked()
     std::list<TrackMarkerPtr> markers;
     context->getSelectedMarkers(&markers);
     if ( markers.empty() ) {
-        Dialogs::warningDialog( tr("Average").toStdString(), tr("No tracks selected").toStdString() );
+        Dialogs::warningDialog( tr("Средний").toStdString(), tr("Треки не выбраны").toStdString() );
 
         return;
     }

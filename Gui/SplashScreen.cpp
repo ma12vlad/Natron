@@ -65,14 +65,14 @@ SplashScreen::SplashScreen(const QString & filePath)
                          .arg( QString::fromUtf8(NATRON_DEVELOPMENT_STATUS) )
                          .arg(buildNo);
 #     if defined(NATRON_CONFIG_SNAPSHOT) || defined(DEBUG)
-        _versionString += QString::fromUtf8(" - ") + tr("built on %1").arg( QString::fromUtf8(__DATE__) );
+        _versionString += QString::fromUtf8(" - ") + tr("построен на %1").arg( QString::fromUtf8(__DATE__) );
 #     endif
     } else {
-        _versionString = tr("%1 for %2")
+        _versionString = tr("%1 для %2")
                          .arg( QString::fromUtf8(NATRON_APPLICATION_NAME) )
                          .arg(customBuildString);
 #     if defined(NATRON_CONFIG_SNAPSHOT) || defined(DEBUG)
-        _versionString += QString::fromUtf8(" - ") + tr("built on %1").arg( QString::fromUtf8(__DATE__) );
+        _versionString += QString::fromUtf8(" - ") + tr("построен на %1").arg( QString::fromUtf8(__DATE__) );
 #     endif
     }
 
@@ -206,7 +206,7 @@ LoadProjectSplashScreen::paintEvent(QPaintEvent* /*e*/)
     p.setPen(Qt::white);
     p.drawText(QPointF(250 * _scale, _pixmap.height() - 51 * _scale), _text);
 
-    QString loadString( tr("Loading ") );
+    QString loadString( tr("Загрузка ") );
     QFontMetrics fm = p.fontMetrics();
     QPointF loadStrPos(300 * _scale, _pixmap.height() / 2.);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)

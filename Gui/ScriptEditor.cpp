@@ -136,7 +136,7 @@ ScriptEditor::ScriptEditor(Gui* gui)
     _imp->undoB->setFixedSize(NATRON_MEDIUM_BUTTON_SIZE, NATRON_MEDIUM_BUTTON_SIZE);
     _imp->undoB->setIconSize( QSize(NATRON_MEDIUM_BUTTON_ICON_SIZE, NATRON_MEDIUM_BUTTON_ICON_SIZE) );
     _imp->undoB->setFocusPolicy(Qt::NoFocus);
-    setToolTipWithShortcut(kShortcutGroupScriptEditor, kShortcutIDActionScriptEditorPrevScript, "<p>" + tr("Previous Script").toStdString() + "</p>" + "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p>", _imp->undoB);
+    setToolTipWithShortcut(kShortcutGroupScriptEditor, kShortcutIDActionScriptEditorPrevScript, "<p>" + tr("Предыдущий скрипт").toStdString() + "</p>" + "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b></p>", _imp->undoB);
     _imp->undoB->setEnabled(false);
     QObject::connect( _imp->undoB, SIGNAL(clicked(bool)), this, SLOT(onUndoClicked()) );
 
@@ -145,7 +145,7 @@ ScriptEditor::ScriptEditor(Gui* gui)
     _imp->redoB->setFocusPolicy(Qt::NoFocus);
     _imp->redoB->setFixedSize(NATRON_MEDIUM_BUTTON_SIZE, NATRON_MEDIUM_BUTTON_SIZE);
     _imp->redoB->setIconSize( QSize(NATRON_MEDIUM_BUTTON_ICON_SIZE, NATRON_MEDIUM_BUTTON_ICON_SIZE) );
-    setToolTipWithShortcut(kShortcutGroupScriptEditor, kShortcutIDActionScriptEditorNextScript, "<p>" + tr("Next Script").toStdString() + "</p>" + "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p>", _imp->redoB);
+    setToolTipWithShortcut(kShortcutGroupScriptEditor, kShortcutIDActionScriptEditorNextScript, "<p>" + tr("Следующий скрипт").toStdString() + "</p>" + "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b></p>", _imp->redoB);
     _imp->redoB->setEnabled(false);
     QObject::connect( _imp->redoB, SIGNAL(clicked(bool)), this, SLOT(onRedoClicked()) );
 
@@ -153,27 +153,27 @@ ScriptEditor::ScriptEditor(Gui* gui)
     _imp->clearHistoB->setFixedSize(NATRON_MEDIUM_BUTTON_SIZE, NATRON_MEDIUM_BUTTON_SIZE);
     _imp->clearHistoB->setIconSize( QSize(NATRON_MEDIUM_BUTTON_ICON_SIZE, NATRON_MEDIUM_BUTTON_ICON_SIZE) );
     _imp->clearHistoB->setFocusPolicy(Qt::NoFocus);
-    setToolTipWithShortcut(kShortcutGroupScriptEditor, kShortcutIDActionScriptEditorClearHistory, "<p>" + tr("Clear History").toStdString() + "</p>" +
-                           "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p>", _imp->clearHistoB);
+    setToolTipWithShortcut(kShortcutGroupScriptEditor, kShortcutIDActionScriptEditorClearHistory, "<p>" + tr("Очистить историю").toStdString() + "</p>" +
+                           "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b></p>", _imp->clearHistoB);
 
     QObject::connect( _imp->clearHistoB, SIGNAL(clicked(bool)), this, SLOT(onClearHistoryClicked()) );
 
     _imp->sourceScriptB = new Button(QIcon(sourceScriptPix), QString(), _imp->buttonsContainer);
-    _imp->sourceScriptB->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Open and execute a script."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->sourceScriptB->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Откройте и запустите скрипт."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->sourceScriptB->setFocusPolicy(Qt::NoFocus);
     _imp->sourceScriptB->setFixedSize(NATRON_MEDIUM_BUTTON_SIZE, NATRON_MEDIUM_BUTTON_SIZE);
     _imp->sourceScriptB->setIconSize( QSize(NATRON_MEDIUM_BUTTON_ICON_SIZE, NATRON_MEDIUM_BUTTON_ICON_SIZE) );
     QObject::connect( _imp->sourceScriptB, SIGNAL(clicked(bool)), this, SLOT(onSourceScriptClicked()) );
 
     _imp->loadScriptB = new Button(QIcon(loadScriptPix), QString(), _imp->buttonsContainer);
-    _imp->loadScriptB->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Open a script without executing it."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->loadScriptB->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Открыть скрипт, не выполняя его."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->loadScriptB->setFocusPolicy(Qt::NoFocus);
     _imp->loadScriptB->setFixedSize(NATRON_MEDIUM_BUTTON_SIZE, NATRON_MEDIUM_BUTTON_SIZE);
     _imp->loadScriptB->setIconSize( QSize(NATRON_MEDIUM_BUTTON_ICON_SIZE, NATRON_MEDIUM_BUTTON_ICON_SIZE) );
     QObject::connect( _imp->loadScriptB, SIGNAL(clicked(bool)), this, SLOT(onLoadScriptClicked()) );
 
     _imp->saveScriptB = new Button(QIcon(saveScriptPix), QString(), _imp->buttonsContainer);
-    _imp->saveScriptB->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Save the current script."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->saveScriptB->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Сохранить текущий скрипт."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->saveScriptB->setFocusPolicy(Qt::NoFocus);
     _imp->saveScriptB->setFixedSize(NATRON_MEDIUM_BUTTON_SIZE, NATRON_MEDIUM_BUTTON_SIZE);
     _imp->saveScriptB->setIconSize( QSize(NATRON_MEDIUM_BUTTON_ICON_SIZE, NATRON_MEDIUM_BUTTON_ICON_SIZE) );
@@ -184,14 +184,14 @@ ScriptEditor::ScriptEditor(Gui* gui)
     _imp->execScriptB->setFocusPolicy(Qt::NoFocus);
     _imp->execScriptB->setFixedSize(NATRON_MEDIUM_BUTTON_SIZE, NATRON_MEDIUM_BUTTON_SIZE);
     _imp->execScriptB->setIconSize( QSize(NATRON_MEDIUM_BUTTON_ICON_SIZE, NATRON_MEDIUM_BUTTON_ICON_SIZE) );
-    setToolTipWithShortcut(kShortcutGroupScriptEditor, kShortcutIDActionScriptExecScript, "<p>" + tr("Execute the current script").toStdString() + "</p>" + "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p>", _imp->execScriptB);
+    setToolTipWithShortcut(kShortcutGroupScriptEditor, kShortcutIDActionScriptExecScript, "<p>" + tr("Выполнить текущий скрипт").toStdString() + "</p>" + "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b></p>", _imp->execScriptB);
 
     QObject::connect( _imp->execScriptB, SIGNAL(clicked(bool)), this, SLOT(onExecScriptClicked()) );
     QIcon icShowHide;
     icShowHide.addPixmap(outputVisiblePix, QIcon::Normal, QIcon::On);
     icShowHide.addPixmap(outputHiddenPix, QIcon::Normal, QIcon::Off);
     _imp->showHideOutputB = new Button(icShowHide, QString(), _imp->buttonsContainer);
-    setToolTipWithShortcut(kShortcutGroupScriptEditor, kShortcutIDActionScriptShowOutput, "<p>" + tr("Show/Hide the output area").toStdString() + "</p>" +  "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p>", _imp->showHideOutputB);
+    setToolTipWithShortcut(kShortcutGroupScriptEditor, kShortcutIDActionScriptShowOutput, "<p>" + tr("Показать/скрыть область вывода").toStdString() + "</p>" +  "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b></p>", _imp->showHideOutputB);
     _imp->showHideOutputB->setFocusPolicy(Qt::NoFocus);
     _imp->showHideOutputB->setCheckable(true);
     _imp->showHideOutputB->setChecked(true);
@@ -205,7 +205,7 @@ ScriptEditor::ScriptEditor(Gui* gui)
     _imp->clearOutputB->setFocusPolicy(Qt::NoFocus);
     _imp->clearOutputB->setFixedSize(NATRON_MEDIUM_BUTTON_SIZE, NATRON_MEDIUM_BUTTON_SIZE);
     _imp->clearOutputB->setIconSize( QSize(NATRON_MEDIUM_BUTTON_ICON_SIZE, NATRON_MEDIUM_BUTTON_ICON_SIZE) );
-    setToolTipWithShortcut(kShortcutGroupScriptEditor, kShortcutIDActionScriptClearOutput, "<p>" + tr("Clear the output area").toStdString() + "</p>" + "<p><b>" + tr("Keyboard shortcut: %1").toStdString() + "</b></p>", _imp->clearOutputB);
+    setToolTipWithShortcut(kShortcutGroupScriptEditor, kShortcutIDActionScriptClearOutput, "<p>" + tr("Очистить область вывода").toStdString() + "</p>" + "<p><b>" + tr("Клавиатурные сочетания: %1").toStdString() + "</b></p>", _imp->clearOutputB);
     QObject::connect( _imp->clearOutputB, SIGNAL(clicked(bool)), this, SLOT(onClearOutputClicked()) );
 
     _imp->showAutoDeclVarsB = new Button(QIcon(), QString::fromUtf8("..."), _imp->buttonsContainer);
@@ -216,8 +216,8 @@ ScriptEditor::ScriptEditor(Gui* gui)
     bool isAutoDeclEnabled = appPTR->getCurrentSettings()->isAutoDeclaredVariablePrintActivated();
     _imp->showAutoDeclVarsB->setChecked(isAutoDeclEnabled);
     _imp->showAutoDeclVarsB->setDown(isAutoDeclEnabled);
-    _imp->showAutoDeclVarsB->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("When checked, auto-declared Python variable will be printed "
-                                                                           "in gray in the output window."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->showAutoDeclVarsB->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Если флажок установлен, автоматически объявленная переменная Python будет напечатана "
+                                                                           "серым цветом в окне вывода."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     QObject::connect( _imp->showAutoDeclVarsB, SIGNAL(clicked(bool)), this, SLOT(onShowAutoDeclVarsClicked(bool)) );
 
     _imp->buttonsContainerLayout->addWidget(_imp->undoB);
@@ -350,7 +350,7 @@ ScriptEditor::sourceScript(const QString& filename)
         _imp->inputEdit->setPlainText(content);
         onExecScriptClicked();
     } else {
-        Dialogs::errorDialog( tr("Operation failed").toStdString(), tr("Failed to open ").toStdString() + filename.toStdString() );
+        Dialogs::errorDialog( tr("Операция не удалась").toStdString(), tr("Не удалось открыть файл").toStdString() + filename.toStdString() );
     }
 }
 
@@ -391,7 +391,7 @@ ScriptEditor::onLoadScriptClicked()
             QString content = ts.readAll();
             _imp->inputEdit->setPlainText(content);
         } else {
-            Dialogs::errorDialog( tr("Operation failed").toStdString(), tr("Failure to open the file").toStdString() );
+            Dialogs::errorDialog( tr("Операция не удалась").toStdString(), tr("Не удалось открыть файл").toStdString() );
         }
     }
 }
@@ -415,7 +415,7 @@ ScriptEditor::onSaveScriptClicked()
             QTextStream ts(&file);
             ts << _imp->inputEdit->toPlainText();
         } else {
-            Dialogs::errorDialog( tr("Operation failed").toStdString(), tr("Failure to save the file").toStdString() );
+            Dialogs::errorDialog( tr("Операция не удалась").toStdString(), tr("Не удалось открыть файл").toStdString() );
         }
     }
 }
@@ -447,7 +447,7 @@ InputScriptCommand::InputScriptCommand(ScriptEditor* editor,
     , _script(script)
     , _firstRedoCalled(false)
 {
-    setText( tr("Execute script") );
+    setText( tr("Выполнить скрипт") );
 }
 
 void

@@ -294,7 +294,7 @@ TabWidget::TabWidget(Gui* gui,
     _imp->floatButton = new Button(QIcon(pixM), QString(), _imp->header);
     _imp->floatButton->setFixedSize(smallButtonSize);
     _imp->floatButton->setIconSize(smallButtonIconSize);
-    _imp->floatButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Float pane"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->floatButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Плавающая панель"), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->floatButton->setEnabled(true);
     _imp->floatButton->setFocusPolicy(Qt::NoFocus);
     QObject::connect( _imp->floatButton, SIGNAL(clicked()), this, SLOT(floatCurrentWidget()) );
@@ -303,7 +303,7 @@ TabWidget::TabWidget(Gui* gui,
     _imp->closeButton = new Button(QIcon(pixC), QString(), _imp->header);
     _imp->closeButton->setFixedSize(smallButtonSize);
     _imp->closeButton->setIconSize(smallButtonIconSize);
-    _imp->closeButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Close pane"), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    _imp->closeButton->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Закрыть панель"), NATRON_NAMESPACE::WhiteSpaceNormal) );
     _imp->closeButton->setFocusPolicy(Qt::NoFocus);
     QObject::connect( _imp->closeButton, SIGNAL(clicked()), this, SLOT(closePane()) );
     _imp->headerLayout->addWidget(_imp->closeButton);
@@ -392,14 +392,14 @@ TabWidget::createMenu()
     appPTR->getIcon(NATRON_PIXMAP_MAXIMIZE_WIDGET, NATRON_MEDIUM_BUTTON_ICON_SIZE, &pixM);
     appPTR->getIcon(NATRON_PIXMAP_CLOSE_WIDGET, NATRON_MEDIUM_BUTTON_ICON_SIZE, &pixC);
     appPTR->getIcon(NATRON_PIXMAP_TAB_WIDGET_LAYOUT_BUTTON_ANCHOR, NATRON_MEDIUM_BUTTON_ICON_SIZE, &pixA);
-    QAction* splitVerticallyAction = new QAction(QIcon(pixV), tr("Split vertical"), &menu);
+    QAction* splitVerticallyAction = new QAction(QIcon(pixV), tr("Разделить вертикально"), &menu);
     QObject::connect( splitVerticallyAction, SIGNAL(triggered()), this, SLOT(onSplitVertically()) );
     menu.addAction(splitVerticallyAction);
-    QAction* splitHorizontallyAction = new QAction(QIcon(pixH), tr("Split horizontal"), &menu);
+    QAction* splitHorizontallyAction = new QAction(QIcon(pixH), tr("Разделить по горизонтали"), &menu);
     QObject::connect( splitHorizontallyAction, SIGNAL(triggered()), this, SLOT(onSplitHorizontally()) );
     menu.addAction(splitHorizontallyAction);
     menu.addSeparator();
-    QAction* floatAction = new QAction(QIcon(pixM), tr("Float pane"), &menu);
+    QAction* floatAction = new QAction(QIcon(pixM), tr("Плавающая панель"), &menu);
     QObject::connect( floatAction, SIGNAL(triggered()), this, SLOT(floatCurrentWidget()) );
     menu.addAction(floatAction);
 
@@ -408,48 +408,48 @@ TabWidget::createMenu()
         floatAction->setEnabled(false);
     }
 
-    QAction* closeAction = new QAction(QIcon(pixC), tr("Close pane"), &menu);
+    QAction* closeAction = new QAction(QIcon(pixC), tr("Закрыть панель"), &menu);
     closeAction->setEnabled( _imp->closeButton->isEnabled() );
     QObject::connect( closeAction, SIGNAL(triggered()), this, SLOT(closePane()) );
     menu.addAction(closeAction);
 
     QAction* hideToolbar;
     if ( _imp->gui->isLeftToolBarDisplayedOnMouseHoverOnly() ) {
-        hideToolbar = new QAction(tr("Show left toolbar"), &menu);
+        hideToolbar = new QAction(tr("Показать левую панель инструментов"), &menu);
     } else {
-        hideToolbar = new QAction(tr("Hide left toolbar"), &menu);
+        hideToolbar = new QAction(tr("Скрыть левую панель инструментов"), &menu);
     }
     QObject::connect( hideToolbar, SIGNAL(triggered()), this, SLOT(onHideLeftToolBarActionTriggered()) );
     menu.addAction(hideToolbar);
 
     QAction* hideTabbar;
     if (_imp->tabBarVisible) {
-        hideTabbar = new QAction(tr("Hide tabs header"), &menu);
+        hideTabbar = new QAction(tr("Скрыть заголовок вкладок"), &menu);
     } else {
-        hideTabbar = new QAction(tr("Show tabs header"), &menu);
+        hideTabbar = new QAction(tr("Показывать заголовок вкладок"), &menu);
     }
     QObject::connect( hideTabbar, SIGNAL(triggered()), this, SLOT(onShowHideTabBarActionTriggered()) );
     menu.addAction(hideTabbar);
     menu.addSeparator();
-    menu.addAction( tr("New viewer"), this, SLOT(addNewViewer()) );
-    menu.addAction( tr("New histogram"), this, SLOT(newHistogramHere()) );
-    menu.addAction( tr("Node graph here"), this, SLOT(moveNodeGraphHere()) );
-    menu.addAction( tr("Curve Editor here"), this, SLOT(moveCurveEditorHere()) );
-    menu.addAction( tr("Dope Sheet Editor here"), this, SLOT(moveDopeSheetEditorHere()) );
-    menu.addAction( tr("Properties bin here"), this, SLOT(movePropertiesBinHere()) );
-    menu.addAction( tr("Script editor here"), this, SLOT(moveScriptEditorHere()) );
-    menu.addAction( tr("Progress Panel here"), this, SLOT(moveProgressPanelHere()) );
+    menu.addAction( tr("Новый просмотрщик"), this, SLOT(addNewViewer()) );
+    menu.addAction( tr("Новая гистограмма"), this, SLOT(newHistogramHere()) );
+    menu.addAction( tr("Схема узлов здесь"), this, SLOT(moveNodeGraphHere()) );
+    menu.addAction( tr("Редактор кривых здесь"), this, SLOT(moveCurveEditorHere()) );
+    menu.addAction( tr("Шкала времени здесь"), this, SLOT(moveDopeSheetEditorHere()) );
+    menu.addAction( tr("Свойства здесь"), this, SLOT(movePropertiesBinHere()) );
+    menu.addAction( tr("Редактор скриптов здесь"), this, SLOT(moveScriptEditorHere()) );
+    menu.addAction( tr("Панель прогресса здесь"), this, SLOT(moveProgressPanelHere()) );
 
 
     std::map<NATRON_PYTHON_NAMESPACE::PyPanel*, std::string> userPanels = _imp->gui->getPythonPanels();
     if ( !userPanels.empty() ) {
-        Menu* userPanelsMenu = new Menu(tr("User panels"), &menu);
+        Menu* userPanelsMenu = new Menu(tr("Пользовательские панели"), &menu);
         //userPanelsMenu->setFont(f);
         menu.addAction( userPanelsMenu->menuAction() );
 
 
         for (std::map<NATRON_PYTHON_NAMESPACE::PyPanel*, std::string>::iterator it = userPanels.begin(); it != userPanels.end(); ++it) {
-            QAction* pAction = new QAction(tr("%1 here").arg( it->first->getPanelLabel() ), userPanelsMenu);
+            QAction* pAction = new QAction(tr("%1 здесь").arg( it->first->getPanelLabel() ), userPanelsMenu);
             QObject::connect( pAction, SIGNAL(triggered()), this, SLOT(onUserPanelActionTriggered()) );
             pAction->setData( QString::fromUtf8( it->first->getScriptName().c_str() ) );
             userPanelsMenu->addAction(pAction);
@@ -457,8 +457,8 @@ TabWidget::createMenu()
     }
     menu.addSeparator();
 
-    QAction* isAnchorAction = new QAction(QIcon(pixA), tr("Set this as anchor"), &menu);
-    isAnchorAction->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("The anchor pane is where viewers will be created by default."), NATRON_NAMESPACE::WhiteSpaceNormal) );
+    QAction* isAnchorAction = new QAction(QIcon(pixA), tr("Установите это как якорь"), &menu);
+    isAnchorAction->setToolTip( NATRON_NAMESPACE::convertFromPlainText(tr("Панель привязки - это то место, где по умолчанию будут созданы средства просмотра."), NATRON_NAMESPACE::WhiteSpaceNormal) );
     isAnchorAction->setCheckable(true);
     bool isVA = isAnchor();
     isAnchorAction->setChecked(isVA);
@@ -1321,7 +1321,7 @@ TabWidget::paintEvent(QPaintEvent* e)
         QFont f = font();
         f.setPointSize(50);
         p.setFont(f);
-        QString text = tr("(Viewer Pane)");
+        QString text = tr("(Панель просмотра)");
         QFontMetrics fm(f);
         QPointF pos(width() / 2., height() / 2.);
         pos.rx() -= (fm.width(text) / 2.);
