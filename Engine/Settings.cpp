@@ -468,8 +468,7 @@ Settings::initializeKnobsGPU()
     _nOpenGLContexts->setDisplayMinimum(1);
     _nOpenGLContexts->setDisplayMaximum(8);
     _nOpenGLContexts->setMaximum(8);
-    _nOpenGLContexts->setHintToolTip( tr("Количество контекстов OpenGL, созданных для выполнения рендеринга OpenGL. Каждый контекст OpenGL может быть прикреплен к потоку ЦП, что позволяет одновременно отображать больше кадров. Увеличение этого значения может повысить производительность графов со смешанными узлами ЦП/ГП, но может значительно снизить производительность, если слишком много контекстов OpenGL активны одновременно.
-") );
+    _nOpenGLContexts->setHintToolTip( tr("Количество контекстов OpenGL, созданных для выполнения рендеринга OpenGL. Каждый контекст OpenGL может быть прикреплен к потоку ЦП, что позволяет одновременно отображать больше кадров. Увеличение этого значения может повысить производительность графов со смешанными узлами ЦП/ГП, но может значительно снизить производительность, если слишком много контекстов OpenGL активны одновременно.") );
     _gpuPage->addKnob(_nOpenGLContexts);
 
 
@@ -564,9 +563,8 @@ Settings::initializeKnobsUserInterface()
 
     _notifyOnFileChange = AppManager::createKnob<KnobBool>( this, tr("Предупреждать, когда файл изменяется извне") );
     _notifyOnFileChange->setName("warnOnExternalChange");
-    _notifyOnFileChange->setHintToolTip( tr("Если флажок установлен, то если файл, считанный из параметра файла, изменится извне, в средстве просмотра будет отображено предупреждение. "
-                                            "Отключение параметра приведет к приостановке работы системы уведомлений.
-") );
+    _notifyOnFileChange->setHintToolTip( tr("Флажок-то если файл, считанный из параметра файла, изменится извне, в просмотрщикепоявится предупреждение."
+                                            "Отключение параметра приведет к приостановке работы системы уведомлений.") );
     _uiPage->addKnob(_notifyOnFileChange);
 
 #ifdef NATRON_ENABLE_IO_META_NODES
@@ -665,7 +663,7 @@ Settings::initializeKnobsColorManagement()
                                         "и плагинов, использующих OpenColorIO, установив переменную среды \"OCIO\"."
                                         "Его будут учитывать только узлы, созданные после изменения этого параметра, "
                                         "i и после его изменения лучше перезапустить приложение. Если выбран \"%1\" "
-                                        "используется параметр \"Custom OpenColorIO config file\").arg( QString::fromUtf8(NATRON_CUSTOM_OCIO_CONFIG_NAME) ) );
+                                        "используется параметр \"Custom OpenColorIO config file\".").arg( QString::fromUtf8(NATRON_CUSTOM_OCIO_CONFIG_NAME) ) );
 
     _ocioTab->addKnob(_ocioConfigKnob);
 
