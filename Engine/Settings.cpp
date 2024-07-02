@@ -138,83 +138,83 @@ Settings::initializeKnobs()
 void
 Settings::initializeKnobsGeneral()
 {
-    _generalTab = AppManager::createKnob<KnobPage>( this, tr("General") );
+    _generalTab = AppManager::createKnob<KnobPage>( this, tr("Общие") );
 
-    _natronSettingsExist = AppManager::createKnob<KnobBool>( this, tr("Existing settings") );
+    _natronSettingsExist = AppManager::createKnob<KnobBool>( this, tr("Существующие настройки") );
     _natronSettingsExist->setName("existingSettings");
     _natronSettingsExist->setSecretByDefault(true);
     _generalTab->addKnob(_natronSettingsExist);
 
-    _saveSettings = AppManager::createKnob<KnobBool>( this, tr("Save settings on change") );
+    _saveSettings = AppManager::createKnob<KnobBool>( this, tr("Сохранять настройки при изменении") );
     _saveSettings->setName("saveSettings");
     _saveSettings->setDefaultValue(true);
     _saveSettings->setSecretByDefault(true);
     _generalTab->addKnob(_saveSettings);
 
-    _checkForUpdates = AppManager::createKnob<KnobBool>( this, tr("Always check for updates on start-up") );
+    _checkForUpdates = AppManager::createKnob<KnobBool>( this, tr("Всегда проверяйте наличие обновлений при запуске") );
     _checkForUpdates->setName("checkForUpdates");
-    _checkForUpdates->setHintToolTip( tr("When checked, %1 will check for new updates on start-up of the application.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _checkForUpdates->setHintToolTip( tr("Если флажок установлен, %1 будет проверять наличие новых обновлений при запуске приложения.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _generalTab->addKnob(_checkForUpdates);
 
 #ifdef NATRON_USE_BREAKPAD
-    _enableCrashReports = AppManager::createKnob<KnobBool>( this, tr("Enable crash reporting") );
+    _enableCrashReports = AppManager::createKnob<KnobBool>( this, tr("Включить отчеты о сбоях") );
     _enableCrashReports->setName("enableCrashReports");
-    _enableCrashReports->setHintToolTip( tr("When checked, if %1 crashes a window will pop-up asking you "
-                                            "whether you want to upload the crash dump to the developers or not. "
-                                            "This can help them track down the bug.\n"
-                                            "If you need to turn the crash reporting system off, uncheck this.\n"
-                                            "Note that when using the application in command-line mode, if crash reports are "
-                                            "enabled, they will be automatically uploaded.\n"
-                                            "Changing this requires a restart of the application to take effect.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _enableCrashReports->setHintToolTip( tr("Если этот флажок установлен, то в случае сбоя %1 появится всплывающее окно с вопросом, "
+                                            "хотите ли вы загрузить дамп сбоя разработчикам или нет. "
+                                            "Это может помочь им отследить ошибку.\n"
+                                            "Если вам нужно отключить систему отчетов о сбоях, снимите этот флажок.\n"
+                                            "Обратите внимание, что при использовании приложения в режиме командной строки, если отчеты о сбоях "
+                                            "включено, они будут загружены автоматически.\n"
+                                            "Для изменения этого параметра требуется перезапуск приложения.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _enableCrashReports->setAddNewLine(false);
     _generalTab->addKnob(_enableCrashReports);
 
-    _testCrashReportButton = AppManager::createKnob<KnobButton>( this, tr("Test Crash Reporting") );
+    _testCrashReportButton = AppManager::createKnob<KnobButton>( this, tr("Отчеты о сбоях тестирования") );
     _testCrashReportButton->setName("testCrashReporting");
-    _testCrashReportButton->setHintToolTip( tr("This button is for developers only to test whether the crash reporting system "
-                                               "works correctly. Do not use this.") );
+    _testCrashReportButton->setHintToolTip( tr("Эта кнопка предназначена только для разработчиков, чтобы проверить, правильно ли работает "
+                                               "система отчетов о сбоях. Не используйте это.") );
     _generalTab->addKnob(_testCrashReportButton);
 #endif
 
-    _autoSaveDelay = AppManager::createKnob<KnobInt>( this, tr("Auto-save trigger delay") );
+    _autoSaveDelay = AppManager::createKnob<KnobInt>( this, tr("Задержка триггера автосохранения") );
     _autoSaveDelay->setName("autoSaveDelay");
     _autoSaveDelay->disableSlider();
     _autoSaveDelay->setMinimum(0);
     _autoSaveDelay->setMaximum(60);
-    _autoSaveDelay->setHintToolTip( tr("The number of seconds after an event that %1 should wait before "
-                                       " auto-saving. Note that if a render is in progress, %1 will "
-                                       " wait until it is done to actually auto-save.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _autoSaveDelay->setHintToolTip( tr("Количество секунд которое %1 должен подождать перед автосохранением. "
+                                       " если рендеринг выполняется, %1 будет ждать, пока он не завершится, "
+                                       " чтобы выполнить автоматическое сохранение.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _generalTab->addKnob(_autoSaveDelay);
 
 
-    _autoSaveUnSavedProjects = AppManager::createKnob<KnobBool>( this, tr("Enable Auto-save for unsaved projects") );
+    _autoSaveUnSavedProjects = AppManager::createKnob<KnobBool>( this, tr("Включить автосохранение для несохраненных проектов") );
     _autoSaveUnSavedProjects->setName("autoSaveUnSavedProjects");
-    _autoSaveUnSavedProjects->setHintToolTip( tr("When activated %1 will auto-save projects that have never been "
-                                                 "saved and will prompt you on startup if an auto-save of that unsaved project was found. "
-                                                 "Disabling this will no longer save un-saved project.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _autoSaveUnSavedProjects->setHintToolTip( tr("При активации %1 будет автоматически сохранять проекты и при запуске "
+                                                 "будет выдаваться сообщение об обнаружении автосохранения этого несохраненного проекта. "
+                                                 "Отключение этого параметра больше не будет сохранять несохраненный проект.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _generalTab->addKnob(_autoSaveUnSavedProjects);
 
-    _saveVersions = AppManager::createKnob<KnobInt>( this, tr("Save versions") );
+    _saveVersions = AppManager::createKnob<KnobInt>( this, tr("Сохранение версий") );
     _saveVersions->setName("saveVersions");
     _saveVersions->disableSlider();
     _saveVersions->setMinimum(0);
     _saveVersions->setMaximum(32);
-    _saveVersions->setHintToolTip( tr("Number of versions created (for backup) when saving newer versions of a file.\n"
-                                      "This option keeps saved versions of your file in the same directory, adding "
-                                      ".~1~, .~2~, etc., with the number increasing to the number of versions you specify.\n"
-                                      "Older files will be named with a higher number. E.g. with the default setting of 2, "
-                                      "you will have three versions of your file: *.ntp (last saved), *.ntp.~1~ (second "
+    _saveVersions->setHintToolTip( tr("Количество версий, созданных (для резервного копирования) при сохранении новых версий файла.\n"
+                                      "Эта опция сохраняет сохраненные версии вашего файла в том же каталоге, добавляя "
+                                      ".~1~, .~2~ и т. д., причем число увеличивается до количества указанных вами версий.\n"
+                                      "Старым файлам будет присвоен больший номер. Например, с настройкой по умолчанию 2 "
+                                      "у вас будет три версии вашего файла: *.ntp (last saved), *.ntp.~1~ (second "
                                       "last saved), *.~2~ (third last saved).") );
     _generalTab->addKnob(_saveVersions);
 
-    _hostName = AppManager::createKnob<KnobChoice>( this, tr("Appear to plug-ins as") );
+    _hostName = AppManager::createKnob<KnobChoice>( this, tr("Отображаются в плагинах как") );
     _hostName->setName("pluginHostName");
-    _hostName->setHintToolTip( tr("%1 will appear with the name of the selected application to the OpenFX plug-ins. "
-                                  "Changing it to the name of another application can help loading plugins which "
-                                  "restrict their usage to specific OpenFX host(s). "
-                                  "If a Host is not listed here, use the \"Custom\" entry to enter a custom host name. Changing this requires "
-                                  "a restart of the application and requires clearing "
-                                  "the OpenFX plugins cache from the Cache menu.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _hostName->setHintToolTip( tr("%1 появится с именем выбранного приложения для плагинов OpenFX. "
+                                  "Изменение его на имя другого приложения может помочь загрузить плагины, "
+                                  "использование конкретными хостами OpenFX. "
+                                  "Если хост здесь не указан, используйте запись \"Custom\" чтобы ввести собственное имя."
+                                  "Для изменения этого параметра требуется перезапуск "
+                                  "приложения и очистка кеша плагинов OpenFX из меню Кэш.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _knownHostNames.clear();
     std::vector<ChoiceOption> visibleHostEntries;
     assert(visibleHostEntries.size() == (int)eKnownHostNameNatron);
@@ -272,15 +272,15 @@ Settings::initializeKnobsGeneral()
     _hostName->setAddNewLine(false);
     _generalTab->addKnob(_hostName);
 
-    _customHostName = AppManager::createKnob<KnobString>( this, tr("Custom Host name") );
+    _customHostName = AppManager::createKnob<KnobString>( this, tr("Пользовательское имя хоста") );
     _customHostName->setName("customHostName");
-    _customHostName->setHintToolTip( tr("This is the name of the OpenFX host (application) as it appears to the OpenFX plugins. "
-                                        "Changing it to the name of another application can help loading some plugins which "
-                                        "restrict their usage to specific OpenFX hosts. You should leave "
-                                        "this to its default value, unless a specific plugin refuses to load or run. "
-                                        "Changing this takes effect upon the next application launch, and requires clearing "
-                                        "the OpenFX plugins cache from the Cache menu. "
-                                        "The default host name is: \n%1").arg( QString::fromUtf8(NATRON_ORGANIZATION_DOMAIN_TOPLEVEL "." NATRON_ORGANIZATION_DOMAIN_SUB "." NATRON_APPLICATION_NAME) ) );
+    _customHostName->setHintToolTip( tr("Это имя хоста OpenFX, которое отображается в плагинах OpenFX. "
+                                        "Изменение его на имя другого приложения может помочь загрузить некоторые плагины, "
+                                        "которые ограничивают их использование определенными хостами OpenFX. "
+                                        "Нужно оставить значение по умолчанию, если только конкретный плагин не отказывается загружаться."
+                                        "Изменение этого параметра вступит в силу при следующем запуске приложения  "
+                                        "и потребует очистки кеша плагинов OpenFX из меню Кэш "
+                                        "Имя хоста по умолчанию: \n%1").arg( QString::fromUtf8(NATRON_ORGANIZATION_DOMAIN_TOPLEVEL "." NATRON_ORGANIZATION_DOMAIN_SUB "." NATRON_APPLICATION_NAME) ) );
     _customHostName->setSecretByDefault(true);
     _generalTab->addKnob(_customHostName);
 } // Settings::initializeKnobsGeneral
@@ -288,14 +288,14 @@ Settings::initializeKnobsGeneral()
 void
 Settings::initializeKnobsThreading()
 {
-    _threadingPage = AppManager::createKnob<KnobPage>( this, tr("Threading") );
+    _threadingPage = AppManager::createKnob<KnobPage>( this, tr("Ванизывание") );
 
-    _numberOfThreads = AppManager::createKnob<KnobInt>( this, tr("Number of render threads (0=\"guess\")") );
+    _numberOfThreads = AppManager::createKnob<KnobInt>( this, tr("Количество потоков рендеринга (0=\"guess\")") );
     _numberOfThreads->setName("noRenderThreads");
 
-    QString numberOfThreadsToolTip = tr("Controls how many threads %1 should use to render. \n"
-                                        "-1: Disable multithreading totally (useful for debugging) \n"
-                                        "0: Guess the thread count from the number of cores and the available memory (min(num_cores,memory/3.5Gb)). The ideal threads count for this hardware is %2.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).arg( QThread::idealThreadCount() );
+    QString numberOfThreadsToolTip = tr("Управляет количеством потоков %1, которые следует использовать для рендеринга. \n"
+                                        "-1: Полностью отключить многопоточность (полезно для отладки) \n"
+                                        "0: Установите количество потоков по количеству ядер и доступной памяти (min(num_cores,memory/3.5Gb)). Идеальное количество потоков для этого оборудования составляет %2.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).arg( QThread::idealThreadCount() );
     _numberOfThreads->setHintToolTip( numberOfThreadsToolTip.toStdString() );
     _numberOfThreads->disableSlider();
     _numberOfThreads->setMinimum(-1);
@@ -303,52 +303,44 @@ Settings::initializeKnobsThreading()
     _threadingPage->addKnob(_numberOfThreads);
 
 #ifndef NATRON_PLAYBACK_USES_THREAD_POOL
-    _numberOfParallelRenders = AppManager::createKnob<KnobInt>( this, tr("Number of parallel renders (0=\"guess\")") );
-    _numberOfParallelRenders->setHintToolTip( tr("Controls the number of parallel frame that will be rendered at the same time by the renderer. "
-                                                 "A value of 0 indicate that %1 should automatically determine "
-                                                 "the best number of parallel renders to launch given your CPU activity. "
-                                                 "Setting a value different than 0 should be done only if you know what you're doing and can lead "
-                                                 "in some situations to worse performances. Overall to get the best performances you should have your "
-                                                 "CPU at 100% activity without idle times.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _numberOfParallelRenders = AppManager::createKnob<KnobInt>( this, tr("Количество параллельных рендеров (0=\"guess\")") );
+    _numberOfParallelRenders->setHintToolTip( tr("Количество параллельных кадров, которые отобразятся средством рендеринга одновременно "
+                                                 "Значение 0 указывает, что %1 должен автоматически определить "
+                                                 "Лучшее количество параллельных рендерингов для запуска с учетом вашего процессора.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _numberOfParallelRenders->setName("nParallelRenders");
     _numberOfParallelRenders->setMinimum(0);
     _numberOfParallelRenders->disableSlider();
     _threadingPage->addKnob(_numberOfParallelRenders);
 #endif
 
-    _useThreadPool = AppManager::createKnob<KnobBool>( this, tr("Effects use the thread-pool") );
+    _useThreadPool = AppManager::createKnob<KnobBool>( this, tr("Эффекты используют пул потоков") );
     _useThreadPool->setName("useThreadPool");
-    _useThreadPool->setHintToolTip( tr("When checked, all effects will use a global thread-pool to do their processing instead of launching "
-                                       "their own threads. "
-                                       "This suppresses the overhead created by the operating system creating new threads on demand for "
-                                       "each rendering of a special effect. As a result of this, the rendering might be faster on systems "
-                                       "with a lot of cores (>= 8). \n"
-                                       "WARNING: This is known not to work when using The Foundry's Furnace plug-ins (and potentially "
-                                       "some other plug-ins that the dev team hasn't not tested against it). When using these plug-ins, "
-                                       "make sure to uncheck this option first otherwise it will crash %1.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _useThreadPool->setHintToolTip( tr("Флажок - все эффекты будут использовать глобальный пул потоков вместо запуска собственных потоков."
+                                       "В результате рендеринг в системах может происходить быстрее с большим количеством ядер (>= 8). \n"
+                                       "Не работает при использовании плагинов The Foundry's Furnace (и, возможно, некоторых других плагинов). При использовании этих плагинов обязательно снимите флажок с этой опции, иначе произойдет сбой %1.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _threadingPage->addKnob(_useThreadPool);
 
-    _nThreadsPerEffect = AppManager::createKnob<KnobInt>( this, tr("Max threads usable per effect (0=\"guess\")") );
+    _nThreadsPerEffect = AppManager::createKnob<KnobInt>( this, tr("Максимальное количество потоков на эффект (0=\"guess\")") );
     _nThreadsPerEffect->setName("nThreadsPerEffect");
-    _nThreadsPerEffect->setHintToolTip( tr("Controls how many threads a specific effect can use at most to do its processing. "
-                                           "A high value will allow 1 effect to spawn lots of thread and might not be efficient because "
-                                           "the time spent to launch all the threads might exceed the time spent actually processing. "
-                                           "By default (0) the renderer applies an heuristic to determine what's the best number of threads "
-                                           "for an effect.") );
+    _nThreadsPerEffect->setHintToolTip( tr("Количество потоков, которые конкретный эффект может использовать максимум для своей обработки. "
+                                           "Высокое значение позволит 1 эффекту порождать много потоков и может оказаться неэффективным, "
+                                           "время, затраченное на запуск всех потоков, превысит время, затраченное на фактическую обработку.  "
+                                           "По умолчанию (0) просмотрщик применяет эвристику, чтобы определить оптимальное количество "
+                                           "потоков для достижения эффекта.") );
 
     _nThreadsPerEffect->setMinimum(0);
     _nThreadsPerEffect->disableSlider();
     _threadingPage->addKnob(_nThreadsPerEffect);
 
-    _renderInSeparateProcess = AppManager::createKnob<KnobBool>( this, tr("Render in a separate process") );
+    _renderInSeparateProcess = AppManager::createKnob<KnobBool>( this, tr("Рендеринг в отдельном процессе") );
     _renderInSeparateProcess->setName("renderNewProcess");
-    _renderInSeparateProcess->setHintToolTip( tr("If true, %1 will render frames to disk in "
-                                                 "a separate process so that if the main application crashes, the render goes on.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _renderInSeparateProcess->setHintToolTip( tr("Если это правда, %1 будет отображать кадры на диск в отдельном процессе, "
+                                                 "поэтому в случае сбоя основного приложения рендеринг продолжится.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _threadingPage->addKnob(_renderInSeparateProcess);
 
-    _queueRenders = AppManager::createKnob<KnobBool>( this, tr("Append new renders to queue") );
-    _queueRenders->setHintToolTip( tr("When checked, renders will be queued in the Progress Panel and will start only when all "
-                                      "other prior tasks are done.") );
+    _queueRenders = AppManager::createKnob<KnobBool>( this, tr("Добавить новые рендеры в очередь") );
+    _queueRenders->setHintToolTip( tr("Если этот флажок установлен, рендеринг будет поставлен в очередь на панели выполнения  "
+                                      "выполнения всех остальных предыдущих задач.") );
     _queueRenders->setName("queueRenders");
     _threadingPage->addKnob(_queueRenders);
 } // Settings::initializeKnobsThreading
@@ -356,40 +348,39 @@ Settings::initializeKnobsThreading()
 void
 Settings::initializeKnobsRendering()
 {
-    _renderingPage = AppManager::createKnob<KnobPage>( this, tr("Rendering") );
+    _renderingPage = AppManager::createKnob<KnobPage>( this, tr("Рендеринг") );
 
-    _convertNaNValues = AppManager::createKnob<KnobBool>( this, tr("Convert NaN values") );
+    _convertNaNValues = AppManager::createKnob<KnobBool>( this, tr("Преобразование значений NaN") );
     _convertNaNValues->setName("convertNaNs");
-    _convertNaNValues->setHintToolTip( tr("When activated, any pixel that is a Not-a-Number will be converted to 1 to avoid potential crashes from "
-                                          "downstream nodes. These values can be produced by faulty plug-ins when they use wrong arithmetic such as "
-                                          "division by zero. Disabling this option will keep the NaN(s) in the buffers: this may lead to an "
-                                          "undefined behavior.") );
+    _convertNaNValues->setHintToolTip( tr("При активации любой пиксель будет преобразован в 1, чтобы избежать сбоев на нижестоящих узлах."
+                                          "Эти значения могут быть созданы ошибочными плагинами, когда они используют неправильную арифметику, например, деление на ноль."
+                                          "Отключение этой опции сохранит NaN(s) в буферах: может привести к неопределенным ппоследствиям.") );
     _renderingPage->addKnob(_convertNaNValues);
 
-    _pluginUseImageCopyForSource = AppManager::createKnob<KnobBool>( this, tr("Copy input image before rendering any plug-in") );
+    _pluginUseImageCopyForSource = AppManager::createKnob<KnobBool>( this, tr("Скопируйте входное изображение перед рендерингом любого плагина") );
     _pluginUseImageCopyForSource->setName("copyInputImage");
-    _pluginUseImageCopyForSource->setHintToolTip( tr("If checked, when before rendering any node, %1 will copy "
-                                                     "the input image to a local temporary image. This is to work-around some plug-ins "
-                                                     "that write to the source image, thus modifying the output of the node upstream in "
-                                                     "the cache. This is a known bug of an old version of RevisionFX REMap for instance. "
-                                                     "By default, this parameter should be leaved unchecked, as this will require an extra "
-                                                     "image allocation and copy before rendering any plug-in.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _pluginUseImageCopyForSource->setHintToolTip( tr("Если флажок установлен, то перед рендерингом любого узла% 1 скопирует входное изображение "
+                                                     "в локальное временное изображение. Это делается для того, чтобы обойтинекоторые плагины, "
+                                                     "которые записывают данные в исходное изображение, изменяя таким образом выходные данные узла, расположенного выше по потоку в кэше. "
+                                                     "Например, это известная ошибка старой версии REVisionFX REMap. "
+                                                     "По умолчанию параметр не установлен, так как это потребует дополнительного выделения "
+                                                     "изображения и его копирования перед рендерингом любого подключаемого модуля.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _renderingPage->addKnob(_pluginUseImageCopyForSource);
 
-    _activateRGBSupport = AppManager::createKnob<KnobBool>( this, tr("RGB components support") );
-    _activateRGBSupport->setHintToolTip( tr("When checked %1 is able to process images with only RGB components "
-                                            "(support for images with RGBA and Alpha components is always enabled). "
-                                            "Un-checking this option may prevent plugins that do not well support RGB components from crashing %1. "
-                                            "Changing this option requires a restart of the application.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _activateRGBSupport = AppManager::createKnob<KnobBool>( this, tr("Поддержка компонентов RGB") );
+    _activateRGBSupport->setHintToolTip( tr("Если установлен флажок %1, то можно обрабатывать изображения только с использованием компонентов RGB "
+                                            "(поддержка изображений с компонентами RGBA и Alpha всегда включена). "
+                                            "Снятие флажка с этой опции может предотвратить сбой %1 плагинов, которые плохо поддерживают компоненты RGB. "
+                                            "Изменение этой опции требует перезапуска приложения.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _activateRGBSupport->setName("rgbSupport");
     _renderingPage->addKnob(_activateRGBSupport);
 
 
-    _activateTransformConcatenationSupport = AppManager::createKnob<KnobBool>( this, tr("Transforms concatenation support") );
-    _activateTransformConcatenationSupport->setHintToolTip( tr("When checked %1 is able to concatenate transform effects "
-                                                               "when they are chained in the compositing tree. This yields better results and faster "
-                                                               "render times because the image is only filtered once instead of as many times as there are "
-                                                               "transformations.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _activateTransformConcatenationSupport = AppManager::createKnob<KnobBool>( this, tr("Преобразует поддержку конкатенации") );
+    _activateTransformConcatenationSupport->setHintToolTip( tr("Если этот флажок установлен, %1 может объединять эффекты "
+                                                               "преобразования, когда они объединены в цепочку в дереве композиции.  "
+                                                               "Это дает лучшие результаты и сокращает время рендеринга, поскольку изображение фильтруется только один раз, "
+                                                               "а не столько раз, сколько требуется преобразований.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _activateTransformConcatenationSupport->setName("transformCatSupport");
     _renderingPage->addKnob(_activateTransformConcatenationSupport);
 }
@@ -459,76 +450,77 @@ Settings::getActiveOpenGLRendererID() const
 void
 Settings::initializeKnobsGPU()
 {
-    _gpuPage = AppManager::createKnob<KnobPage>( this, tr("GPU Rendering") );
-    _openglRendererString = AppManager::createKnob<KnobString>( this, tr("Active OpenGL renderer") );
+    _gpuPage = AppManager::createKnob<KnobPage>( this, tr("GPU Рендеринг") );
+    _openglRendererString = AppManager::createKnob<KnobString>( this, tr("Активный рендерер OpenGL") );
     _openglRendererString->setName("activeOpenGLRenderer");
-    _openglRendererString->setHintToolTip( tr("The currently active OpenGL renderer.") );
+    _openglRendererString->setHintToolTip( tr("Текущий активный рендерер OpenGL.") );
     _openglRendererString->setAsLabel();
     _gpuPage->addKnob(_openglRendererString);
 
-    _availableOpenGLRenderers = AppManager::createKnob<KnobChoice>( this, tr("OpenGL renderer") );
+    _availableOpenGLRenderers = AppManager::createKnob<KnobChoice>( this, tr("OpenGL-рендерер") );
     _availableOpenGLRenderers->setName("chooseOpenGLRenderer");
-    _availableOpenGLRenderers->setHintToolTip( tr("The renderer used to perform OpenGL rendering. Changing the OpenGL renderer requires a restart of the application.") );
+    _availableOpenGLRenderers->setHintToolTip( tr("Средство рендеринга, используемое для рендеринга OpenGL. Изменение средства визуализации OpenGL требует перезапуска приложения.") );
     _gpuPage->addKnob(_availableOpenGLRenderers);
 
-    _nOpenGLContexts = AppManager::createKnob<KnobInt>( this, tr("No. of OpenGL Contexts") );
+    _nOpenGLContexts = AppManager::createKnob<KnobInt>( this, tr("Количество контекстов OpenGL") );
     _nOpenGLContexts->setName("maxOpenGLContexts");
     _nOpenGLContexts->setMinimum(1);
     _nOpenGLContexts->setDisplayMinimum(1);
     _nOpenGLContexts->setDisplayMaximum(8);
     _nOpenGLContexts->setMaximum(8);
-    _nOpenGLContexts->setHintToolTip( tr("The number of OpenGL contexts created to perform OpenGL rendering. Each OpenGL context can be attached to a CPU thread, allowing for more frames to be rendered simultaneously. Increasing this value may increase performances for graphs with mixed CPU/GPU nodes but can drastically reduce performances if too many OpenGL contexts are active at once.") );
+    _nOpenGLContexts->setHintToolTip( tr("Количество контекстов OpenGL, созданных для выполнения рендеринга OpenGL. Каждый контекст OpenGL может быть прикреплен к потоку ЦП, что позволяет одновременно отображать больше кадров. Увеличение этого значения может повысить производительность графов со смешанными узлами ЦП/ГП, но может значительно снизить производительность, если слишком много контекстов OpenGL активны одновременно.
+") );
     _gpuPage->addKnob(_nOpenGLContexts);
 
 
-    _enableOpenGL = AppManager::createKnob<KnobChoice>( this, tr("OpenGL Rendering") );
+    _enableOpenGL = AppManager::createKnob<KnobChoice>( this, tr("OpenGL-рендеринг") );
     _enableOpenGL->setName("enableOpenGLRendering");
     {
         std::vector<ChoiceOption> entries;
         assert(entries.size() == (int)Settings::eEnableOpenGLEnabled);
         entries.push_back(ChoiceOption("enabled",
-                                       tr("Enabled").toStdString(),
-                                       tr("If a plug-in support GPU rendering, prefer rendering using the GPU if possible.").toStdString()));
+                                       tr("Включить").toStdString(),
+                                       tr("Если плагин поддерживает рендеринг с помощью графического процессора, по возможности отдавайте предпочтение рендерингу с использованием графического процессора.").toStdString()));
         assert(entries.size() == (int)Settings::eEnableOpenGLDisabled);
         entries.push_back(ChoiceOption("disabled",
-                                       tr("Disabled").toStdString(),
-                                       tr("Disable GPU rendering for all plug-ins.").toStdString()));
+                                       tr("Отключить").toStdString(),
+                                       tr("Отключите рендеринг графического процессора для всех плагинов.").toStdString()));
         assert(entries.size() == (int)Settings::eEnableOpenGLDisabledIfBackground);
         entries.push_back(ChoiceOption("foreground",
-                                       tr("Disabled If Background").toStdString(),
-                                       tr("Disable GPU rendering when rendering with NatronRenderer but not in GUI mode.").toStdString()));
+                                       tr("Отключен, если Фоновый").toStdString(),
+                                       tr("Отключите рендеринг с помощью ГП при рендеринге с помощью NatronRenderer, но не в режиме графического интерфейса.").toStdString()));
         _enableOpenGL->populateChoices(entries);
     }
-    _enableOpenGL->setHintToolTip( tr("Select whether to activate OpenGL rendering or not. If disabled, even though a Project enable GPU rendering, it will not be activated.") );
+    _enableOpenGL->setHintToolTip( tr("Выберите, активировать рендеринг OpenGL или нет. Если этот параметр отключен, даже если проект включает рендеринг с помощью графического процессора, он не будет активирован") );
     _gpuPage->addKnob(_enableOpenGL);
 }
 
 void
 Settings::initializeKnobsProjectSetup()
 {
-    _projectsPage = AppManager::createKnob<KnobPage>( this, tr("Project Setup") );
+    _projectsPage = AppManager::createKnob<KnobPage>( this, tr("Настройка проекта") );
 
-    _firstReadSetProjectFormat = AppManager::createKnob<KnobBool>( this, tr("First image read set project format") );
+    _firstReadSetProjectFormat = AppManager::createKnob<KnobBool>( this, tr("Первое чтение изображения установило формат проекта") );
     _firstReadSetProjectFormat->setName("autoProjectFormat");
-    _firstReadSetProjectFormat->setHintToolTip( tr("If checked, the project size is set to this of the first image or video read within the project.") );
+    _firstReadSetProjectFormat->setHintToolTip( tr("Если этот флажок установлен, размер проекта устанавливается равным размеру первого изображения или видео, считываемого в проекте.") );
     _projectsPage->addKnob(_firstReadSetProjectFormat);
 
 
-    _autoPreviewEnabledForNewProjects = AppManager::createKnob<KnobBool>( this, tr("Auto-preview enabled by default for new projects") );
+    _autoPreviewEnabledForNewProjects = AppManager::createKnob<KnobBool>( this, tr("Авто предпросмотр включен по умолчанию для новых проектов") );
     _autoPreviewEnabledForNewProjects->setName("enableAutoPreviewNewProjects");
-    _autoPreviewEnabledForNewProjects->setHintToolTip( tr("If checked, then when creating a new project, the Auto-preview option"
-                                                          " is enabled.") );
+    _autoPreviewEnabledForNewProjects->setHintToolTip( tr("Если отмечено, то при создании нового проекта включается "
+                                                          "опция Автопросмотр.") );
     _projectsPage->addKnob(_autoPreviewEnabledForNewProjects);
 
 
-    _fixPathsOnProjectPathChanged = AppManager::createKnob<KnobBool>( this, tr("Auto fix relative file-paths") );
-    _fixPathsOnProjectPathChanged->setHintToolTip( tr("If checked, when a project-path changes (either the name or the value pointed to), %1 checks all file-path parameters in the project and tries to fix them.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _fixPathsOnProjectPathChanged = AppManager::createKnob<KnobBool>( this, tr("Автоисправление относительных путей к файлам") );
+    _fixPathsOnProjectPathChanged->setHintToolTip( tr("Если этот флажок установлен, то при изменении пути проекта (либо имени, либо значения, на которое указано), %1 проверяет все параметры пути к файлу в проекте и пытается их исправить.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _fixPathsOnProjectPathChanged->setName("autoFixRelativePaths");
 
     _projectsPage->addKnob(_fixPathsOnProjectPathChanged);
 
-    _enableMappingFromDriveLettersToUNCShareNames = AppManager::createKnob<KnobBool>( this, tr("Use drive letters instead of server names (Windows only)") );
-    _enableMappingFromDriveLettersToUNCShareNames->setHintToolTip( tr("This is only relevant for Windows: If checked, %1 will not convert a path starting with a drive letter from the file dialog to a network share name. You may use this if for example you want to share a same project with several users across facilities with different servers but where users have all the same drive attached to a server.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _enableMappingFromDriveLettersToUNCShareNames = AppManager::createKnob<KnobBool>( this, tr("Используйте буквы дисков вместо имен серверов (только для Windows)") );
+    _enableMappingFromDriveLettersToUNCShareNames->setHintToolTip( tr("Если флажок установлен, %1 не будет преобразовывать путь, начинающийся с буквы диска из диалогового окна файла, в имя общего сетевого ресурса. Вы можете использовать это, если, например, вы хотите поделиться одним и тем же проектом с несколькими пользователями на объектах с разными серверами, но когда у всех пользователей есть один и тот же диск, подключенный к серверу.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _enableMappingFromDriveLettersToUNCShareNames->setName("useDriveLetters");
 #ifndef __NATRON_WIN32__
     _enableMappingFromDriveLettersToUNCShareNames->setAllDimensionsEnabled(false);
@@ -539,103 +531,104 @@ Settings::initializeKnobsProjectSetup()
 void
 Settings::initializeKnobsDocumentation()
 {
-    _documentationPage = AppManager::createKnob<KnobPage>( this, tr("Documentation") );
+    _documentationPage = AppManager::createKnob<KnobPage>( this, tr("Документация") );
 
 #ifdef NATRON_DOCUMENTATION_ONLINE
-    _documentationSource = AppManager::createKnob<KnobChoice>( this, tr("Documentation Source") );
+    _documentationSource = AppManager::createKnob<KnobChoice>( this, tr("Источник документации") );
     _documentationSource->setName("documentationSource");
-    _documentationSource->setHintToolTip( tr("Documentation source.") );
+    _documentationSource->setHintToolTip( tr("Источник документации.") );
     _documentationSource->appendChoice(ChoiceOption("local",
-                                                    tr("Local").toStdString(),
-                                                    tr("Use the documentation distributed with the software.").toStdString()));
+                                                    tr("Локально").toStdString(),
+                                                    tr("Используйте документацию, прилагаемую к ПО.").toStdString()));
     _documentationSource->appendChoice(ChoiceOption("online",
-                                                    tr("Online").toStdString(),
-                                                    tr("Use the online version of the documentation (requires an internet connection).").toStdString()));
+                                                    tr("Онлайн").toStdString(),
+                                                    tr("Используйте онлайн-версию документации (требуется Интернет).").toStdString()));
     _documentationSource->appendChoice(ChoiceOption("none",
-                                                    tr("None").toStdString(),
-                                                    tr("Disable documentation").toStdString()));
+                                                    tr("Нет").toStdString(),
+                                                    tr("Отключить документацию").toStdString()));
     _documentationPage->addKnob(_documentationSource);
 #endif
 
     /// used to store temp port for local webserver
-    _wwwServerPort = AppManager::createKnob<KnobInt>( this, tr("Documentation local port (0=auto)") );
+    _wwwServerPort = AppManager::createKnob<KnobInt>( this, tr("Документация локальный порт (0=auto)") );
     _wwwServerPort->setName("webserverPort");
-    _wwwServerPort->setHintToolTip( tr("The port onto which the documentation server will listen to. A value of 0 indicate that the documentation should automatically find a port by itself.") );
+    _wwwServerPort->setHintToolTip( tr("Порт, который будет прослушивать сервер документации. Значение 0 указывает, что документация должна автоматически найти порт самостоятельно.") );
     _documentationPage->addKnob(_wwwServerPort);
 }
 
 void
 Settings::initializeKnobsUserInterface()
 {
-    _uiPage = AppManager::createKnob<KnobPage>( this, tr("User Interface") );
+    _uiPage = AppManager::createKnob<KnobPage>( this, tr("Пользовательский интерфейс") );
     _uiPage->setName("userInterfacePage");
 
-    _notifyOnFileChange = AppManager::createKnob<KnobBool>( this, tr("Warn when a file changes externally") );
+    _notifyOnFileChange = AppManager::createKnob<KnobBool>( this, tr("Предупреждать, когда файл изменяется извне") );
     _notifyOnFileChange->setName("warnOnExternalChange");
-    _notifyOnFileChange->setHintToolTip( tr("When checked, if a file read from a file parameter changes externally, a warning will be displayed "
-                                            "on the viewer. Turning this off will suspend the notification system.") );
+    _notifyOnFileChange->setHintToolTip( tr("Если флажок установлен, то если файл, считанный из параметра файла, изменится извне, в средстве просмотра будет отображено предупреждение. "
+                                            "Отключение параметра приведет к приостановке работы системы уведомлений.
+") );
     _uiPage->addKnob(_notifyOnFileChange);
 
 #ifdef NATRON_ENABLE_IO_META_NODES
-    _filedialogForWriters = AppManager::createKnob<KnobBool>( this, tr("Prompt with file dialog when creating Write node") );
+    _filedialogForWriters = AppManager::createKnob<KnobBool>( this, tr("Запрос в диалоговом окне файла при создании узла записи") );
     _filedialogForWriters->setName("writeUseDialog");
     _filedialogForWriters->setDefaultValue(true);
-    _filedialogForWriters->setHintToolTip( tr("When checked, opens-up a file dialog when creating a Write node") );
+    _filedialogForWriters->setHintToolTip( tr("Если флажок установлен, открывается диалоговое окно файла при создании узла записи.") );
     _uiPage->addKnob(_filedialogForWriters);
 #endif
 
 
-    _renderOnEditingFinished = AppManager::createKnob<KnobBool>( this, tr("Refresh viewer only when editing is finished") );
+    _renderOnEditingFinished = AppManager::createKnob<KnobBool>( this, tr("Обновлять программу просмотра только после завершения редактирования.") );
     _renderOnEditingFinished->setName("renderOnEditingFinished");
-    _renderOnEditingFinished->setHintToolTip( tr("When checked, the viewer triggers a new render only when mouse is released when editing parameters, curves "
-                                                 " or the timeline. This setting doesn't apply to roto splines editing.") );
+    _renderOnEditingFinished->setHintToolTip( tr("Если этот флажок установлен, средство просмотра запускает новую визуализацию только при отпускании мыши при редактировании параметров, "
+                                                 " кривых или временной шкалы. Этот параметр не применяется к редактированию рото-сплайнов.") );
     _uiPage->addKnob(_renderOnEditingFinished);
 
 
-    _linearPickers = AppManager::createKnob<KnobBool>( this, tr("Linear color pickers") );
+    _linearPickers = AppManager::createKnob<KnobBool>( this, tr("Линейные палитры цветов") );
     _linearPickers->setName("linearPickers");
-    _linearPickers->setHintToolTip( tr("When activated, all colors picked from the color parameters are linearized "
-                                       "before being fetched. Otherwise they are in the same colorspace "
-                                       "as the viewer they were picked from.") );
+    _linearPickers->setHintToolTip( tr("При активации все цвета, выбранные из цветовых параметров, перед выборкой линеаризуются. "
+                                       "В противном случае они находятся в том же цветовом пространстве, что и средство просмотра, "
+                                       "из которого они были выбраны.") );
     _uiPage->addKnob(_linearPickers);
 
-    _maxPanelsOpened = AppManager::createKnob<KnobInt>( this, tr("Maximum number of open settings panels (0=\"unlimited\")") );
+    _maxPanelsOpened = AppManager::createKnob<KnobInt>( this, tr("Максимальное количество открытых панелей настроек (0=\"unlimited\")") );
     _maxPanelsOpened->setName("maxPanels");
-    _maxPanelsOpened->setHintToolTip( tr("This property holds the maximum number of settings panels that can be "
-                                         "held by the properties dock at the same time. "
-                                         "The special value of 0 indicates there can be an unlimited number of panels opened.") );
+    _maxPanelsOpened->setHintToolTip( tr("Это свойство содержит максимальное количество панелей настроек, которые могут одновременно "
+                                         "удерживаться на панели свойств. Специальное значение 0 указывает, что может "
+                                         "быть открыто неограниченное количество панелей.") );
     _maxPanelsOpened->disableSlider();
     _maxPanelsOpened->setMinimum(0);
     _maxPanelsOpened->setMaximum(99);
     _uiPage->addKnob(_maxPanelsOpened);
 
-    _useCursorPositionIncrements = AppManager::createKnob<KnobBool>( this, tr("Value increments based on cursor position") );
+    _useCursorPositionIncrements = AppManager::createKnob<KnobBool>( this, tr("Приращение значения в зависимости от положения курсора") );
     _useCursorPositionIncrements->setName("cursorPositionAwareFields");
-    _useCursorPositionIncrements->setHintToolTip( tr("When enabled, incrementing the value fields of parameters with the "
-                                                     "mouse wheel or with arrow keys will increment the digits on the right "
-                                                     "of the cursor. \n"
-                                                     "When disabled, the value fields are incremented given what the plug-in "
-                                                     "decided it should be. You can alter this increment by holding "
-                                                     "Shift (x10) or Control (/10) while incrementing.") );
+    _useCursorPositionIncrements->setHintToolTip( tr("Если эта функция включена, увеличение полей значений "
+                                                     "параметров с помощью колеса мыши или клавиш со стрелками "
+                                                     "приведет к увеличению цифр справа от курсора. \n"
+                                                     "Если этот параметр отключен, поля значений увеличиваются в соответствии с тем, "
+                                                     "что плагин решил, что это должно быть. Вы можете изменить это приращение, "
+                                                     "удерживая Shift (x10) или Control (/10) во время увеличения.") );
     _uiPage->addKnob(_useCursorPositionIncrements);
 
-    _defaultLayoutFile = AppManager::createKnob<KnobFile>( this, tr("Default layout file") );
+    _defaultLayoutFile = AppManager::createKnob<KnobFile>( this, tr("Файл макета по умолчанию") );
     _defaultLayoutFile->setName("defaultLayout");
-    _defaultLayoutFile->setHintToolTip( tr("When set, %1 uses the given layout file "
-                                           "as default layout for new projects. You can export/import a layout to/from a file "
-                                           "from the Layout menu. If empty, the default application layout is used.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _defaultLayoutFile->setHintToolTip( tr("Если параметр установлен, %1 использует данный файл макета по умолчанию для новых проектов."
+                                           "Вы можете экспортировать/импортировать макет в/из файла из меню Макет.  "
+                                           "Если оно пустое, используется макет приложения по умолчанию.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _uiPage->addKnob(_defaultLayoutFile);
 
-    _loadProjectsWorkspace = AppManager::createKnob<KnobBool>( this, tr("Load workspace embedded within projects") );
+    _loadProjectsWorkspace = AppManager::createKnob<KnobBool>( this, tr("Загрузка рабочей области, встроенной в проекты") );
     _loadProjectsWorkspace->setName("loadProjectWorkspace");
-    _loadProjectsWorkspace->setHintToolTip( tr("When checked, when loading a project, the workspace (windows layout) will also be loaded, otherwise it "
-                                               "will use your current layout.") );
+    _loadProjectsWorkspace->setHintToolTip( tr("Если флажок установлен, при загрузке проекта также будет загружена рабочая область (макет окна), "
+                                               "в противном случае будет использоваться ваш текущий макет.") );
     _uiPage->addKnob(_loadProjectsWorkspace);
 
 #ifdef Q_OS_WIN
-    _enableConsoleWindow = AppManager::createKnob<KnobBool>( this, tr("Enable console window") );
+    _enableConsoleWindow = AppManager::createKnob<KnobBool>( this, tr("Включить окно консоли") );
     _enableConsoleWindow->setName("enableConsoleWindow");
-    _enableConsoleWindow->setHintToolTip( tr("When checked show console window on Windows.") );
+    _enableConsoleWindow->setHintToolTip( tr("Если флажок установлен, показывать окно консоли в Windows.") );
     _uiPage->addKnob(_enableConsoleWindow);
 #endif
 } // Settings::initializeKnobsUserInterface
@@ -643,8 +636,8 @@ Settings::initializeKnobsUserInterface()
 void
 Settings::initializeKnobsColorManagement()
 {
-    _ocioTab = AppManager::createKnob<KnobPage>( this, tr("Color Management") );
-    _ocioConfigKnob = AppManager::createKnob<KnobChoice>( this, tr("OpenColorIO configuration") );
+    _ocioTab = AppManager::createKnob<KnobPage>( this, tr("Управление цветом") );
+    _ocioConfigKnob = AppManager::createKnob<KnobChoice>( this, tr("Конфигурация OpenColorIO") );
     _ocioConfigKnob->setName("ocioConfig");
 
     std::vector<ChoiceOption> configs;
@@ -668,16 +661,15 @@ Settings::initializeKnobsColorManagement()
     configs.push_back(ChoiceOption(NATRON_CUSTOM_OCIO_CONFIG_NAME));
     _ocioConfigKnob->populateChoices(configs);
     _ocioConfigKnob->setDefaultValue(defaultIndex, 0);
-    _ocioConfigKnob->setHintToolTip( tr("Select the OpenColorIO configuration you would like to use globally for all "
-                                        "operators and plugins that use OpenColorIO, by setting the \"OCIO\" "
-                                        "environment variable. Only nodes created after changing this parameter will take "
-                                        "it into account, and it is better to restart the application after changing it. "
-                                        "When \"%1\" is selected, the "
-                                        "\"Custom OpenColorIO config file\" parameter is used.").arg( QString::fromUtf8(NATRON_CUSTOM_OCIO_CONFIG_NAME) ) );
+    _ocioConfigKnob->setHintToolTip( tr("Выберите конфигурацию OpenColorIO, которую вы хотите использовать глобально для всех операторов "
+                                        "и плагинов, использующих OpenColorIO, установив переменную среды \"OCIO\"."
+                                        "Его будут учитывать только узлы, созданные после изменения этого параметра, "
+                                        "i и после его изменения лучше перезапустить приложение. Если выбран \"%1\" "
+                                        "используется параметр \"Custom OpenColorIO config file\").arg( QString::fromUtf8(NATRON_CUSTOM_OCIO_CONFIG_NAME) ) );
 
     _ocioTab->addKnob(_ocioConfigKnob);
 
-    _customOcioConfigFile = AppManager::createKnob<KnobFile>( this, tr("Custom OpenColorIO configuration file") );
+    _customOcioConfigFile = AppManager::createKnob<KnobFile>( this, tr("Пользовательский файл конфигурации OpenColorIO") );
     _customOcioConfigFile->setName("ocioCustomConfigFile");
 
     if (_ocioConfigKnob->getNumEntries() == 1) {
@@ -686,16 +678,16 @@ Settings::initializeKnobsColorManagement()
         _customOcioConfigFile->setDefaultAllDimensionsEnabled(false);
     }
 
-    _customOcioConfigFile->setHintToolTip( tr("OpenColorIO configuration file (config.ocio) to use when \"%1\" "
-                                              "is selected as the OpenColorIO config.").arg( QString::fromUtf8(NATRON_CUSTOM_OCIO_CONFIG_NAME) ) );
+    _customOcioConfigFile->setHintToolTip( tr("Файл конфигурации OpenColorIO (config.ocio), который будет использоваться, когда "
+                                              "в качестве конфигурации OpenColorIO выбран \"%1\"").arg( QString::fromUtf8(NATRON_CUSTOM_OCIO_CONFIG_NAME) ) );
     _ocioTab->addKnob(_customOcioConfigFile);
 
-    _warnOcioConfigKnobChanged = AppManager::createKnob<KnobBool>( this, tr("Warn on OpenColorIO config change") );
+    _warnOcioConfigKnobChanged = AppManager::createKnob<KnobBool>( this, tr("Предупреждать об изменении конфигурации OpenColorIO") );
     _warnOcioConfigKnobChanged->setName("warnOCIOChanged");
-    _warnOcioConfigKnobChanged->setHintToolTip( tr("Show a warning dialog when changing the OpenColorIO config to remember that a restart is required.") );
+    _warnOcioConfigKnobChanged->setHintToolTip( tr("Показывать окно с предупреждением при изменении конфигурации OpenColorIO, чтобы помнить о необходимости перезагрузки.") );
     _ocioTab->addKnob(_warnOcioConfigKnobChanged);
 
-    _ocioStartupCheck = AppManager::createKnob<KnobBool>( this, tr("Warn on startup if OpenColorIO config is not the default") );
+    _ocioStartupCheck = AppManager::createKnob<KnobBool>( this, tr("Предупреждать при запуске, если конфигурация OpenColorIO не является конфигурацией по умолчанию") );
     _ocioStartupCheck->setName("startupCheckOCIO");
     _ocioTab->addKnob(_ocioStartupCheck);
 } // Settings::initializeKnobsColorManagement
@@ -704,120 +696,120 @@ void
 Settings::initializeKnobsAppearance()
 {
     //////////////APPEARANCE TAB/////////////////
-    _appearanceTab = AppManager::createKnob<KnobPage>( this, tr("Appearance") );
+    _appearanceTab = AppManager::createKnob<KnobPage>( this, tr("Внешность") );
 
-    _defaultAppearanceVersion = AppManager::createKnob<KnobInt>( this, tr("Appearance version") );
+    _defaultAppearanceVersion = AppManager::createKnob<KnobInt>( this, tr("версия Внешности") );
     _defaultAppearanceVersion->setName("appearanceVersion");
     _defaultAppearanceVersion->setSecretByDefault(true);
     _appearanceTab->addKnob(_defaultAppearanceVersion);
 
-    _systemFontChoice = AppManager::createKnob<KnobChoice>( this, tr("Font") );
-    _systemFontChoice->setHintToolTip( tr("List of all fonts available on your system") );
+    _systemFontChoice = AppManager::createKnob<KnobChoice>( this, tr("Шрифт") );
+    _systemFontChoice->setHintToolTip( tr("Список всех шрифтов, доступных в системе") );
     _systemFontChoice->setName("systemFont");
     _systemFontChoice->setAddNewLine(false);
     _appearanceTab->addKnob(_systemFontChoice);
 
-    _fontSize = AppManager::createKnob<KnobInt>( this, tr("Font size") );
+    _fontSize = AppManager::createKnob<KnobInt>( this, tr("Размер шрифта") );
     _fontSize->setName("fontSize");
     _appearanceTab->addKnob(_fontSize);
 
     _qssFile = AppManager::createKnob<KnobFile>( this, tr("Stylesheet file (.qss)") );
     _qssFile->setName("stylesheetFile");
-    _qssFile->setHintToolTip( tr("When pointing to a valid .qss file, the stylesheet of the application will be set according to this file instead of the default "
-                                 "stylesheet. You can adapt the default stylesheet that can be found in your distribution of %1.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _qssFile->setHintToolTip( tr("При указании на допустимый qss-файл таблица стилей приложения будет установлена в соответствии с этим файлом вместо таблицы стилей по умолчанию. "
+                                 " Можно адаптировать таблицу стилей по умолчанию, которую можно найти в вашем дистрибутиве %1.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _appearanceTab->addKnob(_qssFile);
 } // Settings::initializeKnobsAppearance
 
 void
 Settings::initializeKnobsGuiColors()
 {
-    _guiColorsTab = AppManager::createKnob<KnobPage>( this, tr("Main Window") );
+    _guiColorsTab = AppManager::createKnob<KnobPage>( this, tr("Главное окно") );
     _appearanceTab->addKnob(_guiColorsTab);
 
-    _useBWIcons = AppManager::createKnob<KnobBool>( this, tr("Use black & white toolbutton icons") );
+    _useBWIcons = AppManager::createKnob<KnobBool>( this, tr("Используйте черно-белые значки кнопок инструментов") );
     _useBWIcons->setName("useBwIcons");
-    _useBWIcons->setHintToolTip( tr("When checked, the tools icons in the left toolbar are greyscale. Changing this takes "
-                                    "effect upon the next launch of the application.") );
+    _useBWIcons->setHintToolTip( tr("Если флажок установлен, значки инструментов на левой панели инструментов отображаются в оттенках серого "
+                                    "Изменение эпараметра вступит в силу при следующем запуске приложения.") );
     _guiColorsTab->addKnob(_useBWIcons);
 
 
-    _sunkenColor =  AppManager::createKnob<KnobColor>(this, tr("Sunken"), 3);
+    _sunkenColor =  AppManager::createKnob<KnobColor>(this, tr("Погруженный"), 3);
     _sunkenColor->setName("sunken");
     _sunkenColor->setSimplified(true);
     _guiColorsTab->addKnob(_sunkenColor);
 
-    _baseColor =  AppManager::createKnob<KnobColor>(this, tr("Base"), 3);
+    _baseColor =  AppManager::createKnob<KnobColor>(this, tr("Базовый"), 3);
     _baseColor->setName("base");
     _baseColor->setSimplified(true);
     _guiColorsTab->addKnob(_baseColor);
 
-    _raisedColor =  AppManager::createKnob<KnobColor>(this, tr("Raised"), 3);
+    _raisedColor =  AppManager::createKnob<KnobColor>(this, tr("Поднятый"), 3);
     _raisedColor->setName("raised");
     _raisedColor->setSimplified(true);
     _guiColorsTab->addKnob(_raisedColor);
 
-    _selectionColor =  AppManager::createKnob<KnobColor>(this, tr("Selection"), 3);
+    _selectionColor =  AppManager::createKnob<KnobColor>(this, tr("Выбор"), 3);
     _selectionColor->setName("selection");
     _selectionColor->setSimplified(true);
     _guiColorsTab->addKnob(_selectionColor);
 
-    _textColor =  AppManager::createKnob<KnobColor>(this, tr("Text"), 3);
+    _textColor =  AppManager::createKnob<KnobColor>(this, tr("Текст"), 3);
     _textColor->setName("text");
     _textColor->setSimplified(true);
     _guiColorsTab->addKnob(_textColor);
 
-    _altTextColor =  AppManager::createKnob<KnobColor>(this, tr("Unmodified text"), 3);
+    _altTextColor =  AppManager::createKnob<KnobColor>(this, tr("Неизменённый текст"), 3);
     _altTextColor->setName("unmodifiedText");
     _altTextColor->setSimplified(true);
     _guiColorsTab->addKnob(_altTextColor);
 
-    _timelinePlayheadColor =  AppManager::createKnob<KnobColor>(this, tr("Timeline playhead"), 3);
+    _timelinePlayheadColor =  AppManager::createKnob<KnobColor>(this, tr("Временная шкала воспроизведения"), 3);
     _timelinePlayheadColor->setName("timelinePlayhead");
     _timelinePlayheadColor->setSimplified(true);
     _guiColorsTab->addKnob(_timelinePlayheadColor);
 
 
-    _timelineBGColor =  AppManager::createKnob<KnobColor>(this, tr("Timeline background"), 3);
+    _timelineBGColor =  AppManager::createKnob<KnobColor>(this, tr("Фон временной шкалы"), 3);
     _timelineBGColor->setName("timelineBG");
     _timelineBGColor->setSimplified(true);
     _guiColorsTab->addKnob(_timelineBGColor);
 
-    _timelineBoundsColor =  AppManager::createKnob<KnobColor>(this, tr("Timeline bounds"), 3);
+    _timelineBoundsColor =  AppManager::createKnob<KnobColor>(this, tr("Границы временной шкалы"), 3);
     _timelineBoundsColor->setName("timelineBound");
     _timelineBoundsColor->setSimplified(true);
     _guiColorsTab->addKnob(_timelineBoundsColor);
 
-    _cachedFrameColor =  AppManager::createKnob<KnobColor>(this, tr("Cached frame"), 3);
+    _cachedFrameColor =  AppManager::createKnob<KnobColor>(this, tr("Кэшированный кадр"), 3);
     _cachedFrameColor->setName("cachedFrame");
     _cachedFrameColor->setSimplified(true);
     _guiColorsTab->addKnob(_cachedFrameColor);
 
-    _diskCachedFrameColor =  AppManager::createKnob<KnobColor>(this, tr("Disk cached frame"), 3);
+    _diskCachedFrameColor =  AppManager::createKnob<KnobColor>(this, tr("Кэшированный на диске кадр"), 3);
     _diskCachedFrameColor->setName("diskCachedFrame");
     _diskCachedFrameColor->setSimplified(true);
     _guiColorsTab->addKnob(_diskCachedFrameColor);
 
-    _interpolatedColor =  AppManager::createKnob<KnobColor>(this, tr("Interpolated value"), 3);
+    _interpolatedColor =  AppManager::createKnob<KnobColor>(this, tr("Интерполированное значение"), 3);
     _interpolatedColor->setName("interpValue");
     _interpolatedColor->setSimplified(true);
     _guiColorsTab->addKnob(_interpolatedColor);
 
-    _keyframeColor =  AppManager::createKnob<KnobColor>(this, tr("Keyframe"), 3);
+    _keyframeColor =  AppManager::createKnob<KnobColor>(this, tr("Ключевой кадр"), 3);
     _keyframeColor->setName("keyframe");
     _keyframeColor->setSimplified(true);
     _guiColorsTab->addKnob(_keyframeColor);
 
-    _trackerKeyframeColor =  AppManager::createKnob<KnobColor>(this, tr("Track User Keyframes"), 3);
+    _trackerKeyframeColor =  AppManager::createKnob<KnobColor>(this, tr("Отслеживание ключевых кадров пользователя"), 3);
     _trackerKeyframeColor->setName("trackUserKeyframe");
     _trackerKeyframeColor->setSimplified(true);
     _guiColorsTab->addKnob(_trackerKeyframeColor);
 
-    _exprColor =  AppManager::createKnob<KnobColor>(this, tr("Expression"), 3);
+    _exprColor =  AppManager::createKnob<KnobColor>(this, tr("Выражение"), 3);
     _exprColor->setName("exprColor");
     _exprColor->setSimplified(true);
     _guiColorsTab->addKnob(_exprColor);
 
-    _sliderColor =  AppManager::createKnob<KnobColor>(this, tr("Slider"), 3);
+    _sliderColor =  AppManager::createKnob<KnobColor>(this, tr("Ползунок"), 3);
     _sliderColor->setName("slider");
     _sliderColor->setSimplified(true);
     _guiColorsTab->addKnob(_sliderColor);
@@ -826,20 +818,20 @@ Settings::initializeKnobsGuiColors()
 void
 Settings::initializeKnobsCurveEditorColors()
 {
-    _curveEditorColorsTab = AppManager::createKnob<KnobPage>( this, tr("Curve Editor") );
+    _curveEditorColorsTab = AppManager::createKnob<KnobPage>( this, tr("Редактор кривых") );
     _appearanceTab->addKnob(_curveEditorColorsTab);
 
-    _curveEditorBGColor =  AppManager::createKnob<KnobColor>(this, tr("Background color"), 3);
+    _curveEditorBGColor =  AppManager::createKnob<KnobColor>(this, tr("Цвет фона"), 3);
     _curveEditorBGColor->setName("curveEditorBG");
     _curveEditorBGColor->setSimplified(true);
     _curveEditorColorsTab->addKnob(_curveEditorBGColor);
 
-    _gridColor =  AppManager::createKnob<KnobColor>(this, tr("Grid color"), 3);
+    _gridColor =  AppManager::createKnob<KnobColor>(this, tr("Цвет сетки"), 3);
     _gridColor->setName("curveditorGrid");
     _gridColor->setSimplified(true);
     _curveEditorColorsTab->addKnob(_gridColor);
 
-    _curveEditorScaleColor =  AppManager::createKnob<KnobColor>(this, tr("Scale color"), 3);
+    _curveEditorScaleColor =  AppManager::createKnob<KnobColor>(this, tr("Цвет шкалы"), 3);
     _curveEditorScaleColor->setName("curveeditorScale");
     _curveEditorScaleColor->setSimplified(true);
     _curveEditorColorsTab->addKnob(_curveEditorScaleColor);
@@ -848,30 +840,30 @@ Settings::initializeKnobsCurveEditorColors()
 void
 Settings::initializeKnobsDopeSheetColors()
 {
-    _dopeSheetEditorColorsTab = AppManager::createKnob<KnobPage>( this, tr("Dope Sheet") );
+    _dopeSheetEditorColorsTab = AppManager::createKnob<KnobPage>( this, tr("Шкала времени") );
     _appearanceTab->addKnob(_dopeSheetEditorColorsTab);
 
-    _dopeSheetEditorBackgroundColor = AppManager::createKnob<KnobColor>(this, tr("Sheet background color"), 3);
+    _dopeSheetEditorBackgroundColor = AppManager::createKnob<KnobColor>(this, tr("Цвет фона листа"), 3);
     _dopeSheetEditorBackgroundColor->setName("dopesheetBackground");
     _dopeSheetEditorBackgroundColor->setSimplified(true);
     _dopeSheetEditorColorsTab->addKnob(_dopeSheetEditorBackgroundColor);
 
-    _dopeSheetEditorRootSectionBackgroundColor = AppManager::createKnob<KnobColor>(this, tr("Root section background color"), 4);
+    _dopeSheetEditorRootSectionBackgroundColor = AppManager::createKnob<KnobColor>(this, tr("Цвет фона корневого раздела"), 4);
     _dopeSheetEditorRootSectionBackgroundColor->setName("dopesheetRootSectionBackground");
     _dopeSheetEditorRootSectionBackgroundColor->setSimplified(true);
     _dopeSheetEditorColorsTab->addKnob(_dopeSheetEditorRootSectionBackgroundColor);
 
-    _dopeSheetEditorKnobSectionBackgroundColor = AppManager::createKnob<KnobColor>(this, tr("Knob section background color"), 4);
+    _dopeSheetEditorKnobSectionBackgroundColor = AppManager::createKnob<KnobColor>(this, tr("Цвет фона раздела ручки"), 4);
     _dopeSheetEditorKnobSectionBackgroundColor->setName("dopesheetKnobSectionBackground");
     _dopeSheetEditorKnobSectionBackgroundColor->setSimplified(true);
     _dopeSheetEditorColorsTab->addKnob(_dopeSheetEditorKnobSectionBackgroundColor);
 
-    _dopeSheetEditorScaleColor = AppManager::createKnob<KnobColor>(this, tr("Sheet scale color"), 3);
+    _dopeSheetEditorScaleColor = AppManager::createKnob<KnobColor>(this, tr("Цвет шкалы листа"), 3);
     _dopeSheetEditorScaleColor->setName("dopesheetScale");
     _dopeSheetEditorScaleColor->setSimplified(true);
     _dopeSheetEditorColorsTab->addKnob(_dopeSheetEditorScaleColor);
 
-    _dopeSheetEditorGridColor = AppManager::createKnob<KnobColor>(this, tr("Sheet grid color"), 3);
+    _dopeSheetEditorGridColor = AppManager::createKnob<KnobColor>(this, tr("Цвет сетки листа"), 3);
     _dopeSheetEditorGridColor->setName("dopesheetGrid");
     _dopeSheetEditorGridColor->setSimplified(true);
     _dopeSheetEditorColorsTab->addKnob(_dopeSheetEditorGridColor);
@@ -880,173 +872,173 @@ Settings::initializeKnobsDopeSheetColors()
 void
 Settings::initializeKnobsNodeGraphColors()
 {
-    _nodegraphColorsTab = AppManager::createKnob<KnobPage>( this, tr("Node Graph") );
+    _nodegraphColorsTab = AppManager::createKnob<KnobPage>( this, tr("Схема Узлов") );
     _appearanceTab->addKnob(_nodegraphColorsTab);
 
-    _usePluginIconsInNodeGraph = AppManager::createKnob<KnobBool>( this, tr("Display plug-in icon on node-graph") );
+    _usePluginIconsInNodeGraph = AppManager::createKnob<KnobBool>( this, tr("Отображение значка плагина на Схеме узлов") );
     _usePluginIconsInNodeGraph->setName("usePluginIcons");
-    _usePluginIconsInNodeGraph->setHintToolTip( tr("When checked, each node that has a plug-in icon will display it in the node-graph. "
-                                                   "Changing this option will not affect already existing nodes, unless a restart of Natron is made.") );
+    _usePluginIconsInNodeGraph->setHintToolTip( tr("Флажок установлен-каждый узел, имеющий значок плагина, будет отображать его в Схеме узлов. "
+                                                   "Опция не повлияет на уже существующие узлы, если не будет произведен перезапуск Natron.") );
     _usePluginIconsInNodeGraph->setAddNewLine(false);
     _nodegraphColorsTab->addKnob(_usePluginIconsInNodeGraph);
 
-    _useAntiAliasing = AppManager::createKnob<KnobBool>( this, tr("Anti-Aliasing") );
+    _useAntiAliasing = AppManager::createKnob<KnobBool>( this, tr("Сглаживание") );
     _useAntiAliasing->setName("antiAliasing");
-    _useAntiAliasing->setHintToolTip( tr("When checked, the node graph will be painted using anti-aliasing. Unchecking it may increase performance. "
-                                         " Changing this requires a restart of Natron") );
+    _useAntiAliasing->setHintToolTip( tr("Если флажок установлен, Схема узлов будет рисоваться со сглаживанием. Снятие флажка может повысить производительность. "
+                                         " Чтобы изменить это, потребуется перезапустить Natron.") );
     _nodegraphColorsTab->addKnob(_useAntiAliasing);
 
 
-    _defaultNodeColor = AppManager::createKnob<KnobColor>(this, tr("Default node color"), 3);
+    _defaultNodeColor = AppManager::createKnob<KnobColor>(this, tr("Цвет узла по умолчанию"), 3);
     _defaultNodeColor->setName("defaultNodeColor");
     _defaultNodeColor->setSimplified(true);
-    _defaultNodeColor->setHintToolTip( tr("The default color used for newly created nodes.") );
+    _defaultNodeColor->setHintToolTip( tr("Цвет по умолчанию, используемый для вновь создаваемых узлов.") );
 
     _nodegraphColorsTab->addKnob(_defaultNodeColor);
 
 
-    _defaultBackdropColor =  AppManager::createKnob<KnobColor>(this, tr("Default backdrop color"), 3);
+    _defaultBackdropColor =  AppManager::createKnob<KnobColor>(this, tr("Цвет фона по умолчанию"), 3);
     _defaultBackdropColor->setName("backdropColor");
     _defaultBackdropColor->setSimplified(true);
-    _defaultBackdropColor->setHintToolTip( tr("The default color used for newly created backdrop nodes.") );
+    _defaultBackdropColor->setHintToolTip( tr("Цвет по умолчанию, используемый для вновь созданных узлов фона.") );
     _nodegraphColorsTab->addKnob(_defaultBackdropColor);
 
     _defaultReaderColor =  AppManager::createKnob<KnobColor>(this, tr(PLUGIN_GROUP_IMAGE_READERS), 3);
     _defaultReaderColor->setName("readerColor");
     _defaultReaderColor->setSimplified(true);
-    _defaultReaderColor->setHintToolTip( tr("The color used for newly created Reader nodes.") );
+    _defaultReaderColor->setHintToolTip( tr("Цвет, используемый для вновь созданных узлом Чтения.") );
     _nodegraphColorsTab->addKnob(_defaultReaderColor);
 
     _defaultWriterColor =  AppManager::createKnob<KnobColor>(this, tr(PLUGIN_GROUP_IMAGE_WRITERS), 3);
     _defaultWriterColor->setName("writerColor");
     _defaultWriterColor->setSimplified(true);
-    _defaultWriterColor->setHintToolTip( tr("The color used for newly created Writer nodes.") );
+    _defaultWriterColor->setHintToolTip( tr("Цвет, используемый для вновь созданных узлом Запись.") );
     _nodegraphColorsTab->addKnob(_defaultWriterColor);
 
-    _defaultGeneratorColor =  AppManager::createKnob<KnobColor>(this, tr("Generators"), 3);
+    _defaultGeneratorColor =  AppManager::createKnob<KnobColor>(this, tr("Генераторы"), 3);
     _defaultGeneratorColor->setName("generatorColor");
     _defaultGeneratorColor->setSimplified(true);
-    _defaultGeneratorColor->setHintToolTip( tr("The color used for newly created Generator nodes.") );
+    _defaultGeneratorColor->setHintToolTip( tr("Цвет, используемый для вновь созданных узлов Генератора.") );
     _nodegraphColorsTab->addKnob(_defaultGeneratorColor);
 
-    _defaultColorGroupColor =  AppManager::createKnob<KnobColor>(this, tr("Color group"), 3);
+    _defaultColorGroupColor =  AppManager::createKnob<KnobColor>(this, tr("Цветовая группа"), 3);
     _defaultColorGroupColor->setName("colorNodesColor");
     _defaultColorGroupColor->setSimplified(true);
-    _defaultColorGroupColor->setHintToolTip( tr("The color used for newly created Color nodes.") );
+    _defaultColorGroupColor->setHintToolTip( tr("Цвет, используемый для вновь созданных узлов цвета.") );
     _nodegraphColorsTab->addKnob(_defaultColorGroupColor);
 
-    _defaultFilterGroupColor =  AppManager::createKnob<KnobColor>(this, tr("Filter group"), 3);
+    _defaultFilterGroupColor =  AppManager::createKnob<KnobColor>(this, tr("Группа Фильтров"), 3);
     _defaultFilterGroupColor->setName("filterNodesColor");
     _defaultFilterGroupColor->setSimplified(true);
-    _defaultFilterGroupColor->setHintToolTip( tr("The color used for newly created Filter nodes.") );
+    _defaultFilterGroupColor->setHintToolTip( tr("Цвет, используемый для вновь созданных узлов фильтра.") );
     _nodegraphColorsTab->addKnob(_defaultFilterGroupColor);
 
-    _defaultTransformGroupColor =  AppManager::createKnob<KnobColor>(this, tr("Transform group"), 3);
+    _defaultTransformGroupColor =  AppManager::createKnob<KnobColor>(this, tr("Группа Tрансформации"), 3);
     _defaultTransformGroupColor->setName("transformNodesColor");
     _defaultTransformGroupColor->setSimplified(true);
-    _defaultTransformGroupColor->setHintToolTip( tr("The color used for newly created Transform nodes.") );
+    _defaultTransformGroupColor->setHintToolTip( tr("Цвет, используемый для вновь созданных узлов Трансформации.") );
     _nodegraphColorsTab->addKnob(_defaultTransformGroupColor);
 
-    _defaultTimeGroupColor =  AppManager::createKnob<KnobColor>(this, tr("Time group"), 3);
+    _defaultTimeGroupColor =  AppManager::createKnob<KnobColor>(this, tr("Группа Времени"), 3);
     _defaultTimeGroupColor->setName("timeNodesColor");
     _defaultTimeGroupColor->setSimplified(true);
-    _defaultTimeGroupColor->setHintToolTip( tr("The color used for newly created Time nodes.") );
+    _defaultTimeGroupColor->setHintToolTip( tr("Цвет, используемый для вновь созданных временных узлов.") );
     _nodegraphColorsTab->addKnob(_defaultTimeGroupColor);
 
-    _defaultDrawGroupColor =  AppManager::createKnob<KnobColor>(this, tr("Draw group"), 3);
+    _defaultDrawGroupColor =  AppManager::createKnob<KnobColor>(this, tr("Группа Рисования"), 3);
     _defaultDrawGroupColor->setName("drawNodesColor");
     _defaultDrawGroupColor->setSimplified(true);
-    _defaultDrawGroupColor->setHintToolTip( tr("The color used for newly created Draw nodes.") );
+    _defaultDrawGroupColor->setHintToolTip( tr("Цвет, используемый для вновь созданных узлов рисования.") );
     _nodegraphColorsTab->addKnob(_defaultDrawGroupColor);
 
-    _defaultKeyerGroupColor =  AppManager::createKnob<KnobColor>(this, tr("Keyer group"), 3);
+    _defaultKeyerGroupColor =  AppManager::createKnob<KnobColor>(this, tr("Группа Ключей"), 3);
     _defaultKeyerGroupColor->setName("keyerNodesColor");
     _defaultKeyerGroupColor->setSimplified(true);
-    _defaultKeyerGroupColor->setHintToolTip( tr("The color used for newly created Keyer nodes.") );
+    _defaultKeyerGroupColor->setHintToolTip( tr("Цвет, используемый для вновь созданных ключевых узлов.") );
     _nodegraphColorsTab->addKnob(_defaultKeyerGroupColor);
 
-    _defaultChannelGroupColor =  AppManager::createKnob<KnobColor>(this, tr("Channel group"), 3);
+    _defaultChannelGroupColor =  AppManager::createKnob<KnobColor>(this, tr("Группа Каналов"), 3);
     _defaultChannelGroupColor->setName("channelNodesColor");
     _defaultChannelGroupColor->setSimplified(true);
-    _defaultChannelGroupColor->setHintToolTip( tr("The color used for newly created Channel nodes.") );
+    _defaultChannelGroupColor->setHintToolTip( tr("Цвет, используемый для вновь созданных узлов канала.") );
     _nodegraphColorsTab->addKnob(_defaultChannelGroupColor);
 
-    _defaultMergeGroupColor =  AppManager::createKnob<KnobColor>(this, tr("Merge group"), 3);
+    _defaultMergeGroupColor =  AppManager::createKnob<KnobColor>(this, tr("Группа Слияния"), 3);
     _defaultMergeGroupColor->setName("defaultMergeColor");
     _defaultMergeGroupColor->setSimplified(true);
-    _defaultMergeGroupColor->setHintToolTip( tr("The color used for newly created Merge nodes.") );
+    _defaultMergeGroupColor->setHintToolTip( tr("Цвет, используемый для вновь созданных узлов слияния.") );
     _nodegraphColorsTab->addKnob(_defaultMergeGroupColor);
 
-    _defaultViewsGroupColor =  AppManager::createKnob<KnobColor>(this, tr("Views group"), 3);
+    _defaultViewsGroupColor =  AppManager::createKnob<KnobColor>(this, tr("Группа Просмотра"), 3);
     _defaultViewsGroupColor->setName("defaultViewsColor");
     _defaultViewsGroupColor->setSimplified(true);
-    _defaultViewsGroupColor->setHintToolTip( tr("The color used for newly created Views nodes.") );
+    _defaultViewsGroupColor->setHintToolTip( tr("Цвет, используемый для вновь созданных узлов представлений.") );
     _nodegraphColorsTab->addKnob(_defaultViewsGroupColor);
 
-    _defaultDeepGroupColor =  AppManager::createKnob<KnobColor>(this, tr("Deep group"), 3);
+    _defaultDeepGroupColor =  AppManager::createKnob<KnobColor>(this, tr("Группа Глубины"), 3);
     _defaultDeepGroupColor->setName("defaultDeepColor");
     _defaultDeepGroupColor->setSimplified(true);
-    _defaultDeepGroupColor->setHintToolTip( tr("The color used for newly created Deep nodes.") );
+    _defaultDeepGroupColor->setHintToolTip( tr("Цвет, используемый для вновь созданных узлов глубины.") );
     _nodegraphColorsTab->addKnob(_defaultDeepGroupColor);
 } // Settings::initializeKnobsNodeGraphColors
 
 void
 Settings::initializeKnobsScriptEditorColors()
 {
-    _scriptEditorColorsTab = AppManager::createKnob<KnobPage>( this, tr("Script Editor") );
+    _scriptEditorColorsTab = AppManager::createKnob<KnobPage>( this, tr("Редактор скриптов") );
     _scriptEditorColorsTab->setParentKnob(_appearanceTab);
 
-    _scriptEditorFontChoice = AppManager::createKnob<KnobChoice>( this, tr("Font") );
-    _scriptEditorFontChoice->setHintToolTip( tr("List of all fonts available on your system") );
+    _scriptEditorFontChoice = AppManager::createKnob<KnobChoice>( this, tr("Шрифт") );
+    _scriptEditorFontChoice->setHintToolTip( tr("Список всех шрифтов, доступных в вашей системе") );
     _scriptEditorFontChoice->setName("scriptEditorFont");
     _scriptEditorColorsTab->addKnob(_scriptEditorFontChoice);
 
-    _scriptEditorFontSize = AppManager::createKnob<KnobInt>( this, tr("Font Size") );
-    _scriptEditorFontSize->setHintToolTip( tr("The font size") );
+    _scriptEditorFontSize = AppManager::createKnob<KnobInt>( this, tr("Размер шрифта") );
+    _scriptEditorFontSize->setHintToolTip( tr("Размер шрифта") );
     _scriptEditorFontSize->setName("scriptEditorFontSize");
     _scriptEditorColorsTab->addKnob(_scriptEditorFontSize);
 
-    _curLineColor = AppManager::createKnob<KnobColor>(this, tr("Current Line Color"), 3);
+    _curLineColor = AppManager::createKnob<KnobColor>(this, tr("Текущий цвет линии"), 3);
     _curLineColor->setName("currentLineColor");
     _curLineColor->setSimplified(true);
     _scriptEditorColorsTab->addKnob(_curLineColor);
 
-    _keywordColor = AppManager::createKnob<KnobColor>(this, tr("Keyword Color"), 3);
+    _keywordColor = AppManager::createKnob<KnobColor>(this, tr("Цвет ключевого слова"), 3);
     _keywordColor->setName("keywordColor");
     _keywordColor->setSimplified(true);
     _scriptEditorColorsTab->addKnob(_keywordColor);
 
-    _operatorColor = AppManager::createKnob<KnobColor>(this, tr("Operator Color"), 3);
+    _operatorColor = AppManager::createKnob<KnobColor>(this, tr("Цвет оператора"), 3);
     _operatorColor->setName("operatorColor");
     _operatorColor->setSimplified(true);
     _scriptEditorColorsTab->addKnob(_operatorColor);
 
-    _braceColor = AppManager::createKnob<KnobColor>(this, tr("Brace Color"), 3);
+    _braceColor = AppManager::createKnob<KnobColor>(this, tr("Цвет скобки"), 3);
     _braceColor->setName("braceColor");
     _braceColor->setSimplified(true);
     _scriptEditorColorsTab->addKnob(_braceColor);
 
-    _defClassColor = AppManager::createKnob<KnobColor>(this, tr("Class Def Color"), 3);
+    _defClassColor = AppManager::createKnob<KnobColor>(this, tr("Цвет определения класса"), 3);
     _defClassColor->setName("classDefColor");
     _defClassColor->setSimplified(true);
     _scriptEditorColorsTab->addKnob(_defClassColor);
 
-    _stringsColor = AppManager::createKnob<KnobColor>(this, tr("Strings Color"), 3);
+    _stringsColor = AppManager::createKnob<KnobColor>(this, tr("Цвет струн"), 3);
     _stringsColor->setName("stringsColor");
     _stringsColor->setSimplified(true);
     _scriptEditorColorsTab->addKnob(_stringsColor);
 
-    _commentsColor = AppManager::createKnob<KnobColor>(this, tr("Comments Color"), 3);
+    _commentsColor = AppManager::createKnob<KnobColor>(this, tr("Цвет комментариев"), 3);
     _commentsColor->setName("commentsColor");
     _commentsColor->setSimplified(true);
     _scriptEditorColorsTab->addKnob(_commentsColor);
 
-    _selfColor = AppManager::createKnob<KnobColor>(this, tr("Self Color"), 3);
+    _selfColor = AppManager::createKnob<KnobColor>(this, tr("Свой цвет"), 3);
     _selfColor->setName("selfColor");
     _selfColor->setSimplified(true);
     _scriptEditorColorsTab->addKnob(_selfColor);
 
-    _numbersColor = AppManager::createKnob<KnobColor>(this, tr("Numbers Color"), 3);
+    _numbersColor = AppManager::createKnob<KnobColor>(this, tr("Цвет цифр"), 3);
     _numbersColor->setName("numbersColor");
     _numbersColor->setSimplified(true);
     _scriptEditorColorsTab->addKnob(_numbersColor);
@@ -1055,34 +1047,34 @@ Settings::initializeKnobsScriptEditorColors()
 void
 Settings::initializeKnobsViewers()
 {
-    _viewersTab = AppManager::createKnob<KnobPage>( this, tr("Viewer") );
+    _viewersTab = AppManager::createKnob<KnobPage>( this, tr("Просмотрщик") );
 
-    _texturesMode = AppManager::createKnob<KnobChoice>( this, tr("Viewer textures bit depth") );
+    _texturesMode = AppManager::createKnob<KnobChoice>( this, tr("Разрядность просмотрщика текстур") );
     _texturesMode->setName("texturesBitDepth");
     std::vector<ChoiceOption> textureModes;
     textureModes.push_back(ChoiceOption("8u",
-                                        tr("8-bit").toStdString(),
-                                        tr("Post-processing done by the viewer (such as colorspace conversion) is done "
-                                           "by the CPU. The size of cached textures is thus smaller.").toStdString() ));
+                                        tr("8-бит").toStdString(),
+                                        tr("Постобработка, выполняемая средством просмотра (например, преобразование цветового пространства) "
+                                           "выполняется процессором. Размер кэшированных текстур становится меньше.").toStdString() ));
 
     //textureModes.push_back("16bits half-float");
     //helpStringsTextureModes.push_back("Not available yet. Similar to 32bits fp.");
     textureModes.push_back(ChoiceOption("32f",
-                                        tr("32-bit floating-point").toStdString(),
-                                        tr("Post-processing done by the viewer (such as colorspace conversion) is done "
-                                           "by the GPU, using GLSL. The size of cached textures is thus larger.").toStdString()));
+                                        tr("32-бит плавающая запятая").toStdString(),
+                                        tr("Постобработка, выполняемая средством просмотра (например, преобразование цветового пространства)"
+                                           "выполняется ГП с использованием GLSL. Размер кэшированных текстур становится больше.").toStdString()));
     _texturesMode->populateChoices(textureModes);
 
 
-    _texturesMode->setHintToolTip( tr("Bit depth of the viewer textures used for rendering. "
-                                      "Hover each option with the mouse for a detailed description.") );
+    _texturesMode->setHintToolTip( tr("Разрядность текстур средства просмотра, используемых для рендеринга. "
+                                      "Наведите курсор мыши на каждый вариант, чтобы увидеть подробное описание.") );
     _viewersTab->addKnob(_texturesMode);
 
-    _powerOf2Tiling = AppManager::createKnob<KnobInt>( this, tr("Viewer tile size is 2 to the power of...") );
+    _powerOf2Tiling = AppManager::createKnob<KnobInt>( this, tr("Размер плитки просмотрщика равен 2 в степени...") );
     _powerOf2Tiling->setName("viewerTiling");
-    _powerOf2Tiling->setHintToolTip( tr("The dimension of the viewer tiles is 2^n by 2^n (i.e. 256 by 256 pixels for n=8). "
-                                        "A high value means that the viewer renders large tiles, so that "
-                                        "rendering is done less often, but on larger areas.") );
+    _powerOf2Tiling->setHintToolTip( tr("Размер плиток средства просмотра составляет 2^n на 2^n (т. е. 256 на 256 пикселей для n=8).  "
+                                        "Высокое значение означает, что средство просмотра отображает большие плитки, поэтому "
+                                        "рендеринг выполняется реже, но на более крупных площадях.") );
     _powerOf2Tiling->disableSlider();
     _powerOf2Tiling->setMinimum(4);
     _powerOf2Tiling->setDisplayMinimum(4);
@@ -1091,38 +1083,38 @@ Settings::initializeKnobsViewers()
 
     _viewersTab->addKnob(_powerOf2Tiling);
 
-    _checkerboardTileSize = AppManager::createKnob<KnobInt>( this, tr("Checkerboard tile size (pixels)") );
+    _checkerboardTileSize = AppManager::createKnob<KnobInt>( this, tr("Размер плитки шахматной доски (в пикселях)") );
     _checkerboardTileSize->setName("checkerboardTileSize");
     _checkerboardTileSize->setMinimum(1);
-    _checkerboardTileSize->setHintToolTip( tr("The size (in screen pixels) of one tile of the checkerboard.") );
+    _checkerboardTileSize->setHintToolTip( tr("Размер (в пикселях экрана) одного тайла шахматной доски.") );
     _viewersTab->addKnob(_checkerboardTileSize);
 
-    _checkerboardColor1 = AppManager::createKnob<KnobColor>(this, tr("Checkerboard color 1"), 4);
+    _checkerboardColor1 = AppManager::createKnob<KnobColor>(this, tr("Цвет шахматной доски 1"), 4);
     _checkerboardColor1->setName("checkerboardColor1");
-    _checkerboardColor1->setHintToolTip( tr("The first color used by the checkerboard.") );
+    _checkerboardColor1->setHintToolTip( tr("Первый цвет, используемый шахматной доской.") );
     _viewersTab->addKnob(_checkerboardColor1);
 
-    _checkerboardColor2 = AppManager::createKnob<KnobColor>(this, tr("Checkerboard color 2"), 4);
+    _checkerboardColor2 = AppManager::createKnob<KnobColor>(this, tr("Цвет шахматной доски 2"), 4);
     _checkerboardColor2->setName("checkerboardColor2");
-    _checkerboardColor2->setHintToolTip( tr("The second color used by the checkerboard.") );
+    _checkerboardColor2->setHintToolTip( tr("Второй цвет, используемый шахматной доской.") );
     _viewersTab->addKnob(_checkerboardColor2);
 
-    _autoWipe = AppManager::createKnob<KnobBool>( this, tr("Automatically enable wipe") );
+    _autoWipe = AppManager::createKnob<KnobBool>( this, tr("Автоматически включать очистку") );
     _autoWipe->setName("autoWipeForViewer");
-    _autoWipe->setHintToolTip( tr("When checked, the wipe tool of the viewer will be automatically enabled "
-                                  "when the mouse is hovering the viewer and changing an input of a viewer." ) );
+    _autoWipe->setHintToolTip( tr("Если флажок установлен, инструмент вытеснения средства просмотра будет автоматически включаться, когда "
+                                  "мышь наводит курсор на средство просмотра и меняет ввод просмотрщика." ) );
     _viewersTab->addKnob(_autoWipe);
 
 
-    _autoProxyWhenScrubbingTimeline = AppManager::createKnob<KnobBool>( this, tr("Automatically enable proxy when scrubbing the timeline") );
+    _autoProxyWhenScrubbingTimeline = AppManager::createKnob<KnobBool>( this, tr("Автоматически включать прокси при очистке временной шкалы") );
     _autoProxyWhenScrubbingTimeline->setName("autoProxyScrubbing");
-    _autoProxyWhenScrubbingTimeline->setHintToolTip( tr("When checked, the proxy mode will be at least at the level "
-                                                        "indicated by the auto-proxy parameter.") );
+    _autoProxyWhenScrubbingTimeline->setHintToolTip( tr("Если флажок установлен, режим прокси будет как минимум на уровне, "
+                                                        "указанном параметром auto-proxy.") );
     _autoProxyWhenScrubbingTimeline->setAddNewLine(false);
     _viewersTab->addKnob(_autoProxyWhenScrubbingTimeline);
 
 
-    _autoProxyLevel = AppManager::createKnob<KnobChoice>( this, tr("Auto-proxy level") );
+    _autoProxyLevel = AppManager::createKnob<KnobChoice>( this, tr("Уровень авто-прокси") );
     _autoProxyLevel->setName("autoProxyLevel");
     std::vector<ChoiceOption> autoProxyChoices;
     autoProxyChoices.push_back(ChoiceOption("2", "",""));
@@ -1134,29 +1126,28 @@ Settings::initializeKnobsViewers()
 
     _viewersTab->addKnob(_autoProxyLevel);
 
-    _maximumNodeViewerUIOpened = AppManager::createKnob<KnobInt>( this, tr("Max. opened node viewer interface") );
+    _maximumNodeViewerUIOpened = AppManager::createKnob<KnobInt>( this, tr("Макс. открытый интерфейс просмотра узлов") );
     _maximumNodeViewerUIOpened->setName("maxNodeUiOpened");
     _maximumNodeViewerUIOpened->setMinimum(1);
     _maximumNodeViewerUIOpened->disableSlider();
-    _maximumNodeViewerUIOpened->setHintToolTip( tr("Controls the maximum amount of nodes that can have their interface showing up at the same time in the viewer") );
+    _maximumNodeViewerUIOpened->setHintToolTip( tr("Управляет максимальным количеством узлов, интерфейс которых может одновременно отображаться в окне просмотра") );
     _viewersTab->addKnob(_maximumNodeViewerUIOpened);
 
-    _viewerNumberKeys = AppManager::createKnob<KnobBool>( this, tr("Use number keys for the viewer") );
+    _viewerNumberKeys = AppManager::createKnob<KnobBool>( this, tr("Используйте цифровые клавиши для просмотра") );
     _viewerNumberKeys->setName("viewerNumberKeys");
-    _viewerNumberKeys->setHintToolTip( tr("When enabled, the row of number keys on the keyboard "
-                                    "is used for switching input (<key> connects input to A side, "
-                                    "<shift-key> connects input to B side), even if the corresponding "
+    _viewerNumberKeys->setHintToolTip( tr("Когда эта функция включена, ряд цифровых клавиш на клавиатуре используется для переключения ввода "
+                                    "(<клавиша> подключает ввод к боковой панели, <клавиша shift> подключает ввод к боковой панели сбоку), "
+                                    "даже если соответствующий символ в текущей раскладке клавиатуры не является цифрой."
                                     "character in the current keyboard layout is not a number.\n"
-                                    "This may have to be disabled when using a remote display connection "
-                                    "to Linux from a different OS.") );
+                                    "Возможно, для этого потребуется может быть отключен при использовании удаленного подключения дисплея "
+                                    "к Linux из другой операционной системы.") );
     _viewersTab->addKnob(_viewerNumberKeys);
 
-    _viewerOverlaysPath = AppManager::createKnob<KnobBool>( this, tr("Only display overlays for the viewer render path") );
+    _viewerOverlaysPath = AppManager::createKnob<KnobBool>( this, tr("Отображать наложения только для пути Просмотрщика") );
     _viewerOverlaysPath->setName("viewerOverlaysPath");
-    _viewerOverlaysPath->setHintToolTip( tr("When disabled, overlays for all the non-minimized open "
-                                            "properties panels are displayed. When enabled, overlays are "
-                                            "displayed only for the render path for the current viewer "
-                                            "inputs.") );
+    _viewerOverlaysPath->setHintToolTip( tr("Если параметр отключен, отображаются наложения для всех не свернутых открытых панелей свойств. "
+                                            "Если этот параметр включен, наложения отображаются только  "
+                                            "для пути рендеринга для текущих входных данных программы просмотра.") );
     _viewersTab->addKnob(_viewerOverlaysPath);
 } // Settings::initializeKnobsViewers
 
@@ -1164,56 +1155,56 @@ void
 Settings::initializeKnobsNodeGraph()
 {
     /////////// Nodegraph tab
-    _nodegraphTab = AppManager::createKnob<KnobPage>( this, tr("Nodegraph") );
+    _nodegraphTab = AppManager::createKnob<KnobPage>( this, tr("Схема Узлов") );
 
-    _autoScroll = AppManager::createKnob<KnobBool>( this, tr("Auto Scroll") );
+    _autoScroll = AppManager::createKnob<KnobBool>( this, tr("Автопрокрутка") );
     _autoScroll->setName("autoScroll");
-    _autoScroll->setHintToolTip( tr("When checked the node graph will auto scroll if you move a node outside the current graph view.") );
+    _autoScroll->setHintToolTip( tr("Если флажок установлен, Схема Узлов будет автоматически прокручиваться, если вы переместите узел за пределы текущего представления графика.") );
     _nodegraphTab->addKnob(_autoScroll);
 
-    _autoTurbo = AppManager::createKnob<KnobBool>( this, tr("Auto-turbo") );
+    _autoTurbo = AppManager::createKnob<KnobBool>( this, tr("Авто-турбо") );
     _autoTurbo->setName("autoTurbo");
-    _autoTurbo->setHintToolTip( tr("When checked the Turbo-mode will be enabled automatically when playback is started and disabled "
-                                   "when finished.") );
+    _autoTurbo->setHintToolTip( tr("Если флажок установлен, турбо-режим будет автоматически включаться при запуске "
+                                   "воспроизведения и отключаться по его завершении.") );
     _nodegraphTab->addKnob(_autoTurbo);
 
-    _snapNodesToConnections = AppManager::createKnob<KnobBool>( this, tr("Snap to node") );
+    _snapNodesToConnections = AppManager::createKnob<KnobBool>( this, tr("Привязка к узлу") );
     _snapNodesToConnections->setName("enableSnapToNode");
-    _snapNodesToConnections->setHintToolTip( tr("When moving nodes on the node graph, snap to positions where they are lined up "
-                                                "with the inputs and output nodes.") );
+    _snapNodesToConnections->setHintToolTip( tr("При перемещении узлов на графе узлов привязывайтесь к позициям, в которых "
+                                                "они совпадают с входными и выходными узлами.") );
     _nodegraphTab->addKnob(_snapNodesToConnections);
 
 
-    _maxUndoRedoNodeGraph = AppManager::createKnob<KnobInt>( this, tr("Maximum undo/redo for the node graph") );
+    _maxUndoRedoNodeGraph = AppManager::createKnob<KnobInt>( this, tr("Максимальное количество операций отмены/повтора для Схема узла") );
     _maxUndoRedoNodeGraph->setName("maxUndoRedo");
     _maxUndoRedoNodeGraph->disableSlider();
     _maxUndoRedoNodeGraph->setMinimum(0);
-    _maxUndoRedoNodeGraph->setHintToolTip( tr("Set the maximum of events related to the node graph %1 "
-                                              "remembers. Past this limit, older events will be deleted forever, "
-                                              "allowing to re-use the RAM for other purposes. \n"
-                                              "Changing this value will clear the undo/redo stack.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _maxUndoRedoNodeGraph->setHintToolTip( tr("Установите максимальное количество событий, связанных с графом узлов, которые запоминает %1. "
+                                              "При превышении этого ограничения более старые события "
+                                              "будут удалены навсегда. \n"
+                                              "Это позволит повторно использовать оперативную память для других целей.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _nodegraphTab->addKnob(_maxUndoRedoNodeGraph);
 
 
-    _disconnectedArrowLength = AppManager::createKnob<KnobInt>( this, tr("Disconnected arrow length") );
+    _disconnectedArrowLength = AppManager::createKnob<KnobInt>( this, tr("Длина отключенной стрелы") );
     _disconnectedArrowLength->setName("disconnectedArrowLength");
-    _disconnectedArrowLength->setHintToolTip( tr("The size of a disconnected node input arrow in pixels.") );
+    _disconnectedArrowLength->setHintToolTip( tr("Размер стрелки ввода отключенного узла в пикселях.") );
     _disconnectedArrowLength->disableSlider();
 
     _nodegraphTab->addKnob(_disconnectedArrowLength);
 
-    _hideOptionalInputsAutomatically = AppManager::createKnob<KnobBool>( this, tr("Auto hide masks inputs") );
+    _hideOptionalInputsAutomatically = AppManager::createKnob<KnobBool>( this, tr("Автоскрытие входных данных масок") );
     _hideOptionalInputsAutomatically->setName("autoHideInputs");
-    _hideOptionalInputsAutomatically->setHintToolTip( tr("When checked, any diconnected mask input of a node in the nodegraph "
-                                                         "will be visible only when the mouse is hovering the node or when it is "
-                                                         "selected.") );
+    _hideOptionalInputsAutomatically->setHintToolTip( tr("Флажок-любые данные, вводимые с помощью несвязанной маски для узла в Схеме Узлов, "
+                                                         "будут видны только при наведении курсора мыши на узел "
+                                                         "или при его выборе.") );
     _nodegraphTab->addKnob(_hideOptionalInputsAutomatically);
 
-    _useInputAForMergeAutoConnect = AppManager::createKnob<KnobBool>( this, tr("Merge node connect to A input") );
+    _useInputAForMergeAutoConnect = AppManager::createKnob<KnobBool>( this, tr("Узел слияния, подключение к входу A") );
     _useInputAForMergeAutoConnect->setName("mergeConnectToA");
-    _useInputAForMergeAutoConnect->setHintToolTip( tr("If checked, upon creation of a new Merge node, or any other node with inputs named "
-                                                      "A and B, input A is be preferred "
-                                                      "for auto-connection. When the node is disabled, B is always output, whether this is checked or not.") );
+    _useInputAForMergeAutoConnect->setHintToolTip( tr("Если флажок установлен, то при создании нового узла слияния или любого другого узла "
+                                                      "с входами с именами A и B вход A будет предпочтительным для автоматического подключения."
+                                                      "Когда узел отключен, B всегда выводится, независимо от того, отмечено это или нет.") );
     _nodegraphTab->addKnob(_useInputAForMergeAutoConnect);
 } // Settings::initializeKnobsNodeGraph
 
@@ -1221,29 +1212,29 @@ void
 Settings::initializeKnobsCaching()
 {
     /////////// Caching tab
-    _cachingTab = AppManager::createKnob<KnobPage>( this, tr("Caching") );
+    _cachingTab = AppManager::createKnob<KnobPage>( this, tr("Кэширование") );
 
-    _aggressiveCaching = AppManager::createKnob<KnobBool>( this, tr("Aggressive caching") );
+    _aggressiveCaching = AppManager::createKnob<KnobBool>( this, tr("Агрессивное кэширование") );
     _aggressiveCaching->setName("aggressiveCaching");
-    _aggressiveCaching->setHintToolTip( tr("When checked, %1 will cache the output of all images "
-                                           "rendered by all nodes, regardless of their \"Force caching\" parameter. When enabling this option "
-                                           "you need to have at least 8GiB of RAM, and 16GiB is recommended.\n"
-                                           "If not checked, %1 will only cache the  nodes "
-                                           "which have multiple outputs, or their parameter \"Force caching\" checked or if one of its "
-                                           "output has its settings panel opened.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _aggressiveCaching->setHintToolTip( tr("Если флажок установлен, %1 будет кэшировать выходные данные всех изображений,  "
+                                           "отображаемых всеми узлами, независимо от их параметра \"Force caching\". Для включения этой опции "
+                                           "необходимо иметь как минимум 8 ГБ ОЗУ, рекомендуется 16 ГБ.\n"
+                                           "Если флажок не установлен, %1 будет кэшировать только те узлы, которые имеют несколько выходов, "
+                                           "или их параметр \"Force caching\" отмечен, или если у одного из его выходов "
+                                           "открыта панель настроек.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _cachingTab->addKnob(_aggressiveCaching);
 
-    _maxRAMPercent = AppManager::createKnob<KnobInt>( this, tr("Maximum amount of RAM memory used for caching (% of total RAM)") );
+    _maxRAMPercent = AppManager::createKnob<KnobInt>( this, tr("Максимальный объем ОЗУ, используемый для кэширования (% of total RAM)") );
     _maxRAMPercent->setName("maxRAMPercent");
     _maxRAMPercent->disableSlider();
     _maxRAMPercent->setMinimum(0);
     _maxRAMPercent->setMaximum(100);
-    QString ramHint( tr("This setting indicates the percentage of the total RAM which can be used by the memory caches. "
-                        "This system has %1 of RAM.").arg( printAsRAM( getSystemTotalRAM() ) ) );
+    QString ramHint( tr("Этот параметр указывает процент от общего объема оперативной памяти, который может использоваться кэшами памяти."
+                        "Эта система имеет %1 ОЗУ.").arg( printAsRAM( getSystemTotalRAM() ) ) );
     if ( isApplication32Bits() && (getSystemTotalRAM() > 4ULL * 1024ULL * 1024ULL * 1024ULL) ) {
         ramHint.append( QString::fromUtf8("\n") );
-        ramHint.append( tr("The version of %1 you are running is 32 bits, which means the available RAM "
-                           "is limited to 4GiB. The amount of RAM used for caching is 4GiB * MaxRamPercent.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+        ramHint.append( tr("Версия %1, которую вы используете, составляет 32 бита, что означает доступную оперативную память "
+                           "ограничено 4 ГБ. Объем ОЗУ, используемой для кэширования, составляет 4 ГБ * MaxRamPercent.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     }
 
     _maxRAMPercent->setHintToolTip(ramHint);
@@ -1257,19 +1248,19 @@ Settings::initializeKnobsCaching()
     _cachingTab->addKnob(_maxRAMLabel);
 
 
-    _unreachableRAMPercent = AppManager::createKnob<KnobInt>( this, tr("System RAM to keep free (% of total RAM)") );
+    _unreachableRAMPercent = AppManager::createKnob<KnobInt>( this, tr("Системная ОЗУ должна оставаться свободной (% of total RAM)") );
     _unreachableRAMPercent->setName("unreachableRAMPercent");
     _unreachableRAMPercent->disableSlider();
     _unreachableRAMPercent->setMinimum(0);
     _unreachableRAMPercent->setMaximum(90);
-    _unreachableRAMPercent->setHintToolTip(tr("This determines how much RAM should be kept free for other applications "
-                                              "running on the same system. "
-                                              "When this limit is reached, the caches start recycling memory instead of growing. "
+    _unreachableRAMPercent->setHintToolTip(tr("Это определяет, сколько оперативной памяти должно оставаться свободным для других "
+                                              "приложений, работающих в той же системе. "
+                                              "Когда этот предел достигнут, кэши начинают перерабатывать память, а не увеличиваться. "
                                               //"A reasonable value should be set for it allowing the caches to stay in physical RAM " // users don't understand what swap is
                                               //"and avoid being swapped-out on disk. "
-                                              "This value should reflect the amount of memory "
-                                              "you want to keep available on your computer for other usage. "
-                                              "A low value may result in a massive slowdown and high disk usage.")
+                                              "Это значение должно отражать объем памяти, который вы хотите оставить "
+                                              "на своем компьютере для другого использования. "
+                                              "Низкое значение может привести к замедлению работы и интенсивному использованию диска.")
                                            );
     _unreachableRAMPercent->setAddNewLine(false);
     _cachingTab->addKnob(_unreachableRAMPercent);
@@ -1279,50 +1270,50 @@ Settings::initializeKnobsCaching()
     _unreachableRAMLabel->setAsLabel();
     _cachingTab->addKnob(_unreachableRAMLabel);
 
-    _maxViewerDiskCacheGB = AppManager::createKnob<KnobInt>( this, tr("Maximum playback disk cache size (GiB)") );
+    _maxViewerDiskCacheGB = AppManager::createKnob<KnobInt>( this, tr("Максимальный размер кэша диска воспроизведения (ГиБ)") );
     _maxViewerDiskCacheGB->setName("maxViewerDiskCache");
     _maxViewerDiskCacheGB->disableSlider();
     _maxViewerDiskCacheGB->setMinimum(0);
     _maxViewerDiskCacheGB->setMaximum(100);
-    _maxViewerDiskCacheGB->setHintToolTip( tr("The maximum size that may be used by the playback cache on disk (in GiB)") );
+    _maxViewerDiskCacheGB->setHintToolTip( tr("Максимальный размер, который может использовать кэш воспроизведения на диске (в ГиБ)") );
     _cachingTab->addKnob(_maxViewerDiskCacheGB);
 
-    _maxDiskCacheNodeGB = AppManager::createKnob<KnobInt>( this, tr("Maximum DiskCache node disk usage (GiB)") );
+    _maxDiskCacheNodeGB = AppManager::createKnob<KnobInt>( this, tr("Максимальное использование диска узла DiskCache (ГиБ)") );
     _maxDiskCacheNodeGB->setName("maxDiskCacheNode");
     _maxDiskCacheNodeGB->disableSlider();
     _maxDiskCacheNodeGB->setMinimum(0);
     _maxDiskCacheNodeGB->setMaximum(100);
-    _maxDiskCacheNodeGB->setHintToolTip( tr("The maximum size that may be used by the DiskCache node on disk (in GiB)") );
+    _maxDiskCacheNodeGB->setHintToolTip( tr("Максимальный размер, который может использовать узел DiskCache на диске. (в ГиБ)") );
     _cachingTab->addKnob(_maxDiskCacheNodeGB);
 
 
-    _diskCachePath = AppManager::createKnob<KnobPath>( this, tr("Disk cache path") );
+    _diskCachePath = AppManager::createKnob<KnobPath>( this, tr("Путь к кэшу диска") );
     _diskCachePath->setName("diskCachePath");
     _diskCachePath->setMultiPath(false);
 
     QString defaultLocation = StandardPaths::writableLocation(StandardPaths::eStandardLocationCache);
-    QString diskCacheTt( tr("WARNING: Changing this parameter requires a restart of the application. \n"
-                            "This points to the location where %1 on-disk caches will be. "
-                            "This variable should point to your fastest disk. This parameter can be "
-                            "overridden by the value of the environment variable %2.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).arg( QString::fromUtf8(NATRON_DISK_CACHE_PATH_ENV_VAR) ) );
+    QString diskCacheTt( tr("ВНИМАНИЕ: изменение этого параметра требует перезапуска приложения. \n"
+                            "Это указывает на место, где будут находиться кэши %1 на диске. "
+                            "Эта переменная должна указывать на ваш самый быстрый диск. "
+                            "Этот параметр можно переопределить значением переменной среды %2.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).arg( QString::fromUtf8(NATRON_DISK_CACHE_PATH_ENV_VAR) ) );
 
-    QString diskCacheTt2( tr("If the parameter is left empty or the location set is invalid, "
-                             "the default location will be used. The default location is: %1").arg(defaultLocation) );
+    QString diskCacheTt2( tr("Если параметр оставить пустым или набор местоположений недействителен, "
+                             "будет использовано местоположение по умолчанию. Местоположение по умолчанию: %1.").arg(defaultLocation) );
 
     _diskCachePath->setHintToolTip( diskCacheTt + QLatin1Char('\n') + diskCacheTt2 );
     _cachingTab->addKnob(_diskCachePath);
 
-    _wipeDiskCache = AppManager::createKnob<KnobButton>( this, tr("Wipe Disk Cache") );
-    _wipeDiskCache->setHintToolTip( tr("Cleans-up all caches, deleting all folders that may contain cached data. "
-                                       "This is provided in case %1 lost track of cached images "
-                                       "for some reason.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _wipeDiskCache = AppManager::createKnob<KnobButton>( this, tr("Очистить кэш диска") );
+    _wipeDiskCache->setHintToolTip( tr("Очищает все кеши, удаляя все папки, которые могут содержать кешированные данные."
+                                       "Это предусмотрено на тот случай, если %1 по какой-либо причине "
+                                       "потерял след кешированных изображений.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _cachingTab->addKnob(_wipeDiskCache);
 } // Settings::initializeKnobsCaching
 
 void
 Settings::initializeKnobsPlugins()
 {
-    _pluginsTab = AppManager::createKnob<KnobPage>( this, tr("Plug-ins") );
+    _pluginsTab = AppManager::createKnob<KnobPage>( this, tr("Плагины") );
     _pluginsTab->setName("plugins");
 
 #if defined(__linux__) || defined(__FreeBSD__)
@@ -1337,29 +1328,29 @@ Settings::initializeKnobsPlugins()
 
 #endif
 
-    _loadBundledPlugins = AppManager::createKnob<KnobBool>( this, tr("Use bundled plug-ins") );
+    _loadBundledPlugins = AppManager::createKnob<KnobBool>( this, tr("Используйте встроенные плагины") );
     _loadBundledPlugins->setName("useBundledPlugins");
-    _loadBundledPlugins->setHintToolTip( tr("When checked, %1 also uses the plug-ins bundled "
-                                            "with the binary distribution.\n"
-                                            "When unchecked, only system-wide plug-ins found in are loaded (more information can be "
-                                            "found in the help for the \"Extra plug-ins search paths\" setting).").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _loadBundledPlugins->setHintToolTip( tr("Если этот флажок установлен, %1 также использует плагины, "
+                                            "входящие в состав двоичного дистрибутива.\n"
+                                            "Если флажок снят, загружаются только общесистемные найденные плагины (более подробную информацию "
+                                            "можно найти в справке по настройке \"Extra plug-ins search paths\").").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _pluginsTab->addKnob(_loadBundledPlugins);
 
-    _preferBundledPlugins = AppManager::createKnob<KnobBool>( this, tr("Prefer bundled plug-ins over system-wide plug-ins") );
+    _preferBundledPlugins = AppManager::createKnob<KnobBool>( this, tr("Предпочитайте встроенные плагины общесистемным плагинам.") );
     _preferBundledPlugins->setName("preferBundledPlugins");
-    _preferBundledPlugins->setHintToolTip( tr("When checked, and if \"Use bundled plug-ins\" is also checked, plug-ins bundled with the %1 binary distribution will take precedence over system-wide plug-ins "
-                                              "if they have the same internal ID.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _preferBundledPlugins->setHintToolTip( tr("Если этот флажок установлен, а также если также установлен флажок \"Use bundled plug-ins\" плагины, связанные с двоичным дистрибутивом %1, будут иметь приоритет над общесистемными плагинами,"
+                                              "если у них одинаковый внутренний ID.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _pluginsTab->addKnob(_preferBundledPlugins);
 
-    _useStdOFXPluginsLocation = AppManager::createKnob<KnobBool>( this, tr("Enable default OpenFX plugins location") );
+    _useStdOFXPluginsLocation = AppManager::createKnob<KnobBool>( this, tr("Включить расположение плагинов OpenFX по умолчанию") );
     _useStdOFXPluginsLocation->setName("useStdOFXPluginsLocation");
-    _useStdOFXPluginsLocation->setHintToolTip( tr("When checked, %1 also uses the OpenFX plug-ins found in the default location (%2).").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).arg( QString::fromUtf8( searchPath.c_str() ) ) );
+    _useStdOFXPluginsLocation->setHintToolTip( tr("Если флажок установлен, %1 также использует подключаемые модули OpenFX, находящиеся в расположении по умолчанию (%2).").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).arg( QString::fromUtf8( searchPath.c_str() ) ) );
     _pluginsTab->addKnob(_useStdOFXPluginsLocation);
 
-    _extraPluginPaths = AppManager::createKnob<KnobPath>( this, tr("OpenFX plug-ins search path") );
+    _extraPluginPaths = AppManager::createKnob<KnobPath>( this, tr("Путь поиска плагинов OpenFX") );
     _extraPluginPaths->setName("extraPluginsSearchPaths");
-    _extraPluginPaths->setHintToolTip( tr("Extra search paths where %1 should scan for OpenFX plug-ins. "
-                                          "Extra plug-ins search paths can also be specified using the OFX_PLUGIN_PATH environment variable.\n"
+    _extraPluginPaths->setHintToolTip( tr("Дополнительные пути поиска, по которым %1 должен искать подключаемые модули OpenFX. "
+                                          "Дополнительные пути поиска плагинов также можно указать с помощью переменной среды OFX_PLUGIN_PATH.\n"
                                           "The priority order for system-wide plug-ins, from high to low, is:\n"
                                           "- plugins bundled with the binary distribution of %1 (if \"Prefer bundled plug-ins over "
                                           "system-wide plug-ins\" is checked)\n"
@@ -1372,11 +1363,11 @@ Settings::initializeKnobsPlugins()
     _pluginsTab->addKnob(_extraPluginPaths);
 
 
-    _templatesPluginPaths = AppManager::createKnob<KnobPath>( this, tr("PyPlugs search path") );
+    _templatesPluginPaths = AppManager::createKnob<KnobPath>( this, tr("Путь поиска PyPlugs") );
     _templatesPluginPaths->setName("groupPluginsSearchPath");
-    _templatesPluginPaths->setHintToolTip( tr("Search path where %1 should scan for Python group scripts (PyPlugs). "
-                                              "The search paths for groups can also be specified using the "
-                                              "NATRON_PLUGIN_PATH environment variable.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _templatesPluginPaths->setHintToolTip( tr("Путь поиска, по которому %1 должен искать сценарии группы Python (PyPlugs). "
+                                              "Пути поиска групп также можно указать с помощью "
+                                              "переменной среды NATRON_PLUGIN_PATH.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _templatesPluginPaths->setMultiPath(true);
     _pluginsTab->addKnob(_templatesPluginPaths);
 
@@ -1388,7 +1379,7 @@ Settings::initializeKnobsPython()
     _pythonPage = AppManager::createKnob<KnobPage>( this, tr("Python") );
 
 
-    _onProjectCreated = AppManager::createKnob<KnobString>( this, tr("After project created") );
+    _onProjectCreated = AppManager::createKnob<KnobString>( this, tr("После создания проекта") );
     _onProjectCreated->setName("afterProjectCreated");
     _onProjectCreated->setHintToolTip( tr("Callback called once a new project is created (this is never called "
                                           "when \"After project loaded\" is called.)\n"
@@ -1397,49 +1388,48 @@ Settings::initializeKnobsPython()
     _pythonPage->addKnob(_onProjectCreated);
 
 
-    _defaultOnProjectLoaded = AppManager::createKnob<KnobString>( this, tr("Default after project loaded") );
+    _defaultOnProjectLoaded = AppManager::createKnob<KnobString>( this, tr("По умолчанию после загрузки проекта") );
     _defaultOnProjectLoaded->setName("defOnProjectLoaded");
-    _defaultOnProjectLoaded->setHintToolTip( tr("The default afterProjectLoad callback that will be set for new projects.") );
+    _defaultOnProjectLoaded->setHintToolTip( tr("Обратный вызов afterProjectLoad по умолчанию, который будет установлен для новых проектов.") );
     _pythonPage->addKnob(_defaultOnProjectLoaded);
 
-    _defaultOnProjectSave = AppManager::createKnob<KnobString>( this, tr("Default before project save") );
+    _defaultOnProjectSave = AppManager::createKnob<KnobString>( this, tr("По умолчанию перед сохранением проекта") );
     _defaultOnProjectSave->setName("defOnProjectSave");
-    _defaultOnProjectSave->setHintToolTip( tr("The default beforeProjectSave callback that will be set for new projects.") );
+    _defaultOnProjectSave->setHintToolTip( tr("Обратный вызов beforeProjectSave по умолчанию, который будет установлен для новых проектов.") );
     _pythonPage->addKnob(_defaultOnProjectSave);
 
 
-    _defaultOnProjectClose = AppManager::createKnob<KnobString>( this, tr("Default before project close") );
+    _defaultOnProjectClose = AppManager::createKnob<KnobString>( this, tr("По умолчанию перед закрытием проекта") );
     _defaultOnProjectClose->setName("defOnProjectClose");
-    _defaultOnProjectClose->setHintToolTip( tr("The default beforeProjectClose callback that will be set for new projects.") );
+    _defaultOnProjectClose->setHintToolTip( tr("Обратный вызов beforeProjectClose по умолчанию, который будет установлен для новых проектов.") );
     _pythonPage->addKnob(_defaultOnProjectClose);
 
 
-    _defaultOnNodeCreated = AppManager::createKnob<KnobString>( this, tr("Default after node created") );
+    _defaultOnNodeCreated = AppManager::createKnob<KnobString>( this, tr("По умолчанию после создания узла") );
     _defaultOnNodeCreated->setName("defOnNodeCreated");
-    _defaultOnNodeCreated->setHintToolTip( tr("The default afterNodeCreated callback that will be set for new projects.") );
+    _defaultOnNodeCreated->setHintToolTip( tr("Обратный вызов afterNodeCreated по умолчанию, который будет установлен для новых проектов.") );
     _pythonPage->addKnob(_defaultOnNodeCreated);
 
 
-    _defaultOnNodeDelete = AppManager::createKnob<KnobString>( this, tr("Default before node removal") );
+    _defaultOnNodeDelete = AppManager::createKnob<KnobString>( this, tr("По умолчанию перед удалением узла") );
     _defaultOnNodeDelete->setName("defOnNodeDelete");
-    _defaultOnNodeDelete->setHintToolTip( tr("The default beforeNodeRemoval callback that will be set for new projects.") );
+    _defaultOnNodeDelete->setHintToolTip( tr("Обратный вызов beforeNodeRemoval по умолчанию, который будет установлен для новых проектов.") );
     _pythonPage->addKnob(_defaultOnNodeDelete);
 
-    _loadPyPlugsFromPythonScript = AppManager::createKnob<KnobBool>( this, tr("Load PyPlugs in projects from .py if possible") );
+    _loadPyPlugsFromPythonScript = AppManager::createKnob<KnobBool>( this, tr("Загрузите PyPlugs в проекты из .py, если это возможно.") );
     _loadPyPlugsFromPythonScript->setName("loadFromPyFile");
-    _loadPyPlugsFromPythonScript->setHintToolTip( tr("When checked, if a project contains a PyPlug, it will try to first load the PyPlug "
-                                                     "from the .py file. If the version of the PyPlug has changed Natron will ask you "
-                                                     "whether you want to upgrade to the new version of the PyPlug in your project. "
-                                                     "If the .py file is not found, it will fallback to the same behavior "
-                                                     "as when this option is unchecked. When unchecked the PyPlug will load as a regular group "
-                                                     "with the information embedded in the project file.") );
+    _loadPyPlugsFromPythonScript->setHintToolTip( tr("Флажок-если проект содержит PyPlug, он попытается сначала загрузить PyPlug из файла .py. "
+                                                     "Если версия PyPlug изменилась, Natron спросит вас, хотите ли вы перейти на новую версию "
+                                                     "PyPlug в своем проекте. Если файл .py не найден, он вернется к тому же поведению "
+                                                     "что и при снятии этого параметра. Если флажок снят, PyPlug будет"
+                                                     "загружаться как обычная группа с информацией, встроенной в файл проекта.") );
     _loadPyPlugsFromPythonScript->setDefaultValue(true);
     _pythonPage->addKnob(_loadPyPlugsFromPythonScript);
 
-    _echoVariableDeclarationToPython = AppManager::createKnob<KnobBool>( this, tr("Print auto-declared variables in the Script Editor") );
+    _echoVariableDeclarationToPython = AppManager::createKnob<KnobBool>( this, tr("Печать автоматически объявленных переменных в редакторе скриптов") );
     _echoVariableDeclarationToPython->setName("printAutoDeclaredVars");
-    _echoVariableDeclarationToPython->setHintToolTip( tr("When checked, %1 will print in the Script Editor all variables that are "
-                                                         "automatically declared, such as the app variable or node attributes.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
+    _echoVariableDeclarationToPython->setHintToolTip( tr("Если флажок установлен, %1 будет печатать в редакторе сценариев все автоматически "
+                                                         "объявленные переменные,такие как переменная приложения или атрибуты узла.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ) );
     _pythonPage->addKnob(_echoVariableDeclarationToPython);
 } // initializeKnobs
 
@@ -1768,8 +1758,8 @@ Settings::warnChangedKnobs(const std::vector<KnobI*>& knobs)
                ( knobs[i] == _systemFontChoice.get() ) )
              && !didFontWarn ) {
             didFontWarn = true;
-            Dialogs::warningDialog( tr("Font change").toStdString(),
-                                    tr("Changing the font requires a restart of %1.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString() );
+            Dialogs::warningDialog( tr("Изменение шрифта").toStdString(),
+                                    tr("Изменение шрифта требует перезапуска %1.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString() );
         } else if ( ( ( knobs[i] == _ocioConfigKnob.get() ) ||
                       ( knobs[i] == _customOcioConfigFile.get() ) )
                     && !didOCIOWarn ) {
@@ -1777,8 +1767,8 @@ Settings::warnChangedKnobs(const std::vector<KnobI*>& knobs)
             bool warnOcioChanged = _warnOcioConfigKnobChanged->getValue();
             if (warnOcioChanged) {
                 bool stopAsking = false;
-                Dialogs::warningDialog(tr("OCIO config changed").toStdString(),
-                                       tr("The OpenColorIO config change requires a restart of %1 to be effective.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString(), &stopAsking);
+                Dialogs::warningDialog(tr("Конфигурация OCIO изменена").toStdString(),
+                                       tr("Чтобы изменение конфигурации OpenColorIO вступило в силу, требуется перезапуск %1.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString(), &stopAsking);
                 if (stopAsking) {
                     _warnOcioConfigKnobChanged->setValue(false);
                     saveSetting( _warnOcioConfigKnobChanged.get() );
@@ -1800,8 +1790,8 @@ Settings::warnChangedKnobs(const std::vector<KnobI*>& knobs)
                     && !didOFXCacheWarn ) {
             didOFXCacheWarn = true;
             appPTR->clearPluginsLoadedCache(); // clear the cache for next restart
-            Dialogs::warningDialog( tr("OpenFX plugins path changed").toStdString(),
-                                    tr("The OpenFX plugins path change requires a restart of %1 to be effective.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString() );
+            Dialogs::warningDialog( tr("Путь к плагинам OpenFX изменен").toStdString(),
+                                    tr("Для изменения пути плагинов OpenFX требуется перезапуск %1.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString() );
         }
     }
 } // Settings::warnChangedKnobs
@@ -2098,7 +2088,7 @@ Settings::restoreSettings(bool useDefault)
 
         if ( availableRenderers.empty() || !hasGL) {
             if (missingGLError.isEmpty()) {
-                _openglRendererString->setValue( tr("OpenGL rendering disabled: No device meeting %1 requirements could be found.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString() );
+                _openglRendererString->setValue( tr("Отрисовка OpenGL отключена: не удалось найти устройство, отвечающее требованиям %1.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString() );
             } else {
                 _openglRendererString->setValue(missingGLError.toStdString());
             }
@@ -2109,21 +2099,21 @@ Settings::restoreSettings(bool useDefault)
             int i = 0;
             for (std::list<OpenGLRendererInfo>::const_iterator it = renderers.begin(); it != renderers.end(); ++it, ++i) {
                 if (i == curIndex) {
-                    QString maxMemoryString = it->maxMemBytes == 0 ? tr("Unknown") : printAsRAM(it->maxMemBytes);
+                    QString maxMemoryString = it->maxMemBytes == 0 ? tr("Неизвестный") : printAsRAM(it->maxMemBytes);
                     QString curRenderer = (QString::fromUtf8("<p><h2>") +
-                                           tr("OpenGL Renderer Infos:") +
+                                           tr("Информация о рендерере OpenGL:") +
                                            QString::fromUtf8("</h2></p><p><b>") +
-                                           tr("Vendor:") +
+                                           tr("Продавец:") +
                                            QString::fromUtf8("</b> %1</p><p><b>").arg( QString::fromUtf8( it->vendorName.c_str() ) ) +
-                                           tr("Renderer:") +
+                                           tr("Рендер:") +
                                            QString::fromUtf8("</b> %1</p><p><b>").arg( QString::fromUtf8( it->rendererName.c_str() ) ) +
-                                           tr("OpenGL Version:") +
+                                           tr("Версия OpenGL:") +
                                            QString::fromUtf8("</b> %1</p><p><b>").arg( QString::fromUtf8( it->glVersionString.c_str() ) ) +
-                                           tr("GLSL Version:") +
+                                           tr("Версия GLSL:") +
                                            QString::fromUtf8("</b> %1</p><p><b>").arg( QString::fromUtf8( it->glslVersionString.c_str() ) ) +
-                                           tr("Max. Memory:") +
+                                           tr("Макс. Память:") +
                                            QString::fromUtf8("</b> %1</p><p><b>").arg(maxMemoryString) +
-                                           tr("Max. Texture Size (px):") +
+                                           tr("Макс. Размер текстуры (пикс):") +
                                            QString::fromUtf8("</b> %5</p<").arg(it->maxTextureSize));
                     _openglRendererString->setValue( curRenderer.toStdString() );
                     break;
@@ -2187,7 +2177,7 @@ Settings::tryLoadOpenColorIOConfig()
     }
     if ( !configFile.isEmpty() ) {
         if ( !QFile::exists(configFile) )  {
-            Dialogs::errorDialog( "OpenColorIO", tr("%1: No such file.").arg(configFile).toStdString() );
+            Dialogs::errorDialog( "OpenColorIO", tr("%1: Нет такого файла.").arg(configFile).toStdString() );
 
             return false;
         }
@@ -2211,12 +2201,12 @@ Settings::tryLoadOpenColorIOConfig()
                 if ( !defaultConfigsDir.exists(configFileName) ) {
                     QDir subDir(defaultConfigsDirStr + QDir::separator() + activeEntryText);
                     if ( !subDir.exists() ) {
-                        Dialogs::errorDialog( "OpenColorIO", tr("%1: No such file or directory.").arg( subDir.absoluteFilePath( QString::fromUtf8("config.ocio") ) ).toStdString() );
+                        Dialogs::errorDialog( "OpenColorIO", tr("%1: Такого файла или каталога нет").arg( subDir.absoluteFilePath( QString::fromUtf8("config.ocio") ) ).toStdString() );
 
                         return false;
                     }
                     if ( !subDir.exists( QString::fromUtf8("config.ocio") ) ) {
-                        Dialogs::errorDialog( "OpenColorIO", tr("%1: No such file or directory.").arg( subDir.absoluteFilePath( QString::fromUtf8("config.ocio") ) ).toStdString() );
+                        Dialogs::errorDialog( "OpenColorIO", tr("%1: Такого файла или каталога нет").arg( subDir.absoluteFilePath( QString::fromUtf8("config.ocio") ) ).toStdString() );
 
                         return false;
                     }
@@ -2328,8 +2318,8 @@ Settings::onKnobValueChanged(KnobI* k,
             bool warnOcioChanged = _warnOcioConfigKnobChanged->getValue();
             if ( warnOcioChanged && appPTR->getTopLevelInstance() ) {
                 bool stopAsking = false;
-                Dialogs::warningDialog(tr("OCIO config changed").toStdString(),
-                                       tr("The OpenColorIO config change requires a restart of %1 to be effective.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString(), &stopAsking);
+                Dialogs::warningDialog(tr("Изменена конфигурация OCIO").toStdString(),
+                                       tr("Чтобы изменение конфигурации OpenColorIO вступило в силу, требуется перезапуск %1.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString(), &stopAsking);
                 if (stopAsking) {
                     _warnOcioConfigKnobChanged->setValue(false);
                 }
@@ -2393,9 +2383,9 @@ Settings::onKnobValueChanged(KnobI* k,
         _customHostName->setSecret(!isCustom);
 #ifdef NATRON_USE_BREAKPAD
     } else if ( ( k == _testCrashReportButton.get() ) && (reason == eValueChangedReasonUserEdited) ) {
-        StandardButtonEnum reply = Dialogs::questionDialog( tr("Crash Test").toStdString(),
-                                                            tr("You are about to make %1 crash to test the reporting system.\n"
-                                                               "Do you really want to crash?").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString(), false,
+        StandardButtonEnum reply = Dialogs::questionDialog( tr("Краш тест").toStdString(),
+                                                            tr("Вы собираетесь вызвать сбой %1 для проверки системы отчетов.\n"
+                                                               "Вы действительно хотите разбиться?").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString(), false,
                                                             StandardButtons(eStandardButtonYes | eStandardButtonNo) );
         if (reply == eStandardButtonYes) {
             crash_application();
@@ -2415,7 +2405,7 @@ Settings::onKnobValueChanged(KnobI* k,
     }
     if (ret) {
         if ( ( ( k == _hostName.get() ) || ( k == _customHostName.get() ) ) && !_restoringSettings ) {
-            Dialogs::warningDialog( tr("Host-name change").toStdString(), tr("Changing this requires a restart of %1 and clearing the OpenFX plug-ins load cache from the Cache menu.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString() );
+            Dialogs::warningDialog( tr("Изменение имени хоста").toStdString(), tr("Для изменения этого параметра требуется перезапуск %1 и очистка кэша загрузки подключаемых модулей OpenFX из меню Кэш.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString() );
         }
     }
 
@@ -2613,8 +2603,8 @@ Settings::makeHTMLDocumentation(bool genHTML) const
     QTextStream ts(&ret);
     QTextStream ms(&markdown);
 
-    ms << ( QString::fromUtf8("<!--") + tr("Do not edit this file! It is generated automatically by %1 itself.").arg ( QString::fromUtf8( NATRON_APPLICATION_NAME) ) + QString::fromUtf8(" -->\n\n") );
-    ms << tr("Preferences") << "\n==========\n\n";
+    ms << ( QString::fromUtf8("<!--") + tr("Не редактируйте этот файл! Он генерируется автоматически самим %1.").arg ( QString::fromUtf8( NATRON_APPLICATION_NAME) ) + QString::fromUtf8(" -->\n\n") );
+    ms << tr("Предпочтения") << "\n==========\n\n";
 
     const KnobsVec& knobs = getKnobs_mt_safe();
     for (KnobsVec::const_iterator it = knobs.begin(); it != knobs.end(); ++it) {
@@ -3261,9 +3251,9 @@ Settings::doOCIOStartupCheckIfNeeded()
         std::vector<ChoiceOption> entries = _ocioConfigKnob->getEntries_mt_safe();
         std::string warnText;
         if ( (entry_i < 0) || ( entry_i >= (int)entries.size() ) ) {
-            warnText = tr("The current OCIO config selected in the preferences is invalid, would you like to set it to the default config (%1)?").arg( QString::fromUtf8(NATRON_DEFAULT_OCIO_CONFIG_NAME) ).toStdString();
+            warnText = tr("Текущая конфигурация OCIO, выбранная в настройках, недействительна. Хотите установить для нее конфигурацию по умолчанию (%1)?").arg( QString::fromUtf8(NATRON_DEFAULT_OCIO_CONFIG_NAME) ).toStdString();
         } else if (entries[entry_i].id != NATRON_DEFAULT_OCIO_CONFIG_NAME) {
-            warnText = tr("The current OCIO config selected in the preferences is not the default one (%1), would you like to set it to the default config?").arg( QString::fromUtf8(NATRON_DEFAULT_OCIO_CONFIG_NAME) ).toStdString();
+            warnText = tr("Текущая конфигурация OCIO, выбранная в настройках, не является конфигурацией по умолчанию (%1). Установить для нее конфигурацию по умолчанию?").arg( QString::fromUtf8(NATRON_DEFAULT_OCIO_CONFIG_NAME) ).toStdString();
         } else {
             return;
         }
@@ -3290,9 +3280,9 @@ Settings::doOCIOStartupCheckIfNeeded()
                 _ocioConfigKnob->setValue(defaultIndex);
                 saveSetting( _ocioConfigKnob.get() );
             } else {
-                Dialogs::warningDialog( "OCIO config", tr("The %2 OCIO config could not be found.\n"
-                                                          "This is probably because you're not using the OpenColorIO-Configs folder that should "
-                                                          "be bundled with your %1 installation.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).arg( QString::fromUtf8(NATRON_DEFAULT_OCIO_CONFIG_NAME) ).toStdString() );
+                Dialogs::warningDialog( "OCIO config", tr("Не удалось найти конфигурацию OCIO %2.\n"
+                                                          "Это связано с тем, что вы не используете папку OpenColorIO-Configs, которая должна быть "
+                                                          "в комплекте с вашей установкой %1.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).arg( QString::fromUtf8(NATRON_DEFAULT_OCIO_CONFIG_NAME) ).toStdString() );
             }
         }
     }

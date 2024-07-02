@@ -756,7 +756,7 @@ TrackerNodeInteract::drawSelectedMarkerKeyframes(const std::pair<double, double>
                 overlay->renderText(textPos.x(), textPos.y(), marker->getLabel(), overlayColor[0], overlayColor[1], overlayColor[2]);
 
                 QPointF framePos = overlay->toCanonicalCoordinates( QPointF( xOffsetPixels + 5, overlay->toWidgetCoordinates( QPointF(textureRectCanonical.x1, textureRectCanonical.y1) ).y() ) );
-                QString frameText = tr("Frame");
+                QString frameText = tr("Рамка");
                 frameText.append( QString::fromUtf8(" ") + QString::number(it2->first) );
                 overlay->renderText(framePos.x(), framePos.y(), frameText.toStdString(), overlayColor[0], overlayColor[1], overlayColor[2]);
 

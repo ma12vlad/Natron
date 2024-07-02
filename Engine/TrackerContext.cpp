@@ -810,7 +810,7 @@ TrackerContext::exportTrackDataFromExportOptions()
     TrackerMotionTypeEnum mt = (TrackerMotionTypeEnum)motionType_i;
 
     if (mt == eTrackerMotionTypeNone) {
-        Dialogs::errorDialog( tr("Tracker Export").toStdString(), tr("Please select the export mode with the Motion Type parameter").toStdString() );
+        Dialogs::errorDialog( tr("Экспорт трекера").toStdString(), tr("Выберите режим экспорта с параметром Тип движения.").toStdString() );
 
         return;
     }
@@ -1240,7 +1240,7 @@ TrackerContext::solveTransformParams()
     KnobDoublePtr maxFittingErrorKnob = _imp->fittingErrorWarnIfAbove.lock();
     const double maxFittingError = maxFittingErrorKnob->getValue();
 
-    node->getApp()->progressStart( node, tr("Solving for transform parameters...").toStdString(), std::string() );
+    node->getApp()->progressStart( node, tr("Решение параметров преобразования...").toStdString(), std::string() );
 
     _imp->lastSolveRequest.refTime = refTime;
     _imp->lastSolveRequest.jitterPeriod = jitterPeriod;
@@ -1488,7 +1488,7 @@ TrackerContext::onOverlayFocusLostInternalNodes(double time,
 void
 TrackerContext::onSchedulerTrackingStarted(int frameStep)
 {
-    getNode()->getApp()->progressStart(getNode(), tr("Tracking...").toStdString(), "");
+    getNode()->getApp()->progressStart(getNode(), tr("Отслеживание...").toStdString(), "");
     Q_EMIT trackingStarted(frameStep);
 }
 

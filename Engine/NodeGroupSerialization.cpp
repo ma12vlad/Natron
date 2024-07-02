@@ -93,13 +93,13 @@ NodeCollectionSerialization::restoreFromSerialization(const std::list<NodeSerial
     if (isNodeGroup) {
         groupName = QString::fromUtf8( isNodeGroup->getNode()->getLabel().c_str() );
     } else {
-        groupName = tr("top-level");
+        groupName = tr("верхний уровень");
     }
     AppInstancePtr appInst = group->getApplication();
     if (!appInst) {
         return !mustShowErrorsLog;
     }
-    appInst->updateProjectLoadStatus( tr("Creating nodes in group: %1").arg(groupName) );
+    appInst->updateProjectLoadStatus( tr("Создание узлов в группе: %1").arg(groupName) );
 
     ///If a parent of a multi-instance node doesn't exist anymore but the children do, we must recreate the parent.
     ///Problem: we have lost the nodes connections. To do so we restore them using the serialization of a child.
@@ -206,11 +206,11 @@ NodeCollectionSerialization::restoreFromSerialization(const std::list<NodeSerial
                                 usingPythonModule = true;
                             }
                         } else {
-                            StandardButtonEnum rep = Dialogs::questionDialog( ( (pyVersion > savedPythonModuleVersion) ? tr("New PyPlug version") : tr("Old PyPlug version") ).toStdString(),
-                                                                              ( tr("Version %1 of PyPlug \"%2\" was found in the PyPlug search path.").arg(pyVersion).arg( QString::fromUtf8( stdModuleName.c_str() ) ).toStdString() + '\n' +
-                                                                                tr("This file is using version %1.").arg(savedPythonModuleVersion).toStdString() + '\n' +
-                                                                               ( (pyVersion > savedPythonModuleVersion) ? tr("Would you like to update this file to use the newer version?") : tr("Would you like to update this file to use the older version?") ).toStdString() + '\n' +
-                                                                               tr("If you click 'No', the PyPlyg found in this file will be used instead.").toStdString() ),
+                            StandardButtonEnum rep = Dialogs::questionDialog( ( (pyVersion > savedPythonModuleVersion) ? tr("Новая PyPlug версия") : tr("Старая PyPlug версия") ).toStdString(),
+                                                                              ( tr("Версия %1 PyPlug \"%2\" была найдена в пути поиска PyPlug.").arg(pyVersion).arg( QString::fromUtf8( stdModuleName.c_str() ) ).toStdString() + '\n' +
+                                                                                tr("Этот файл использует версию %1.").arg(savedPythonModuleVersion).toStdString() + '\n' +
+                                                                               ( (pyVersion > savedPythonModuleVersion) ? tr("Обновить этот файл, чтобы использовать более новую версию?") : tr("Обновить этот файл, чтобы использовать более старую версию?") ).toStdString() + '\n' +
+                                                                               tr("Если нажать Нет, вместо этого будет использоваться PyPlyg, найденный в этом файле.").toStdString() ),
                                                                               false,
                                                                               StandardButtons(eStandardButtonYes | eStandardButtonNo) );
                             if (rep == eStandardButtonYes) {
@@ -260,12 +260,12 @@ NodeCollectionSerialization::restoreFromSerialization(const std::list<NodeSerial
             n = appInst->createNode(args);
         }
         if (!n) {
-            QString text( tr("ERROR: The node %1 version %2.%3"
-                             " was found in the script but does not"
-                             " exist in the loaded plug-ins.")
+            QString text( tr("ОШИБКА: узел %1 версии %2.%3."
+                             " был найден в скрипте, но не существует"
+                             " в загруженных плагинах.")
                           .arg( QString::fromUtf8( pluginID.c_str() ) )
                           .arg(majorVersion).arg(minorVersion) );
-            appPTR->writeToErrorLog_mt_safe(tr("Project"), QDateTime::currentDateTime(), text);
+            appPTR->writeToErrorLog_mt_safe(tr("Проект"), QDateTime::currentDateTime(), text);
             mustShowErrorsLog = true;
             continue;
         } else {
@@ -273,16 +273,16 @@ NodeCollectionSerialization::restoreFromSerialization(const std::list<NodeSerial
                  (n->getPlugin()->getMajorVersion() != (int)majorVersion) && ( n->getPluginID() == pluginID) ) {
                 // If the node has a IOContainer don't do this check: when loading older projects that had a
                 // ReadOIIO node for example in version 2, we would now create a new Read meta-node with version 1 instead
-                QString text( tr("WARNING: The node %1 (%2) version %3.%4 "
-                                 "was found in the script but was loaded "
-                                 "with version %5.%6 instead.")
+                QString text( tr("ВНИМАНИЕ: Узел %1 (%2) версии %3.%4 "
+                                 "был найден в сценарии, но вместо этого "
+                                 "был загружен с версией %5.%6.")
                               .arg( QString::fromUtf8( (*it)->getNodeScriptName().c_str() ) )
                               .arg( QString::fromUtf8( pluginID.c_str() ) )
                               .arg(majorVersion)
                               .arg(minorVersion)
                               .arg( n->getPlugin()->getMajorVersion() )
                               .arg( n->getPlugin()->getMinorVersion() ) );
-                appPTR->writeToErrorLog_mt_safe(tr("Project"), QDateTime::currentDateTime(), text);
+                appPTR->writeToErrorLog_mt_safe(tr("Проект"), QDateTime::currentDateTime(), text);
                 mustShowErrorsLog = true;
             }
         }
@@ -314,7 +314,7 @@ NodeCollectionSerialization::restoreFromSerialization(const std::list<NodeSerial
     }
 
 
-    appInst->updateProjectLoadStatus( tr("Restoring graph links in group: %1").arg(groupName) );
+    appInst->updateProjectLoadStatus( tr("Восстановление графических связей в группе: %1").arg(groupName) );
 
 
     /// Connect the nodes together
@@ -339,8 +339,8 @@ NodeCollectionSerialization::restoreFromSerialization(const std::list<NodeSerial
             NodePtr masterNode = it->first->getApp()->getNodeByFullySpecifiedName(masterNodeName);
 
             if (!masterNode) {
-                appPTR->writeToErrorLog_mt_safe( tr("Project"), QDateTime::currentDateTime(),
-                                                 tr("Cannot restore the link between %1 and %2.")
+                appPTR->writeToErrorLog_mt_safe( tr("Проект"), QDateTime::currentDateTime(),
+                                                 tr("Невозможно восстановить связь между %1 и %2.")
                                                  .arg( QString::fromUtf8( it->second->getNodeScriptName().c_str() ) )
                                                  .arg( QString::fromUtf8( masterNodeName.c_str() ) ) );
                 mustShowErrorsLog = true;
@@ -364,7 +364,7 @@ NodeCollectionSerialization::restoreFromSerialization(const std::list<NodeSerial
             for (U32 j = 0; j < oldInputs.size(); ++j) {
                 if ( !oldInputs[j].empty() && !group->connectNodes(isOfxEffect ? oldInputs.size() - 1 - j : j, oldInputs[j], it->first) ) {
                     if (createNodes) {
-                        qDebug() << tr("Failed to connect node %1 to %2 (this is normal if loading a PyPlug)")
+                        qDebug() << tr("Не удалось подключить узел %1 к %2 (это нормально при загрузке PyPlug).")
                                     .arg( QString::fromUtf8( it->second->getNodeScriptName().c_str() ) )
                                     .arg( QString::fromUtf8( oldInputs[j].c_str() ) );
                     }
@@ -378,14 +378,14 @@ NodeCollectionSerialization::restoreFromSerialization(const std::list<NodeSerial
                 }
                 int index = it->first->getInputNumberFromLabel(it2->first);
                 if (index == -1) {
-                    appPTR->writeToErrorLog_mt_safe( tr("Project"), QDateTime::currentDateTime(),
-                                                     tr("Could not find input named %1")
+                    appPTR->writeToErrorLog_mt_safe( tr("Проект"), QDateTime::currentDateTime(),
+                                                     tr("Не удалось найти вход с именем %1")
                                                      .arg( QString::fromUtf8( it2->first.c_str() ) ) );
                     continue;
                 }
                 if ( !it2->second.empty() && !group->connectNodes(index, it2->second, it->first) ) {
                     if (createNodes) {
-                        qDebug() << tr("Failed to connect node %1 to %2 (this is normal if loading a PyPlug)")
+                        qDebug() << tr("Не удалось подключить узел %1 к %2 (это нормально при загрузке PyPlug).")
                                     .arg( QString::fromUtf8( it->second->getNodeScriptName().c_str() ) )
                                     .arg( QString::fromUtf8( it2->second.c_str() ) );
                     }
@@ -420,7 +420,7 @@ NodeCollectionSerialization::restoreFromSerialization(const std::list<NodeSerial
             for (U32 j = 0; j < oldInputs.size(); ++j) {
                 if ( !oldInputs[j].empty() && !group->connectNodes(isOfxEffect ? oldInputs.size() - 1 - j : j, oldInputs[j], it->first) ) {
                     if (createNodes) {
-                        qDebug() << tr("Failed to connect node %1 to %2 (this is normal if loading a PyPlug)")
+                        qDebug() << tr("Не удалось подключить узел %1 к %2 (это нормально при загрузке PyPlug).")
                                     .arg( QString::fromUtf8( it->first->getPluginLabel().c_str() ) )
                                     .arg( QString::fromUtf8( oldInputs[j].c_str() ) );
                     }
@@ -434,13 +434,13 @@ NodeCollectionSerialization::restoreFromSerialization(const std::list<NodeSerial
                 }
                 int index = it->first->getInputNumberFromLabel(it2->first);
                 if (index == -1) {
-                    appPTR->writeToErrorLog_mt_safe( tr("Project"), QDateTime::currentDateTime(),
-                                                     tr("Could not find input named %1").arg( QString::fromUtf8( it2->first.c_str() ) ) );
+                    appPTR->writeToErrorLog_mt_safe( tr("Проект"), QDateTime::currentDateTime(),
+                                                     tr("Не удалось найти вход с именем %1").arg( QString::fromUtf8( it2->first.c_str() ) ) );
                     continue;
                 }
                 if ( !it2->second.empty() && !group->connectNodes(index, it2->second, it->first) ) {
                     if (createNodes) {
-                        qDebug() << tr("Failed to connect node %1 to %2 (this is normal if loading a PyPlug)")
+                        qDebug() << tr("Не удалось подключить узел %1 к %2 (это нормально при загрузке PyPlug).")
                                     .arg( QString::fromUtf8( it->first->getPluginLabel().c_str() ) )
                                     .arg( QString::fromUtf8( it2->second.c_str() ) );
                     }

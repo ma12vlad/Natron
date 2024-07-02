@@ -586,7 +586,7 @@ TrackerNode::knobChanged(KnobI* k,
         }
 
         if (step == 0) {
-            message( eMessageTypeError, tr("The Step cannot be 0").toStdString() );
+            message( eMessageTypeError, tr("Шаг не может быть равен 0").toStdString() );
 
             return false;
         }
@@ -909,7 +909,7 @@ TrackerNode::drawOverlay(double time,
                 std::string name = (*it)->getLabel();
                 if (!isEnabled) {
                     name += ' ';
-                    name += tr("(disabled)").toStdString();
+                    name += tr("(отключено)").toStdString();
                 }
                 CenterPointsMap centerPoints;
                 CurvePtr xCurve = centerKnob->getCurve(ViewSpec::current(), 0);

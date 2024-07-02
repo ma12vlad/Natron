@@ -542,7 +542,7 @@ WriteNodePrivate::createDefaultWriteNode()
     embeddedPlugin = _publicInterface->getApp()->createNode(args);
 
     if ( !embeddedPlugin.lock() ) {
-        QString error = tr("The IO.ofx.bundle OpenFX plug-in is required to use this node, make sure it is installed.");
+        QString error = tr("Для использования этого узла требуется плагин IO.ofx.bundle OpenFX, убедитесь, что он установлен.");
         throw std::runtime_error( error.toStdString() );
     }
 
@@ -565,12 +565,12 @@ WriteNodePrivate::checkEncoderCreated(double time,
     assert(fileKnob);
     std::string pattern = fileKnob->generateFileNameAtTime( std::floor(time + 0.5), ViewSpec( view.value() ) ).toStdString();
     if ( pattern.empty() ) {
-        _publicInterface->setPersistentMessage( eMessageTypeError, tr("Filename is empty.").toStdString() );
+        _publicInterface->setPersistentMessage( eMessageTypeError, tr("Имя файла пусто.").toStdString() );
 
         return false;
     }
     if ( !embeddedPlugin.lock() ) {
-        QString s = tr("Encoder was not created for %1. Check that the file exists and its format is supported.")
+        QString s = tr("Кодировщик не был создан для %1. Убедитесь, что файл существует и поддерживается его формат.")
                     .arg( QString::fromUtf8( pattern.c_str() ) );
         _publicInterface->setPersistentMessage( eMessageTypeError, s.toStdString() );
 
@@ -789,7 +789,7 @@ WriteNodePrivate::createWriteNode(bool throwErrors,
     if (writerPluginID.empty() && !serialization) {
         //Couldn't find any reader
         if ( !ext.empty() ) {
-            QString message = tr("No plugin capable of encoding %1 was found.").arg( QString::fromUtf8( ext.c_str() ) );
+            QString message = tr("Не найден плагин, способный кодировать %1.").arg( QString::fromUtf8( ext.c_str() ) );
             //Dialogs::errorDialog(tr("Read").toStdString(), message.toStdString(), false);
             if (throwErrors) {
                 throw std::runtime_error( message.toStdString() );
@@ -894,7 +894,7 @@ WriteNodePrivate::refreshPluginSelectorKnob()
     assert(fileKnob);
     std::string filePattern = fileKnob->getValue();
     std::vector<ChoiceOption> entries;
-    entries.push_back(ChoiceOption(kPluginSelectorParamEntryDefault, "", tr("Use the default plug-in chosen from the Preferences to write this file format").toStdString()));
+    entries.push_back(ChoiceOption(kPluginSelectorParamEntryDefault, "", tr("Используйте плагин по умолчанию, выбранный в настройках, для записи этого формата файла.").toStdString()));
 
     QString qpattern = QString::fromUtf8( filePattern.c_str() );
     std::string ext = QtCompat::removeFileExtension(qpattern).toLower().toStdString();
@@ -1013,7 +1013,7 @@ WriteNode::getPluginGrouping(std::list<std::string>* grouping) const
 void
 WriteNode::initializeKnobs()
 {
-    KnobPagePtr controlpage = AppManager::createKnob<KnobPage>( this, tr("Controls") );
+    KnobPagePtr controlpage = AppManager::createKnob<KnobPage>( this, tr("Управление") );
 
 
     ///Find a  "lastFrame" parameter and add it after it
@@ -1053,25 +1053,25 @@ WriteNode::initializeKnobs()
     _imp->writeNodeKnobs.push_back(readBack);
 
 
-    KnobChoicePtr pluginSelector = AppManager::createKnob<KnobChoice>( this, tr("Encoder") );
+    KnobChoicePtr pluginSelector = AppManager::createKnob<KnobChoice>( this, tr("Кодер") );
     pluginSelector->setAnimationEnabled(false);
     pluginSelector->setName(kNatronWriteNodeParamEncodingPluginChoice);
-    pluginSelector->setHintToolTip( tr("Select the internal encoder plug-in used for this file format. By default this uses "
-                                       "the plug-in selected for this file extension in the Preferences.") );
+    pluginSelector->setHintToolTip( tr("Выберите внешний модуль внутреннего кодировщика, используемый для этого формата файла. "
+                                       "По умолчанию используется плагин, выбранный для этого расширения файла в настройках.") );
     pluginSelector->setEvaluateOnChange(false);
     _imp->pluginSelectorKnob = pluginSelector;
     controlpage->addKnob(pluginSelector);
 
     _imp->writeNodeKnobs.push_back(pluginSelector);
 
-    KnobSeparatorPtr separator = AppManager::createKnob<KnobSeparator>( this, tr("Encoder Options") );
+    KnobSeparatorPtr separator = AppManager::createKnob<KnobSeparator>( this, tr("Параметры кодера") );
     separator->setName("encoderOptionsSeparator");
-    separator->setHintToolTip( tr("Below can be found parameters that are specific to the Writer plug-in.") );
+    separator->setHintToolTip( tr("Ниже приведены параметры, специфичные для плагина Writer.") );
     controlpage->addKnob(separator);
     _imp->separatorKnob = separator;
     _imp->writeNodeKnobs.push_back(separator);
 
-    KnobStringPtr pluginID = AppManager::createKnob<KnobString>( this, tr("PluginID") );
+    KnobStringPtr pluginID = AppManager::createKnob<KnobString>( this, tr("Идентификатор плагина") );
     pluginID->setAnimationEnabled(false);
     pluginID->setName(kNatronWriteNodeParamEncodingPluginID);
     pluginID->setSecretByDefault(true);

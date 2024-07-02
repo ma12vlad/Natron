@@ -509,19 +509,19 @@ OfxHost::vmessage(const char* msgtype,
     std::string type(msgtype);
 
     if (type == kOfxMessageLog) {
-        appPTR->writeToErrorLog_mt_safe( tr("Plug-in"), QDateTime::currentDateTime(), QString::fromUtf8( message.c_str() ) );
+        appPTR->writeToErrorLog_mt_safe( tr("Плагин"), QDateTime::currentDateTime(), QString::fromUtf8( message.c_str() ) );
     } else if ( (type == kOfxMessageFatal) || (type == kOfxMessageError) ) {
         ///It seems that the only errors or warning that passes here are exceptions thrown by plug-ins
         ///(mainly Sapphire) while aborting a render. Instead of spamming the user of meaningless dialogs,
         ///just write to the log instead.
         //Dialogs::errorDialog(NATRON_APPLICATION_NAME, message);
-        appPTR->writeToErrorLog_mt_safe(tr("Plug-in"), QDateTime::currentDateTime(), QString::fromUtf8( message.c_str() ) );
+        appPTR->writeToErrorLog_mt_safe(tr("Плагин"), QDateTime::currentDateTime(), QString::fromUtf8( message.c_str() ) );
     } else if (type == kOfxMessageWarning) {
         ///It seems that the only errors or warning that passes here are exceptions thrown by plug-ins
         ///(mainly Sapphire) while aborting a render. Instead of spamming the user of meaningless dialogs,
         ///just write to the log instead.
         //        Dialogs::warningDialog(NATRON_APPLICATION_NAME, message);
-        appPTR->writeToErrorLog_mt_safe( tr("Plug-in"), QDateTime::currentDateTime(), QString::fromUtf8( message.c_str() ) );
+        appPTR->writeToErrorLog_mt_safe( tr("Плагин"), QDateTime::currentDateTime(), QString::fromUtf8( message.c_str() ) );
     } else if (type == kOfxMessageMessage) {
         Dialogs::informationDialog(NATRON_APPLICATION_NAME, message);
     } else if (type == kOfxMessageQuestion) {
@@ -650,12 +650,12 @@ OfxHost::getPluginContextAndDescribe(OFX::Host::ImageEffect::ImageEffectPlugin* 
     try {
         pluginHandle = plugin->getPluginHandle();
     } catch (...) {
-        throw std::runtime_error( tr("Error: Description (kOfxActionLoad and kOfxActionDescribe) failed while loading %1.")
+        throw std::runtime_error( tr("Ошибка: описание (kOfxActionLoad и kOfxActionDescribe) не выполнено при загрузке %1.")
                                   .arg( QString::fromUtf8( plugin->getIdentifier().c_str() ) ).toStdString() );
     }
 
     if (!pluginHandle) {
-        throw std::runtime_error( tr("Error: Description (kOfxActionLoad and kOfxActionDescribe) failed while loading %1.")
+        throw std::runtime_error( tr("Ошибка: описание (kOfxActionLoad и kOfxActionDescribe) не выполнено при загрузке %1.")
                                   .arg( QString::fromUtf8( plugin->getIdentifier().c_str() ) ).toStdString() );
     }
     assert(pluginHandle->getOfxPlugin() && pluginHandle->getOfxPlugin()->mainEntry);
@@ -663,7 +663,7 @@ OfxHost::getPluginContextAndDescribe(OFX::Host::ImageEffect::ImageEffectPlugin* 
     const std::set<std::string> & contexts = plugin->getContexts();
     std::string context = getContext_internal(contexts);
     if ( context.empty() ) {
-        throw std::invalid_argument( tr("OpenFX plug-in does not have any valid context.").toStdString() );
+        throw std::invalid_argument( tr("Плагин OpenFX не имеет допустимого контекста.").toStdString() );
     }
 
     OFX::Host::PluginHandle* ph = plugin->getPluginHandle();
@@ -674,7 +674,7 @@ OfxHost::getPluginContextAndDescribe(OFX::Host::ImageEffect::ImageEffectPlugin* 
     //This will call kOfxImageEffectActionDescribeInContext
     desc = plugin->getContext(context);
     if (!desc) {
-        throw std::runtime_error( tr("Plug-in parameters and inputs description (kOfxImageEffectActionDescribeInContext) failed in context %1.")
+        throw std::runtime_error( tr("Описание параметров и входов подключаемого модуля (kOfxImageEffectActionDescribeInContext) не выполнено в контексте %1.")
                                   .arg( QString::fromUtf8( context.c_str() ) ).toStdString() );
     }
 
@@ -923,7 +923,7 @@ OfxHost::loadOFXPlugins(IOPluginsMap* readersMap,
             } catch (const std::exception& e) {
                 qDebug() << "Load OFX Plugins: reading cache file... failed!";
                 appPTR->writeToErrorLog_mt_safe( QLatin1String("OpenFX"), QDateTime::currentDateTime(),
-                                                 tr("Failure to read OpenFX plug-ins cache: %1").arg( QString::fromUtf8( e.what() ) ) );
+                                                 tr("Не удалось прочитать кэш плагинов OpenFX: %1").arg( QString::fromUtf8( e.what() ) ) );
             }
         }
     }
@@ -1174,8 +1174,8 @@ OfxHost::newMemoryInstance(size_t nBytes)
     bool allocated = ret->alloc(nBytes);
 
     if ( ( (nBytes != 0) && !ret->getPtr() ) || !allocated ) {
-        Dialogs::errorDialog( tr("Out of memory").toStdString(),
-                              tr("Failed to allocate memory (%1).").arg( printAsRAM(nBytes) ).toStdString() );
+        Dialogs::errorDialog( tr("Недостаточно памяти").toStdString(),
+                              tr("Не удалось выделить память (%1).").arg( printAsRAM(nBytes) ).toStdString() );
     }
 
     return ret;

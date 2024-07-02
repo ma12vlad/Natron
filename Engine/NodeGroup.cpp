@@ -471,14 +471,14 @@ NodeCollection::checkNodeName(const Node* node,
                               std::string* nodeName)
 {
     if ( baseName.empty() ) {
-        throw std::runtime_error( tr("Invalid script-name.").toStdString() );
+        throw std::runtime_error( tr("Неверное имя скрипта.").toStdString() );
 
         return;
     }
     ///Remove any non alpha-numeric characters from the baseName
     std::string cpy = NATRON_PYTHON_NAMESPACE::makeNameScriptFriendly(baseName);
     if ( cpy.empty() ) {
-        throw std::runtime_error( tr("Invalid script-name.").toStdString() );
+        throw std::runtime_error( tr("Неверное имя скрипта.").toStdString() );
 
         return;
     }
@@ -490,7 +490,7 @@ NodeCollection::checkNodeName(const Node* node,
         const KnobsVec&  knobs = isGroup->getKnobs();
         for (KnobsVec::const_iterator it = knobs.begin(); it != knobs.end(); ++it) {
             if ( (*it)->getName() == cpy ) {
-                throw std::runtime_error( tr("A node within a group cannot have the same script-name (%1) as a parameter on the group for scripting purposes.").arg( QString::fromUtf8( cpy.c_str() ) ).toStdString() );
+                throw std::runtime_error( tr("Узел внутри группы не может иметь то же имя сценария (%1), что и параметр в группе для целей сценариев.").arg( QString::fromUtf8( cpy.c_str() ) ).toStdString() );
 
                 return;
             }
@@ -518,7 +518,7 @@ NodeCollection::checkNodeName(const Node* node,
         }
         if (foundNodeWithName) {
             if (errorIfExists || !appendDigit) {
-                throw std::runtime_error( tr("A node with the script-name %1 already exists.").arg( QString::fromUtf8( nodeName->c_str() ) ).toStdString() );
+                throw std::runtime_error( tr("Узел с именем сценария %1 уже существует.").arg( QString::fromUtf8( nodeName->c_str() ) ).toStdString() );
 
                 return;
             }
@@ -587,7 +587,7 @@ NodeCollection::connectNodes(int inputNumber,
             c.colorSet = true;
         }
 
-        QString err = tr("Warning: %1 does not support inputs of different sizes but its inputs produce different output size. Please check this.").arg( QString::fromUtf8( output->getScriptName().c_str() ) );
+        QString err = tr("Предупреждение: %1 не поддерживает входные данные разных размеров, но его входные данные создают разный выходной размер. Проверьте!").arg( QString::fromUtf8( output->getScriptName().c_str() ) );
         appPTR->writeToErrorLog_mt_safe(QString::fromUtf8( output->getScriptName().c_str() ) , QDateTime::currentDateTime(), err, false, c);
 
     }
@@ -1312,17 +1312,17 @@ NodeGroup::initializeKnobs()
     assert(nodePage);
     KnobPage* isPage = dynamic_cast<KnobPage*>( nodePage.get() );
     assert(isPage);
-    _imp->exportAsTemplate = AppManager::createKnob<KnobButton>( this, tr("Export as PyPlug") );
+    _imp->exportAsTemplate = AppManager::createKnob<KnobButton>( this, tr("Экспорт как PyPlug") );
     _imp->exportAsTemplate->setName("exportAsPyPlug");
-    _imp->exportAsTemplate->setHintToolTip( tr("Export this group as a Python group script (PyPlug) that can be shared and/or later "
-                                               "on re-used as a plug-in.") );
+    _imp->exportAsTemplate->setHintToolTip( tr("Экспортируйте эту группу как групповой скрипт Python (PyPlug), который можно "
+                                               "использовать в качестве подключаемого модуля") );
     if (isPage) {
         isPage->addKnob(_imp->exportAsTemplate);
     }
 
-    _imp->convertToGroup = AppManager::createKnob<KnobButton>( this, tr("Convert to Group") );
+    _imp->convertToGroup = AppManager::createKnob<KnobButton>( this, tr("Преобразовать в группу") );
     _imp->convertToGroup->setName("convertToGroup");
-    _imp->convertToGroup->setHintToolTip( tr("Converts this node to a Group: the internal node-graph and the user parameters will become editable") );
+    _imp->convertToGroup->setHintToolTip( tr("Преобразует этот узел в группу: внутреннюю Схему Узлов и пользовательские параметры станут редактируемыми.") );
     if (isPage) {
         isPage->addKnob(_imp->convertToGroup);
     }

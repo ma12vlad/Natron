@@ -292,7 +292,7 @@ Node::setNameInternal(const std::string& name,
         }
     }
     if (onlySpaces) {
-        QString err = tr("The name must at least contain a character");
+        QString err = tr("Имя должно содержать как минимум символ");
         if (throwErrors) {
             throw std::runtime_error(err.toStdString());
         } else {
@@ -439,7 +439,7 @@ Node::setScriptName(const std::string& name)
 
     //We do not allow setting the script-name of output nodes because we rely on it with NatronRenderer
     if ( dynamic_cast<GroupOutput*>( _imp->effect.get() ) ) {
-        throw std::runtime_error( tr("Changing the script-name of an Output node is not a valid operation.").toStdString() );
+        throw std::runtime_error( tr("Изменение имени сценария узла вывода не является допустимой операцией.").toStdString() );
 
         return;
     }

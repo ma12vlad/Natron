@@ -1760,8 +1760,8 @@ ViewerInstance::renderViewer_internal(ViewIdx view,
                     bool cached = appPTR->getTextureOrCreate(key, cachedFrameParams, &entryLocker, &it->cachedData);
                     if (!it->cachedData) {
                         std::size_t size = cachedFrameParams->getStorageInfo().numComponents * cachedFrameParams->getStorageInfo().dataTypeSize * cachedFrameParams->getStorageInfo().bounds.area();
-                        QString s = tr("Failed to allocate a texture of %1.").arg( printAsRAM(size) );
-                        Dialogs::errorDialog( tr("Out of memory").toStdString(), s.toStdString() );
+                        QString s = tr("Не удалось выделить текстуру %1.").arg( printAsRAM(size) );
+                        Dialogs::errorDialog( tr("Недостаточно памяти").toStdString(), s.toStdString() );
 
                         return eViewerRenderRetCodeFail;
                     }

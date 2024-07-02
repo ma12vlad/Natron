@@ -117,7 +117,7 @@ ProjectPrivate::restoreFromSerialization(const ProjectSerialization & obj,
 
         projectCreationTime = QDateTime::fromMSecsSinceEpoch( obj.getCreationDate() );
 
-        _publicInterface->getApp()->updateProjectLoadStatus( tr("Restoring project settings...") );
+        _publicInterface->getApp()->updateProjectLoadStatus( tr("Восстановление настроек проекта...") );
 
         /*we must restore the entries in the combobox before restoring the value*/
         std::vector<ChoiceOption> entries;
@@ -232,7 +232,7 @@ ProjectPrivate::restoreFromSerialization(const ProjectSerialization & obj,
             }
         }
 
-        _publicInterface->getApp()->updateProjectLoadStatus( tr("Restoring graph stream preferences...") );
+        _publicInterface->getApp()->updateProjectLoadStatus( tr("Восстановление настроек графического потока...") );
     } // CreatingNodeTreeFlag_RAII creatingNodeTreeFlag(_publicInterface->getApp());
 
     _publicInterface->forceComputeInputDependentDataOnAllTrees();

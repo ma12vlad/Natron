@@ -155,7 +155,7 @@ TrackerContextPrivate::TrackerContextPrivate(TrackerContext* publicInterface,
             args.setProperty<std::string>(kCreateNodeArgsPropNodeInitialName, cornerPinName.toStdString());
             NodePtr cpNode = node->getApp()->createNode(args);
             if (!cpNode) {
-                throw std::runtime_error( tr("The Tracker node requires the Misc.ofx.bundle plug-in to be installed").toStdString() );
+                throw std::runtime_error( tr("Узел «Трекер» требует установки плагина Misc.ofx.bundle.").toStdString() );
             }
             cpNode->setNodeDisabled(true);
             cornerPinNode = cpNode;
@@ -178,9 +178,9 @@ TrackerContextPrivate::TrackerContextPrivate(TrackerContext* publicInterface,
         }
     }
 
-    KnobPagePtr settingsPage = AppManager::createKnob<KnobPage>(effect.get(), tr("Tracking"), 1, false);
+    KnobPagePtr settingsPage = AppManager::createKnob<KnobPage>(effect.get(), tr("Трекинг"), 1, false);
     trackingPageKnob = settingsPage;
-    KnobPagePtr transformPage = AppManager::createKnob<KnobPage>(effect.get(), tr("Transform"), 1, false);
+    KnobPagePtr transformPage = AppManager::createKnob<KnobPage>(effect.get(), tr("Трансформ"), 1, false);
     transformPageKnob = transformPage;
 
 
@@ -383,7 +383,7 @@ TrackerContextPrivate::TrackerContextPrivate(TrackerContext* publicInterface,
     settingsPage->addKnob(motionModelKnob);
 
 
-    KnobSeparatorPtr  transformGenerationSeparatorKnob = AppManager::createKnob<KnobSeparator>(effect.get(), tr("Transform Generation"), 3);
+    KnobSeparatorPtr  transformGenerationSeparatorKnob = AppManager::createKnob<KnobSeparator>(effect.get(), tr("Генерация трансформации"), 3);
     transformPage->addKnob(transformGenerationSeparatorKnob);
     transformGenerationSeparator = transformGenerationSeparatorKnob;
 
@@ -543,7 +543,7 @@ TrackerContextPrivate::TrackerContextPrivate(TrackerContext* publicInterface,
     transformOutOfDateLabel = transformOutOfDateLabelKnob;
 
 
-    KnobSeparatorPtr  transformSeparator = AppManager::createKnob<KnobSeparator>(effect.get(), tr("Transform Controls"), 3);
+    KnobSeparatorPtr  transformSeparator = AppManager::createKnob<KnobSeparator>(effect.get(), tr("Управление Трансформ"), 3);
     transformPage->addKnob(transformSeparator);
     transformSeparator->setSecret(true);
     transformControlsSeparator = transformSeparator;
@@ -1420,11 +1420,11 @@ TrackerContextPrivate::refreshVisibilityFromTransformTypeInternal(TrackerTransfo
     transformControlsSeparator.lock()->setSecret(motionType == eTrackerMotionTypeNone);
     disableTransformKnob->setSecret(motionType == eTrackerMotionTypeNone);
     if (transformType == eTrackerTransformNodeTransform) {
-        transformControlsSeparator.lock()->setLabel( tr("Transform Controls") );
-        disableTransformKnob->setLabel( tr("Disable Transform") );
+        transformControlsSeparator.lock()->setLabel( tr("Управление Трансформ") );
+        disableTransformKnob->setLabel( tr("Отключение Трансформ") );
     } else if (transformType == eTrackerTransformNodeCornerPin) {
-        transformControlsSeparator.lock()->setLabel( tr("CornerPin Controls") );
-        disableTransformKnob->setLabel( tr("Disable CornerPin") );
+        transformControlsSeparator.lock()->setLabel( tr("Управление Угловой штифт") );
+        disableTransformKnob->setLabel( tr("Отключение Угловой штифт") );
     }
 
 

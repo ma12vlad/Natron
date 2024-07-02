@@ -673,7 +673,7 @@ Node::Implementation::storeKnobLinksRecursive(const GroupKnobSerialization* grou
                     c.colorSet = true;
                 }
 
-                QString err = tr("Could not find a parameter named %1").arg( QString::fromUtf8( (*it)->getName().c_str() ) );
+                QString err = tr("Не удалось найти параметр с именем %1").arg( QString::fromUtf8( (*it)->getName().c_str() ) );
                 appPTR->writeToErrorLog_mt_safe(QString::fromUtf8( _publicInterface->getScriptName_mt_safe().c_str() ), QDateTime::currentDateTime(), err, false, c);
                 continue;
             }
@@ -701,7 +701,7 @@ Node::storeKnobsLinks(const NodeSerialization & serialization,
                 c.colorSet = true;
             }
 
-            QString err = tr("Could not find a parameter named %1").arg( QString::fromUtf8( (*it)->getName().c_str() ) );
+            QString err = tr("Не удалось найти параметр с именем %1").arg( QString::fromUtf8( (*it)->getName().c_str() ) );
             appPTR->writeToErrorLog_mt_safe(QString::fromUtf8( getScriptName_mt_safe().c_str() ), QDateTime::currentDateTime(), err, false, c);
             continue;
         }

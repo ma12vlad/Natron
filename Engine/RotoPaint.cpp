@@ -192,7 +192,7 @@ RotoPaint::initializeKnobs()
     assert(generalPage);
 
 
-    KnobSeparatorPtr sep = AppManager::createKnob<KnobSeparator>(this, tr("Output"), 1, false);
+    KnobSeparatorPtr sep = AppManager::createKnob<KnobSeparator>(this, tr("Выход"), 1, false);
     generalPage->addKnob(sep);
 
 
@@ -208,18 +208,17 @@ RotoPaint::initializeKnobs()
         enabled->setAnimationEnabled(false);
         enabled->setAddNewLine(i == 3);
         enabled->setDefaultValue(defaultValues[i]);
-        enabled->setHintToolTip( tr("Enable drawing onto this channel") );
+        enabled->setHintToolTip( tr("Включите рисование на этом канале") );
         generalPage->addKnob(enabled);
         _imp->enabledKnobs[i] = enabled;
     }
 
 
-    KnobBoolPtr premultKnob = AppManager::createKnob<KnobBool>(this, tr("Premultiply"), 1, false);
+    KnobBoolPtr premultKnob = AppManager::createKnob<KnobBool>(this, tr("Предумножение"), 1, false);
     premultKnob->setName("premultiply");
-    premultKnob->setHintToolTip( tr("When checked, the red, green and blue channels of the output are premultiplied by the alpha channel.\n"
-                                    "This will result in the pixels outside of the shapes and paint strokes being black and transparent.\n"
-                                    "This should only be used if all the inputs are Opaque or UnPremultiplied, and only the Alpha channel "
-                                    "is selected to be drawn by this node.") );
+    premultKnob->setHintToolTip( tr("Если флажок установлен, красный, зеленый и синий каналы выходного сигнала предумножаются на альфа-канал.\n"
+                                    " Везультате пиксели за пределами фигур и штрихов краски станут черными и прозрачными.\n"
+                                    "Может использоваться только в том случае, если все входные сигналы непрозрачны или не имеют предумножения, и для отображения этим узлом выбран только альфа-канал.") );
     premultKnob->setDefaultValue(false);
     premultKnob->setAnimationEnabled(false);
     premultKnob->setIsMetadataSlave(true);
@@ -522,8 +521,8 @@ RotoPaint::initializeKnobs()
     timeOffsetMode->setSecretByDefault(true);
     {
         std::vector<ChoiceOption> choices;
-        choices.push_back(ChoiceOption("Relative", "", tr("The time offset is a frame number in the source").toStdString()));
-        choices.push_back(ChoiceOption("Absolute", "", tr("The time offset is a relative amount of frames relative to the current frame").toStdString()));
+        choices.push_back(ChoiceOption("Relative", "", tr("Временное смещение - это номер кадра в источнике").toStdString()));
+        choices.push_back(ChoiceOption("Absolute", "", tr("Временное смещение - это относительное количество кадров к текущему кадру").toStdString()));
         timeOffsetMode->populateChoices(choices);
     }
     timeOffsetMode->setDefaultValue(0);

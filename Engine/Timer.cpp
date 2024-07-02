@@ -78,7 +78,7 @@ Timer::printAsTime(const double timeInSeconds,
         double daysRemaining = timeRemain / day;
         double floorDays = std::floor(daysRemaining);
         if (floorDays > 0) {
-            ret.append( ( floorDays > 1 ? tr("%1 days") : tr("%1 day") ).arg( QString::number(floorDays) ) );
+            ret.append( ( floorDays > 1 ? tr("%1 дней") : tr("%1 день") ).arg( QString::number(floorDays) ) );
             timeRemain -= floorDays * day;
         }
         if (timeInSeconds >= 3 * day) {
@@ -92,7 +92,7 @@ Timer::printAsTime(const double timeInSeconds,
         double hourRemaining = timeRemain / hour;
         double floorHour = std::floor(hourRemaining);
         if (floorHour > 0) {
-            ret.append( ( (floorHour > 1) ? tr("%1 hours") : tr("%1 hour") ).arg( QString::number(floorHour) ) );
+            ret.append( ( (floorHour > 1) ? tr("%1 часов") : tr("%1 час") ).arg( QString::number(floorHour) ) );
             timeRemain -= floorHour * hour;
         }
         if (timeInSeconds >= 3 * hour) {
@@ -106,7 +106,7 @@ Timer::printAsTime(const double timeInSeconds,
         double minRemaining = timeRemain / min;
         double floorMin = std::floor(minRemaining);
         if (floorMin > 0) {
-            ret.append( ( (floorMin > 1) ? tr("%1 minutes") : tr("%1 minute") ).arg( QString::number(floorMin) ) );
+            ret.append( ( (floorMin > 1) ? tr("%1 минута") : tr("%1 минут") ).arg( QString::number(floorMin) ) );
             timeRemain -= floorMin * min;
         }
         if (timeInSeconds >= 3 * min) {
@@ -117,9 +117,9 @@ Timer::printAsTime(const double timeInSeconds,
         ret.append( QLatin1Char(' ') );
     }
     if (clampToSecondsToInt) {
-        ret.append( ( timeRemain > 1 ? tr("%1 seconds") : tr("%1 second") ).arg( QString::number( (int)timeRemain ) ) );
+        ret.append( ( timeRemain > 1 ? tr("%1 секунд") : tr("%1 секунда") ).arg( QString::number( (int)timeRemain ) ) );
     } else {
-        ret.append( ( timeRemain > 1 ? tr("%1 seconds") : tr("%1 second") ).arg( QString::number(timeRemain, 'f', 2) ) );
+        ret.append( ( timeRemain > 1 ? tr("%1 секунд") : tr("%1 секунда") ).arg( QString::number(timeRemain, 'f', 2) ) );
     }
 
     return ret;

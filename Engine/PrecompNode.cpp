@@ -210,11 +210,11 @@ PrecompNode::initializeKnobs()
         _imp->app = appPTR->newBackgroundInstance(args, true);
     }
 
-    KnobPagePtr mainPage = AppManager::createKnob<KnobPage>( this, tr("Controls") );
-    KnobFilePtr filename = AppManager::createKnob<KnobFile>( this, tr("Project Filename (.%1)").arg( QString::fromUtf8(NATRON_PROJECT_FILE_EXT) ) );
+    KnobPagePtr mainPage = AppManager::createKnob<KnobPage>( this, tr("Управление") );
+    KnobFilePtr filename = AppManager::createKnob<KnobFile>( this, tr("Имя файла проекта (.%1)").arg( QString::fromUtf8(NATRON_PROJECT_FILE_EXT) ) );
 
     filename->setName("projectFilename");
-    filename->setHintToolTip( tr("The absolute file path of the project to use as a pre-comp.").toStdString() );
+    filename->setHintToolTip( tr("Абсолютный путь к файлу проекта для использования в качестве предварительной записи.").toStdString() );
     filename->setAnimationEnabled(false);
     filename->setAddNewLine(false);
     mainPage->addKnob(filename);
@@ -227,37 +227,37 @@ PrecompNode::initializeKnobs()
        mainPage->addKnob(reload);
        _imp->reloadProjectKnob = reload;*/
 
-    KnobButtonPtr edit = AppManager::createKnob<KnobButton>( this, tr("Edit Project...") );
+    KnobButtonPtr edit = AppManager::createKnob<KnobButton>( this, tr("Редактировать проект...") );
     edit->setName("editProject");
     edit->setEvaluateOnChange(false);
-    edit->setHintToolTip( tr("Opens the specified project in a new %1 instance").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString() );
+    edit->setHintToolTip( tr("Открывает указанный проект в новом экземпляре %1.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString() );
     mainPage->addKnob(edit);
     _imp->editProjectKnob = edit;
 
-    KnobBoolPtr enablePreRender = AppManager::createKnob<KnobBool>( this, tr("Pre-Render") );
+    KnobBoolPtr enablePreRender = AppManager::createKnob<KnobBool>( this, tr("Предрендеринг") );
     enablePreRender->setName("preRender");
     enablePreRender->setAnimationEnabled(false);
     enablePreRender->setDefaultValue(true);
-    enablePreRender->setHintToolTip( tr("When checked the output of this node will be the images read directly from what is rendered "
-                                        "by the node indicated by \"Write Node\". If no Write is selected, or if the rendered images do not exist "
-                                        "this node will have the behavior determined by the \"On Error\" parameter. "
-                                        "To pre-render images, select a write node, a frame-range and hit \"Render\".\n\n"
-                                        "When unchecked, this node will output the image rendered by the node indicated in the \"Output Node\" parameter "
-                                        "by rendering the full-tree of the sub-project. In that case no writing on disk will occur and the images will be "
-                                        "cached with the same policy as if the nodes were used in the active project in the first place.").toStdString() );
+    enablePreRender->setHintToolTip( tr("Если флажок установлен, выход этого узла будут изображениями, считанными из того, что визуализируется "
+                                        "узлом, указанным в поле \"Узел записи\". Если запись не выбрана или визуализированные изображения не существуют "
+                                        "поведение этого узла будет определяться параметром \"При ошибке\" "
+                                        "Для предрендеринга изображений выберите узел записи, диапазон кадров и нажмите \"Рендеринг\".\n\n"
+                                        "Если флажок снят, этот узел будет выводить изображение, визуализированное узлом, указанным в параметре \"Выходной узел\" "
+                                        "путем визуализации полного дерева подпроекта. В этом случае запись на диск не произойдет, и изображения будут "
+                                        "кэшироваться, как если бы узлы изначально использовались в активном проекте.").toStdString() );
     mainPage->addKnob(enablePreRender);
     _imp->enablePreRenderKnob = enablePreRender;
 
-    KnobGroupPtr renderGroup = AppManager::createKnob<KnobGroup>( this, tr("Pre-Render Settings") );
+    KnobGroupPtr renderGroup = AppManager::createKnob<KnobGroup>( this, tr("Настройка Предрендеринга") );
     renderGroup->setName("preRenderSettings");
     renderGroup->setDefaultValue(true);
     mainPage->addKnob(renderGroup);
     _imp->preRenderGroupKnob = renderGroup;
 
-    KnobChoicePtr writeChoice = AppManager::createKnob<KnobChoice>( this, tr("Write Node") );
+    KnobChoicePtr writeChoice = AppManager::createKnob<KnobChoice>( this, tr("Узел записи") );
     writeChoice->setName("writeNode");
-    writeChoice->setHintToolTip( tr("Choose here the Write node in the pre-comp from which to render images then specify a frame-range and "
-                                    "hit the \"Render\" button.").toStdString() );
+    writeChoice->setHintToolTip( tr("Выберите здесь Узел записи в предварительной композиции, из которого будут выполняться рендеринг изображений, затем укажите диапазон кадров и "
+                                    "нажмите кнопку \"Рендеринг\".").toStdString() );
     writeChoice->setAnimationEnabled(false);
     {
         std::vector<ChoiceOption> choices;
@@ -268,35 +268,35 @@ PrecompNode::initializeKnobs()
     _imp->writeNodesKnob = writeChoice;
 
 
-    KnobIntPtr first = AppManager::createKnob<KnobInt>( this, tr("First-Frame") );
+    KnobIntPtr first = AppManager::createKnob<KnobInt>( this, tr("Первый кадр") );
     first->setName("first");
-    first->setHintToolTip( tr("The first-frame to render") );
+    first->setHintToolTip( tr("Первый кадр для рендеринга") );
     first->setAnimationEnabled(false);
     first->setEvaluateOnChange(false);
     first->setAddNewLine(false);
     renderGroup->addKnob(first);
     _imp->firstFrameKnob = first;
 
-    KnobIntPtr last = AppManager::createKnob<KnobInt>( this, tr("Last-Frame") );
+    KnobIntPtr last = AppManager::createKnob<KnobInt>( this, tr("Последний кадр") );
     last->setName("last");
-    last->setHintToolTip( tr("The last-frame to render") );
+    last->setHintToolTip( tr("Последний кадр для рендеринга") );
     last->setAnimationEnabled(false);
     last->setEvaluateOnChange(false);
     last->setAddNewLine(false);
     renderGroup->addKnob(last);
     _imp->lastFrameKnob = last;
 
-    KnobChoicePtr error = AppManager::createKnob<KnobChoice>( this, tr("On Error") );
+    KnobChoicePtr error = AppManager::createKnob<KnobChoice>( this, tr("При ошибке") );
     error->setName("onError");
-    error->setHintToolTip( tr("Indicates the behavior when an image is missing from the render of the pre-comp project").toStdString() );
+    error->setHintToolTip( tr("Указывает поведение, когда изображение отсутствует при рендеринге проекта предварительной компоновки.").toStdString() );
     error->setAnimationEnabled(false);
     {
         std::vector<ChoiceOption> choices;
-        choices.push_back(ChoiceOption("Load previous", "", tr("Loads the previous frame in the sequence.").toStdString() ));
-        choices.push_back(ChoiceOption("Load next", "", tr("Loads the next frame in the sequence.").toStdString()));
-        choices.push_back(ChoiceOption("Load nearest", "", tr("Loads the nearest frame in the sequence.").toStdString()));
-        choices.push_back(ChoiceOption("Error", "", tr("Fails to render.").toStdString()));
-        choices.push_back(ChoiceOption("Black", "", tr("Black Image.").toStdString()));
+        choices.push_back(ChoiceOption("Load previous", "", tr("Загружает предыдущий кадр последовательности.").toStdString() ));
+        choices.push_back(ChoiceOption("Load next", "", tr("Загружает следующий кадр последовательности.").toStdString()));
+        choices.push_back(ChoiceOption("Load nearest", "", tr("Загружает ближайший кадр в последовательности.").toStdString()));
+        choices.push_back(ChoiceOption("Error", "", tr("Не удается выполнить рендеринг.").toStdString()));
+        choices.push_back(ChoiceOption("Black", "", tr("Черное изображение.").toStdString()));
 
         error->populateChoices(choices);
     }
@@ -304,20 +304,20 @@ PrecompNode::initializeKnobs()
     renderGroup->addKnob(error);
     _imp->errorBehaviourKnbo = error;
 
-    KnobButtonPtr renderBtn = AppManager::createKnob<KnobButton>( this, tr("Render") );
+    KnobButtonPtr renderBtn = AppManager::createKnob<KnobButton>( this, tr("Рендер") );
     renderBtn->setName("render");
     renderGroup->addKnob(renderBtn);
     _imp->preRenderKnob = renderBtn;
 
-    KnobStringPtr outputNode = AppManager::createKnob<KnobString>( this, tr("Output Node") );
+    KnobStringPtr outputNode = AppManager::createKnob<KnobString>( this, tr("Выходной узел") );
     outputNode->setName("outputNode");
-    outputNode->setHintToolTip( tr("The script-name of the node to use as output node in the tree of the pre-comp. This can be any node.").toStdString() );
+    outputNode->setHintToolTip( tr("Имя сценария узла, который будет использоваться в качестве выходного узла в дереве предварительной компоновки. Это может быть любой узел.").toStdString() );
     outputNode->setAnimationEnabled(false);
     outputNode->setSecretByDefault(true);
     mainPage->addKnob(outputNode);
     _imp->outputNodeNameKnob = outputNode;
 
-    KnobStringPtr sublabel = AppManager::createKnob<KnobString>( this, tr("SubLabel") );
+    KnobStringPtr sublabel = AppManager::createKnob<KnobString>( this, tr("Субметка") );
     sublabel->setName(kNatronOfxParamStringSublabelName);
     sublabel->setSecretByDefault(true);
     mainPage->addKnob(sublabel);
@@ -401,7 +401,7 @@ PrecompNodePrivate::reloadProject(bool setWriteNodeChoice)
     QFileInfo file( QString::fromUtf8( filename.c_str() ) );
 
     if ( !file.exists() ) {
-        Dialogs::errorDialog( tr("Pre-Comp").toStdString(), tr("Pre-comp file not found.").toStdString() );
+        Dialogs::errorDialog( tr("Предкомпоновка").toStdString(), tr("Файл предкомпоновки не найден.").toStdString() );
 
         return;
     }
@@ -497,9 +497,9 @@ PrecompNodePrivate::getWriteNodeFromPreComp() const
     NodePtr writeNode = app.lock()->getProject()->getNodeByFullySpecifiedName(userChoiceNodeName.id);
     if (!writeNode) {
         std::stringstream ss;
-        ss << tr("Could not find a node named %1 in the pre-comp project")
+        ss << tr("Не удалось найти узел с именем %1 в проекте предварительной компоновки.")
             .arg( QString::fromUtf8( userChoiceNodeName.id.c_str() ) ).toStdString();
-        Dialogs::errorDialog( tr("Pre-Comp").toStdString(), ss.str() );
+        Dialogs::errorDialog( tr("Предкомпоновка").toStdString(), ss.str() );
 
         return NodePtr();
     }
@@ -561,9 +561,9 @@ PrecompNodePrivate::createReadNode()
     std::string found = appPTR->getReaderPluginIDForFileType(ext);
     if ( found.empty() ) {
         std::stringstream ss;
-        ss << tr("No plugin capable of decoding %1 was found")
+        ss << tr("Не найден плагин, способный декодировать %1.")
             .arg( QString::fromUtf8( ext.c_str() ) ).toStdString();
-        Dialogs::errorDialog( tr("Pre-Comp").toStdString(), ss.str() );
+        Dialogs::errorDialog( tr("Предкомпоновка").toStdString(), ss.str() );
 
         return;
     }
@@ -672,7 +672,7 @@ PrecompNodePrivate::launchPreRender()
     NodePtr output = getWriteNodeFromPreComp();
 
     if (!output) {
-        Dialogs::errorDialog( tr("Pre-Render").toStdString(), tr("Selected write node does not exist.").toStdString() );
+        Dialogs::errorDialog( tr("Предрендеринг").toStdString(), tr("Выбранный узел записи не существует.").toStdString() );
 
         return;
     }

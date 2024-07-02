@@ -2100,17 +2100,17 @@ OfxEffectInstance::render(const RenderActionArgs& args)
         if ( !getNode()->hasPersistentMessage() ) {
             QString err;
             if (stat == kOfxStatErrImageFormat) {
-                err = tr("Bad image format was supplied by %1.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) );
+                err = tr("%1 предоставил неверный формат изображения.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) );
                 setPersistentMessage( eMessageTypeError, err.toStdString() );
             } else if (stat == kOfxStatErrMemory) {
-                err = tr("Out of memory!");
+                err = tr("Недостаточно памяти!");
                 setPersistentMessage( eMessageTypeError, err.toStdString() );
             } else {
                 QString existingMessage;
                 int type;
                 getNode()->getPersistentMessage(&existingMessage, &type);
                 if (existingMessage.isEmpty()) {
-                    err = tr("Unknown failure reason.");
+                    err = tr("Неизвестная причина сбоя.");
                 }
             }
 

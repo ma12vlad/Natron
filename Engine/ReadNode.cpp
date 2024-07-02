@@ -581,7 +581,7 @@ ReadNodePrivate::createDefaultReadNode()
     NodePtr node  = _publicInterface->getApp()->createNode(args);
 
     if (!node) {
-        QString error = tr("The IO.ofx.bundle OpenFX plug-in is required to use this node, make sure it is installed.");
+        QString error = tr("Для использования этого узла требуется подключаемый модуль OpenFX IO.ofx.bundle, убедитесь, что он установлен.");
         throw std::runtime_error( error.toStdString() );
     }
 
@@ -608,13 +608,13 @@ ReadNodePrivate::checkDecoderCreated(double time,
     assert(fileKnob);
     std::string pattern = fileKnob->getFileName(std::floor(time + 0.5), view);
     if ( pattern.empty() ) {
-        _publicInterface->setPersistentMessage( eMessageTypeError, tr("Filename empty").toStdString() );
+        _publicInterface->setPersistentMessage( eMessageTypeError, tr("Имя файла пустое").toStdString() );
 
         return false;
     }
 
     if (!_publicInterface->getEmbeddedReader()) {
-        QString s = tr("Decoder was not created for %1, check that the file exists and its format is supported.").arg( QString::fromUtf8( pattern.c_str() ) );
+        QString s = tr("Декодер не был создан для %1, убедитесь, что файл существует и поддерживается его формат.").arg( QString::fromUtf8( pattern.c_str() ) );
         _publicInterface->setPersistentMessage( eMessageTypeError, s.toStdString() );
 
         return false;
@@ -693,7 +693,7 @@ ReadNodePrivate::createReadNode(bool throwErrors,
 
     if (readerPluginID.empty()) {
         if (throwErrors) {
-            QString message = tr("Could not find a decoder to read %1 file format")
+            QString message = tr("Не удалось найти декодер для чтения формата файла %1.")
             .arg( QString::fromUtf8( ext.c_str() ) );
             throw std::runtime_error( message.toStdString() );
         }
@@ -703,7 +703,7 @@ ReadNodePrivate::createReadNode(bool throwErrors,
 
     if ( !defaultFallback && !ReadNode::isBundledReader(readerPluginID, _publicInterface->getApp()->wasProjectCreatedWithLowerCaseIDs()) ) {
         if (throwErrors) {
-            QString message = tr("%1 is not a bundled reader, please create it from the Image->Readers menu or with the tab menu in the Nodegraph")
+            QString message = tr("%1 не входит в комплект программы чтения, создайте ее из меню Изображение-Просмотрщики или с помощью меню вкладок в Схеме Узлов.")
                               .arg( QString::fromUtf8( readerPluginID.c_str() ) );
             throw std::runtime_error( message.toStdString() );
         }
@@ -716,7 +716,7 @@ ReadNodePrivate::createReadNode(bool throwErrors,
     if (readerPluginID.empty() && !serialization) {
         //Couldn't find any reader
         if ( !ext.empty() ) {
-            QString message = tr("No plugin capable of decoding %1 was found.")
+            QString message = tr("Не найден плагин, способный декодировать %1.")
                               .arg( QString::fromUtf8( ext.c_str() ) );
             //Dialogs::errorDialog(tr("Read").toStdString(), message.toStdString(), false);
             if (throwErrors) {
@@ -830,7 +830,7 @@ ReadNodePrivate::refreshPluginSelectorKnob()
     assert(fileKnob);
     std::string filePattern = fileKnob->getValue();
     std::vector<ChoiceOption> entries, help;
-    entries.push_back(ChoiceOption(kPluginSelectorParamEntryDefault, "", ReadNode::tr("Use the default plug-in chosen from the Preferences to read this file format").toStdString()));
+    entries.push_back(ChoiceOption(kPluginSelectorParamEntryDefault, "", ReadNode::tr("Используйте плагин по умолчанию, выбранный в настройках, чтобы прочитать этот формат файла").toStdString()));
 
     QString qpattern = QString::fromUtf8( filePattern.c_str() );
     std::string ext = QtCompat::removeFileExtension(qpattern).toLower().toStdString();
@@ -1103,34 +1103,34 @@ ReadNode::onMetadataRefreshed(const NodeMetadata& metadata)
 void
 ReadNode::initializeKnobs()
 {
-    KnobPagePtr controlpage = AppManager::createKnob<KnobPage>( this, tr("Controls") );
-    KnobButtonPtr fileInfos = AppManager::createKnob<KnobButton>( this, tr("File Info...") );
+    KnobPagePtr controlpage = AppManager::createKnob<KnobPage>( this, tr("Управление") );
+    KnobButtonPtr fileInfos = AppManager::createKnob<KnobButton>( this, tr("Информация о файле...") );
 
     fileInfos->setName("fileInfo");
-    fileInfos->setHintToolTip( tr("Press to display information about the file") );
+    fileInfos->setHintToolTip( tr("Нажмите, чтобы отобразить информацию о файле") );
     controlpage->addKnob(fileInfos);
     _imp->fileInfosKnob = fileInfos;
     _imp->readNodeKnobs.push_back(fileInfos);
 
-    KnobChoicePtr pluginSelector = AppManager::createKnob<KnobChoice>( this, tr("Decoder") );
+    KnobChoicePtr pluginSelector = AppManager::createKnob<KnobChoice>( this, tr("Декодер") );
     pluginSelector->setAnimationEnabled(false);
     pluginSelector->setName(kNatronReadNodeParamDecodingPluginChoice);
-    pluginSelector->setHintToolTip( tr("Select the internal decoder plug-in used for this file format. By default this uses "
-                                       "the plug-in selected for this file extension in the Preferences of Natron") );
+    pluginSelector->setHintToolTip( tr("Выберите внешний модуль внутреннего декодера для этого формата файла. По умолчанию используется "
+                                       "плагин, выбранный для этого расширения файла в настройках Natron") );
     pluginSelector->setEvaluateOnChange(false);
     _imp->pluginSelectorKnob = pluginSelector;
     controlpage->addKnob(pluginSelector);
 
     _imp->readNodeKnobs.push_back(pluginSelector);
 
-    KnobSeparatorPtr separator = AppManager::createKnob<KnobSeparator>( this, tr("Decoder Options") );
+    KnobSeparatorPtr separator = AppManager::createKnob<KnobSeparator>( this, tr("Параметры декодера") );
     separator->setName("decoderOptionsSeparator");
-    separator->setHintToolTip( tr("Below can be found parameters that are specific to the Reader plug-in.") );
+    separator->setHintToolTip( tr("Ниже приведены параметры, специфичные для плагина Reader.") );
     controlpage->addKnob(separator);
     _imp->separatorKnob = separator;
     _imp->readNodeKnobs.push_back(separator);
 
-    KnobStringPtr pluginID = AppManager::createKnob<KnobString>( this, tr("PluginID") );
+    KnobStringPtr pluginID = AppManager::createKnob<KnobString>( this, tr("ID плагина") );
     pluginID->setAnimationEnabled(false);
     pluginID->setName(kNatronReadNodeParamDecodingPluginID);
     pluginID->setSecretByDefault(true);
@@ -1289,7 +1289,7 @@ ReadNode::knobChanged(KnobI* k,
             if ( ReadNode::isVideoReader( p->getPluginID() ) ) {
                 QString ffprobePath = ReadNodePrivate::getFFProbeBinaryPath();
                 if( !QFile::exists(ffprobePath) ) {
-                    throw std::runtime_error( tr("Error: ffprobe binary not available").toStdString() );
+                    throw std::runtime_error( tr("Ошибка: двоичный файл ffprobe недоступен").toStdString() );
                 }
                 QProcess proc;
                 QStringList ffprobeArgs;

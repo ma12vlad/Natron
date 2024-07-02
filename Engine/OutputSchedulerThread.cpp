@@ -1644,9 +1644,9 @@ OutputSchedulerThread::notifyFrameRendered(int frame,
         QString frameStr = QString::number(frame);
         QString fpsStr = QString::number(estimatedFps, 'f', 1);
         QString percentageStr = QString::number(fractionDone * 100, 'f', 1);
-        QString timeRemainingStr = timeRemaining < 0 ? tr("unknown") : Timer::printAsTime(timeRemaining, true);
+        QString timeRemainingStr = timeRemaining < 0 ? tr("неизвестный") : Timer::printAsTime(timeRemaining, true);
 
-        longMessage = (tr("%1 ==> Frame: %2, Progress: %3%, %4 Fps, Time Remaining: %5")
+        longMessage = (tr("%1 ==> Кадр: %2, Прогресс: %3%, %4 k/c, Оставшееся время: %5")
                        .arg(QString::fromUtf8(effect->getScriptName_mt_safe().c_str()))
                        .arg(frameStr)
                        .arg(percentageStr)
@@ -2554,7 +2554,7 @@ DefaultScheduler::aboutToStartRender()
     if (!isBackGround) {
         effect->setKnobsFrozen(true);
     } else {
-        QString longText = QString::fromUtf8( effect->getScriptName_mt_safe().c_str() ) + tr(" ==> Rendering started");
+        QString longText = QString::fromUtf8( effect->getScriptName_mt_safe().c_str() ) + tr(" ==> Рендеринг запущен");
         appPTR->writeToOutputPipe(longText, QString::fromUtf8(kRenderingStartedShort), true);
     }
 
@@ -2617,7 +2617,7 @@ DefaultScheduler::onRenderStopped(bool aborted)
     }
 
     {
-        QString longText = QString::fromUtf8( effect->getScriptName_mt_safe().c_str() ) + tr(" ==> Rendering finished");
+        QString longText = QString::fromUtf8( effect->getScriptName_mt_safe().c_str() ) + tr(" ==> Рендеринг завершён");
         appPTR->writeToOutputPipe(longText, QString::fromUtf8(kRenderingFinishedStringShort), true);
     }
 

@@ -832,7 +832,7 @@ OfxImageEffectInstance::addParamsToTheirParents()
     if ( !finalPages.empty() ) {
         mainPage = finalPages.begin();
     } else {
-        KnobPagePtr page = AppManager::createKnob<KnobPage>( effect.get(), tr("Settings") );
+        KnobPagePtr page = AppManager::createKnob<KnobPage>( effect.get(), tr("Настройки") );
         PageOrderedPtr pageData = std::make_shared<PageOrdered>();
         pageData->page = page;
         finalPages.push_back(pageData);
@@ -1110,8 +1110,8 @@ OfxImageEffectInstance::newMemoryInstance(size_t nBytes)
     bool allocated = ret->alloc(nBytes);
 
     if ( ( (nBytes != 0) && !ret->getPtr() ) || !allocated ) {
-        Dialogs::errorDialog( tr("Out of memory").toStdString(),
-                              tr("%1 failed to allocate memory (%2).")
+        Dialogs::errorDialog( tr("Недостаточно памяти").toStdString(),
+                              tr("%1 не удалось выделить память (%2).")
                               .arg( QString::fromUtf8( getOfxEffectInstance()->getNode()->getLabel_mt_safe().c_str() ) )
                               .arg( printAsRAM(nBytes) ).toStdString() );
     }

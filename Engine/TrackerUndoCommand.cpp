@@ -40,7 +40,7 @@ AddTrackCommand::AddTrackCommand(const TrackMarkerPtr &marker,
 {
     int index = context->getMarkerIndex(marker);
     _markers[index] = marker;
-    setText( tr("Add Track(s)").toStdString() );
+    setText( tr("Добавить трек(и)").toStdString() );
 }
 
 void
@@ -98,7 +98,7 @@ RemoveTracksCommand::RemoveTracksCommand(const std::list<TrackMarkerPtr> &marker
         t.prevTrack = context->getPrevMarker(t.track, false);
         _markers.push_back(t);
     }
-    setText( tr("Remove Track(s)").toStdString() );
+    setText( tr("Удалить трек(и)").toStdString() );
 }
 
 void

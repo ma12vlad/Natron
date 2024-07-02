@@ -2831,7 +2831,7 @@ RotoDrawableItem::renderMaskFromStroke(const ImagePlaneDesc& components,
         ss << "Failed to allocate an image of ";
         std::size_t size = params->getStorageInfo().bounds.area() * params->getStorageInfo().numComponents * params->getStorageInfo().dataTypeSize;
         ss << printAsRAM( size ).toStdString();
-        Dialogs::errorDialog( tr("Out of memory").toStdString(), ss.str() );
+        Dialogs::errorDialog( tr("Недостаточно памяти").toStdString(), ss.str() );
 
         return image;
     }

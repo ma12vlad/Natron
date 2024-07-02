@@ -75,7 +75,7 @@ MoveControlPointsUndoCommand::MoveControlPointsUndoCommand(const RotoPaintIntera
     , _time(time)
     , _pointsToDrag(toDrag)
 {
-    setText( tr("Move control points").toStdString() );
+    setText( tr("Перемещение контрольных точек").toStdString() );
 
     assert(roto);
 
@@ -256,7 +256,7 @@ TransformUndoCommand::TransformUndoCommand(const RotoPaintInteractPtr& roto,
         _originalPoints.push_back( std::make_pair(first, second) );
     }
 
-    setText( tr("Transform control points").toStdString() );
+    setText( tr("Преобразование контрольных точек").toStdString() );
 }
 
 TransformUndoCommand::~TransformUndoCommand()
@@ -367,7 +367,7 @@ AddPointUndoCommand::AddPointUndoCommand(const RotoPaintInteractPtr& roto,
     , _index(index)
     , _t(t)
 {
-    setText( tr("Add control point").toStdString() );
+    setText( tr("Добавить контрольную точку").toStdString() );
 }
 
 AddPointUndoCommand::~AddPointUndoCommand()
@@ -484,7 +484,7 @@ RemovePointUndoCommand::RemovePointUndoCommand(const RotoPaintInteractPtr& roto,
         it->points.sort();
     }
 
-    setText( tr("Remove control points").toStdString() );
+    setText( tr("Удалить контрольные точки").toStdString() );
 }
 
 RemovePointUndoCommand::~RemovePointUndoCommand()
@@ -583,7 +583,7 @@ RemoveCurveUndoCommand::RemoveCurveUndoCommand(const RotoPaintInteractPtr& roto,
         assert(r.indexInLayer != -1);
         _curves.push_back(r);
     }
-    setText( tr("Remove shape(s)").toStdString() );
+    setText( tr("Удалить фигуру(ы)").toStdString() );
 }
 
 RemoveCurveUndoCommand::~RemoveCurveUndoCommand()
@@ -645,7 +645,7 @@ AddStrokeUndoCommand::AddStrokeUndoCommand(const RotoPaintInteractPtr& roto,
     , _indexInLayer(_layer ? _layer->getChildIndex(_item) : -1)
 {
     assert(_indexInLayer != -1);
-    setText( tr("Paint Stroke").toStdString() );
+    setText( tr("Мазок краской").toStdString() );
 }
 
 AddStrokeUndoCommand::~AddStrokeUndoCommand()
@@ -694,7 +694,7 @@ AddMultiStrokeUndoCommand::AddMultiStrokeUndoCommand(const RotoPaintInteractPtr&
     , isRemoved(false)
 {
     assert(_indexInLayer != -1);
-    setText( tr("Paint Stroke").toStdString() );
+    setText( tr("Мазок краской").toStdString() );
 }
 
 AddMultiStrokeUndoCommand::~AddMultiStrokeUndoCommand()
@@ -775,7 +775,7 @@ MoveTangentUndoCommand::MoveTangentUndoCommand(const RotoPaintInteractPtr& roto,
         }
     }
 
-    setText( tr("Move control point tangent").toStdString() );
+    setText( tr("Переместить контрольную точку по касательной").toStdString() );
 }
 
 MoveTangentUndoCommand::~MoveTangentUndoCommand()
@@ -986,7 +986,7 @@ MoveFeatherBarUndoCommand::MoveFeatherBarUndoCommand(const RotoPaintInteractPtr&
     assert(_curve);
     _oldPoint.first.reset( new BezierCP(*_newPoint.first) );
     _oldPoint.second.reset( new BezierCP(*_newPoint.second) );
-    setText( tr("Move control point feather bar").toStdString() );
+    setText( tr("Плавная полоса перемещения контрольной точки").toStdString() );
 }
 
 MoveFeatherBarUndoCommand::~MoveFeatherBarUndoCommand()
@@ -1140,7 +1140,7 @@ RemoveFeatherUndoCommand::RemoveFeatherUndoCommand(const RotoPaintInteractPtr& r
             it->oldPoints.push_back( BezierCPPtr( new BezierCP(**it2) ) );
         }
     }
-    setText( tr("Remove feather").toStdString() );
+    setText( tr("Удалить перо").toStdString() );
 }
 
 RemoveFeatherUndoCommand::~RemoveFeatherUndoCommand()
@@ -1203,7 +1203,7 @@ OpenCloseUndoCommand::OpenCloseUndoCommand(const RotoPaintInteractPtr& roto,
     , _selectedTool(roto->selectedToolAction )
     , _curve(curve)
 {
-    setText( tr("Open/Close bezier").toStdString() );
+    setText( tr("Открытие/закрытие безье").toStdString() );
 }
 
 OpenCloseUndoCommand::~OpenCloseUndoCommand()
@@ -1270,9 +1270,9 @@ SmoothCuspUndoCommand::SmoothCuspUndoCommand(const RotoPaintInteractPtr& roto,
         }
     }
     if (_cusp) {
-        setText( tr("Cusp points").toStdString() );
+        setText( tr("Острые точки").toStdString() );
     } else {
-        setText( tr("Smooth points").toStdString() );
+        setText( tr("Гладкие точки").toStdString() );
     }
 }
 
@@ -1398,7 +1398,7 @@ MakeBezierUndoCommand::MakeBezierUndoCommand(const RotoPaintInteractPtr& roto,
         _oldCurve.reset( new Bezier(_newCurve->getContext(), _newCurve->getScriptName(), _newCurve->getParentLayer(), false) );
         _oldCurve->clone( _newCurve.get() );
     }
-    setText( tr("Draw Bezier").toStdString() );
+    setText( tr("Рисовать Безье").toStdString() );
 }
 
 MakeBezierUndoCommand::~MakeBezierUndoCommand()
@@ -1549,7 +1549,7 @@ MakeEllipseUndoCommand::MakeEllipseUndoCommand(const RotoPaintInteractPtr& roto,
     if (!_create) {
         _curve = roto->getBezierBeingBuild();
     }
-    setText( tr("Draw Ellipse").toStdString() );
+    setText( tr("Рисовать эллипс").toStdString() );
 }
 
 MakeEllipseUndoCommand::~MakeEllipseUndoCommand()
@@ -1715,7 +1715,7 @@ MakeRectangleUndoCommand::MakeRectangleUndoCommand(const RotoPaintInteractPtr& r
     if (!_create) {
         _curve = roto->getBezierBeingBuild();
     }
-    setText( tr("Draw Rectangle").toStdString() );
+    setText( tr("Рисовать прямоугольник").toStdString() );
 }
 
 MakeRectangleUndoCommand::~MakeRectangleUndoCommand()

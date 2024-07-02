@@ -209,19 +209,19 @@ OutputEffectInstance::renderFullSequence(bool isBlocking,
                     if ( mainView < (int)viewNames.size() ) {
                         mainViewName = viewNames[mainView];
                     }
-                    QString message = tr("%1 does not support multi-view, only the view %2 will be rendered.")
+                    QString message = tr("%1 не поддерживает множественное представление, будет отображаться только представление %2")
                     .arg( QString::fromUtf8( getNode()->getLabel_mt_safe().c_str() ) )
                     .arg( QString::fromUtf8( mainViewName.c_str() ) );
                     if (!renderController) {
                         message.append( QChar::fromLatin1('\n') );
-                        message.append( QString::fromUtf8("You can use the %v or %V indicator in the filename to render to separate files.\n"
-                                                          "Would you like to continue?") );
-                        StandardButtonEnum rep = Dialogs::questionDialog(tr("Multi-view support").toStdString(), message.toStdString(), false, StandardButtons(eStandardButtonOk | eStandardButtonCancel), eStandardButtonOk);
+                        message.append( QString::fromUtf8("Можно использовать индикатор %v или %V в имени файла для рендеринга в отдельные файлы.\n"
+                                                          "Продолжить?") );
+                        StandardButtonEnum rep = Dialogs::questionDialog(tr("Поддержка нескольких видов просмотра").toStdString(), message.toStdString(), false, StandardButtons(eStandardButtonOk | eStandardButtonCancel), eStandardButtonOk);
                         if (rep != eStandardButtonOk) {
                             return;
                         }
                     } else {
-                        Dialogs::warningDialog( tr("Multi-view support").toStdString(), message.toStdString() );
+                        Dialogs::warningDialog( tr("Поддержка нескольких видов просмотра").toStdString(), message.toStdString() );
                     }
                 }
                 //Render the main-view only...
@@ -242,14 +242,14 @@ OutputEffectInstance::renderFullSequence(bool isBlocking,
             if ( mainView < (int)viewNames.size() ) {
                 mainViewName = viewNames[mainView];
             }
-            QString message = tr("%1 does not support multi-view, only the view %2 will be rendered.")
+            QString message = tr("% 1 не поддерживает мультипросмотр, будет отображен только вид% 2.")
                               .arg( QString::fromUtf8( getNode()->getLabel_mt_safe().c_str() ) )
                               .arg( QString::fromUtf8( mainViewName.c_str() ) );
             if (!renderController) {
                 message.append( QChar::fromLatin1('\n') );
-                message.append( QString::fromUtf8("You can use the %v or %V indicator in the filename to render to separate files.\n"
-                                                  "Would you like to continue?") );
-                StandardButtonEnum rep = Dialogs::questionDialog(tr("Multi-view support").toStdString(), message.toStdString(), false, StandardButtons(eStandardButtonOk | eStandardButtonCancel), eStandardButtonOk);
+                message.append( QString::fromUtf8("Можно использовать %v или индикатор %V в имени файла для отображения в отдельных файлах.\n"
+                                                  "Продолжить?") );
+                StandardButtonEnum rep = Dialogs::questionDialog(tr("Поддержка нескольких видов просмотра").toStdString(), message.toStdString(), false, StandardButtons(eStandardButtonOk | eStandardButtonCancel), eStandardButtonOk);
                 if (rep != eStandardButtonOk) {
                     // Notify progress that we were aborted
                     getRenderEngine()->s_renderFinished(1);
@@ -257,7 +257,7 @@ OutputEffectInstance::renderFullSequence(bool isBlocking,
                     return;
                 }
             } else {
-                Dialogs::warningDialog( tr("Multi-view support").toStdString(), message.toStdString() );
+                Dialogs::warningDialog( tr("Поддержка нескольких видов просмотра").toStdString(), message.toStdString() );
             }
         }
     }
@@ -271,10 +271,10 @@ OutputEffectInstance::renderFullSequence(bool isBlocking,
             QRegExp exp(QString::fromUtf8("%[0-9]*d"));
             QString qp(QString::fromUtf8(pattern.c_str()));
             if (!qp.contains(exp)) {
-                QString message = tr("You are trying to render the frame range [%1 - %2] but you did not specify any hash ('#') character(s) or printf-like format ('%d') for the padding. This will result in the same image being overwritten multiple times.").arg(first).arg(last);
+                QString message = tr("Вы пытаетесь визуализировать диапазон кадров [%1 - %2], но не указали символы хэша ('#') или формат, подобный printf-like ('%d') для заполнения. Это приведет к тому, что одно и то же изображение будет перезаписано несколько раз.").arg(first).arg(last);
                 if (!renderController) {
-                    message += tr("Would you like to continue?");
-                    StandardButtonEnum rep = Dialogs::questionDialog(tr("Image Sequence").toStdString(), message.toStdString(), false, StandardButtons(eStandardButtonOk | eStandardButtonCancel), eStandardButtonOk);
+                    message += tr("Продолжить?");
+                    StandardButtonEnum rep = Dialogs::questionDialog(tr("Последовательность изображений").toStdString(), message.toStdString(), false, StandardButtons(eStandardButtonOk | eStandardButtonCancel), eStandardButtonOk);
                     if (rep != eStandardButtonOk) {
                         // Notify progress that we were aborted
                         getRenderEngine()->s_renderFinished(1);
@@ -282,7 +282,7 @@ OutputEffectInstance::renderFullSequence(bool isBlocking,
                         return;
                     }
                 } else {
-                    Dialogs::warningDialog( tr("Image Sequence").toStdString(), message.toStdString() );
+                    Dialogs::warningDialog( tr("Последовательность изображений").toStdString(), message.toStdString() );
                 }
                 
             }
@@ -415,9 +415,9 @@ OutputEffectInstance::reportStats(int time,
 
     //If there's no filename knob, do not write anything
     if ( filename.empty() ) {
-        std::cout << tr("Cannot write render statistics file: "
-                        "%1 does not seem to have a parameter named \"filename\" "
-                        "to determine the location where to write the stats file.")
+        std::cout << tr("Невозможно записать файл статистики рендеринга: "
+                        "%1 похоже, нет параметра с именем \"filename\" "
+                        "чтобы определить место для записи файла статистики.")
             .arg( QString::fromUtf8( getScriptName_mt_safe().c_str() ) ).toStdString();
 
         return;
@@ -427,7 +427,7 @@ OutputEffectInstance::reportStats(int time,
     FStreamsSupport::ofstream ofile;
     FStreamsSupport::open(&ofile, filename);
     if (!ofile) {
-        std::cout << tr("Failure to write render statistics file.").toStdString() << std::endl;
+        std::cout << tr("Не удалось записать файл статистики рендеринга.").toStdString() << std::endl;
 
         return;
     }
