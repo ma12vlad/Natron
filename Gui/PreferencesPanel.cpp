@@ -504,14 +504,14 @@ PreferencesPanel::createPluginsView(QGridLayout* pluginsFrameLayout)
     pluginsFrameLayout->addWidget(_imp->pluginsView, pluginsFrameLayout->rowCount(), 0, 1, 2);
 
     QTreeWidgetItem* treeHeader = new QTreeWidgetItem;
-    treeHeader->setToolTip(COL_PLUGIN_LABEL, tr("Ярлык плагина"));
-    treeHeader->setText( COL_PLUGIN_LABEL, tr("Ярлык") );
+    treeHeader->setToolTip(COL_PLUGIN_LABEL, tr("Метка плагина"));
+    treeHeader->setText( COL_PLUGIN_LABEL, tr("Метка") );
     treeHeader->setToolTip(COL_PLUGINID, tr("Идентификатор плагина"));
     treeHeader->setText( COL_PLUGINID, tr("ID") );
     treeHeader->setToolTip(COL_VERSION, tr("Версия плагина"));
     treeHeader->setText( COL_VERSION, tr("Версия") );
     treeHeader->setToolTip(COL_ENABLED, tr("Если флажок снят, пользователь не сможет использовать узел с этим плагином"));
-    treeHeader->setText( COL_ENABLED, tr("Enabled") );
+    treeHeader->setText( COL_ENABLED, tr("Включено") );
     treeHeader->setToolTip(COL_RS_ENABLED, tr("Если этот флажок не установлен, рендеринг всегда будет выполняться с полным разрешением изображения для этого плагина."));
     treeHeader->setText( COL_RS_ENABLED, tr("R-S") );
     treeHeader->setToolTip(COL_MT_ENABLED, tr("Если этот флажок снят, для узла этого плагина одновременно может быть выполнен только один рендеринг. Это может сильно изменить производительность."));
