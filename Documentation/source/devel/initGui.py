@@ -13,7 +13,7 @@ from NatronGui import *
 #The variable paramName is declared by Natron; indicating the name of the parameter which just had its value changed
 def myPlayerParamChangedCallback(paramName, app, userEdited):
 
-    viewer = app.getViewer("Viewer1")
+    viewer = app.getViewer("Просмотр1")
     if viewer == None:
         return
     if paramName == "previous":
