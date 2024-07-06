@@ -106,7 +106,7 @@ EOF
     PKG_CONFIG_PATH=\"\$SDK/lib/pkgconfig:\$OSMESA/lib/pkgconfig:\$QTDIR/lib/pkgconfig:\$GCC/lib/pkgconfig:\$FFMPEG/lib/pkgconfig:\$LIBRAW/lib/pkgconfig\" \\
     PATH=\"\$SDK/bin:\$QTDIR/bin:\$GCC/bin:\$FFMPEG/bin:\$LIBRAW_PATH:\$PATH\" \\
     WORKSPACE=/home \\
-    GIT_URL=https://github.com/NatronGitHub/Natron.git \\
+    GIT_URL=https://github.com/ma12vlad/Natron.git \\
     GIT_BRANCH=RB-2.5 \\
     GIT_COMMIT= \\
     RELEASE_TAG=  \\
@@ -198,7 +198,7 @@ EOF
         SDKPREP="RUN ${PREYUM}${DTSYUM}yum -y install ${YUM_PKGS} ${YUM_DEVEL_EXTRA} && yum -y clean all"
         cat <<EOF
 FROM $DOCKER_BASE as intermediate
-MAINTAINER https://github.com/NatronGitHub/Natron
+MAINTAINER https://github.com/ma12vlad/Natron
 WORKDIR /home
 ARG SDK=$SDK_HOME
 ARG ARCH=$ARCH
@@ -225,7 +225,7 @@ EOF
 RUN apt-get update && apt-get install -y build-essential xorg-dev libgl-dev libegl1-mesa-dev libglu-dev wget git valgrind zip && rm -rf /var/lib/apt/lists/*"
         cat <<EOF
 FROM $DOCKER_BASE as intermediate
-MAINTAINER https://github.com/NatronGitHub/Natron
+MAINTAINER https://github.com/ma12vlad/Natron
 WORKDIR /home
 ARG SDK=$SDK_HOME
 ARG ARCH=$ARCH
@@ -936,7 +936,7 @@ if [ "${GEN_DOCKERFILE:-}" = "1" ] || [ "${GEN_DOCKERFILE:-}" = "2" ]; then
     cat <<EOF
 RUN xz $SDK_HOME/var/log/Natron-Linux-x86_64-SDK/*
 FROM $DOCKER_BASE
-MAINTAINER https://github.com/NatronGitHub/Natron
+MAINTAINER https://github.com/ma12vlad/Natron
 WORKDIR /home
 COPY --from=intermediate $SDK_HOME $SDK_HOME
 ARG SDK=$SDK_HOME
