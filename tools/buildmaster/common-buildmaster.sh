@@ -113,7 +113,7 @@ GIT_BREAKPAD_COMMIT=48a13da168f6a82d9edf63a22769cb42a660996c
 GIT_NATRON=https://github.com/NatronGitHub/Natron.git
 GIT_NATRON_GFORGE=https://gforge.inria.fr/anonscm/git/natron/natron.git
 GIT_IO=https://github.com/NatronGitHub/openfx-io.git
-GIT_MISC=https://github.com/NatronGitHub/openfx-misc.git
+GIT_MISC=https://github.com/ma12vlad/openfx-misc.git
 GIT_UNIT=https://github.com/NatronGitHub/Natron-Tests.git
 GIT_OSMESA=https://github.com/devernay/osmesa-install.git # integration TODO (this has been done in sdk v2)
 
