@@ -194,7 +194,7 @@ CurveEditor::CurveEditor(Gui* gui,
     _imp->filterLayout->setContentsMargins(0, 0, 0, 0);
 
     QString filterTt = tr("Показывать в редакторе кривых только узлы, содержащие следующий фильтр");
-    _imp->filterLabel = new Label(tr("Filter:"), _imp->filterContainer);
+    _imp->filterLabel = new Label(tr("Фильтр:"), _imp->filterContainer);
     _imp->filterLabel->setToolTip(filterTt);
     _imp->filterEdit = new LineEdit(_imp->filterContainer);
     _imp->filterEdit->setToolTip(filterTt);
