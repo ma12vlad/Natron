@@ -3223,7 +3223,7 @@ ViewerGL::populateMenu()
     QObject::connect( switchAB, SIGNAL(triggered()), _imp->viewerTab, SLOT(switchInputAAndB()) );
     _imp->menu->addAction(switchAB);
 
-    Menu* showHideMenu = new Menu(tr("Show/Hide"), _imp->menu);
+    Menu* showHideMenu = new Menu(tr("Показать/Скрыть"), _imp->menu);
     //showHideMenu->setFont(QFont(appFont,appFontSize));
     _imp->menu->addAction( showHideMenu->menuAction() );
 
