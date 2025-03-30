@@ -61,13 +61,13 @@ CLANG_DIAG_ON(uninitialized)
 
 /////////GLOBAL SHORTCUTS
 #define kShortcutIDActionNewProject "newProject"
-#define kShortcutDescActionNewProject "New Project"
+#define kShortcutDescActionNewProject "Новый проект"
 
 #define kShortcutIDActionOpenProject "openProject"
-#define kShortcutDescActionOpenProject "Open Project..."
+#define kShortcutDescActionOpenProject "Открыть проект..."
 
 #define kShortcutIDActionCloseProject "closeProject"
-#define kShortcutDescActionCloseProject "Close Project"
+#define kShortcutDescActionCloseProject "Закрыть проект"
 
 #define kShortcutIDActionReloadProject "reloadProject"
 #define kShortcutDescActionReloadProject "Reload Project"
