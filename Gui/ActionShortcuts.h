@@ -70,19 +70,19 @@ CLANG_DIAG_ON(uninitialized)
 #define kShortcutDescActionCloseProject "Закрыть проект"
 
 #define kShortcutIDActionReloadProject "reloadProject"
-#define kShortcutDescActionReloadProject "Reload Project"
+#define kShortcutDescActionReloadProject "Перезагрузить проект"
 
 #define kShortcutIDActionSaveProject "saveProject"
-#define kShortcutDescActionSaveProject "Save Project"
+#define kShortcutDescActionSaveProject "Сохранить проект"
 
 #define kShortcutIDActionSaveAsProject "saveAsProject"
-#define kShortcutDescActionSaveAsProject "Save Project As.."
+#define kShortcutDescActionSaveAsProject "Сохранить проект как .."
 
 #define kShortcutIDActionSaveAndIncrVersion "saveAndIncr"
-#define kShortcutDescActionSaveAndIncrVersion "New Project Version"
+#define kShortcutDescActionSaveAndIncrVersion "Новая версия проекта"
 
 #define kShortcutIDActionExportProject "exportAsGroup"
-#define kShortcutDescActionExportProject "Export Project As Group"
+#define kShortcutDescActionExportProject "Экспорт проекта как группа"
 
 #define kShortcutIDActionPreferences "preferences"
 #define kShortcutDescActionPreferences "Preferences..."
