@@ -85,115 +85,115 @@ CLANG_DIAG_ON(uninitialized)
 #define kShortcutDescActionExportProject "Экспорт проекта как группа"
 
 #define kShortcutIDActionPreferences "preferences"
-#define kShortcutDescActionPreferences "Preferences..."
+#define kShortcutDescActionPreferences "Предпочтения ..."
 
 #define kShortcutIDActionQuit "quit"
-#define kShortcutDescActionQuit "Quit"
+#define kShortcutDescActionQuit "Выйти"
 
 #define kShortcutIDActionProjectSettings "projectSettings"
-#define kShortcutDescActionProjectSettings "Show Project Settings..."
+#define kShortcutDescActionProjectSettings "Настройки проекта ..."
 
 #define kShortcutIDActionShowErrorLog "showErrorLog"
-#define kShortcutDescActionShowErrorLog "Show Project Errors Log..."
+#define kShortcutDescActionShowErrorLog "Журнал ошибок проекта ..."
 
 #define kShortcutIDActionNewViewer "newViewer"
-#define kShortcutDescActionNewViewer "New Viewer"
+#define kShortcutDescActionNewViewer "Новый просмотрщик"
 
 #define kShortcutIDActionFullscreen "fullScreen"
-#define kShortcutDescActionFullscreen "Enter Full Screen"
+#define kShortcutDescActionFullscreen "Полный экран"
 
 #define kShortcutIDActionShowWindowsConsole "showApplicationConsole"
-#define kShortcutDescActionShowWindowsConsole "Show/Hide Application Console"
+#define kShortcutDescActionShowWindowsConsole "Показать/скрыть консоль приложения"
 
 #define kShortcutIDActionClearDiskCache "clearDiskCache"
-#define kShortcutDescActionClearDiskCache "Clear Disk Cache"
+#define kShortcutDescActionClearDiskCache "Очистить дисковый кэш"
 
 #define kShortcutIDActionClearPlaybackCache "clearPlaybackCache"
-#define kShortcutDescActionClearPlaybackCache "Clear Playback Cache"
+#define kShortcutDescActionClearPlaybackCache "Очистить кэш воспроизведения"
 
 #define kShortcutIDActionClearNodeCache "clearNodeCache"
-#define kShortcutDescActionClearNodeCache "Clear Per-Node Cache"
+#define kShortcutDescActionClearNodeCache "Очистить кэш для каждого узла"
 
 #define kShortcutIDActionClearPluginsLoadCache "clearPluginsCache"
-#define kShortcutDescActionClearPluginsLoadCache "Clear Plug-ins Load Cache"
+#define kShortcutDescActionClearPluginsLoadCache "Очистить кэш загрузки плагинов"
 
 #define kShortcutIDActionClearAllCaches "clearAllCaches"
-#define kShortcutDescActionClearAllCaches "Clear All Caches"
+#define kShortcutDescActionClearAllCaches "Очистить все кэши"
 
 #define kShortcutIDActionShowAbout "showAbout"
-#define kShortcutDescActionShowAbout "About Natron"
+#define kShortcutDescActionShowAbout "О Natron"
 
 #define kShortcutIDActionRenderSelected "renderSelect"
-#define kShortcutDescActionRenderSelected "Render Selected Writers"
+#define kShortcutDescActionRenderSelected "Рендер выбранных записей"
 
 #define kShortcutIDActionEnableRenderStats "enableRenderStats"
-#define kShortcutDescActionEnableRenderStats "Enable Render Statistics"
+#define kShortcutDescActionEnableRenderStats "Включить статистику рендеринга"
 
 #define kShortcutIDActionRenderAll "renderAll"
-#define kShortcutDescActionRenderAll "Render All Writers"
+#define kShortcutDescActionRenderAll "Рендер все записи"
 
 #define kShortcutIDActionConnectViewerToInput1 "connectViewerInput1"
-#define kShortcutDescActionConnectViewerToInput1 "Connect Viewer to Input 1"
+#define kShortcutDescActionConnectViewerToInput1 "Подключить просмотрщик к входу 1"
 
 #define kShortcutIDActionConnectViewerToInput2 "connectViewerInput2"
-#define kShortcutDescActionConnectViewerToInput2 "Connect Viewer to Input 2"
+#define kShortcutDescActionConnectViewerToInput2 "Подключить просмотрщик к входу 2"
 
 #define kShortcutIDActionConnectViewerToInput3 "connectViewerInput3"
-#define kShortcutDescActionConnectViewerToInput3 "Connect Viewer to Input 3"
+#define kShortcutDescActionConnectViewerToInput3 "Подключить просмотрщик к входу 3"
 
 #define kShortcutIDActionConnectViewerToInput4 "connectViewerInput4"
-#define kShortcutDescActionConnectViewerToInput4 "Connect Viewer to Input 4"
+#define kShortcutDescActionConnectViewerToInput4 "Подключить просмотрщик к входу 4"
 
 #define kShortcutIDActionConnectViewerToInput5 "connectViewerInput5"
-#define kShortcutDescActionConnectViewerToInput5 "Connect Viewer to Input 5"
+#define kShortcutDescActionConnectViewerToInput5 "Подключить просмотрщик к входу 5"
 
 #define kShortcutIDActionConnectViewerToInput6 "connectViewerInput6"
-#define kShortcutDescActionConnectViewerToInput6 "Connect Viewer to Input 6"
+#define kShortcutDescActionConnectViewerToInput6 "Подключить просмотрщик к входу 6"
 
 #define kShortcutIDActionConnectViewerToInput7 "connectViewerInput7"
-#define kShortcutDescActionConnectViewerToInput7 "Connect Viewer to Input 7"
+#define kShortcutDescActionConnectViewerToInput7 "Подключить просмотрщик к входу 7"
 
 #define kShortcutIDActionConnectViewerToInput8 "connectViewerInput8"
-#define kShortcutDescActionConnectViewerToInput8 "Connect Viewer to Input 8"
+#define kShortcutDescActionConnectViewerToInput8 "Подключить просмотрщик к входу 8"
 
 #define kShortcutIDActionConnectViewerToInput9 "connectViewerInput9"
-#define kShortcutDescActionConnectViewerToInput9 "Connect Viewer to Input 9"
+#define kShortcutDescActionConnectViewerToInput9 "Подключить просмотрщик к входу 9"
 
 #define kShortcutIDActionConnectViewerToInput10 "connectViewerInput10"
-#define kShortcutDescActionConnectViewerToInput10 "Connect Viewer to Input 10"
+#define kShortcutDescActionConnectViewerToInput10 "Подключить просмотрщик к входу 10"
 
 #define kShortcutIDActionConnectViewerBToInput1 "connectViewerBInput1"
-#define kShortcutDescActionConnectViewerBToInput1 "Connect Viewer B Side to Input 1"
+#define kShortcutDescActionConnectViewerBToInput1 "Подключить просмотрщик В к входу 1"
 
 #define kShortcutIDActionConnectViewerBToInput2 "connectViewerBInput2"
-#define kShortcutDescActionConnectViewerBToInput2 "Connect Viewer B Side to Input 2"
+#define kShortcutDescActionConnectViewerBToInput2 "Подключить просмотрщик В к входу 2"
 
 #define kShortcutIDActionConnectViewerBToInput3 "connectViewerBInput3"
-#define kShortcutDescActionConnectViewerBToInput3 "Connect Viewer B Side to Input 3"
+#define kShortcutDescActionConnectViewerBToInput3 "Подключить просмотрщик В к входу 3"
 
 #define kShortcutIDActionConnectViewerBToInput4 "connectViewerBInput4"
-#define kShortcutDescActionConnectViewerBToInput4 "Connect Viewer B Side to Input 4"
+#define kShortcutDescActionConnectViewerBToInput4 "Подключить просмотрщик В к входу 4"
 
 #define kShortcutIDActionConnectViewerBToInput5 "connectViewerBInput5"
-#define kShortcutDescActionConnectViewerBToInput5 "Connect Viewer B Side to Input 5"
+#define kShortcutDescActionConnectViewerBToInput5 "Подключить просмотрщик В к входу 5"
 
 #define kShortcutIDActionConnectViewerBToInput6 "connectViewerBInput6"
-#define kShortcutDescActionConnectViewerBToInput6 "Connect Viewer B Side to Input 6"
+#define kShortcutDescActionConnectViewerBToInput6 "Подключить просмотрщик В к входу 6"
 
 #define kShortcutIDActionConnectViewerBToInput7 "connectViewerBInput7"
-#define kShortcutDescActionConnectViewerBToInput7 "Connect Viewer B Side to Input 7"
+#define kShortcutDescActionConnectViewerBToInput7 "Подключить просмотрщик В к входу 7"
 
 #define kShortcutIDActionConnectViewerBToInput8 "connectViewerBInput8"
-#define kShortcutDescActionConnectViewerBToInput8 "Connect Viewer B Side to Input 8"
+#define kShortcutDescActionConnectViewerBToInput8 "Подключить просмотрщик В к входу 8"
 
 #define kShortcutIDActionConnectViewerBToInput9 "connectViewerBInput9"
-#define kShortcutDescActionConnectViewerBToInput9 "Connect Viewer B Side to Input 9"
+#define kShortcutDescActionConnectViewerBToInput9 "Подключить просмотрщик В к входу 9"
 
 #define kShortcutIDActionConnectViewerBToInput10 "connectViewerBInput10"
-#define kShortcutDescActionConnectViewerBToInput10 "Connect Viewer B Side to Input 10"
+#define kShortcutDescActionConnectViewerBToInput10 "Подключить просмотрщик В к входу 10"
 
 #define kShortcutIDActionShowPaneFullScreen "showPaneFullScreen"
-#define kShortcutDescActionShowPaneFullScreen "Show Pane Full Screen"
+#define kShortcutDescActionShowPaneFullScreen "Показывать панель во весь экран"
 
 #define kShortcutIDActionImportLayout "importLayout"
 #define kShortcutDescActionImportLayout "Import Layout..."
