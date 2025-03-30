@@ -196,201 +196,201 @@ CLANG_DIAG_ON(uninitialized)
 #define kShortcutDescActionShowPaneFullScreen "Показывать панель во весь экран"
 
 #define kShortcutIDActionImportLayout "importLayout"
-#define kShortcutDescActionImportLayout "Import Layout..."
+#define kShortcutDescActionImportLayout "Импортировать макет..."
 
 #define kShortcutIDActionExportLayout "exportLayout"
-#define kShortcutDescActionExportLayout "Export Layout..."
+#define kShortcutDescActionExportLayout "Экспортировать макет..."
 
 #define kShortcutIDActionDefaultLayout "restoreDefaultLayout"
-#define kShortcutDescActionDefaultLayout "Restore Default Layout"
+#define kShortcutDescActionDefaultLayout "Восстановить макет по умолчанию"
 
 #define kShortcutIDActionNextTab "nextTab"
-#define kShortcutDescActionNextTab "Next Tab"
+#define kShortcutDescActionNextTab "Следующая вкладка"
 
 #define kShortcutIDActionPrevTab "prevTab"
-#define kShortcutDescActionPrevTab "Previous Tab"
+#define kShortcutDescActionPrevTab "Предыдущая вкладка"
 
 #define kShortcutIDActionCloseTab "closeTab"
-#define kShortcutDescActionCloseTab "Close Tab"
+#define kShortcutDescActionCloseTab "Закрыть вкладку"
 
 /////////VIEWER SHORTCUTS
 #define kShortcutIDActionLuminance "luminance"
-#define kShortcutDescActionLuminance "Display Luminance"
+#define kShortcutDescActionLuminance "Показать яркость"
 
 #define kShortcutIDActionRed "channelR"
-#define kShortcutDescActionRed "Display Red Channel"
+#define kShortcutDescActionRed "Показать красный канал"
 
 #define kShortcutIDActionGreen "channelG"
-#define kShortcutDescActionGreen "Display Green Channel"
+#define kShortcutDescActionGreen "Показать зелёный канал"
 
 #define kShortcutIDActionBlue "channelB"
-#define kShortcutDescActionBlue "Display Blue Channel"
+#define kShortcutDescActionBlue "Показать синий канал"
 
 #define kShortcutIDActionAlpha "channelA"
-#define kShortcutDescActionAlpha "Display Alpha Channel"
+#define kShortcutDescActionAlpha "Показать альфа канал"
 
 #define kShortcutIDActionLuminanceA "luminanceA"
-#define kShortcutDescActionLuminanceA "Display Luminance on Input A Only"
+#define kShortcutDescActionLuminanceA "Показать яркость только на входе A"
 
 #define kShortcutIDActionMatteOverlay "matteOverlay"
-#define kShortcutDescActionMatteOverlay "Overlay Alpha Channel"
+#define kShortcutDescActionMatteOverlay "Наложение альфа-канала"
 
 #define kShortcutIDActionRedA "channelRA"
-#define kShortcutDescActionRedA "Display Red Channel on input A only"
+#define kShortcutDescActionRedA "Показать красный канал только на входе A"
 
 #define kShortcutIDActionGreenA "channelGA"
-#define kShortcutDescActionGreenA "Display Green Channel on Input A Only"
+#define kShortcutDescActionGreenA "Показать зелёный канал только на входе A"
 
 #define kShortcutIDActionBlueA "channelBA"
-#define kShortcutDescActionBlueA "Display Blue Channel on Input A Only"
+#define kShortcutDescActionBlueA "Показать синий канал только на входе A"
 
 #define kShortcutIDActionAlphaA "channelAA"
-#define kShortcutDescActionAlphaA "Display Alpha Channel on Input A Only"
+#define kShortcutDescActionAlphaA "Показать альфа канал только на входе A"
 
 #define kShortcutIDActionFitViewer "fitViewer"
-#define kShortcutDescActionFitViewer "Fit Image to Viewer"
+#define kShortcutDescActionFitViewer "Подогнать изображение в просмотрщике"
 
 #define kShortcutIDActionClipEnabled "clipEnabled"
-#define kShortcutDescActionClipEnabled "Enable Clipping to Project Window"
+#define kShortcutDescActionClipEnabled "Включить отсечение для окна проекта"
 
 #define kShortcutIDActionFullFrameProc "fullFrameProc"
-#define kShortcutDescActionFullFrameProc "Full Frame Processing"
+#define kShortcutDescActionFullFrameProc "Полная обработка кадров"
 
 #define kShortcutIDActionRefresh "refresh"
-#define kShortcutDescActionRefresh "Refresh Image"
+#define kShortcutDescActionRefresh "Обновить изображение"
 
 #define kShortcutIDActionRefreshWithStats "refreshWithStats"
-#define kShortcutDescActionRefreshWithStats "Refresh Image and Show Render Statistics"
+#define kShortcutDescActionRefreshWithStats "Обновить изображение и показать статистику рендеринга"
 
 #define kShortcutIDActionROIEnabled "userRoiEnabled"
-#define kShortcutDescActionROIEnabled "Enable User RoI"
+#define kShortcutDescActionROIEnabled "Вкл пользователя RoI"
 
 #define kShortcutIDActionNewROI "newRoi"
-#define kShortcutDescActionNewROI "New User RoI"
+#define kShortcutDescActionNewROI "Новый пользователь RoI"
 
 #define kShortcutIDActionPauseViewer "pauseUpdates"
-#define kShortcutDescActionPauseViewer "Pause Updates"
+#define kShortcutDescActionPauseViewer "Приостановить обновление"
 
 #define kShortcutIDActionPauseViewerInputA "pauseUpdatesA"
-#define kShortcutDescActionPauseViewerInputA "Pause Updates on Input A Only"
+#define kShortcutDescActionPauseViewerInputA "Приостановить обновление только на входе A"
 
 #define kShortcutIDActionProxyEnabled "proxyEnabled"
-#define kShortcutDescActionProxyEnabled "Enable Proxy Rendering"
+#define kShortcutDescActionProxyEnabled "Включить прокси -рендеринг"
 
 #define kShortcutIDActionProxyLevel2 "proxy2"
-#define kShortcutDescActionProxyLevel2 "Proxy Level 2"
+#define kShortcutDescActionProxyLevel2 "Уровень прокси 2"
 
 #define kShortcutIDActionProxyLevel4 "proxy4"
-#define kShortcutDescActionProxyLevel4 "Proxy Level 4"
+#define kShortcutDescActionProxyLevel4 "Уровень прокси 4"
 
 #define kShortcutIDActionProxyLevel8 "proxy8"
-#define kShortcutDescActionProxyLevel8 "Proxy Level 8"
+#define kShortcutDescActionProxyLevel8 "Уровень прокси 8"
 
 #define kShortcutIDActionProxyLevel16 "proxy16"
-#define kShortcutDescActionProxyLevel16 "Proxy Level 16"
+#define kShortcutDescActionProxyLevel16 "Уровень прокси 16"
 
 #define kShortcutIDActionProxyLevel32 "proxy32"
-#define kShortcutDescActionProxyLevel32 "Proxy Level 32"
+#define kShortcutDescActionProxyLevel32 "Уровень прокси 32"
 
 #define kShortcutIDActionZoomLevel100 "zoom100"
-#define kShortcutDescActionZoomLevel100 "Set Zoom to 100%"
+#define kShortcutDescActionZoomLevel100 "Установить масштаб 100%"
 
 #define kShortcutIDActionZoomIn "zoomIn"
-#define kShortcutDescActionZoomIn "Zoom In"
+#define kShortcutDescActionZoomIn "Увеличить"
 
 #define kShortcutIDActionZoomOut "zoomOut"
-#define kShortcutDescActionZoomOut "Zoom Out"
+#define kShortcutDescActionZoomOut "Уменишить"
 
 #define kShortcutIDActionHideOverlays "hideOverlays"
-#define kShortcutDescActionHideOverlays "Show/Hide Overlays"
+#define kShortcutDescActionHideOverlays "Показать/скрыть наложения"
 
 #define kShortcutIDActionHidePlayer "hidePlayer"
-#define kShortcutDescActionHidePlayer "Show/Hide Player"
+#define kShortcutDescActionHidePlayer "Показать/скрыть плеер"
 
 #define kShortcutIDActionHideTimeline "hideTimeline"
-#define kShortcutDescActionHideTimeline "Show/Hide Timeline"
+#define kShortcutDescActionHideTimeline "Показать/скрыть шкалу времени"
 
 #define kShortcutIDActionHideLeft "hideLeft"
-#define kShortcutDescActionHideLeft "Show/Hide Left Toolbar"
+#define kShortcutDescActionHideLeft "Показать/скрыть левую панель инструментов"
 
 #define kShortcutIDActionHideRight "hideRight"
-#define kShortcutDescActionHideRight "Show/Hide Right Toolbar"
+#define kShortcutDescActionHideRight "Показать/скрыть правую панель инструментов"
 
 #define kShortcutIDActionHideTop "hideTop"
-#define kShortcutDescActionHideTop "Show/Hide Top Toolbar"
+#define kShortcutDescActionHideTop "Показать/скрыть верхнюю панель инструментов"
 
 #define kShortcutIDActionHideInfobar "hideInfo"
-#define kShortcutDescActionHideInfobar "Show/Hide Info Bar"
+#define kShortcutDescActionHideInfobar "Показать/скрыть инфопанель"
 
 #define kShortcutIDActionHideAll "hideAll"
-#define kShortcutDescActionHideAll "Hide All"
+#define kShortcutDescActionHideAll "Скрыть всё"
 
 #define kShortcutIDActionShowAll "showAll"
-#define kShortcutDescActionShowAll "Show All"
+#define kShortcutDescActionShowAll "Показать всё"
 
 #define kShortcutIDMousePickColor "pick"
-#define kShortcutDescMousePickColor "Pick a Color"
+#define kShortcutDescMousePickColor "Выберать цвет"
 
 #define kShortcutIDMousePickInputColor "pickInput"
-#define kShortcutDescMousePickInputColor "Pick a Color from input of viewed node"
+#define kShortcutDescMousePickInputColor "Выберать цвет из входных данных просматриваемого узла"
 
 #define kShortcutIDMouseRectanglePick "rectanglePick"
-#define kShortcutDescMouseRectanglePick "Rectangle Color Picker"
+#define kShortcutDescMouseRectanglePick "Средство выбора цвета прямоугольника"
 
 #define kShortcutIDToggleWipe "toggleWipe"
-#define kShortcutDescToggleWipe "Toggle Wipe"
+#define kShortcutDescToggleWipe "Переключить режим очистки"
 
 #define kShortcutIDCenterWipe "centerWipe"
-#define kShortcutDescCenterWipe "Center Wipe on Mouse"
+#define kShortcutDescCenterWipe "Центр с мышью"
 
 #define kShortcutIDNextLayer "nextLayer"
-#define kShortcutDescNextLayer "Next Layer"
+#define kShortcutDescNextLayer "Следующий слой"
 
 #define kShortcutIDPrevLayer "prevLayer"
-#define kShortcutDescPrevLayer "Previous Layer"
+#define kShortcutDescPrevLayer "Предыдущий слой"
 
 #define kShortcutIDSwitchInputAAndB "switchAB"
-#define kShortcutDescSwitchInputAAndB "Switch Input A and B"
+#define kShortcutDescSwitchInputAAndB "Переключить входы A и B"
 
 #define kShortcutIDPrevView "prevView"
-#define kShortcutDescPrevView "Previous View"
+#define kShortcutDescPrevView "Предыдущий вид"
 
 #define kShortcutIDNextView "nextView"
-#define kShortcutDescNextView "Next View"
+#define kShortcutDescNextView "Следующий вид"
 ///////////PLAYER SHORTCUTS
 
 #define kShortcutIDActionPlayerPrevious "prev"
-#define kShortcutDescActionPlayerPrevious "Previous Frame"
+#define kShortcutDescActionPlayerPrevious "Предыдущий кадр"
 
 #define kShortcutIDActionPlayerNext "next"
-#define kShortcutDescActionPlayerNext "Next Frame"
+#define kShortcutDescActionPlayerNext "Следующий кадр"
 
 #define kShortcutIDActionPlayerBackward "backward"
-#define kShortcutDescActionPlayerBackward "Play Backward"
+#define kShortcutDescActionPlayerBackward "Воспроизведение назад"
 
 #define kShortcutIDActionPlayerForward "forward"
-#define kShortcutDescActionPlayerForward "Play Forward"
+#define kShortcutDescActionPlayerForward "Воспроизведение вперёд"
 
 #define kShortcutIDActionPlayerStop "stop"
-#define kShortcutDescActionPlayerStop "Stop"
+#define kShortcutDescActionPlayerStop "Стоп"
 
 #define kShortcutIDActionPlayerPrevIncr "prevIncr"
-#define kShortcutDescActionPlayerPrevIncr "Go to Current Frame Minus Increment"
+#define kShortcutDescActionPlayerPrevIncr "Перейти к текущему кадру без приращения"
 
 #define kShortcutIDActionPlayerNextIncr "nextIncr"
-#define kShortcutDescActionPlayerNextIncr "Go to Current Frame Plus Increment"
+#define kShortcutDescActionPlayerNextIncr "Перейти к текущей раме плюс приращение"
 
 #define kShortcutIDActionPlayerPrevKF "prevKF"
-#define kShortcutDescActionPlayerPrevKF "Go to Previous Keyframe"
+#define kShortcutDescActionPlayerPrevKF "Перейти к предыдущему ключевому кадру"
 
 #define kShortcutIDActionPlayerNextKF "nextKF"
-#define kShortcutDescActionPlayerNextKF "Go to Next Keyframe"
+#define kShortcutDescActionPlayerNextKF "Переход к следующему ключевому кадру"
 
 #define kShortcutIDActionPlayerFirst "first"
-#define kShortcutDescActionPlayerFirst "Go to First Frame"
+#define kShortcutDescActionPlayerFirst "Перейти к первому кадру"
 
 #define kShortcutIDActionPlayerLast "last"
-#define kShortcutDescActionPlayerLast "Go to Last Frame"
+#define kShortcutDescActionPlayerLast "Перейти к последнему кадру"
 
 #define kShortcutIDActionPlayerPlaybackIn "pbIn"
 #define kShortcutDescActionPlayerPlaybackIn "Set Playback \"In\" Point"
@@ -403,189 +403,189 @@ CLANG_DIAG_ON(uninitialized)
 #ifndef NATRON_ENABLE_IO_META_NODES
 
 #define kShortcutIDActionGraphCreateReader "createReader"
-#define kShortcutDescActionGraphCreateReader "Create Reader"
+#define kShortcutDescActionGraphCreateReader "Слздать чтение"
 
 #define kShortcutIDActionGraphCreateWriter "createWriter"
-#define kShortcutDescActionGraphCreateWriter "Create Writer"
+#define kShortcutDescActionGraphCreateWriter "Создать запись"
 
 #endif // #ifdef NATRON_ENABLE_IO_META_NODES
 
 #define kShortcutIDActionGraphRearrangeNodes "rearrange"
-#define kShortcutDescActionGraphRearrangeNodes "Rearrange Nodes"
+#define kShortcutDescActionGraphRearrangeNodes "Переставить узлы"
 
 #define kShortcutIDActionGraphRemoveNodes "remove"
-#define kShortcutDescActionGraphRemoveNodes "Remove Nodes"
+#define kShortcutDescActionGraphRemoveNodes "Удаление узлов"
 
 #define kShortcutIDActionGraphShowExpressions "displayExp"
-#define kShortcutDescActionGraphShowExpressions "Show Expressions Links"
+#define kShortcutDescActionGraphShowExpressions "Показывать ссылки на выражения"
 
 #define kShortcutIDActionGraphNavigateUpstream "navigateUp"
-#define kShortcutDescActionGraphNavigateUpstream "Navigate Tree Upward"
+#define kShortcutDescActionGraphNavigateUpstream "Переместиться по дереву вверх"
 
 #define kShortcutIDActionGraphNavigateDownstream "navigateDown"
-#define kShortcutDescActionGraphNavigateDownstram "Navigate Tree Downward"
+#define kShortcutDescActionGraphNavigateDownstram "Переместиться по дереву вниз"
 
 #define kShortcutIDActionGraphSelectUp "selUp"
-#define kShortcutDescActionGraphSelectUp "Select Tree Upward"
+#define kShortcutDescActionGraphSelectUp "Выбрать дерево вверх"
 
 #define kShortcutIDActionGraphSelectDown "selDown"
-#define kShortcutDescActionGraphSelectDown "Select Tree Downward"
+#define kShortcutDescActionGraphSelectDown "Выбрать дерево вниз"
 
 #define kShortcutIDActionGraphSelectAll "selectAll"
-#define kShortcutDescActionGraphSelectAll "Select All Nodes"
+#define kShortcutDescActionGraphSelectAll "Выбрать все узлы"
 
 #define kShortcutIDActionGraphSelectAllVisible "selectAllVisible"
-#define kShortcutDescActionGraphSelectAllVisible "Select All Visible Nodes"
+#define kShortcutDescActionGraphSelectAllVisible "Выберать все видимые узлы"
 
 #define kShortcutIDActionGraphAutoHideInputs "autoHideInputs"
-#define kShortcutDescActionGraphAutoHideInputs "Auto-Hide Optional Inputs"
+#define kShortcutDescActionGraphAutoHideInputs "Автоскрытие доп входных данных"
 
 #define kShortcutIDActionGraphHideInputs "hideInputs"
-#define kShortcutDescActionGraphHideInputs "Hide inputs"
+#define kShortcutDescActionGraphHideInputs "Скрывать входные данные"
 
 #define kShortcutIDActionGraphSwitchInputs "switchInputs"
-#define kShortcutDescActionGraphSwitchInputs "Switch Inputs 1 and 2"
+#define kShortcutDescActionGraphSwitchInputs "Переключить входы 1 и 2"
 
 #define kShortcutIDActionGraphCopy "copy"
-#define kShortcutDescActionGraphCopy "Copy Nodes"
+#define kShortcutDescActionGraphCopy "Копировать узлы"
 
 #define kShortcutIDActionGraphPaste "paste"
-#define kShortcutDescActionGraphPaste "Paste Nodes"
+#define kShortcutDescActionGraphPaste "Вставить узлы"
 
 #define kShortcutIDActionGraphClone "clone"
-#define kShortcutDescActionGraphClone "Clone Nodes"
+#define kShortcutDescActionGraphClone "Клонировать узлы"
 
 #define kShortcutIDActionGraphDeclone "declone"
-#define kShortcutDescActionGraphDeclone "De-clone Nodes"
+#define kShortcutDescActionGraphDeclone "Деклонировать узлы"
 
 #define kShortcutIDActionGraphCut "cut"
-#define kShortcutDescActionGraphCut "Cut Nodes"
+#define kShortcutDescActionGraphCut "Вырезать узлы"
 
 #define kShortcutIDActionGraphDuplicate "duplicate"
-#define kShortcutDescActionGraphDuplicate "Duplicate Nodes"
+#define kShortcutDescActionGraphDuplicate "Дублировать узлы"
 
 #define kShortcutIDActionGraphDisableNodes "disable"
-#define kShortcutDescActionGraphDisableNodes "Disable Nodes"
+#define kShortcutDescActionGraphDisableNodes "Отключить узлы"
 
 #define kShortcutIDActionGraphToggleAutoPreview "toggleAutoPreview"
-#define kShortcutDescActionGraphToggleAutoPreview "Toggle Auto Previews"
+#define kShortcutDescActionGraphToggleAutoPreview "Переключение авто-предпросмотра"
 
 #define kShortcutIDActionGraphToggleAutoTurbo "toggleAutoTurbo"
-#define kShortcutDescActionGraphToggleAutoTurbo "Toggle Auto Turbo"
+#define kShortcutDescActionGraphToggleAutoTurbo "Переключение авто турбо"
 
 #define kShortcutIDActionGraphTogglePreview "togglePreview"
-#define kShortcutDescActionGraphTogglePreview "Toggle Preview Images"
+#define kShortcutDescActionGraphTogglePreview "Переключение предпросмотра изображений"
 
 #define kShortcutIDActionGraphForcePreview "preview"
-#define kShortcutDescActionGraphForcePreview "Refresh Preview Images"
+#define kShortcutDescActionGraphForcePreview "Обновить предпросмотр изображений"
 
 #define kShortcutIDActionGraphShowCacheSize "cacheSize"
-#define kShortcutDescActionGraphShowCacheSize "Display Cache Memory Consumption"
+#define kShortcutDescActionGraphShowCacheSize "Отображение потребления кэш-памяти"
 
 #define kShortcutIDActionGraphOpenNodePanel "openSettingsPanel"
 #define kShortcutDescActionGraphOpenNodePanel "Open Node Settings Panel"
 
 #define kShortcutIDActionGraphFrameNodes "frameNodes"
-#define kShortcutDescActionGraphFrameNodes "Center on All Nodes"
+#define kShortcutDescActionGraphFrameNodes "Центрировать по всем узлам"
 
 #define kShortcutIDActionGraphFindNode "findNode"
-#define kShortcutDescActionGraphFindNode "Find"
+#define kShortcutDescActionGraphFindNode "Искать"
 
 #define kShortcutIDActionGraphCreateNode "createNode"
-#define kShortcutDescActionGraphCreateNode "Create Node"
+#define kShortcutDescActionGraphCreateNode "Создать узел"
 
 #define kShortcutIDActionGraphRenameNode "renameNode"
-#define kShortcutDescActionGraphRenameNode "Rename Node"
+#define kShortcutDescActionGraphRenameNode "Переименовать узел"
 
 #define kShortcutIDActionGraphExtractNode "extractNode"
-#define kShortcutDescActionGraphExtractNode "Extract Node"
+#define kShortcutDescActionGraphExtractNode "Извлечь узел"
 
 #define kShortcutIDActionGraphMakeGroup "makeGroup"
-#define kShortcutDescActionGraphMakeGroup "Group from Selection"
+#define kShortcutDescActionGraphMakeGroup "Группа из выборки"
 
 #define kShortcutIDActionGraphExpandGroup "expandGroup"
-#define kShortcutDescActionGraphExpandGroup "Expand Group"
+#define kShortcutDescActionGraphExpandGroup "Расширить группу"
 
 ///////////CURVEEDITOR SHORTCUTS
 #define kShortcutIDActionCurveEditorRemoveKeys "remove"
-#define kShortcutDescActionCurveEditorRemoveKeys "Delete Keyframes"
+#define kShortcutDescActionCurveEditorRemoveKeys "Удалить ключевые кадры"
 
 #define kShortcutIDActionCurveEditorConstant "constant"
-#define kShortcutDescActionCurveEditorConstant "Constant Interpolation"
+#define kShortcutDescActionCurveEditorConstant "Постоянная интерполяция"
 
 #define kShortcutIDActionCurveEditorLinear "linear"
-#define kShortcutDescActionCurveEditorLinear "Linear Interpolation"
+#define kShortcutDescActionCurveEditorLinear "Линейная интерполяция"
 
 #define kShortcutIDActionCurveEditorSmooth "smooth"
-#define kShortcutDescActionCurveEditorSmooth "Smooth Interpolation"
+#define kShortcutDescActionCurveEditorSmooth "Плавная интерполяция"
 
 #define kShortcutIDActionCurveEditorCatmullrom "catmullrom"
-#define kShortcutDescActionCurveEditorCatmullrom "Catmull-Rom Interpolation"
+#define kShortcutDescActionCurveEditorCatmullrom "Интерполяция Catmull-Rom"
 
 #define kShortcutIDActionCurveEditorCubic "cubic"
-#define kShortcutDescActionCurveEditorCubic "Cubic Interpolation"
+#define kShortcutDescActionCurveEditorCubic "Кубическая интерполяция"
 
 #define kShortcutIDActionCurveEditorHorizontal "horiz"
-#define kShortcutDescActionCurveEditorHorizontal "Horizontal Interpolation"
+#define kShortcutDescActionCurveEditorHorizontal "Горизонтальная интерполяция"
 
 #define kShortcutIDActionCurveEditorBreak "break"
-#define kShortcutDescActionCurveEditorBreak "Break"
+#define kShortcutDescActionCurveEditorBreak "Разрыв"
 
 #define kShortcutIDActionCurveEditorSelectAll "selectAll"
-#define kShortcutDescActionCurveEditorSelectAll "Select All Keyframes"
+#define kShortcutDescActionCurveEditorSelectAll "Выберать все ключевые кадры"
 
 #define kShortcutIDActionCurveEditorCenterAll "frameAll"
-#define kShortcutDescActionCurveEditorCenterAll "Frame All Curves"
+#define kShortcutDescActionCurveEditorCenterAll "Обрамление всех кривых"
 
 #define kShortcutIDActionCurveEditorCenter "center"
-#define kShortcutDescActionCurveEditorCenter "Center on Curve"
+#define kShortcutDescActionCurveEditorCenter "Центр на кривой"
 
 #define kShortcutIDActionCurveEditorCopy "copy"
-#define kShortcutDescActionCurveEditorCopy "Copy Keyframes"
+#define kShortcutDescActionCurveEditorCopy "Копировать ключевые кадры"
 
 #define kShortcutIDActionCurveEditorPaste "paste"
-#define kShortcutDescActionCurveEditorPaste "Paste Keyframes"
+#define kShortcutDescActionCurveEditorPaste "Вставить ключевые кадры"
 
 // Dope Sheet Editor shortcuts
 #define kShortcutIDActionDopeSheetEditorDeleteKeys "deleteKeys"
-#define kShortcutDescActionDopeSheetEditorDeleteKeys "Delete Selected Keyframes"
+#define kShortcutDescActionDopeSheetEditorDeleteKeys "Удалить выбранные ключевые кадры"
 
 #define kShortcutIDActionDopeSheetEditorFrameSelection "frameonselection"
-#define kShortcutDescActionDopeSheetEditorFrameSelection "Frame on Selection"
+#define kShortcutDescActionDopeSheetEditorFrameSelection "Кадр на выборе"
 
 #define kShortcutIDActionDopeSheetEditorSelectAllKeyframes "selectall"
-#define kShortcutDescActionDopeSheetEditorSelectAllKeyframes "Select All"
+#define kShortcutDescActionDopeSheetEditorSelectAllKeyframes "Выбрать всё"
 
 #define kShortcutIDActionDopeSheetEditorRenameNode "renamenode"
-#define kShortcutDescActionDopeSheetEditorRenameNode "Rename Node"
+#define kShortcutDescActionDopeSheetEditorRenameNode "Переименовать узел"
 
 #define kShortcutIDActionDopeSheetEditorCopySelectedKeyframes "copyselectedkeyframes"
-#define kShortcutDescActionDopeSheetEditorCopySelectedKeyframes "Copy Selected Keyframes"
+#define kShortcutDescActionDopeSheetEditorCopySelectedKeyframes "Копировать выбранные ключевые кадры"
 
 #define kShortcutIDActionDopeSheetEditorPasteKeyframes "pastekeyframes"
-#define kShortcutDescActionDopeSheetEditorPasteKeyframes "Paste Keyframes"
+#define kShortcutDescActionDopeSheetEditorPasteKeyframes "Вставить ключевые кадры"
 
 #define kShortcutIDActionDopeSheetEditorPasteKeyframesAbsolute "pastekeyframesAbs"
-#define kShortcutDescActionDopeSheetEditorPasteKeyframesAbsolute "Paste Keyframes Absolute"
+#define kShortcutDescActionDopeSheetEditorPasteKeyframesAbsolute "Вставить ключевые кадры Absolute"
 
 // Script editor shortcuts
 #define kShortcutIDActionScriptEditorPrevScript "prevScript"
-#define kShortcutDescActionScriptEditorPrevScript "Previous Script"
+#define kShortcutDescActionScriptEditorPrevScript "Предыдущий сценарий"
 
 #define kShortcutIDActionScriptEditorNextScript "nextScript"
-#define kShortcutDescActionScriptEditorNextScript "Next Script"
+#define kShortcutDescActionScriptEditorNextScript "Следующий сценарий"
 
 #define kShortcutIDActionScriptEditorClearHistory "clearHistory"
-#define kShortcutDescActionScriptEditorClearHistory "Clear History"
+#define kShortcutDescActionScriptEditorClearHistory "Очистить историю"
 
 #define kShortcutIDActionScriptExecScript "execScript"
-#define kShortcutDescActionScriptExecScript "Execute Script"
+#define kShortcutDescActionScriptExecScript "Выполнить сценарий"
 
 #define kShortcutIDActionScriptClearOutput "clearOutput"
 #define kShortcutDescActionScriptClearOutput "Clear Output Window"
 
 #define kShortcutIDActionScriptShowOutput "showHideOutput"
-#define kShortcutDescActionScriptShowOutput "Show/Hide Output Window"
+#define kShortcutDescActionScriptShowOutput "Показать/скрыть окно вывода"
 
 NATRON_NAMESPACE_ENTER
 
