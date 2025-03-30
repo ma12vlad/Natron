@@ -925,9 +925,9 @@ Project::initializeKnobs()
     _imp->gpuSupport->setName("gpuRendering");
     {
         std::vector<ChoiceOption> entries;
-        entries.push_back(ChoiceOption("Enabled","",tr("Включите рендеринг с помощью графического процессора, если необходимые ресурсы доступны и плагин поддерживает его.").toStdString()));
-        entries.push_back(ChoiceOption("Disabled", "", tr("Отключите рендеринг графического процессора для всех плагинов.").toStdString()));
-        entries.push_back(ChoiceOption("Disabled if background","",tr("Отключите рендеринг с помощью графического процессора при рендеринге с помощью NatronRenderer, но не в режиме графического интерфейса.").toStdString()));
+        entries.push_back(ChoiceOption("Включен","",tr("Включите рендеринг с помощью графического процессора, если необходимые ресурсы доступны и плагин поддерживает его.").toStdString()));
+        entries.push_back(ChoiceOption("Отключен", "", tr("Отключите рендеринг графического процессора для всех плагинов.").toStdString()));
+        entries.push_back(ChoiceOption("Отключен, если фон","",tr("Отключите рендеринг с помощью графического процессора при рендеринге с помощью NatronRenderer, но не в режиме графического интерфейса.").toStdString()));
         _imp->gpuSupport->populateChoices(entries);
     }
     _imp->gpuSupport->setAnimationEnabled(false);

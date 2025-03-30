@@ -1825,9 +1825,9 @@ Node::createNodePage(const KnobPagePtr& settingsPage)
         openglRenderingKnob->setAnimationEnabled(false);
         {
             std::vector<ChoiceOption> entries;
-            entries.push_back(ChoiceOption("Enabled", "", tr("Если подключаемый модуль поддерживает рендеринг на графическом процессоре, по возможности выбирайте его.").toStdString() ));
-            entries.push_back(ChoiceOption("Disabled", "", tr("Отключить Рендеринг на GPU для всех плагинов.").toStdString()));
-            entries.push_back(ChoiceOption("Disabled if background", "", tr("Отключить Рендеринг на GPU при рендеринге с помощью NatronRenderer, но не в режиме графического интерфейса.").toStdString()));
+            entries.push_back(ChoiceOption("Включен", "", tr("Если подключаемый модуль поддерживает рендеринг на графическом процессоре, по возможности выбирайте его.").toStdString() ));
+            entries.push_back(ChoiceOption("Отключен", "", tr("Отключить Рендеринг на GPU для всех плагинов.").toStdString()));
+            entries.push_back(ChoiceOption("Отключен, если фон", "", tr("Отключить Рендеринг на GPU при рендеринге с помощью NatronRenderer, но не в режиме графического интерфейса.").toStdString()));
             openglRenderingKnob->populateChoices(entries);
 
         }
