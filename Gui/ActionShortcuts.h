@@ -582,7 +582,7 @@ CLANG_DIAG_ON(uninitialized)
 #define kShortcutDescActionScriptExecScript "Выполнить сценарий"
 
 #define kShortcutIDActionScriptClearOutput "clearOutput"
-#define kShortcutDescActionScriptClearOutput "Clear Output Window"
+#define kShortcutDescActionScriptClearOutput "Очистить окно вывода"
 
 #define kShortcutIDActionScriptShowOutput "showHideOutput"
 #define kShortcutDescActionScriptShowOutput "Показать/скрыть окно вывода"
