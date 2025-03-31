@@ -41,7 +41,7 @@ def createInstance(app,group):
     lastNode = group
 
     # Create the user parameters
-    lastNode.controls = lastNode.createPageParam("controls", "Управления")
+    lastNode.controls = lastNode.createPageParam("controls", "Controls")
     param = lastNode.createColorParam("Solid1color", "Color", False)
     param.setMinimum(-2147483648, 0)
     param.setMaximum(2147483647, 0)
@@ -80,7 +80,7 @@ def createInstance(app,group):
     lastNode.Merge1operation = param
     del param
 
-    param = lastNode.createBooleanParam("Merge1enableMask_Mask", "Маска")
+    param = lastNode.createBooleanParam("Merge1enableMask_Mask", "Mask")
 
     # Add the param to the page
     lastNode.controls.addParam(param)
@@ -106,7 +106,7 @@ def createInstance(app,group):
     lastNode.Merge1maskChannel_Mask = param
     del param
 
-    param = lastNode.createBooleanParam("Merge1maskInvert", "Инвертная маску")
+    param = lastNode.createBooleanParam("Merge1maskInvert", "Invert Mask")
 
     # Add the param to the page
     lastNode.controls.addParam(param)
@@ -145,7 +145,7 @@ def createInstance(app,group):
     # Start of node "Dot1"
     lastNode = app.createNode("fr.inria.built-in.Dot", 1, group)
     lastNode.setScriptName("Dot1")
-    lastNode.setLabel("Точка1")
+    lastNode.setLabel("Dot1")
     lastNode.setPosition(809, 199)
     lastNode.setSize(15, 15)
     lastNode.setColor(0.7, 0.7, 0.7)
@@ -174,7 +174,7 @@ def createInstance(app,group):
     # Start of node "Merge1"
     lastNode = app.createNode("net.sf.openfx.MergePlugin", 1, group)
     lastNode.setScriptName("Merge1")
-    lastNode.setLabel("Поглощение1")
+    lastNode.setLabel("Merge1")
     lastNode.setPosition(1036, 302)
     lastNode.setSize(104, 56)
     lastNode.setColor(0.3, 0.37, 0.776)
@@ -191,7 +191,7 @@ def createInstance(app,group):
     # Start of node "Solid1"
     lastNode = app.createNode("net.sf.openfx.Solid", 1, group)
     lastNode.setScriptName("Solid1")
-    lastNode.setLabel("Твёрдо1")
+    lastNode.setLabel("Solid1")
     lastNode.setPosition(1261, 187)
     lastNode.setSize(80, 34)
     lastNode.setColor(0.3, 0.5, 0.2)
@@ -208,7 +208,7 @@ def createInstance(app,group):
     # Start of node "Shuffle1"
     lastNode = app.createNode("net.sf.openfx.ShufflePlugin", 2, group)
     lastNode.setScriptName("Shuffle1")
-    lastNode.setLabel("Тасовка1")
+    lastNode.setLabel("Shuffle1")
     lastNode.setPosition(764, 314)
     lastNode.setSize(104, 34)
     lastNode.setColor(0.6, 0.24, 0.39)
@@ -242,7 +242,7 @@ def createInstance(app,group):
     # Start of node "Input1"
     lastNode = app.createNode("fr.inria.built-in.Input", 1, group)
     lastNode.setScriptName("Input1")
-    lastNode.setLabel("Источник")
+    lastNode.setLabel("Source")
     lastNode.setPosition(764, 73)
     lastNode.setSize(104, 34)
     lastNode.setColor(0.3, 0.5, 0.2)
@@ -253,7 +253,7 @@ def createInstance(app,group):
 
     # Start of node "Output1"
     lastNode = app.createNode("fr.inria.built-in.Output", 1, group)
-    lastNode.setLabel("Выход1")
+    lastNode.setLabel("Output1")
     lastNode.setPosition(584, 442)
     lastNode.setSize(104, 34)
     lastNode.setColor(0.7, 0.7, 0.7)
@@ -265,7 +265,7 @@ def createInstance(app,group):
     # Start of node "Input2"
     lastNode = app.createNode("fr.inria.built-in.Input", 1, group)
     lastNode.setScriptName("Input2")
-    lastNode.setLabel("Маска")
+    lastNode.setLabel("Mask")
     lastNode.setPosition(1227, 314)
     lastNode.setSize(104, 34)
     lastNode.setColor(0.3, 0.5, 0.2)
