@@ -82,7 +82,7 @@ CLANG_DIAG_ON(uninitialized)
 #define kShortcutDescActionSaveAndIncrVersion "Новая версия проекта"
 
 #define kShortcutIDActionExportProject "exportAsGroup"
-#define kShortcutDescActionExportProject "Экспорт проекта как группа"
+#define kShortcutDescActionExportProject "Экспорт проекта как группы"
 
 #define kShortcutIDActionPreferences "preferences"
 #define kShortcutDescActionPreferences "Предпочтения ..."
