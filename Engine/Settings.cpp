@@ -898,19 +898,19 @@ Settings::initializeKnobsNodeGraphColors()
     _defaultBackdropColor =  AppManager::createKnob<KnobColor>(this, tr("Цвет фона по умолчанию"), 3);
     _defaultBackdropColor->setName("backdropColor");
     _defaultBackdropColor->setSimplified(true);
-    _defaultBackdropColor->setHintToolTip( tr("Цвет по умолчанию, используемый для вновь созданных узлов фона.") );
+    _defaultBackdropColor->setHintToolTip( tr("Цвет по умолчанию, для вновь созданных узлов фона.") );
     _nodegraphColorsTab->addKnob(_defaultBackdropColor);
 
     _defaultReaderColor =  AppManager::createKnob<KnobColor>(this, tr(PLUGIN_GROUP_IMAGE_READERS), 3);
     _defaultReaderColor->setName("readerColor");
     _defaultReaderColor->setSimplified(true);
-    _defaultReaderColor->setHintToolTip( tr("Цвет, используемый для вновь созданных узлом Чтения.") );
+    _defaultReaderColor->setHintToolTip( tr("Цвет вновь созданных узлов Чтения.") );
     _nodegraphColorsTab->addKnob(_defaultReaderColor);
 
     _defaultWriterColor =  AppManager::createKnob<KnobColor>(this, tr(PLUGIN_GROUP_IMAGE_WRITERS), 3);
     _defaultWriterColor->setName("writerColor");
     _defaultWriterColor->setSimplified(true);
-    _defaultWriterColor->setHintToolTip( tr("Цвет, используемый для вновь созданных узлом Запись.") );
+    _defaultWriterColor->setHintToolTip( tr("Цвет вновь созданных узлов Запись.") );
     _nodegraphColorsTab->addKnob(_defaultWriterColor);
 
     _defaultGeneratorColor =  AppManager::createKnob<KnobColor>(this, tr("Генераторы"), 3);
