@@ -483,7 +483,7 @@ CLANG_DIAG_ON(uninitialized)
 #define kShortcutDescActionGraphShowCacheSize "Отображение потребления кэш-памяти"
 
 #define kShortcutIDActionGraphOpenNodePanel "openSettingsPanel"
-#define kShortcutDescActionGraphOpenNodePanel "Open Node Settings Panel"
+#define kShortcutDescActionGraphOpenNodePanel "Открыть панель настроек узла"
 
 #define kShortcutIDActionGraphFrameNodes "frameNodes"
 #define kShortcutDescActionGraphFrameNodes "Центрировать по всем узлам"
