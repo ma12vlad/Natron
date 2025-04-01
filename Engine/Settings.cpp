@@ -288,7 +288,7 @@ Settings::initializeKnobsGeneral()
 void
 Settings::initializeKnobsThreading()
 {
-    _threadingPage = AppManager::createKnob<KnobPage>( this, tr("Ванизывание") );
+    _threadingPage = AppManager::createKnob<KnobPage>( this, tr("Многопоточность") );
 
     _numberOfThreads = AppManager::createKnob<KnobInt>( this, tr("Количество потоков рендеринга (0=\"guess\")") );
     _numberOfThreads->setName("noRenderThreads");
