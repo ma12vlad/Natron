@@ -86,7 +86,7 @@ NATRON_NAMESPACE_ENTER
    MdiChild *child = createMdiChild();
    if (child->loadFile(filePath))
    {
-   statusBar()->showMessage(tr("File loaded"), 2000);
+   statusBar()->showMessage(tr("Файл загружен"), 2000);
    child->show();
    }
    else

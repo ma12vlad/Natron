@@ -192,7 +192,7 @@ private:
             holderName = QString::fromUtf8( effect->getNode()->getLabel().c_str() );
         }
 
-        setText( tr("Set value of %1.%2").arg(holderName).arg( QString::fromUtf8( knob->getLabel().c_str() ) ) );
+        setText( tr("Уст значение %1.%2").arg(holderName).arg( QString::fromUtf8( knob->getLabel().c_str() ) ) );
     } // undo
 
     virtual void redo() OVERRIDE FINAL
@@ -276,7 +276,7 @@ private:
             holderName = QString::fromUtf8( effect->getNode()->getLabel().c_str() );
         }
 
-        setText( tr("Set value of %1.%2").arg(holderName).arg( QString::fromUtf8( knob->getLabel().c_str() ) ) );
+        setText( tr("Уст значение %1.%2").arg(holderName).arg( QString::fromUtf8( knob->getLabel().c_str() ) ) );
 
         _firstRedoCalled = true;
     } // redo
