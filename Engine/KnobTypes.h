@@ -1174,9 +1174,9 @@ public:
     virtual std::string getColumnLabel(int col) const OVERRIDE FINAL
     {
         if (col == 0) {
-            return tr("Name").toStdString();
+            return tr("Имя").toStdString();
         } else if (col == 1) {
-            return tr("Channels").toStdString();
+            return tr("Каналы").toStdString();
         } else {
             return std::string();
         }

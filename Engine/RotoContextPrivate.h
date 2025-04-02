@@ -106,7 +106,7 @@ CLANG_DIAG_ON(uninitialized)
     "Control whether the layer/curve is editable or locked."
 
 #define kRotoInvertedParam "inverted"
-#define kRotoInvertedParamLabel "Inverted"
+#define kRotoInvertedParamLabel "Инвертировать"
 
 #define kRotoInvertedHint \
     "Controls whether the selected shape(s) should be inverted. When inverted everything " \
@@ -115,7 +115,7 @@ CLANG_DIAG_ON(uninitialized)
 #define kRotoOverlayHint "Color of the display overlay for this curve. Doesn't affect output."
 
 #define kRotoColorParam "color"
-#define kRotoColorParamLabel "Color"
+#define kRotoColorParamLabel "Цвет"
 #define kRotoColorHint \
     "The color of the shape. This parameter is used when the output components are set to RGBA."
 
@@ -128,14 +128,14 @@ CLANG_DIAG_ON(uninitialized)
     "See http://cairographics.org/operators/ for a full description of available operators."
 
 #define kRotoBrushSourceColor "sourceType"
-#define kRotoBrushSourceColorLabel "Source"
+#define kRotoBrushSourceColorLabel "Источник"
 #define kRotoBrushSourceColorHint "Source color used for painting the stroke when the Reveal/Clone tools are used."
 #define kRotoBrushSourceColorOptionForegroundHint "The painted result at this point in the hierarchy."
 #define kRotoBrushSourceColorOptionBackgroundHint "The original image unpainted connected to bg."
 #define kRotoBrushSourceColorOptionBackgroundNHint "The original image unpainted connected to bg%1."
 
 #define kRotoBrushSizeParam "brushSize"
-#define kRotoBrushSizeParamLabel "Brush Size"
+#define kRotoBrushSizeParamLabel "Размер кисти"
 #define kRotoBrushSizeParamHint "This is the diameter of the brush in pixels. Shift + drag on the viewer to modify this value"
 
 #define kRotoBrushSpacingParam "brushSpacing"
@@ -143,15 +143,15 @@ CLANG_DIAG_ON(uninitialized)
 #define kRotoBrushSpacingParamHint "Spacing between stamps of the paint brush"
 
 #define kRotoBrushHardnessParam "brushHardness"
-#define kRotoBrushHardnessParamLabel "Brush Hardness"
+#define kRotoBrushHardnessParamLabel "Жесткость кисти"
 #define kRotoBrushHardnessParamHint "Fall off of the brush effect from the center to the edge"
 
 #define kRotoBrushEffectParam "brushEffect"
-#define kRotoBrushEffectParamLabel "Brush effect"
+#define kRotoBrushEffectParamLabel "Эффект кисти"
 #define kRotoBrushEffectParamHint "The strength of the effect"
 
 #define kRotoBrushVisiblePortionParam "strokeVisiblePortion"
-#define kRotoBrushVisiblePortionParamLabel "Visible portion"
+#define kRotoBrushVisiblePortionParamLabel "Видимая часть"
 #define kRotoBrushVisiblePortionParamHint "Defines the range of the stroke that should be visible: 0 is the start of the stroke and 1 the end."
 
 #define kRotoBrushPressureLabelParam "pressureAlters"
@@ -159,11 +159,11 @@ CLANG_DIAG_ON(uninitialized)
 #define kRotoBrushPressureLabelParamHint ""
 
 #define kRotoBrushPressureOpacityParam "pressureOpacity"
-#define kRotoBrushPressureOpacityParamLabel "Opacity"
+#define kRotoBrushPressureOpacityParamLabel "Непрозрачность"
 #define kRotoBrushPressureOpacityParamHint "Alters the opacity of the paint brush proportionate to changes in pen pressure"
 
 #define kRotoBrushPressureSizeParam "pressureSize"
-#define kRotoBrushPressureSizeParamLabel "Size"
+#define kRotoBrushPressureSizeParamLabel "Размер"
 #define kRotoBrushPressureSizeParamHint "Alters the size of the paint brush proportionate to changes in pen pressure"
 
 #define kRotoBrushPressureHardnessParam "pressureHardness"
@@ -184,43 +184,43 @@ CLANG_DIAG_ON(uninitialized)
 #define kRotoBrushTimeOffsetModeParamHint "Time offset mode: when in absolute mode, this is the frame number of the source, when in relative mode, this is an offset relative to the current frame."
 
 #define kRotoBrushTranslateParam "cloneTranslate"
-#define kRotoBrushTranslateParamLabel "Translate"
+#define kRotoBrushTranslateParamLabel "Перенос"
 #define kRotoBrushTranslateParamHint ""
 
 #define kRotoBrushRotateParam "cloneRotate"
-#define kRotoBrushRotateParamLabel "Rotate"
+#define kRotoBrushRotateParamLabel "Вращение"
 #define kRotoBrushRotateParamHint ""
 
 #define kRotoBrushScaleParam "cloneScale"
-#define kRotoBrushScaleParamLabel "Scale"
+#define kRotoBrushScaleParamLabel "Шкала"
 #define kRotoBrushScaleParamHint ""
 
 #define kRotoBrushScaleUniformParam "cloneUniform"
-#define kRotoBrushScaleUniformParamLabel "Uniform"
+#define kRotoBrushScaleUniformParamLabel "Равномерно"
 #define kRotoBrushScaleUniformParamHint ""
 
 #define kRotoBrushSkewXParam "cloneSkewx"
-#define kRotoBrushSkewXParamLabel "Skew X"
+#define kRotoBrushSkewXParamLabel "Перекос X"
 #define kRotoBrushSkewXParamHint ""
 
 #define kRotoBrushSkewYParam "cloneSkewy"
-#define kRotoBrushSkewYParamLabel "Skew Y"
+#define kRotoBrushSkewYParamLabel "Перекос Y"
 #define kRotoBrushSkewYParamHint ""
 
 #define kRotoBrushSkewOrderParam "cloneSkewOrder"
-#define kRotoBrushSkewOrderParamLabel "Skew Order"
+#define kRotoBrushSkewOrderParamLabel "Порядок перекоса"
 #define kRotoBrushSkewOrderParamHint ""
 
 #define kRotoBrushCenterParam "cloneCenter"
-#define kRotoBrushCenterParamLabel "Center"
+#define kRotoBrushCenterParamLabel "Центр"
 #define kRotoBrushCenterParamHint ""
 
 #define kRotoBrushFilterParam "cloneFilter"
-#define kRotoBrushFilterParamLabel "Filter"
+#define kRotoBrushFilterParamLabel "Фильтр"
 #define kRotoBrushFilterParamHint "Filtering algorithm - some filters may produce values outside of the initial range (*) or modify the values even if there is no movement (+)."
 
 #define kRotoBrushBlackOutsideParam "blackOutside"
-#define kRotoBrushBlackOutsideParamLabel "Black Outside"
+#define kRotoBrushBlackOutsideParamLabel "Черный снаружи"
 #define kRotoBrushBlackOutsideParamHint "Fill the area outside the source image with black"
 
 #define kFilterImpulse "Impulse"
@@ -274,7 +274,7 @@ CLANG_DIAG_ON(uninitialized)
 #define kRotoDrawableItemSkewOrderParamHint ""
 
 #define kRotoDrawableItemCenterParam "center"
-#define kRotoDrawableItemCenterParamLabel "Center"
+#define kRotoDrawableItemCenterParamLabel "Центр"
 #define kRotoDrawableItemCenterParamHint ""
 
 #define kRotoDrawableItemExtraMatrixParam "extraMatrix"
@@ -310,23 +310,23 @@ enum RotoPaintItemLifeTimeTypeEnum
 };
 
 #define kRotoDrawableItemLifeTimeFrameParam "lifeTimeFrame"
-#define kRotoDrawableItemLifeTimeFrameParamLabel "Frame"
+#define kRotoDrawableItemLifeTimeFrameParamLabel "Рамка"
 #define kRotoDrawableItemLifeTimeFrameParamHint "Use this to specify the frame when in mode Single/From start/To end"
 
 #define kRotoResetCloneTransformParam "resetCloneTransform"
-#define kRotoResetCloneTransformParamLabel "Reset Transform"
+#define kRotoResetCloneTransformParamLabel "Сброс Трансформ"
 #define kRotoResetCloneTransformParamHint "Reset the clone transform to an identity"
 
 #define kRotoResetTransformParam "resetTransform"
-#define kRotoResetTransformParamLabel "Reset Transform"
+#define kRotoResetTransformParamLabel "Сброс Трансформ"
 #define kRotoResetTransformParamHint "Reset the transform to an identity"
 
 #define kRotoResetCloneCenterParam "resetCloneCenter"
-#define kRotoResetCloneCenterParamLabel "Reset Center"
+#define kRotoResetCloneCenterParamLabel "Сброс центра"
 #define kRotoResetCloneCenterParamHint "Reset the clone transform center"
 
 #define kRotoResetCenterParam "resetTransformCenter"
-#define kRotoResetCenterParamLabel "Reset Center"
+#define kRotoResetCenterParamLabel "Сброс центра"
 #define kRotoResetCenterParamHint "Reset the transform center"
 
 #define kRotoTransformInteractive "RotoTransformInteractive"
@@ -1427,11 +1427,11 @@ public:
 
         KnobPagePtr shapePage, strokePage, generalPage, clonePage, transformPage;
 
-        generalPage = AppManager::createKnob<KnobPage>(effect.get(), tr("General"), 1, true);
-        shapePage = AppManager::createKnob<KnobPage>(effect.get(), tr("Shape"), 1, true);
-        strokePage = AppManager::createKnob<KnobPage>(effect.get(), tr("Stroke"), 1, true);
-        clonePage = AppManager::createKnob<KnobPage>(effect.get(), tr("Clone"), 1, true);
-        transformPage = AppManager::createKnob<KnobPage>(effect.get(), tr("Transform"), 1, true);
+        generalPage = AppManager::createKnob<KnobPage>(effect.get(), tr("Общие"), 1, true);
+        shapePage = AppManager::createKnob<KnobPage>(effect.get(), tr("Форма"), 1, true);
+        strokePage = AppManager::createKnob<KnobPage>(effect.get(), tr("Штрихи"), 1, true);
+        clonePage = AppManager::createKnob<KnobPage>(effect.get(), tr("Клон"), 1, true);
+        transformPage = AppManager::createKnob<KnobPage>(effect.get(), tr("Трансформ"), 1, true);
 
         KnobDoublePtr opacityKnob = AppManager::createKnob<KnobDouble>(effect.get(), tr(kRotoOpacityParamLabel), 1, true);
         opacityKnob->setHintToolTip( tr(kRotoOpacityHint) );
@@ -2028,7 +2028,7 @@ public:
 
 
 #ifdef NATRON_ROTO_ENABLE_MOTION_BLUR
-        KnobPagePtr mbPage = AppManager::createKnob<KnobPage>(effect.get(), tr("Motion Blur"), 1, true);
+        KnobPagePtr mbPage = AppManager::createKnob<KnobPage>(effect.get(), tr("Размытие"), 1, true);
         KnobChoicePtr motionBlurType = AppManager::createKnob<KnobChoice>(effect.get(), tr(kRotoMotionBlurModeParamLabel), 1, true);
         motionBlurType->setName(kRotoMotionBlurModeParam);
         motionBlurType->setHintToolTip( tr(kRotoMotionBlurModeParamHint) );

@@ -83,15 +83,15 @@ public:
 
     virtual std::string getPluginDescription() const OVERRIDE FINAL WARN_UNUSED_RETURN
     {
-        return tr("This node caches all images of the connected input node onto the disk with full 32bit floating point raw data. "
-                  "When an image is found in the cache, %1 will then not request the input branch to render out that image. "
-                  "The DiskCache node only caches full images and does not split up the images in chunks.  "
-                  "The DiskCache node is useful if working with a large and complex node tree: this allows one to break the tree into smaller "
-                  "branches and cache any branch that you're no longer working on. The cached images are saved by default in the same directory that is used "
-                  "for the viewer cache but you can set its location and size in the preferences. A solid state drive disk is recommended for efficiency of this node. "
-                  "By default all images that pass into the node are cached but they depend on the zoom-level of the viewer. For convenience you can cache "
-                  "a specific frame range at scale 100% much like a writer node would do.\n"
-                  "WARNING: The DiskCache node must be part of the tree when you want to read cached data from it.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString();
+        return tr("Этот узел кэширует все изображения входного узла на диск с полными 32-бит необработанными данными с плавающей запятой. "
+                  "Если изображение найдено в кэше, %1 не будет запрашивать входную ветвь для отображения изображения. "
+                  "Узел DiskCache кэширует только полные изображения и не разбивает их на фрагменты.  "
+                  "Узел DiskCache полезен при работе с большим и сложным деревом узлов: это позволяет разбить дерево на более мелкие "
+                  "ветки и кэшировать любую ветку, с которой вы больше не работаете. Кэшированные изображения по умолчанию сохраняются в каталоге, который используется "
+                  "для кэша просмотра, но можно установить его местоположение и размер в предпочтения. Для эффективности работы этого узла рекомендуется использовать твердотельный накопитель. "
+                  "По умолчанию изображения, которые попадают в узел, кэшируются, но они зависят от уровня масштабирования средства просмотра. Для удобства вы можете кэшировать "
+                  "определенный диапазон кадров в масштабе 100%, как это сделал бы узел записи.\n"
+                  "ВНИМАНИЕ: Узел DiskCache должен быть частью дерева, если вы хотите прочитать из него кэшированные данные.").arg( QString::fromUtf8(NATRON_APPLICATION_NAME) ).toStdString();
     }
 
     virtual void getPluginGrouping(std::list<std::string>* grouping) const OVERRIDE FINAL
