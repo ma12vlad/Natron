@@ -35,14 +35,14 @@
 #define kNatronWriteNodeParamEncodingPluginID "encodingPluginID"
 
 #define kNatronWriteParamFrameStep "frameIncr"
-#define kNatronWriteParamFrameStepLabel "Frame Increment"
-#define kNatronWriteParamFrameStepHint "The number of frames the timeline should step before rendering the new frame. " \
-    "If 1, all frames will be rendered, if 2 only 1 frame out of 2, " \
-    "etc. This number cannot be less than 1."
+#define kNatronWriteParamFrameStepLabel "Увеличение кадров"
+#define kNatronWriteParamFrameStepHint "Количество кадров, на которые должна перейти временная шкала перед рендерингом нового кадра. " \
+    "Если 1, то будут отображены все кадры, если 2, то только 1 кадр из 2 и т.д. " \
+    "Это число не может быть меньше 1."
 
 #define kNatronWriteParamReadBack "readBack"
-#define kNatronWriteParamReadBackLabel "Read back file"
-#define kNatronWriteParamReadBackHint "When checked, the output of this node comes from reading the written file instead of the input node"
+#define kNatronWriteParamReadBackLabel "Прочитать обратно файл"
+#define kNatronWriteParamReadBackHint "Флажок-выходные данные узла получаются в результате чтения записанного файла, а не входного узла"
 
 #define kNatronWriteParamStartRender "startRender"
 
