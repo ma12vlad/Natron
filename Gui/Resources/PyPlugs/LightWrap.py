@@ -65,7 +65,7 @@ def createInstance(app,group):
     lastNode.diffuse = param
     del param
 
-    param = lastNode.createDoubleParam("intensity", "Intensity")
+    param = lastNode.createDoubleParam("intensity", "Интенсивность")
     param.setMinimum(0, 0)
     param.setMaximum(100, 0)
     param.setDisplayMinimum(0, 0)
@@ -81,7 +81,7 @@ def createInstance(app,group):
     lastNode.intensity = param
     del param
 
-    param = lastNode.createBooleanParam("onlyWrap", "Generate Wrap Only")
+    param = lastNode.createBooleanParam("onlyWrap", "Генерировать только обёртку")
 
     # Add the param to the page
     lastNode.controlsPage.addParam(param)
@@ -93,25 +93,25 @@ def createInstance(app,group):
     lastNode.onlyWrap = param
     del param
 
-    param = lastNode.createBooleanParam("disableLuma", "Disable luminance-Based Wrap")
+    param = lastNode.createBooleanParam("disableLuma", "Отключить перенос по яркости")
 
     # Add the param to the page
     lastNode.controlsPage.addParam(param)
 
     # Set param properties
-    param.setHelp("When checked, the LightWrap effect is created uniformly around the edged, rather than being controled by the color of the background.")
+    param.setHelp("Если флажок установлен, эффект световой завесы создается равномерно по краям, а не зависит от цвета фона.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(False)
     lastNode.disableLuma = param
     del param
 
-    param = lastNode.createBooleanParam("enableGlow", "Enable Glow")
+    param = lastNode.createBooleanParam("enableGlow", "Включить сияние")
 
     # Add the param to the page
     lastNode.controlsPage.addParam(param)
 
     # Set param properties
-    param.setHelp("When checked, the LightWrap is not masked by the foreground object, so that the objects seems to glow.")
+    param.setHelp("Если флажок установлен, световая завеса не маскируется объектом переднего плана, так что кажется, что объекты светятся.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(False)
     lastNode.enableGlow = param
@@ -173,7 +173,7 @@ def createInstance(app,group):
     lastNode.bgblur = param
     del param
 
-    param = lastNode.createDoubleParam("saturation", "Saturation")
+    param = lastNode.createDoubleParam("saturation", "Насыщенность")
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0, 0)
@@ -191,7 +191,7 @@ def createInstance(app,group):
     lastNode.saturation = param
     del param
 
-    param = lastNode.createDoubleParam("lumaTolerance", "Luma Tolerance")
+    param = lastNode.createDoubleParam("lumaTolerance", "Допустимая яркость")
     param.setMinimum(0, 0)
     param.setMaximum(1, 0)
     param.setDisplayMinimum(0, 0)
@@ -207,7 +207,7 @@ def createInstance(app,group):
     lastNode.lumaTolerance = param
     del param
 
-    param = lastNode.createChoiceParam("highlightmerge", "Highlight Merge")
+    param = lastNode.createChoiceParam("highlightmerge", "Выделить слияние")
     param.setDefaultValue(31)
     param.restoreDefaultValue()
 
@@ -221,7 +221,7 @@ def createInstance(app,group):
     lastNode.highlightmerge = param
     del param
 
-    param = lastNode.createBooleanParam("useConstant", "Use Constant Highlight")
+    param = lastNode.createBooleanParam("useConstant", "Использовать постоянную подсветку")
 
     # Add the param to the page
     lastNode.controlsPage.addParam(param)
@@ -283,7 +283,7 @@ def createInstance(app,group):
     lastNode.masterGroup = param
     del param
 
-    param = lastNode.createColorParam("ColorCorrect1MasterSaturation", "Saturation", True)
+    param = lastNode.createColorParam("ColorCorrect1MasterSaturation", "Насыщенность", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0, 0)
@@ -318,7 +318,7 @@ def createInstance(app,group):
     lastNode.ColorCorrect1MasterSaturation = param
     del param
 
-    param = lastNode.createColorParam("ColorCorrect1MasterContrast", "Contrast", True)
+    param = lastNode.createColorParam("ColorCorrect1MasterContrast", "Контраст", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0, 0)
@@ -353,7 +353,7 @@ def createInstance(app,group):
     lastNode.ColorCorrect1MasterContrast = param
     del param
 
-    param = lastNode.createColorParam("ColorCorrect1MasterGamma", "Gamma", True)
+    param = lastNode.createColorParam("ColorCorrect1MasterGamma", "Гамма", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0.2, 0)
@@ -388,7 +388,7 @@ def createInstance(app,group):
     lastNode.ColorCorrect1MasterGamma = param
     del param
 
-    param = lastNode.createColorParam("ColorCorrect1MasterGain", "Gain", True)
+    param = lastNode.createColorParam("ColorCorrect1MasterGain", "Зерно", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0, 0)
@@ -423,7 +423,7 @@ def createInstance(app,group):
     lastNode.ColorCorrect1MasterGain = param
     del param
 
-    param = lastNode.createColorParam("ColorCorrect1MasterOffset", "Offset", True)
+    param = lastNode.createColorParam("ColorCorrect1MasterOffset", "Смещение", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(-1, 0)
@@ -450,7 +450,7 @@ def createInstance(app,group):
     lastNode.ColorCorrect1MasterOffset = param
     del param
 
-    param = lastNode.createGroupParam("shadowsGroup", "Shadows")
+    param = lastNode.createGroupParam("shadowsGroup", "Тени")
 
     # Add the param to the page
     lastNode.colorCorrectPage.addParam(param)
@@ -463,7 +463,7 @@ def createInstance(app,group):
     lastNode.shadowsGroup = param
     del param
 
-    param = lastNode.createBooleanParam("ColorCorrect1ShadowsEnable", "Enable")
+    param = lastNode.createBooleanParam("ColorCorrect1ShadowsEnable", "Включено")
     param.setDefaultValue(True)
     param.restoreDefaultValue()
 
@@ -477,7 +477,7 @@ def createInstance(app,group):
     lastNode.ColorCorrect1ShadowsEnable = param
     del param
 
-    param = lastNode.createColorParam("ColorCorrect1ShadowsSaturation", "Saturation", True)
+    param = lastNode.createColorParam("ColorCorrect1ShadowsSaturation", "Насыщенность", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0, 0)
@@ -512,7 +512,7 @@ def createInstance(app,group):
     lastNode.ColorCorrect1ShadowsSaturation = param
     del param
 
-    param = lastNode.createColorParam("ColorCorrect1ShadowsContrast", "Contrast", True)
+    param = lastNode.createColorParam("ColorCorrect1ShadowsContrast", "Контраст", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0, 0)
@@ -547,7 +547,7 @@ def createInstance(app,group):
     lastNode.ColorCorrect1ShadowsContrast = param
     del param
 
-    param = lastNode.createColorParam("ColorCorrect1ShadowsGamma", "Gamma", True)
+    param = lastNode.createColorParam("ColorCorrect1ShadowsGamma", "Гамма", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0.2, 0)
@@ -582,7 +582,7 @@ def createInstance(app,group):
     lastNode.ColorCorrect1ShadowsGamma = param
     del param
 
-    param = lastNode.createColorParam("ColorCorrect1ShadowsGain", "Gain", True)
+    param = lastNode.createColorParam("ColorCorrect1ShadowsGain", "Зерно", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0, 0)
@@ -617,7 +617,7 @@ def createInstance(app,group):
     lastNode.ColorCorrect1ShadowsGain = param
     del param
 
-    param = lastNode.createColorParam("ColorCorrect1ShadowsOffset", "Offset", True)
+    param = lastNode.createColorParam("ColorCorrect1ShadowsOffset", "Смещение", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(-1, 0)
@@ -657,7 +657,7 @@ def createInstance(app,group):
     lastNode.midtonesGroup = param
     del param
 
-    param = lastNode.createBooleanParam("ColorCorrect1MidtonesEnable", "Enable")
+    param = lastNode.createBooleanParam("ColorCorrect1MidtonesEnable", "Включено")
     param.setDefaultValue(True)
     param.restoreDefaultValue()
 
@@ -671,7 +671,7 @@ def createInstance(app,group):
     lastNode.ColorCorrect1MidtonesEnable = param
     del param
 
-    param = lastNode.createColorParam("ColorCorrect1MidtonesSaturation", "Saturation", True)
+    param = lastNode.createColorParam("ColorCorrect1MidtonesSaturation", "Насыщенность", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0, 0)
@@ -706,7 +706,7 @@ def createInstance(app,group):
     lastNode.ColorCorrect1MidtonesSaturation = param
     del param
 
-    param = lastNode.createColorParam("ColorCorrect1MidtonesContrast", "Contrast", True)
+    param = lastNode.createColorParam("ColorCorrect1MidtonesContrast", "Контраст", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0, 0)
@@ -741,7 +741,7 @@ def createInstance(app,group):
     lastNode.ColorCorrect1MidtonesContrast = param
     del param
 
-    param = lastNode.createColorParam("ColorCorrect1MidtonesGamma", "Gamma", True)
+    param = lastNode.createColorParam("ColorCorrect1MidtonesGamma", "Гамма", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0.2, 0)
@@ -776,7 +776,7 @@ def createInstance(app,group):
     lastNode.ColorCorrect1MidtonesGamma = param
     del param
 
-    param = lastNode.createColorParam("ColorCorrect1MidtonesGain", "Gain", True)
+    param = lastNode.createColorParam("ColorCorrect1MidtonesGain", "Зерно", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0, 0)
@@ -811,7 +811,7 @@ def createInstance(app,group):
     lastNode.ColorCorrect1MidtonesGain = param
     del param
 
-    param = lastNode.createColorParam("ColorCorrect1MidtonesOffset", "Offset", True)
+    param = lastNode.createColorParam("ColorCorrect1MidtonesOffset", "Смещение", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(-1, 0)
@@ -851,7 +851,7 @@ def createInstance(app,group):
     lastNode.highlightsGroup = param
     del param
 
-    param = lastNode.createBooleanParam("ColorCorrect1HighlightsEnable", "Enable")
+    param = lastNode.createBooleanParam("ColorCorrect1HighlightsEnable", "Включено")
     param.setDefaultValue(True)
     param.restoreDefaultValue()
 
@@ -865,7 +865,7 @@ def createInstance(app,group):
     lastNode.ColorCorrect1HighlightsEnable = param
     del param
 
-    param = lastNode.createColorParam("ColorCorrect1HighlightsSaturation", "Saturation", True)
+    param = lastNode.createColorParam("ColorCorrect1HighlightsSaturation", "Насыщенность", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0, 0)
@@ -900,7 +900,7 @@ def createInstance(app,group):
     lastNode.ColorCorrect1HighlightsSaturation = param
     del param
 
-    param = lastNode.createColorParam("ColorCorrect1HighlightsContrast", "Contrast", True)
+    param = lastNode.createColorParam("ColorCorrect1HighlightsContrast", "Контраст", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0, 0)
@@ -935,7 +935,7 @@ def createInstance(app,group):
     lastNode.ColorCorrect1HighlightsContrast = param
     del param
 
-    param = lastNode.createColorParam("ColorCorrect1HighlightsGamma", "Gamma", True)
+    param = lastNode.createColorParam("ColorCorrect1HighlightsGamma", "Гамма", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0.2, 0)
@@ -970,7 +970,7 @@ def createInstance(app,group):
     lastNode.ColorCorrect1HighlightsGamma = param
     del param
 
-    param = lastNode.createColorParam("ColorCorrect1HighlightsGain", "Gain", True)
+    param = lastNode.createColorParam("ColorCorrect1HighlightsGain", "Зерно", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0, 0)
@@ -1005,7 +1005,7 @@ def createInstance(app,group):
     lastNode.ColorCorrect1HighlightsGain = param
     del param
 
-    param = lastNode.createColorParam("ColorCorrect1HighlightsOffset", "Offset", True)
+    param = lastNode.createColorParam("ColorCorrect1HighlightsOffset", "Смещение", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(-1, 0)
