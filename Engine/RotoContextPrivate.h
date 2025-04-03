@@ -88,19 +88,19 @@ CLANG_DIAG_ON(uninitialized)
 #define kRotoFeatherParam "feather"
 #define kRotoFeatherParamLabel "Перо"
 #define kRotoFeatherHint \
-    "Controls the distance of feather (in pixels) to add around the selected shape(s)"
+    "Управляет расстоянием растушевки (в пикс), добавляемой вокруг выбранных фигур"
 
 #define kRotoFeatherFallOffParam "featherFallOff"
 #define kRotoFeatherFallOffParamLabel "Feather fall-off"
 #define kRotoFeatherFallOffHint \
-    "Controls the rate at which the feather is applied on the selected shape(s)."
+    "Управляет скоростью, с которой растушевка наносится на выбранные фигуры."
 
 #define kRotoActivatedParam "activated"
 #define kRotoActivatedParamLabel "Активирован"
 #define kRotoActivatedHint \
-    "Controls whether the selected shape(s) should be rendered or not." \
-    "Note that you can animate this parameter so you can activate/deactivate the shape " \
-    "throughout the time."
+    "Определяет, следует ли отображать выбранные фигуры или нет." \
+    "Можете изменить этот параметр, чтобы активировать / деактивировать фигуру " \
+    "в течение всего времени."
 
 #define kRotoLockedHint \
     "Control whether the layer/curve is editable or locked."
@@ -112,12 +112,12 @@ CLANG_DIAG_ON(uninitialized)
     "Controls whether the selected shape(s) should be inverted. When inverted everything " \
     "outside the shape will be set to 1 and everything inside the shape will be set to 0."
 
-#define kRotoOverlayHint "Color of the display overlay for this curve. Doesn't affect output."
+#define kRotoOverlayHint "Цвет отображаемого наложения для этой кривой. Не влияет на выходные данные."
 
 #define kRotoColorParam "color"
 #define kRotoColorParamLabel "Цвет"
 #define kRotoColorHint \
-    "The color of the shape. This parameter is used when the output components are set to RGBA."
+    "Цвет фигуры. Этот параметр используется, когда для выходных компонентов задано значение RGBA."
 
 #define kRotoCompOperatorParam "operator"
 #define kRotoCompOperatorParamLabel "Оператор"
@@ -129,22 +129,22 @@ CLANG_DIAG_ON(uninitialized)
 
 #define kRotoBrushSourceColor "sourceType"
 #define kRotoBrushSourceColorLabel "Источник"
-#define kRotoBrushSourceColorHint "Source color used for painting the stroke when the Reveal/Clone tools are used."
-#define kRotoBrushSourceColorOptionForegroundHint "The painted result at this point in the hierarchy."
-#define kRotoBrushSourceColorOptionBackgroundHint "The original image unpainted connected to bg."
-#define kRotoBrushSourceColorOptionBackgroundNHint "The original image unpainted connected to bg%1."
+#define kRotoBrushSourceColorHint "Исходный цвет для закрашивания обводки при использовании инструментов Раскрытия/клонирования."
+#define kRotoBrushSourceColorOptionForegroundHint "Отображаемый результат на данном этапе иерархии."
+#define kRotoBrushSourceColorOptionBackgroundHint "Исходное изображение, не закрашенное, подключено к bg."
+#define kRotoBrushSourceColorOptionBackgroundNHint "Исходное изображение, не закрашенное, подключено к bg%1."
 
 #define kRotoBrushSizeParam "brushSize"
 #define kRotoBrushSizeParamLabel "Размер кисти"
-#define kRotoBrushSizeParamHint "This is the diameter of the brush in pixels. Shift + drag on the viewer to modify this value"
+#define kRotoBrushSizeParamHint "Это диаметр кисти в пикселях. Shift + перетащите курсор мыши, чтобы изменить это значение"
 
 #define kRotoBrushSpacingParam "brushSpacing"
-#define kRotoBrushSpacingParamLabel "Brush Spacing"
-#define kRotoBrushSpacingParamHint "Spacing between stamps of the paint brush"
+#define kRotoBrushSpacingParamLabel "Густота кисти"
+#define kRotoBrushSpacingParamHint "Расстояние между штампами кисти для рисования"
 
 #define kRotoBrushHardnessParam "brushHardness"
 #define kRotoBrushHardnessParamLabel "Жёсткость кисти"
-#define kRotoBrushHardnessParamHint "Fall off of the brush effect from the center to the edge"
+#define kRotoBrushHardnessParamHint "Уменьшите эффект кисти от центра к краю"
 
 #define kRotoBrushEffectParam "brushEffect"
 #define kRotoBrushEffectParamLabel "Эффект кисти"
@@ -152,7 +152,7 @@ CLANG_DIAG_ON(uninitialized)
 
 #define kRotoBrushVisiblePortionParam "strokeVisiblePortion"
 #define kRotoBrushVisiblePortionParamLabel "Видимая часть"
-#define kRotoBrushVisiblePortionParamHint "Defines the range of the stroke that should be visible: 0 is the start of the stroke and 1 the end."
+#define kRotoBrushVisiblePortionParamHint "Определяет диапазон обводки, который должен быть виден: 0 - начало обводки, 1 - конец."
 
 #define kRotoBrushPressureLabelParam "pressureAlters"
 #define kRotoBrushPressureLabelParamLabel "Изменение нажима"
@@ -160,19 +160,19 @@ CLANG_DIAG_ON(uninitialized)
 
 #define kRotoBrushPressureOpacityParam "pressureOpacity"
 #define kRotoBrushPressureOpacityParamLabel "Непрозрачность"
-#define kRotoBrushPressureOpacityParamHint "Alters the opacity of the paint brush proportionate to changes in pen pressure"
+#define kRotoBrushPressureOpacityParamHint "Изменяет непрозрачность кисти пропорционально изменению давления пера"
 
 #define kRotoBrushPressureSizeParam "pressureSize"
 #define kRotoBrushPressureSizeParamLabel "Размер"
-#define kRotoBrushPressureSizeParamHint "Alters the size of the paint brush proportionate to changes in pen pressure"
+#define kRotoBrushPressureSizeParamHint "Изменяет размер кисти пропорционально изменению давления пера"
 
 #define kRotoBrushPressureHardnessParam "pressureHardness"
 #define kRotoBrushPressureHardnessParamLabel "Твёрдость"
-#define kRotoBrushPressureHardnessParamHint "Alters the hardness of the paint brush proportionate to changes in pen pressure"
+#define kRotoBrushPressureHardnessParamHint "Изменяет жесткость кисти пропорционально изменению давления пера"
 
 #define kRotoBrushBuildupParam "buildUp"
 #define kRotoBrushBuildupParamLabel "Нарастание"
-#define kRotoBrushBuildupParamHint "When checked, the paint stroke builds up when painted over itself"
+#define kRotoBrushBuildupParamHint "Если этот флажок установлен, то при закрашивании мазок краски сам по себе накапливается"
 
 #define kRotoBrushTimeOffsetParam "timeOffset"
 #define kRotoBrushTimeOffsetParamLabel "Смещение времени клонирования"
@@ -181,7 +181,7 @@ CLANG_DIAG_ON(uninitialized)
 
 #define kRotoBrushTimeOffsetModeParam "timeOffsetMode"
 #define kRotoBrushTimeOffsetModeParamLabel "Режим"
-#define kRotoBrushTimeOffsetModeParamHint "Time offset mode: when in absolute mode, this is the frame number of the source, when in relative mode, this is an offset relative to the current frame."
+#define kRotoBrushTimeOffsetModeParamHint "Режим смещения по времени: в абсолютном режиме это номер кадра источника, в относительном режиме это смещение относительно текущего рамка."
 
 #define kRotoBrushTranslateParam "cloneTranslate"
 #define kRotoBrushTranslateParamLabel "Трансляция"
@@ -217,11 +217,11 @@ CLANG_DIAG_ON(uninitialized)
 
 #define kRotoBrushFilterParam "cloneFilter"
 #define kRotoBrushFilterParamLabel "Фильтр"
-#define kRotoBrushFilterParamHint "Filtering algorithm - some filters may produce values outside of the initial range (*) or modify the values even if there is no movement (+)."
+#define kRotoBrushFilterParamHint "Алгоритм фильтрации - некоторые фильтры могут выдавать значения, выходящие за пределы исходного диапазона (*), или изменять значения, даже если движение отсутствует (+)."
 
 #define kRotoBrushBlackOutsideParam "blackOutside"
 #define kRotoBrushBlackOutsideParamLabel "Чёрный вокруг"
-#define kRotoBrushBlackOutsideParamHint "Fill the area outside the source image with black"
+#define kRotoBrushBlackOutsideParamHint "Заполните область за пределами изображения черным цветом"
 
 #define kFilterImpulse "Impulse"
 #define kFilterImpulseHint "(nearest neighbor / box) Use original values."
@@ -310,31 +310,31 @@ enum RotoPaintItemLifeTimeTypeEnum
 };
 
 #define kRotoDrawableItemLifeTimeFrameParam "lifeTimeFrame"
-#define kRotoDrawableItemLifeTimeFrameParamLabel "Frame"
-#define kRotoDrawableItemLifeTimeFrameParamHint "Use this to specify the frame when in mode Single/From start/To end"
+#define kRotoDrawableItemLifeTimeFrameParamLabel "Рамка"
+#define kRotoDrawableItemLifeTimeFrameParamHint "Используйте это для указания кадра в режиме Single/От начала/до конца"
 
 #define kRotoResetCloneTransformParam "resetCloneTransform"
-#define kRotoResetCloneTransformParamLabel "Reset Transform"
-#define kRotoResetCloneTransformParamHint "Reset the clone transform to an identity"
+#define kRotoResetCloneTransformParamLabel "Сброс транформ"
+#define kRotoResetCloneTransformParamHint "Сбросьте преобразование клона в идентификатор"
 
 #define kRotoResetTransformParam "resetTransform"
-#define kRotoResetTransformParamLabel "Reset Transform"
-#define kRotoResetTransformParamHint "Reset the transform to an identity"
+#define kRotoResetTransformParamLabel "Сброс транформ"
+#define kRotoResetTransformParamHint "Сбросьте преобразование в идентичность"
 
 #define kRotoResetCloneCenterParam "resetCloneCenter"
-#define kRotoResetCloneCenterParamLabel "Reset Center"
-#define kRotoResetCloneCenterParamHint "Reset the clone transform center"
+#define kRotoResetCloneCenterParamLabel "Сброс центра"
+#define kRotoResetCloneCenterParamHint "Сбросьте центр преобразования клонов"
 
 #define kRotoResetCenterParam "resetTransformCenter"
-#define kRotoResetCenterParamLabel "Reset Center"
-#define kRotoResetCenterParamHint "Reset the transform center"
+#define kRotoResetCenterParamLabel "Сброс центра"
+#define kRotoResetCenterParamHint "Сбросьте центр преобразования"
 
 #define kRotoTransformInteractive "RotoTransformInteractive"
-#define kRotoTransformInteractiveLabel "Interactive"
-#define kRotoTransformInteractiveHint "When check, modifying the transform will directly render the shape in the viewer. When unchecked, modifications are applied when releasing the mouse button."
+#define kRotoTransformInteractiveLabel "Интерактивный"
+#define kRotoTransformInteractiveHint "При установке флажка изменение преобразования приведет непосредственно к отображению фигуры в средстве просмотра. Если флажок снят, изменения применяются при отпускании кнопки мыши."
 
 #define kRotoMotionBlurModeParam "motionBlurMode"
-#define kRotoMotionBlurModeParamLabel "Mode"
+#define kRotoMotionBlurModeParamLabel "Режим"
 #define kRotoMotionBlurModeParamHint "Per-shape motion blurs applies motion blur independently to each shape and then blends them together." \
     " This may produce artifacts when shapes blur over the same portion of the image, but might be more efficient than global motion-blur." \
     " Global motion-blur takes into account the interaction between shapes and will not create artifacts at the expense of being slightly " \
@@ -343,18 +343,18 @@ enum RotoPaintItemLifeTimeTypeEnum
 
 #define kRotoPerShapeMotionBlurParam "motionBlur"
 #define kRotoGlobalMotionBlurParam "globalMotionBlur"
-#define kRotoMotionBlurParamLabel "Motion Blur"
-#define kRotoMotionBlurParamHint "The number of Motion-Blur samples used for blurring. Increase for better quality but slower rendering."
+#define kRotoMotionBlurParamLabel "Размытие"
+#define kRotoMotionBlurParamHint "Количество выборок размытия при движении. Увеличьте для улучшения качества, но замедления рендеринга."
 
 #define kRotoPerShapeShutterParam "motionBlurShutter"
 #define kRotoGlobalShutterParam "globalMotionBlurShutter"
-#define kRotoShutterParamLabel "Shutter"
-#define kRotoShutterParamHint "The number of frames during which the shutter should be opened when motion blurring."
+#define kRotoShutterParamLabel "Затвор"
+#define kRotoShutterParamHint "Количество кадров, в течение которых открывать затвор при размытии изображения в движении."
 
 #define kRotoPerShapeShutterOffsetTypeParam "motionBlurShutterOffset"
 #define kRotoGlobalShutterOffsetTypeParam "gobalMotionBlurShutterOffset"
-#define kRotoShutterOffsetTypeParamLabel "Shutter Offset"
-#define kRotoShutterOffsetTypeParamHint "This controls how the shutter operates in respect to the current frame value."
+#define kRotoShutterOffsetTypeParamLabel "Смещение затвора"
+#define kRotoShutterOffsetTypeParamHint "Как срабатывает затвор в зависимости от текущего значения кадра."
 
 #define kRotoShutterOffsetCenteredHint "Centers the shutter around the current frame, that is the shutter will be opened from f - shutter/2 to " \
     "f + shutter/2"
@@ -364,7 +364,7 @@ enum RotoPaintItemLifeTimeTypeEnum
 
 #define kRotoPerShapeShutterCustomOffsetParam "motionBlurCustomShutterOffset"
 #define kRotoGlobalShutterCustomOffsetParam "globalMotionBlurCustomShutterOffset"
-#define kRotoShutterCustomOffsetParamLabel "Custom Offset"
+#define kRotoShutterCustomOffsetParamLabel "Пользоват смещение"
 #define kRotoShutterCustomOffsetParamHint "If the Shutter Offset parameter is set to Custom then this parameter controls the frame at " \
     "which the shutter opens. The value is an offset in frames to the current frame, e.g: -1  would open the shutter 1 frame before the current frame."
 
