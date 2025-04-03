@@ -62,68 +62,68 @@ NATRON_NAMESPACE_ENTER
 #define kRotoUIParamSelectionToolButtonLabel "Инструмент выбора"
 
 #define kRotoUIParamSelectAllToolButtonAction "SelectAllTool"
-#define kRotoUIParamSelectAllToolButtonActionLabel "Выберать все инструменты"
-#define kRotoUIParamSelectAllToolButtonActionHint "Все может быть выбрано и перемещено"
+#define kRotoUIParamSelectAllToolButtonActionLabel "Выбрать все инструменты"
+#define kRotoUIParamSelectAllToolButtonActionHint "Вс` может быть выбрано и перемещено"
 
 #define kRotoUIParamSelectPointsToolButtonAction "SelectPointsTool"
-#define kRotoUIParamSelectPointsToolButtonActionLabel "Выберать инструмент Точки"
+#define kRotoUIParamSelectPointsToolButtonActionLabel "Точки"
 #define kRotoUIParamSelectPointsToolButtonActionHint "Работает только для точек внутренней формы" \
     " точки растушевки учитываться не будут"
 
 #define kRotoUIParamSelectShapesToolButtonAction "SelectShapesTool"
-#define kRotoUIParamSelectShapesToolButtonActionLabel "Выберать инструмент Фигуры"
+#define kRotoUIParamSelectShapesToolButtonActionLabel "Фигуры"
 #define kRotoUIParamSelectShapesToolButtonActionHint "Могут быть выбраны только формы"
 
 #define kRotoUIParamSelectFeatherPointsToolButtonAction "SelectFeatherTool"
-#define kRotoUIParamSelectFeatherPointsToolButtonActionLabel "Выберать инструмент Точки растушевки"
+#define kRotoUIParamSelectFeatherPointsToolButtonActionLabel "Точки растушёвки"
 #define kRotoUIParamSelectFeatherPointsToolButtonActionHint "Можно выбрать только точки растушевки"
 
 #define kRotoUIParamEditPointsToolButton "EditPointsToolButton"
-#define kRotoUIParamEditPointsToolButtonLabel "Инструмент редактирования очков"
+#define kRotoUIParamEditPointsToolButtonLabel "Редактирование очков"
 
 #define kRotoUIParamAddPointsToolButtonAction "AddPointsTool"
-#define kRotoUIParamAddPointsToolButtonActionLabel "Инструмент добавления точек"
+#define kRotoUIParamAddPointsToolButtonActionLabel "Добавления точек"
 #define kRotoUIParamAddPointsToolButtonActionHint "Добавьте контрольную точку к фигуре"
 
 #define kRotoUIParamRemovePointsToolButtonAction "RemovePointsTool"
-#define kRotoUIParamRemovePointsToolButtonActionLabel "Инструмент удаления точек"
+#define kRotoUIParamRemovePointsToolButtonActionLabel "Удаление точек"
 #define kRotoUIParamRemovePointsToolButtonActionHint "Удалите контрольную точку с фигуры"
 
 #define kRotoUIParamCuspPointsToolButtonAction "CuspPointsTool"
-#define kRotoUIParamCuspPointsToolButtonActionLabel "Инструмент Точки пересечения"
+#define kRotoUIParamCuspPointsToolButtonActionLabel "Точки пересечения"
 #define kRotoUIParamCuspPointsToolButtonActionHint "Остроконечные точки на фигуре"
 
 #define kRotoUIParamSmoothPointsToolButtonAction "SmoothPointsTool"
-#define kRotoUIParamSmoothPointsToolButtonActionLabel "Инструмент сглаживания точек"
+#define kRotoUIParamSmoothPointsToolButtonActionLabel "Сглаживание точек"
 #define kRotoUIParamSmoothPointsToolButtonActionHint "Сглаживайте точки на фигуре"
 
 #define kRotoUIParamOpenCloseCurveToolButtonAction "OpenCloseShapeTool"
-#define kRotoUIParamOpenCloseCurveToolButtonActionLabel "Инструмент открытия/закрытия фигур"
+#define kRotoUIParamOpenCloseCurveToolButtonActionLabel "Открытие/закрытие фигур"
 #define kRotoUIParamOpenCloseCurveToolButtonActionHint "Открывайте или закрывайте фигуры"
 
 #define kRotoUIParamRemoveFeatherToolButtonAction "RemoveFeatherPointTool"
-#define kRotoUIParamRemoveFeatherToolButtonActionLabel "Инструмент удаления растушевки"
+#define kRotoUIParamRemoveFeatherToolButtonActionLabel "Удаления растушёвки"
 #define kRotoUIParamRemoveFeatherToolButtonActionHint "Удалите растушевку на точках"
 
 #define kRotoUIParamBezierEditionToolButton "EditBezierToolButton"
-#define kRotoUIParamBezierEditionToolButtonLabel "Инструмент рисования фигур"
+#define kRotoUIParamBezierEditionToolButtonLabel "Рисование фигур"
 
 #define kRotoUIParamDrawBezierToolButtonAction "DrawBezierTool"
-#define kRotoUIParamDrawBezierToolButtonActionLabel "Инструмент Безье"
+#define kRotoUIParamDrawBezierToolButtonActionLabel "Безье"
 #define kRotoUIParamDrawBezierToolButtonActionHint "Нарисуйте Безье"
 
 #define kRotoUIParamDrawEllipseToolButtonAction "DrawEllipseTool"
-#define kRotoUIParamDrawEllipseToolButtonActionLabel "Инструмент эллипса"
+#define kRotoUIParamDrawEllipseToolButtonActionLabel "Эллипс"
 #define kRotoUIParamDrawEllipseToolButtonActionHint "Нарисуйте эллипс"
 
 #define kRotoUIParamDrawRectangleToolButtonAction "DrawRectangleTool"
-#define kRotoUIParamDrawRectangleToolButtonActionLabel "Инструмент прямоугольника"
+#define kRotoUIParamDrawRectangleToolButtonActionLabel "Прямоугольник"
 #define kRotoUIParamDrawRectangleToolButtonActionHint "Нарисуйте прямоугольник"
 
 
 #define kRotoUIParamPaintBrushToolButton "PaintBrushToolButton"
-#define kRotoUIParamPaintBrushToolButtonLabel "Инструмент кисть"
-odge Tool
+#define kRotoUIParamPaintBrushToolButtonLabel "Кисть"
+
 #define kRotoUIParamDrawBrushToolButtonAction "PaintSolidTool"
 #define kRotoUIParamDrawBrushToolButtonActionLabel "Сплошная кисть"
 #define kRotoUIParamDrawBrushToolButtonActionHint "Рисуйте с помощью пера"
@@ -145,24 +145,24 @@ odge Tool
 
 #define kRotoUIParamRevealToolButtonAction "RevealTool"
 #define kRotoUIParamRevealToolButtonActionLabel "Показать инструмент"
-#define kRotoUIParamRevealToolButtonActionHint "Нарисуйте пером, чтобы применить эффект к выбранному источнику. Удерживая нажатой CTRL переместите смещение"
+#define kRotoUIParamRevealToolButtonActionHint "Нарисуйте пером, чтобы применить эффект к источнику. Удерживая нажатой CTRL переместите смещение"
 
 #define kRotoUIParamEffectBrushToolButton "EffectToolButton"
 #define kRotoUIParamEffectBrushToolButtonLabel "Инструмент эффекта"
 
 #define kRotoUIParamBlurToolButtonAction "BlurTool"
-#define kRotoUIParamBlurToolButtonActionLabel "Инструмент размытия"
+#define kRotoUIParamBlurToolButtonActionLabel "Размытие"
 #define kRotoUIParamBlurToolButtonActionHint "Нарисуйте пером, чтобы применить размытие"
 
 #define kRotoUIParamSmearToolButtonAction "SmearTool"
-#define kRotoUIParamSmearToolButtonActionLabel "Инструмент размазывания"
+#define kRotoUIParamSmearToolButtonActionLabel "Размазывание"
 #define kRotoUIParamSmearToolButtonActionHint "Нарисуйте пером, чтобы размыть и сместить часть исходного изображения в направлении движения пера"
 
 #define kRotoUIParamMergeBrushToolButton "MergeToolButton"
-#define kRotoUIParamMergeBrushToolButtonLabel "Инструмент объединения"
+#define kRotoUIParamMergeBrushToolButtonLabel "Объединение"
 
 #define kRotoUIParamDodgeToolButtonAction "DodgeTool"
-#define kRotoUIParamDodgeToolButtonActionLabel "Инструмент Dodge"
+#define kRotoUIParamDodgeToolButtonActionLabel "Dodge"
 #define kRotoUIParamDodgeToolButtonActionHint "Сделайте исходное изображение ярче"
 
 #define kRotoUIParamBurnToolButtonAction "BurnTool"
@@ -216,7 +216,7 @@ odge Tool
 #define kRotoUIParamAutoKeyingEnabledHint "Любое изменение, внесенное в контрольную точку, установит ключевой кадр на текущий момент времени"
 
 #define kRotoUIParamFeatherLinkEnabled "featherLinkEnabledButton"
-#define kRotoUIParamFeatherLinkEnabledLabel "Включить растушевку"
+#define kRotoUIParamFeatherLinkEnabledLabel "Включить растушёвку"
 #define kRotoUIParamFeatherLinkEnabledHint "Соединение перьев: при активации наконечники перьев будут двигаться так же," \
     " как и их противоположные части"
 
