@@ -81,12 +81,12 @@ CLANG_DIAG_ON(uninitialized)
 
 
 #define kRotoOpacityParam "opacity"
-#define kRotoOpacityParamLabel "Opacity"
+#define kRotoOpacityParamLabel "Непрозрачность"
 #define kRotoOpacityHint \
-    "Controls the opacity of the selected shape(s)."
+    "Управляет непрозрачностью выбранных фигур."
 
 #define kRotoFeatherParam "feather"
-#define kRotoFeatherParamLabel "Feather"
+#define kRotoFeatherParamLabel "Перо"
 #define kRotoFeatherHint \
     "Controls the distance of feather (in pixels) to add around the selected shape(s)"
 
@@ -96,7 +96,7 @@ CLANG_DIAG_ON(uninitialized)
     "Controls the rate at which the feather is applied on the selected shape(s)."
 
 #define kRotoActivatedParam "activated"
-#define kRotoActivatedParamLabel "Activated"
+#define kRotoActivatedParamLabel "Активирован"
 #define kRotoActivatedHint \
     "Controls whether the selected shape(s) should be rendered or not." \
     "Note that you can animate this parameter so you can activate/deactivate the shape " \
@@ -106,7 +106,7 @@ CLANG_DIAG_ON(uninitialized)
     "Control whether the layer/curve is editable or locked."
 
 #define kRotoInvertedParam "inverted"
-#define kRotoInvertedParamLabel "Inverted"
+#define kRotoInvertedParamLabel "Инверт"
 
 #define kRotoInvertedHint \
     "Controls whether the selected shape(s) should be inverted. When inverted everything " \
@@ -120,7 +120,7 @@ CLANG_DIAG_ON(uninitialized)
     "The color of the shape. This parameter is used when the output components are set to RGBA."
 
 #define kRotoCompOperatorParam "operator"
-#define kRotoCompOperatorParamLabel "Operator"
+#define kRotoCompOperatorParamLabel "Оператор"
 #define kRotoCompOperatorHint \
     "The compositing operator controls how this shape is merged with the shapes that have already been rendered.\n" \
     "The roto mask is initialised as black and transparent, then each shape is drawn in the selected order, with the selected color and operator.\n" \
@@ -128,14 +128,14 @@ CLANG_DIAG_ON(uninitialized)
     "See http://cairographics.org/operators/ for a full description of available operators."
 
 #define kRotoBrushSourceColor "sourceType"
-#define kRotoBrushSourceColorLabel "Source"
+#define kRotoBrushSourceColorLabel "Источник"
 #define kRotoBrushSourceColorHint "Source color used for painting the stroke when the Reveal/Clone tools are used."
 #define kRotoBrushSourceColorOptionForegroundHint "The painted result at this point in the hierarchy."
 #define kRotoBrushSourceColorOptionBackgroundHint "The original image unpainted connected to bg."
 #define kRotoBrushSourceColorOptionBackgroundNHint "The original image unpainted connected to bg%1."
 
 #define kRotoBrushSizeParam "brushSize"
-#define kRotoBrushSizeParamLabel "Brush Size"
+#define kRotoBrushSizeParamLabel "Размер кисти"
 #define kRotoBrushSizeParamHint "This is the diameter of the brush in pixels. Shift + drag on the viewer to modify this value"
 
 #define kRotoBrushSpacingParam "brushSpacing"
@@ -143,84 +143,84 @@ CLANG_DIAG_ON(uninitialized)
 #define kRotoBrushSpacingParamHint "Spacing between stamps of the paint brush"
 
 #define kRotoBrushHardnessParam "brushHardness"
-#define kRotoBrushHardnessParamLabel "Brush Hardness"
+#define kRotoBrushHardnessParamLabel "Жёсткость кисти"
 #define kRotoBrushHardnessParamHint "Fall off of the brush effect from the center to the edge"
 
 #define kRotoBrushEffectParam "brushEffect"
-#define kRotoBrushEffectParamLabel "Brush effect"
+#define kRotoBrushEffectParamLabel "Эффект кисти"
 #define kRotoBrushEffectParamHint "The strength of the effect"
 
 #define kRotoBrushVisiblePortionParam "strokeVisiblePortion"
-#define kRotoBrushVisiblePortionParamLabel "Visible portion"
+#define kRotoBrushVisiblePortionParamLabel "Видимая часть"
 #define kRotoBrushVisiblePortionParamHint "Defines the range of the stroke that should be visible: 0 is the start of the stroke and 1 the end."
 
 #define kRotoBrushPressureLabelParam "pressureAlters"
-#define kRotoBrushPressureLabelParamLabel "Pressure alters"
+#define kRotoBrushPressureLabelParamLabel "Изменение нажима"
 #define kRotoBrushPressureLabelParamHint ""
 
 #define kRotoBrushPressureOpacityParam "pressureOpacity"
-#define kRotoBrushPressureOpacityParamLabel "Opacity"
+#define kRotoBrushPressureOpacityParamLabel "Непрозрачность"
 #define kRotoBrushPressureOpacityParamHint "Alters the opacity of the paint brush proportionate to changes in pen pressure"
 
 #define kRotoBrushPressureSizeParam "pressureSize"
-#define kRotoBrushPressureSizeParamLabel "Size"
+#define kRotoBrushPressureSizeParamLabel "Размер"
 #define kRotoBrushPressureSizeParamHint "Alters the size of the paint brush proportionate to changes in pen pressure"
 
 #define kRotoBrushPressureHardnessParam "pressureHardness"
-#define kRotoBrushPressureHardnessParamLabel "Hardness"
+#define kRotoBrushPressureHardnessParamLabel "Твёрдость"
 #define kRotoBrushPressureHardnessParamHint "Alters the hardness of the paint brush proportionate to changes in pen pressure"
 
 #define kRotoBrushBuildupParam "buildUp"
-#define kRotoBrushBuildupParamLabel "Build-up"
+#define kRotoBrushBuildupParamLabel "Нарастание"
 #define kRotoBrushBuildupParamHint "When checked, the paint stroke builds up when painted over itself"
 
 #define kRotoBrushTimeOffsetParam "timeOffset"
-#define kRotoBrushTimeOffsetParamLabel "Clone time offset"
+#define kRotoBrushTimeOffsetParamLabel "Смещение времени клонирования"
 #define kRotoBrushTimeOffsetParamHint "When the Clone tool is used, this determines depending on the time offset mode the source frame to " \
     "clone. When in absolute mode, this is the frame number of the source, when in relative mode, this is an offset relative to the current frame."
 
 #define kRotoBrushTimeOffsetModeParam "timeOffsetMode"
-#define kRotoBrushTimeOffsetModeParamLabel "Mode"
+#define kRotoBrushTimeOffsetModeParamLabel "Режим"
 #define kRotoBrushTimeOffsetModeParamHint "Time offset mode: when in absolute mode, this is the frame number of the source, when in relative mode, this is an offset relative to the current frame."
 
 #define kRotoBrushTranslateParam "cloneTranslate"
-#define kRotoBrushTranslateParamLabel "Translate"
+#define kRotoBrushTranslateParamLabel "Трансляция"
 #define kRotoBrushTranslateParamHint ""
 
 #define kRotoBrushRotateParam "cloneRotate"
-#define kRotoBrushRotateParamLabel "Rotate"
+#define kRotoBrushRotateParamLabel "Вращение"
 #define kRotoBrushRotateParamHint ""
 
 #define kRotoBrushScaleParam "cloneScale"
-#define kRotoBrushScaleParamLabel "Scale"
+#define kRotoBrushScaleParamLabel "Масштаб"
 #define kRotoBrushScaleParamHint ""
 
 #define kRotoBrushScaleUniformParam "cloneUniform"
-#define kRotoBrushScaleUniformParamLabel "Uniform"
+#define kRotoBrushScaleUniformParamLabel "Равномерно"
 #define kRotoBrushScaleUniformParamHint ""
 
 #define kRotoBrushSkewXParam "cloneSkewx"
-#define kRotoBrushSkewXParamLabel "Skew X"
+#define kRotoBrushSkewXParamLabel "Сдвиг X"
 #define kRotoBrushSkewXParamHint ""
 
 #define kRotoBrushSkewYParam "cloneSkewy"
-#define kRotoBrushSkewYParamLabel "Skew Y"
+#define kRotoBrushSkewYParamLabel "Сдвиг Y"
 #define kRotoBrushSkewYParamHint ""
 
 #define kRotoBrushSkewOrderParam "cloneSkewOrder"
-#define kRotoBrushSkewOrderParamLabel "Skew Order"
+#define kRotoBrushSkewOrderParamLabel "Порядок сдвига"
 #define kRotoBrushSkewOrderParamHint ""
 
 #define kRotoBrushCenterParam "cloneCenter"
-#define kRotoBrushCenterParamLabel "Center"
+#define kRotoBrushCenterParamLabel "Цвет"
 #define kRotoBrushCenterParamHint ""
 
 #define kRotoBrushFilterParam "cloneFilter"
-#define kRotoBrushFilterParamLabel "Filter"
+#define kRotoBrushFilterParamLabel "Фильтр"
 #define kRotoBrushFilterParamHint "Filtering algorithm - some filters may produce values outside of the initial range (*) or modify the values even if there is no movement (+)."
 
 #define kRotoBrushBlackOutsideParam "blackOutside"
-#define kRotoBrushBlackOutsideParamLabel "Black Outside"
+#define kRotoBrushBlackOutsideParamLabel "Чёрный вокруг"
 #define kRotoBrushBlackOutsideParamHint "Fill the area outside the source image with black"
 
 #define kFilterImpulse "Impulse"
@@ -246,43 +246,43 @@ CLANG_DIAG_ON(uninitialized)
 
 
 #define kRotoDrawableItemTranslateParam "translate"
-#define kRotoDrawableItemTranslateParamLabel "Translate"
+#define kRotoDrawableItemTranslateParamLabel "Трансляция"
 #define kRotoDrawableItemTranslateParamHint ""
 
 #define kRotoDrawableItemRotateParam "rotate"
-#define kRotoDrawableItemRotateParamLabel "Rotate"
+#define kRotoDrawableItemRotateParamLabel "Вращение"
 #define kRotoDrawableItemRotateParamHint ""
 
 #define kRotoDrawableItemScaleParam "scale"
-#define kRotoDrawableItemScaleParamLabel "Scale"
+#define kRotoDrawableItemScaleParamLabel "Масштаб"
 #define kRotoDrawableItemScaleParamHint ""
 
 #define kRotoDrawableItemScaleUniformParam "uniform"
-#define kRotoDrawableItemScaleUniformParamLabel "Uniform"
+#define kRotoDrawableItemScaleUniformParamLabel "Равномерно"
 #define kRotoDrawableItemScaleUniformParamHint ""
 
 #define kRotoDrawableItemSkewXParam "skewx"
-#define kRotoDrawableItemSkewXParamLabel "Skew X"
+#define kRotoDrawableItemSkewXParamLabel "Сдвиг X"
 #define kRotoDrawableItemSkewXParamHint ""
 
 #define kRotoDrawableItemSkewYParam "skewy"
-#define kRotoDrawableItemSkewYParamLabel "Skew Y"
+#define kRotoDrawableItemSkewYParamLabel "Сдвиг Y"
 #define kRotoDrawableItemSkewYParamHint ""
 
 #define kRotoDrawableItemSkewOrderParam "skewOrder"
-#define kRotoDrawableItemSkewOrderParamLabel "Skew Order"
+#define kRotoDrawableItemSkewOrderParamLabel "Порядок сдвига"
 #define kRotoDrawableItemSkewOrderParamHint ""
 
 #define kRotoDrawableItemCenterParam "center"
-#define kRotoDrawableItemCenterParamLabel "Center"
+#define kRotoDrawableItemCenterParamLabel "Центр"
 #define kRotoDrawableItemCenterParamHint ""
 
 #define kRotoDrawableItemExtraMatrixParam "extraMatrix"
-#define kRotoDrawableItemExtraMatrixParamLabel "Extra Matrix"
+#define kRotoDrawableItemExtraMatrixParamLabel "Доп матрица"
 #define kRotoDrawableItemExtraMatrixParamHint "This matrix gets concatenated to the transform resulting from the parameter above."
 
 #define kRotoDrawableItemLifeTimeParam "lifeTime"
-#define kRotoDrawableItemLifeTimeParamLabel "Life Time"
+#define kRotoDrawableItemLifeTimeParamLabel "Время жизни"
 #define kRotoDrawableItemLifeTimeParamHint "Controls the life-time of the shape/stroke"
 
 #define kRotoDrawableItemLifeTimeAll "All"
