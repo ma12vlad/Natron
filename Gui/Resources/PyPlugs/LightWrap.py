@@ -40,8 +40,8 @@ def createInstance(app,group):
     lastNode = group
 
     # Create the user parameters
-    lastNode.controlsPage = lastNode.createPageParam("controlsPage", "Controls")
-    param = lastNode.createDouble2DParam("diffuse", "Diffuse")
+    lastNode.controlsPage = lastNode.createPageParam("controlsPage", "Управление")
+    param = lastNode.createDouble2DParam("diffuse", "Рассеять")
     param.setMinimum(0, 0)
     param.setMaximum(1000, 0)
     param.setDisplayMinimum(0, 0)
@@ -644,7 +644,7 @@ def createInstance(app,group):
     lastNode.ColorCorrect1ShadowsOffset = param
     del param
 
-    param = lastNode.createGroupParam("midtonesGroup", "Midtones")
+    param = lastNode.createGroupParam("midtonesGroup", "Полутона")
 
     # Add the param to the page
     lastNode.colorCorrectPage.addParam(param)
@@ -838,7 +838,7 @@ def createInstance(app,group):
     lastNode.ColorCorrect1MidtonesOffset = param
     del param
 
-    param = lastNode.createGroupParam("highlightsGroup", "Highlights")
+    param = lastNode.createGroupParam("highlightsGroup", "Яркий свет")
 
     # Add the param to the page
     lastNode.colorCorrectPage.addParam(param)
