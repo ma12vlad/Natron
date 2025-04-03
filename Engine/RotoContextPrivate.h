@@ -91,7 +91,7 @@ CLANG_DIAG_ON(uninitialized)
     "Управляет расстоянием растушевки (в пикс), добавляемой вокруг выбранных фигур"
 
 #define kRotoFeatherFallOffParam "featherFallOff"
-#define kRotoFeatherFallOffParamLabel "Feather fall-off"
+#define kRotoFeatherFallOffParamLabel "Перо падение"
 #define kRotoFeatherFallOffHint \
     "Управляет скоростью, с которой растушевка наносится на выбранные фигуры."
 
