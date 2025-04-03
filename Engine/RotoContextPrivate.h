@@ -73,11 +73,11 @@ CLANG_DIAG_ON(uninitialized)
 #define ROTO_DEFAULT_COLOR_B 1.
 
 
-#define kRotoScriptNameHint "Script-name of the item for Python scripts. It cannot be edited."
+#define kRotoScriptNameHint "Script - название элемента для скриптов на Python. Его нельзя редактировать."
 
-#define kRotoLabelHint "Label of the layer or curve"
+#define kRotoLabelHint "Метка слоя или кривой"
 
-#define kRotoNameHint "Name of the layer or curve."
+#define kRotoNameHint "Название слоя или кривой."
 
 
 #define kRotoOpacityParam "opacity"
@@ -109,8 +109,8 @@ CLANG_DIAG_ON(uninitialized)
 #define kRotoInvertedParamLabel "Инверт"
 
 #define kRotoInvertedHint \
-    "Controls whether the selected shape(s) should be inverted. When inverted everything " \
-    "outside the shape will be set to 1 and everything inside the shape will be set to 0."
+    "Определяет, следует ли инвертировать выбранные фигуры. При инвертировании все значения " \
+    "за пределами фигуры будут равны 1, а все, что находится внутри фигуры, будет равно 0."
 
 #define kRotoOverlayHint "Цвет отображаемого наложения для этой кривой. Не влияет на выходные данные."
 
@@ -122,10 +122,10 @@ CLANG_DIAG_ON(uninitialized)
 #define kRotoCompOperatorParam "operator"
 #define kRotoCompOperatorParamLabel "Оператор"
 #define kRotoCompOperatorHint \
-    "The compositing operator controls how this shape is merged with the shapes that have already been rendered.\n" \
-    "The roto mask is initialised as black and transparent, then each shape is drawn in the selected order, with the selected color and operator.\n" \
-    "Finally, the mask is composed with the source image, if connected, using the 'over' operator.\n" \
-    "See http://cairographics.org/operators/ for a full description of available operators."
+    "Оператор компоновки управляет объединением этой фигуры с уже отрисованными фигурами.\n" \
+    "Маска roto - чёрная или прозрачная, затем каждая фигура будет нарисована в выбранном порядке, с выбранным цветом и оператором.\n" \
+    "Затем маска будет скомпонована с использованием исходного изображения с использованием оператора over.\n" \
+    "Смотрите http://cairographics.org/operators/ для получения полного описания доступных операторов."
 
 #define kRotoBrushSourceColor "sourceType"
 #define kRotoBrushSourceColorLabel "Источник"
@@ -176,8 +176,8 @@ CLANG_DIAG_ON(uninitialized)
 
 #define kRotoBrushTimeOffsetParam "timeOffset"
 #define kRotoBrushTimeOffsetParamLabel "Смещение времени клонирования"
-#define kRotoBrushTimeOffsetParamHint "When the Clone tool is used, this determines depending on the time offset mode the source frame to " \
-    "clone. When in absolute mode, this is the frame number of the source, when in relative mode, this is an offset relative to the current frame."
+#define kRotoBrushTimeOffsetParamHint "При инструменте клонирования определяет исходный кадр для клонирования, зависит от смещения по времени" \
+    "В абсолютном режиме это номер кадра источника, в относительном это смещение относительно текущего кадра."
 
 #define kRotoBrushTimeOffsetModeParam "timeOffsetMode"
 #define kRotoBrushTimeOffsetModeParamLabel "Режим"
@@ -279,11 +279,11 @@ CLANG_DIAG_ON(uninitialized)
 
 #define kRotoDrawableItemExtraMatrixParam "extraMatrix"
 #define kRotoDrawableItemExtraMatrixParamLabel "Доп матрица"
-#define kRotoDrawableItemExtraMatrixParamHint "This matrix gets concatenated to the transform resulting from the parameter above."
+#define kRotoDrawableItemExtraMatrixParamHint "Эта матрица объединяется с преобразованием, из приведенного выше параметра."
 
 #define kRotoDrawableItemLifeTimeParam "lifeTime"
 #define kRotoDrawableItemLifeTimeParamLabel "Время жизни"
-#define kRotoDrawableItemLifeTimeParamHint "Controls the life-time of the shape/stroke"
+#define kRotoDrawableItemLifeTimeParamHint "Управляет сроком действия фигуры/обводки"
 
 #define kRotoDrawableItemLifeTimeAll "All"
 #define kRotoDrawableItemLifeTimeAllHelp "All frames"
@@ -358,15 +358,15 @@ enum RotoPaintItemLifeTimeTypeEnum
 
 #define kRotoShutterOffsetCenteredHint "Centers the shutter around the current frame, that is the shutter will be opened from f - shutter/2 to " \
     "f + shutter/2"
-#define kRotoShutterOffsetStartHint "The shutter will open at the current frame and stay open until f + shutter"
-#define kRotoShutterOffsetEndHint "The shutter will open at f - shutter until the current frame"
-#define kRotoShutterOffsetCustomHint "The shutter will open at the time indicated by the shutter offset parameter"
+#define kRotoShutterOffsetStartHint "Затвор откроется на текущем кадре и останется открытым до тех пор, пока не будет нажата клавиша f +"
+#define kRotoShutterOffsetEndHint "Затвор будет открываться в положении f - shutter, пока не будет получен текущий кадр."
+#define kRotoShutterOffsetCustomHint "Затвор откроется в момент, указанный параметром смещения затвора"
 
 #define kRotoPerShapeShutterCustomOffsetParam "motionBlurCustomShutterOffset"
 #define kRotoGlobalShutterCustomOffsetParam "globalMotionBlurCustomShutterOffset"
 #define kRotoShutterCustomOffsetParamLabel "Пользоват смещение"
-#define kRotoShutterCustomOffsetParamHint "If the Shutter Offset parameter is set to Custom then this parameter controls the frame at " \
-    "which the shutter opens. The value is an offset in frames to the current frame, e.g: -1  would open the shutter 1 frame before the current frame."
+#define kRotoShutterCustomOffsetParamHint "Если Смещение затвора установлено Пользовательский, то этот параметр управляет рамкой, при " \
+    "которой открывается затвор. Представляет собой смещение в кадрах к текущему кадру, например: -1 открывает затвор на 1 кадр раньше текущего кадра."
 
 
 NATRON_NAMESPACE_ENTER
