@@ -31,7 +31,7 @@ def getGrouping():
     return "Draw"
 
 def getPluginDescription():
-    return "LightWrap helps composite objects onto a bright background by simulating reflections from the background light on the foreground, around its edges. Input A is the foreground image and its matte, and input B the the background to use for the wrapping effect.\n\nThe output of LightWrap should then be composited over the background to give the final composite."
+    return "LightWrap помогает создать композицию объектов на ярком фоне, имитируя отражения от фонового света на переднем плане по его краям. На входе A отображается изображение переднего плана и его матовость, а на входе B - фон, который будет использоваться для создания эффекта обертывания.\n\П На выходе LightWrap должно получиться быть наложенным на фон, чтобы получить окончательную композицию."
 
 def createInstance(app,group):
     # Create all nodes in the group
@@ -59,7 +59,7 @@ def createInstance(app,group):
     lastNode.controlsPage.addParam(param)
 
     # Set param properties
-    param.setHelp("Size of the reflections from the background to the foreground element (Intensity controls their intensity). Start by setting Diffuse to zero and adjust intensity to see what colors from the background are being reflected. Then adjust Diffuse, come back to Intensity if necessary, and balance both parameters until the result is satisfactory.")
+    param.setHelp("Размер отражений от фона к элементу переднего плана. Начните с установки значения Diffuse равным нулю и отрегулируйте интенсивность, чтобы увидеть, какие цвета отражаются от фона. Затем отрегулируйте рассеивание, при необходимости вернитесь к интенсивности и балансируйте оба параметра до удовлетворительного результата.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.diffuse = param
@@ -75,7 +75,7 @@ def createInstance(app,group):
     lastNode.controlsPage.addParam(param)
 
     # Set param properties
-    param.setHelp("Brightness of the reflections from the background to the foreground element (Diffuse controls their size). Start by setting Diffuse to zero and adjust intensity to see what colors from the background are being reflected. Then adjust Diffuse, come back to Intensity if necessary, and balance both parameters until the result is satisfactory.")
+    param.setHelp("Яркость отражений от фона к элементу переднего плана. Начните с установки значения Diffuse равным нулю и отрегулируйте интенсивность, чтобы увидеть, какие цвета отражаются от фона. Затем отрегулируйте рассеивание, при необходимости вернитесь к интенсивности и балансируйте оба параметра до удовлетворительного результата.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.intensity = param
@@ -87,7 +87,7 @@ def createInstance(app,group):
     lastNode.controlsPage.addParam(param)
 
     # Set param properties
-    param.setHelp("When checked, the LightWrap in generated but is not merged with the foreground object (disables the Highlight Merge).")
+    param.setHelp("При установке флажка световая завеса генерируется, но не сливается с объектом переднего плана.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(False)
     lastNode.onlyWrap = param
@@ -117,7 +117,7 @@ def createInstance(app,group):
     lastNode.enableGlow = param
     del param
 
-    param = lastNode.createDouble2DParam("fgblur", "FGBlur")
+    param = lastNode.createDouble2DParam("fgblur", "FGразмытие")
     param.setMinimum(0, 0)
     param.setMaximum(1000, 0)
     param.setDisplayMinimum(0, 0)
@@ -135,13 +135,13 @@ def createInstance(app,group):
     lastNode.controlsPage.addParam(param)
 
     # Set param properties
-    param.setHelp("Size of the blur applied to the alpha channel of the foreground (i.e. the foreground matte). More blur causes more background to be added to the foreground.")
+    param.setHelp("Размер размытия, применяемого к альфа-каналу переднего плана (т.е. к матовому переднему плану). Большее размытие приводит к добавлению большего количества фона на передний план.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.fgblur = param
     del param
 
-    param = lastNode.createChoiceParam("fgblurBoundary", "FGBlur Border Conditions")
+    param = lastNode.createChoiceParam("fgblurBoundary", "FGразмытие границы условий")
 
     # Add the param to the page
     lastNode.controlsPage.addParam(param)
@@ -153,7 +153,7 @@ def createInstance(app,group):
     lastNode.fgblurBoundary = param
     del param
 
-    param = lastNode.createDouble2DParam("bgblur", "BGBlur")
+    param = lastNode.createDouble2DParam("bgblur", "BGразмытие")
     param.setMinimum(0, 0)
     param.setMaximum(1000, 0)
     param.setDisplayMinimum(0, 0)
@@ -167,7 +167,7 @@ def createInstance(app,group):
     lastNode.controlsPage.addParam(param)
 
     # Set param properties
-    param.setHelp("Size of the blur applied to the background before merging it with the foreground element and applying the Diffuse blur.")
+    param.setHelp("Размер размытия, примененного к фону перед его слиянием с элементом переднего плана и применением диффузного размытия.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.bgblur = param
@@ -185,7 +185,7 @@ def createInstance(app,group):
     lastNode.controlsPage.addParam(param)
 
     # Set param properties
-    param.setHelp("Color saturation of the LightWrap effect. Advanced color correction parameters are available in the ColorCorrect tab.")
+    param.setHelp("Насыщенность цвета для эффекта световой завитки. Дополнительные параметры доступны на вкладке Коррекция цвета.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.saturation = param
@@ -201,7 +201,7 @@ def createInstance(app,group):
     lastNode.controlsPage.addParam(param)
 
     # Set param properties
-    param.setHelp("Luminance threshold of the LightWrap effect. Luminance values below this do not generate a LightWrap.")
+    param.setHelp("Порог яркости для эффекта световой завесы. Значения яркости ниже этого значения не приводят к созданию световой завесы.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.lumaTolerance = param
@@ -215,7 +215,7 @@ def createInstance(app,group):
     lastNode.controlsPage.addParam(param)
 
     # Set param properties
-    param.setHelp("Merge operation between the foreground object and the background. The default operation is \"plus\", which produces a glow effect.")
+    param.setHelp("Операция слияния объекта переднего плана с фоном. По умолчанию используется операция Плюс, которая создает эффект свечения.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.highlightmerge = param
@@ -227,13 +227,13 @@ def createInstance(app,group):
     lastNode.controlsPage.addParam(param)
 
     # Set param properties
-    param.setHelp("When checked, use a constant color (specified by the Constant parameter) instead of the background for the LightWrap effect.")
+    param.setHelp("Если флажок установлен, используйте постоянный цвет, заданный Constant, вместо фона для эффекта световой завесы.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.useConstant = param
     del param
 
-    param = lastNode.createColorParam("constantcolor", "Constant", True)
+    param = lastNode.createColorParam("constantcolor", "Постоянный", True)
     param.setMinimum(-2147483648, 0)
     param.setMaximum(2147483647, 0)
     param.setDisplayMinimum(0, 0)
@@ -263,14 +263,14 @@ def createInstance(app,group):
     lastNode.controlsPage.addParam(param)
 
     # Set param properties
-    param.setHelp("Color to use in the LightWrap effect when Use constant highlight is enabled.")
+    param.setHelp("Цвет, который будет использоваться в эффекте световой завесы, если включено использование постоянной подсветки.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.constantcolor = param
     del param
 
-    lastNode.colorCorrectPage = lastNode.createPageParam("colorCorrectPage", "ColorCorrect")
-    param = lastNode.createGroupParam("masterGroup", "Master")
+    lastNode.colorCorrectPage = lastNode.createPageParam("colorCorrectPage", "ЦвКорект")
+    param = lastNode.createGroupParam("masterGroup", "Мастер")
 
     # Add the param to the page
     lastNode.colorCorrectPage.addParam(param)
