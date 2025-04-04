@@ -31,7 +31,7 @@ def getGrouping():
     return "Filter"
 
 def getPluginDescription():
-    return "A glow effect based on the bloom filter node. The mask input limits the area where the glowing elements are. It does not cut off the shine produced by the glow. \n\nFor more interesting looks there are some additional features like stretch, rotation and postgrade.\nWritten by PostPollux"
+    return "Эффект свечения, основанный на узле фильтра bloom. Ввод маски ограничивает область, в которой находятся светящиеся элементы. Это не уменьшает блеска, создаваемого сиянием.Для более интересного внешнего вида есть несколько дополнительных функций, таких как растягивание, вращение и последующая обработка."
 
 def createInstance(app,group):
     # Create all nodes in the group
@@ -40,8 +40,8 @@ def createInstance(app,group):
     lastNode = group
 
     # Create the user parameters
-    lastNode.controls = lastNode.createPageParam("controls", "Controls")
-    param = lastNode.createGroupParam("glowMap", "Glow Map")
+    lastNode.controls = lastNode.createPageParam("controls", "Управление")
+    param = lastNode.createGroupParam("glowMap", "Карта свечения")
 
     # Add the param to the page
     lastNode.controls.addParam(param)
@@ -54,7 +54,7 @@ def createInstance(app,group):
     lastNode.glowMap = param
     del param
 
-    param = lastNode.createDoubleParam("isolateHighlights", "Isolate Highlights")
+    param = lastNode.createDoubleParam("isolateHighlights", "Выделить основные моменты")
     param.setMinimum(0, 0)
     param.setMaximum(1, 0)
     param.setDisplayMinimum(0, 0)
@@ -66,25 +66,25 @@ def createInstance(app,group):
     lastNode.glowMap.addParam(param)
 
     # Set param properties
-    param.setHelp("\"Isolate Highlights\" controls on which parts of the image the glow is applied. \n\nhigh value -> only bright areas\n")
+    param.setHelp("\"Выделить основные моменты\" управляет тем, к каким частям изображения применяется свечение. \n\nвысокая ценность -> только яркие области\n")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.isolateHighlights = param
     del param
 
-    param = lastNode.createBooleanParam("isolateHue", "Isolate Hue")
+    param = lastNode.createBooleanParam("isolateHue", "Выделить оттенок")
 
     # Add the param to the group, no need to add it to the page
     lastNode.glowMap.addParam(param)
 
     # Set param properties
-    param.setHelp("If checked, the picked hue will additionally limit the areas of the glow.")
+    param.setHelp("Если этот флажок установлен, выбранный оттенок дополнительно ограничит область свечения.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.isolateHue = param
     del param
 
-    param = lastNode.createColorParam("HSVTool1srcColor", "pick Hue", False)
+    param = lastNode.createColorParam("HSVTool1srcColor", "Выберать оттенок", False)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0, 0)
@@ -102,25 +102,25 @@ def createInstance(app,group):
     lastNode.glowMap.addParam(param)
 
     # Set param properties
-    param.setHelp("Pick a color in the viewport to isolate it\'s hue.\n\nThe glow will only be applied to those areas, if \'Isolate Hue\' is checked.")
+    param.setHelp("Выберите цвет в окне просмотра, чтобы выделить его оттенок.Свечение будет применено только к этим областям, если установлен флажок Выделить оттенок.")
     param.setAddNewLine(False)
     param.setAnimationEnabled(True)
     lastNode.HSVTool1srcColor = param
     del param
 
-    param = lastNode.createBooleanParam("preview", "GlowMap Preview")
+    param = lastNode.createBooleanParam("preview", "Предпросмотр световой карты")
 
     # Add the param to the group, no need to add it to the page
     lastNode.glowMap.addParam(param)
 
     # Set param properties
-    param.setHelp("When checked, the output will be the glowmap. Use this as a preview to adjust the highlight and hue isolation.")
+    param.setHelp("Если флажок установлен, на выходе будет отображаться карта свечения. Используйте в качестве предпросмотра, чтобы настроить выделение и оттенок.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.preview = param
     del param
 
-    param = lastNode.createSeparatorParam("separator3", "")
+    param = lastNode.createSeparatorParam("разделитель3", "")
 
     # Add the param to the group, no need to add it to the page
     lastNode.glowMap.addParam(param)
@@ -133,7 +133,7 @@ def createInstance(app,group):
     lastNode.separator3 = param
     del param
 
-    param = lastNode.createGroupParam("glowEffect", "Glow Effect")
+    param = lastNode.createGroupParam("glowEffect", "Эффект свечения")
 
     # Add the param to the page
     lastNode.controls.addParam(param)
@@ -146,7 +146,7 @@ def createInstance(app,group):
     lastNode.glowEffect = param
     del param
 
-    param = lastNode.createDoubleParam("size", "Size")
+    param = lastNode.createDoubleParam("size", "Размер")
     param.setMinimum(0, 0)
     param.setMaximum(2147483647, 0)
     param.setDisplayMinimum(0, 0)
@@ -158,13 +158,13 @@ def createInstance(app,group):
     lastNode.glowEffect.addParam(param)
 
     # Set param properties
-    param.setHelp("This will change the size of the glow.")
+    param.setHelp("Это изменит размер свечения.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.size = param
     del param
 
-    param = lastNode.createDoubleParam("BloombloomRatio", "Ratio")
+    param = lastNode.createDoubleParam("BloombloomRatio", "Соотношение")
     param.setMinimum(1, 0)
     param.setDisplayMinimum(1, 0)
     param.setDisplayMaximum(4, 0)
@@ -181,7 +181,7 @@ def createInstance(app,group):
     lastNode.BloombloomRatio = param
     del param
 
-    param = lastNode.createIntParam("iterations", "Iterations")
+    param = lastNode.createIntParam("iterations", "Итерации")
     param.setMinimum(1, 0)
     param.setMaximum(10, 0)
     param.setDisplayMinimum(1, 0)
@@ -193,25 +193,25 @@ def createInstance(app,group):
     lastNode.glowEffect.addParam(param)
 
     # Set param properties
-    param.setHelp("Number of blur kernels of the bloom filter. The original implementation uses a value of 5. Higher values give a wider of heavier tail (the size of the largest blur kernel is 2**bloomCount*size). A count of 1 is just the original blur.")
+    param.setHelp("Количество ядер размытия в фильтре bloom. По умолчанию значение 5. Более высокие значения дают более широкий или тяжелый хвост. Значение, равное 1, соответствует исходному размытию.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.iterations = param
     del param
 
-    param = lastNode.createChoiceParam("Bloomfilter", "Filter")
+    param = lastNode.createChoiceParam("Bloomfilter", "Фильтр")
 
     # Add the param to the group, no need to add it to the page
     lastNode.glowEffect.addParam(param)
 
     # Set param properties
-    param.setHelp("Bluring filter. The quasi-Gaussian filter should be appropriate in most cases. The Gaussian filter is more isotropic (its impulse response has rotational symmetry), but slower.\nQuadratic might also look a bit better, but it is slower, too.")
+    param.setHelp("Фильтр затуманивания. В большинстве случаев следует использовать квазигауссовский фильтр. Гауссов фильтр более изотропен, но медленнее. Квадратичный фильтр также может выглядеть немного лучше, но он и медленнее.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(False)
     lastNode.Bloomfilter = param
     del param
 
-    param = lastNode.createDoubleParam("stretch", "Stretch")
+    param = lastNode.createDoubleParam("stretch", "Растяжка")
     param.setMinimum(0, 0)
     param.setMaximum(1, 0)
     param.setDisplayMinimum(0, 0)
@@ -221,13 +221,13 @@ def createInstance(app,group):
     lastNode.glowEffect.addParam(param)
 
     # Set param properties
-    param.setHelp("Stretch the glow!\n\n0 -> uniform proportions\n1 -> blur only in one direction")
+    param.setHelp("Протянуть сияние!\n\n0 -> однородные пропорции\n1 -> размытие только в одном направлении")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.stretch = param
     del param
 
-    param = lastNode.createDoubleParam("rotate", "Rotate")
+    param = lastNode.createDoubleParam("rotate", "Вращение")
     param.setMinimum(-2147483648, 0)
     param.setMaximum(2147483647, 0)
     param.setDisplayMinimum(-360, 0)
@@ -237,13 +237,13 @@ def createInstance(app,group):
     lastNode.glowEffect.addParam(param)
 
     # Set param properties
-    param.setHelp("This will rotate your stretched glow. If \"Stretch\" is 0 it won\'t have any effect.")
+    param.setHelp("Это изменит направление вашего растянутого свечения. Если Растяжка 0, не будет иметь никакого эффекта.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.rotate = param
     del param
 
-    param = lastNode.createSeparatorParam("separator1", "")
+    param = lastNode.createSeparatorParam("разделитель1", "")
 
     # Add the param to the group, no need to add it to the page
     lastNode.glowEffect.addParam(param)
@@ -273,7 +273,7 @@ def createInstance(app,group):
     lastNode.postgradeLabel = param
     del param
 
-    param = lastNode.createColorParam("PostGradeMasterGain", "Gain", True)
+    param = lastNode.createColorParam("PostGradeMasterGain", "Зерно", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0, 0)
@@ -308,7 +308,7 @@ def createInstance(app,group):
     lastNode.PostGradeMasterGain = param
     del param
 
-    param = lastNode.createColorParam("PostGradeMasterGamma", "Gamma", True)
+    param = lastNode.createColorParam("PostGradeMasterGamma", "Гамма", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0.2, 0)
@@ -343,7 +343,7 @@ def createInstance(app,group):
     lastNode.PostGradeMasterGamma = param
     del param
 
-    param = lastNode.createColorParam("PostGradeMasterSaturation", "Saturation", True)
+    param = lastNode.createColorParam("PostGradeMasterSaturation", "Насыщенность", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0, 0)
@@ -378,7 +378,7 @@ def createInstance(app,group):
     lastNode.PostGradeMasterSaturation = param
     del param
 
-    param = lastNode.createSeparatorParam("separator2", "")
+    param = lastNode.createSeparatorParam("разделитель2", "")
 
     # Add the param to the group, no need to add it to the page
     lastNode.glowEffect.addParam(param)
@@ -391,7 +391,7 @@ def createInstance(app,group):
     lastNode.separator2 = param
     del param
 
-    param = lastNode.createGroupParam("options", "Options")
+    param = lastNode.createGroupParam("options", "Опции")
 
     # Add the param to the page
     lastNode.controls.addParam(param)
@@ -404,19 +404,19 @@ def createInstance(app,group):
     lastNode.options = param
     del param
 
-    param = lastNode.createBooleanParam("screen", "Screen")
+    param = lastNode.createBooleanParam("screen", "Экран")
 
     # Add the param to the group, no need to add it to the page
     lastNode.options.addParam(param)
 
     # Set param properties
-    param.setHelp("If checked, the bloomed image will be screened on top of the input image. This helps to preserve the highlights in your image.\n\nBy default it is added on top of the imput image. (plus)")
+    param.setHelp("Увеличенное изображение будет отображаться поверх входного изображения. Это помогает сохранить блики на вашем изображении. По умолчанию они добавляются поверх исходного изображения.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.screen = param
     del param
 
-    param = lastNode.createBooleanParam("addInput", "Add Input")
+    param = lastNode.createBooleanParam("addInput", "Добавить вход")
 
     # Add the param to the group, no need to add it to the page
     lastNode.options.addParam(param)
@@ -428,37 +428,37 @@ def createInstance(app,group):
     lastNode.addInput = param
     del param
 
-    param = lastNode.createBooleanParam("glowOnly", "Glow Only")
+    param = lastNode.createBooleanParam("glowOnly", "Только свечение")
 
     # Add the param to the group, no need to add it to the page
     lastNode.options.addParam(param)
 
     # Set param properties
-    param.setHelp("The output will only be the glow effect itself.\n\nYou can add it on top of your source with a plus-merge or a screen-merge, later.")
+    param.setHelp("Результатом будет только сам эффект свечения. Позже вы можете добавить его поверх своего источника с помощью слияния с плюсом или слияния с экраном.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.glowOnly = param
     del param
 
-    param = lastNode.createBooleanParam("expRoD", "expand RoD")
+    param = lastNode.createBooleanParam("expRoD", "расширить RoD")
 
     # Add the param to the group, no need to add it to the page
     lastNode.options.addParam(param)
 
     # Set param properties
-    param.setHelp("By default the Region of Definition (RoD) will be cropped to the input RoD.\nUse this option, if you want the glow effect to be available even outside your input format, and thus being not cropped.\nAs the blur sizes of the bloom node can get very big, this may lead to a very big RoD! Especially, if you use a lot of iterations.")
+    param.setHelp("По умолчанию область определения (RoD) будет обрезана до размера входного RoD. Используйте эту опцию, если вы хотите, чтобы эффект свечения был доступен даже вне входного формата и, следовательно, не обрезается.\nПоскольку размытые размеры узла цветов могут стать очень большими, это может привести к очень большому RoD! Особенно, если вы используете много итераций.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.expRoD = param
     del param
 
-    param = lastNode.createBooleanParam("alpha", "apply on alpha ")
+    param = lastNode.createBooleanParam("alpha", "применить на альфа ")
 
     # Add the param to the group, no need to add it to the page
     lastNode.options.addParam(param)
 
     # Set param properties
-    param.setHelp("Controls if the glow is applied to the alpha channel, too.")
+    param.setHelp("Контролирует, будет ли свечение применено и к альфа-каналу.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.alpha = param

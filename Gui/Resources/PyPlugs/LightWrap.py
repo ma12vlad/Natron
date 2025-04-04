@@ -31,7 +31,7 @@ def getGrouping():
     return "Draw"
 
 def getPluginDescription():
-    return "LightWrap помогает создать композицию объектов на ярком фоне, имитируя отражения от фонового света на переднем плане по его краям. На входе A отображается изображение переднего плана и его матовость, а на входе B - фон, который будет использоваться для создания эффекта обертывания.\n\П На выходе LightWrap должно получиться быть наложенным на фон, чтобы получить окончательную композицию."
+    return "LightWrap помогает создать композицию объектов на ярком фоне, имитируя отражения от фонового света на переднем плане по его краям. На входе A отображается изображение переднего плана и его матовость, а на входе B - фон, который будет использоваться для создания эффекта обертывания.\nНа выходе LightWrap должно получиться быть наложенным на фон, чтобы получить окончательную композицию."
 
 def createInstance(app,group):
     # Create all nodes in the group
@@ -147,7 +147,7 @@ def createInstance(app,group):
     lastNode.controlsPage.addParam(param)
 
     # Set param properties
-    param.setHelp("Border conditions of the blur applied to the alpha channel of the foreground (i.e. the foreground matte). Use \"Black\" in most cases, and \"Nearest\" if the foreground matte should be extended beyond image borders when it touches them.")
+    param.setHelp("Граничные условия размытия, применяемые к альфа-каналу переднего плана. В большинстве случаев используйте черный цвет, и лучше всего, если матовый цвет переднего плана должен выходить за границы изображения, когда он касается их.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(False)
     lastNode.fgblurBoundary = param

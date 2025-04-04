@@ -28,7 +28,7 @@ def getGrouping():
     return "Filter"
 
 def getPluginDescription():
-    return "Creates a mask from a depth buffer by specifying the center value and the amplitude of the range around it with the tightness parameter"
+    return "Создает маску из буфера глубины, задавая центральное значение и амплитуду диапазона вокруг него с помощью параметра плотности"
 
 def createInstance(app,group):
     # Create all nodes in the group
@@ -37,8 +37,8 @@ def createInstance(app,group):
     lastNode = group
 
     # Create the user parameters
-    lastNode.controls = lastNode.createPageParam("controls", "Controls")
-    param = lastNode.createBooleanParam("zPicking", "Z picking")
+    lastNode.controls = lastNode.createPageParam("controls", "Управление")
+    param = lastNode.createBooleanParam("zPicking", "Z отбор")
 
     # Add the param to the page
     lastNode.controls.addParam(param)
@@ -50,7 +50,7 @@ def createInstance(app,group):
     lastNode.zPicking = param
     del param
 
-    param = lastNode.createColorParam("centerValue", "Center Value", False)
+    param = lastNode.createColorParam("centerValue", "Центральное значение", False)
     param.setMinimum(-2147483648, 0)
     param.setMaximum(2147483647, 0)
     param.setDisplayMinimum(0, 0)
@@ -80,7 +80,7 @@ def createInstance(app,group):
     lastNode.centerValue = param
     del param
 
-    param = lastNode.createColorParam("tightness", "Tightness", True)
+    param = lastNode.createColorParam("tightness", "Теснота", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0, 0)
@@ -115,7 +115,7 @@ def createInstance(app,group):
     lastNode.tightness = param
     del param
 
-    param = lastNode.createColorParam("contrast", "Contrast", True)
+    param = lastNode.createColorParam("contrast", "Контраст", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0, 0)
@@ -150,7 +150,7 @@ def createInstance(app,group):
     lastNode.contrast = param
     del param
 
-    param = lastNode.createColorParam("offset", "Offset", True)
+    param = lastNode.createColorParam("offset", "Смещение", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(-200, 0)
@@ -177,7 +177,7 @@ def createInstance(app,group):
     lastNode.offset = param
     del param
 
-    param = lastNode.createColorParam("gamma", "Gamma", True)
+    param = lastNode.createColorParam("gamma", "Гамма", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0.2, 0)
@@ -212,7 +212,7 @@ def createInstance(app,group):
     lastNode.gamma = param
     del param
 
-    param = lastNode.createBooleanParam("invertGradient", "Invert Gradient")
+    param = lastNode.createBooleanParam("invertGradient", "Инверт градиент")
 
     # Add the param to the page
     lastNode.controls.addParam(param)
@@ -224,7 +224,7 @@ def createInstance(app,group):
     lastNode.invertGradient = param
     del param
 
-    param = lastNode.createChoiceParam("Source_channels", "Source Layer")
+    param = lastNode.createChoiceParam("Source_channels", "Исходный слой")
     param.setDefaultValue(1)
     param.restoreDefaultValue()
 
@@ -238,7 +238,7 @@ def createInstance(app,group):
     lastNode.Source_channels = param
     del param
 
-    param = lastNode.createChoiceParam("channels", "Output Layer")
+    param = lastNode.createChoiceParam("channels", "Выходной слой")
     param.setDefaultValue(1)
     param.restoreDefaultValue()
 

@@ -31,7 +31,7 @@ def getGrouping():
     return "Filter"
 
 def getPluginDescription():
-    return "Remap Z-Depth pass according to a close limit value and a far limit"
+    return "Переназначьте проход Z-глубины в соответствии со значением ближнего предела и дальнего предела"
 
 def createInstance(app,group):
     # Create all nodes in the group
@@ -40,8 +40,8 @@ def createInstance(app,group):
     lastNode = group
 
     # Create the user parameters
-    lastNode.controls = lastNode.createPageParam("controls", "Controls")
-    param = lastNode.createBooleanParam("zPicking", "Z Picking mode")
+    lastNode.controls = lastNode.createPageParam("controls", "Управление")
+    param = lastNode.createBooleanParam("zPicking", "Z Режим отбора")
 
     # Add the param to the page
     lastNode.controls.addParam(param)
@@ -53,7 +53,7 @@ def createInstance(app,group):
     lastNode.zPicking = param
     del param
 
-    param = lastNode.createColorParam("closeLimit", "Close Limit", True)
+    param = lastNode.createColorParam("closeLimit", "Закрытый предел", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0, 0)
@@ -75,13 +75,13 @@ def createInstance(app,group):
     lastNode.controls.addParam(param)
 
     # Set param properties
-    param.setHelp("Define the Z value remapped to white.")
+    param.setHelp("Определите значение Z, переназначенное на белый.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.closeLimit = param
     del param
 
-    param = lastNode.createColorParam("farLimit", "Far Limit", True)
+    param = lastNode.createColorParam("farLimit", "Дальний предел", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0, 0)
@@ -117,7 +117,7 @@ def createInstance(app,group):
     lastNode.farLimit = param
     del param
 
-    param = lastNode.createColorParam("gamma", "Gamma", True)
+    param = lastNode.createColorParam("gamma", "Гамма", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0.2, 0)
@@ -153,7 +153,7 @@ def createInstance(app,group):
     lastNode.gamma = param
     del param
 
-    param = lastNode.createBooleanParam("invertGradient", "Invert Gradient")
+    param = lastNode.createBooleanParam("invertGradient", "Инверт градиент")
 
     # Add the param to the page
     lastNode.controls.addParam(param)
@@ -165,7 +165,7 @@ def createInstance(app,group):
     lastNode.invertGradient = param
     del param
 
-    param = lastNode.createChoiceParam("Source_channels", "Source Layer")
+    param = lastNode.createChoiceParam("Source_channels", "Исходный слой")
     param.setDefaultValue(1)
     param.restoreDefaultValue()
 
@@ -179,7 +179,7 @@ def createInstance(app,group):
     lastNode.Source_channels = param
     del param
 
-    param = lastNode.createChoiceParam("channels", "Output Layer")
+    param = lastNode.createChoiceParam("channels", "Выходной слой")
     param.setDefaultValue(1)
     param.restoreDefaultValue()
 

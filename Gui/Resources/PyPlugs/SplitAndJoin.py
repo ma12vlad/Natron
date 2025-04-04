@@ -23,7 +23,7 @@ def getGrouping():
     return "Views"
 
 def getPluginDescription():
-    return "Automatically creates a one-view for each view in the project after the selected node and joins them."
+    return "Автоматически создает по одному виду для каждого вида в проекте после выбранного узла и объединяет их."
 
 def createInstance(app,group):
     #Since this is a toolset, group will be set to None
@@ -31,17 +31,17 @@ def createInstance(app,group):
     views = app.getViewNames();
     nbviews = len(views)
     if nbviews <= 1:
-        natron.warningDialog("Split and Join","The project must contain at least 2 views")
+        natron.warningDialog("Split and Join","Проект должен содержать как минимум 2 вида")
         return
     
     selectedNodes = app.getSelectedNodes();
     if len(selectedNodes) != 1:
-        natron.warningDialog("Split and Join","You must select exactly one node")
+        natron.warningDialog("Split and Join","Вы должны выбрать только один узел")
         return
 
     selNode = selectedNodes[0]
     if selNode.isOutputNode():
-        natron.warningDialog("Split and Join","The selected node must not be a viewer or an output node")
+        natron.warningDialog("Split and Join","Выбранный узел не должен быть узлом просмотра или вывода")
         return
 
     selectedNodePosition = selNode.getPosition()

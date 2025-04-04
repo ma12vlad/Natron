@@ -31,7 +31,7 @@ def getGrouping():
     return "Filter"
 
 def getPluginDescription():
-    return "Creates a drop shadow on the source image using its alpha channel."
+    return "Создает тень на исходном изображении, используя его альфа-канал."
 
 def createInstance(app,group):
     # Create all nodes in the group
@@ -40,8 +40,8 @@ def createInstance(app,group):
     lastNode = group
 
     # Create the user parameters
-    lastNode.controls = lastNode.createPageParam("controls", "Controls")
-    param = lastNode.createDoubleParam("shadowAngle", "Angle")
+    lastNode.controls = lastNode.createPageParam("controls", "Управление")
+    param = lastNode.createDoubleParam("shadowAngle", "Угол")
     param.setMinimum(-2147483648, 0)
     param.setMaximum(2147483647, 0)
     param.setDisplayMinimum(-360, 0)
@@ -59,7 +59,7 @@ def createInstance(app,group):
     lastNode.shadowAngle = param
     del param
 
-    param = lastNode.createDoubleParam("shadowDist", "Distance")
+    param = lastNode.createDoubleParam("shadowDist", "Расстояние")
     param.setMinimum(-2147483648, 0)
     param.setMaximum(2147483647, 0)
     param.setDisplayMinimum(0, 0)
@@ -77,7 +77,7 @@ def createInstance(app,group):
     lastNode.shadowDist = param
     del param
 
-    param = lastNode.createDouble2DParam("shadowBlur", "Bluriness")
+    param = lastNode.createDouble2DParam("shadowBlur", "Размытость")
     param.setMinimum(0, 0)
     param.setMaximum(1000, 0)
     param.setDisplayMinimum(0, 0)
@@ -97,7 +97,7 @@ def createInstance(app,group):
     lastNode.shadowBlur = param
     del param
 
-    param = lastNode.createColorParam("shadowOpacity", "Opacity", True)
+    param = lastNode.createColorParam("shadowOpacity", "Непрозрачность", True)
     param.setMinimum(-1.79769e+308, 0)
     param.setMaximum(1.79769e+308, 0)
     param.setDisplayMinimum(0, 0)
@@ -133,7 +133,7 @@ def createInstance(app,group):
     lastNode.shadowOpacity = param
     del param
 
-    param = lastNode.createColorParam("shadowColor", "Color", False)
+    param = lastNode.createColorParam("shadowColor", "Цвет", False)
     param.setMinimum(-2147483648, 0)
     param.setMaximum(2147483647, 0)
     param.setDisplayMinimum(0, 0)
@@ -157,7 +157,7 @@ def createInstance(app,group):
     lastNode.shadowColor = param
     del param
 
-    param = lastNode.createBooleanParam("shadowCFS", "Color from source")
+    param = lastNode.createBooleanParam("shadowCFS", "Цвет из источника")
 
     # Add the param to the page
     lastNode.controls.addParam(param)
@@ -169,7 +169,7 @@ def createInstance(app,group):
     lastNode.shadowCFS = param
     del param
 
-    param = lastNode.createBooleanParam("shadowOnly", "Shadow only")
+    param = lastNode.createBooleanParam("shadowOnly", "Только тень")
 
     # Add the param to the page
     lastNode.controls.addParam(param)

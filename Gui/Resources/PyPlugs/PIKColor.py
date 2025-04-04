@@ -31,7 +31,7 @@ def getGrouping():
     return "Keyer"
 
 def getPluginDescription():
-    return "This node provides the PIK per-pixel keyer a pseudo clean-plate to be used as color reference.\nThe idea is to remove the foreground image and only leave the shades and hues of the original blue/greenscreen.\nAttach the output of this node to the \'C\' input of a PIK node. Attach the input of this node and the \'PFg\' input of PIK to the original screen, or preferably the denoised screen.\nPick which color your screen type is in both nodes and then while viewing the alpha output from PIK lower the darks.b (if a bluescreen - adjust darks.g if a greenscreen) in this node until you see a change in the garbage area of the matte. Once you see a change then you have gone too far -back off a step. If you are still left with discolored edges you can use the other colors in the lights and darks to eliminate them. Remember the idea is to be left with the original shades of the screen and the foreground blacked out. While swapping between viewing the matte from the PIK and the rgb output of PIKColor adjust the other colors until you see a change in the garbage area of the matte. Simple rule of thumb - if you have a light red discolored area increase the lights.r - if you have a dark green discolored area increase darks.g. If your screen does not have a very saturated hue you may still be left with areas of discoloration after the above process. The \'erode\' slider can help with this - while viewing the rgb output adjust the erode until those areas disappear.\nThe \'Patch Black\' slider allows you to fill in the black areas with screen color. This is not always necessary but if you see blue squares in your composite increase this value and it\'ll fix it.\nThe optional \'InM\' input can be used to provide an inside mask (a.k.a. core matte or holdout matte), which is excluded from the clean plate. If an inside mask is fed into the Keyer (PIK or another Keyer), the same inside mask should be fed inside PIKColor.\nThe above is the only real workflow for this node - working from the top parameter to the bottom parameter- going back to tweak darks/lights with \'erode\' and \'patch black\' activated is not really going to work."
+    return "Узел предоставляет ключу PIK per-pixel псевдочистку, которая будет использоваться как эталон цвета. Идея состоит в том, чтобы удалить изображение переднего плана и использовать только оставьте оттенки исходного синего/зеленого экрана. Присоедините выходные данные этого узла к входным данным C узла PIK. Подключите входные данные этого узла и PFg-входные данные PIK к исходному экрану или, предпочтительно, к экрану без шума.Выберите цвет вашего экрана введите в обоих узлах, а затем при просмотре альфа-вывода из PIK уменьшите затемнение.b (если синий экран) в этом перемещайте узел до тех пор, пока не увидите изменения в области мусора на матовой поверхности. Как только вы увидите изменения, значит, вы зашли слишком далеко - отступите на шаг. Если у вас все еще остаются обесцвеченные края, вы можете использовать другие цвета в светлых и темных тонах, чтобы устранить их. Помните, что идея состоит в том, чтобы сохранить оригинальные оттенки экрана и затемнить передний план. Переключаясь между просмотром матового изображения в PIK и выводом rgb в PIKColor, отрегулируйте другие цвета, пока не увидите изменения в мусоре область матирования. Простое эмпирическое правило - если у вас есть светло-красная обесцвеченная область, увеличьте яркость.r - если у вас есть темно-зеленая обесцвеченная область, увеличьте затемнение.g. Если ваш экран имеет не очень насыщенный оттенок, после описанного выше процесса на нем все равно могут остаться участки с обесцвечиванием. В этом может помочь ползунок удалить - при просмотре выходного сигнала rgb отрегулируйте удалить, пока эти области не исчезнут.Ползунок Исправить черный позволяет вам заполнить черные области цветом экрана. Это не всегда необходимо, но если вы видите синие квадраты в вашем композите, увеличьте это значение, и это исправит ситуацию. Необязательный ввод 'InM' может быть используется для создания внутренней маски (также известной как матовая основа), которая не попадает на чистую пластину. Если в PIK введена внутренняя маска, то такая же внутренняя маска должна быть введена в PIKColor.Приведенное выше является единственным реальным рабочий процесс для этого узла - переход от верхнего параметра к нижнему - переход к настройке темных/светлых оттенков с помощью erode и patch black активация на самом деле не сработает."
 
 def createInstance(app,group):
     # Create all nodes in the group
@@ -40,8 +40,8 @@ def createInstance(app,group):
     lastNode = group
 
     # Create the user parameters
-    lastNode.controls = lastNode.createPageParam("controls", "Controls")
-    param = lastNode.createChoiceParam("screenType", "Screen Type")
+    lastNode.controls = lastNode.createPageParam("controls", "Управление")
+    param = lastNode.createChoiceParam("screenType", "Тип экрана")
     entries = [ ("Green", ""),
     ("Blue", "")]
     param.setOptions(entries)
@@ -59,7 +59,7 @@ def createInstance(app,group):
     lastNode.screenType = param
     del param
 
-    param = lastNode.createDoubleParam("size", "Size")
+    param = lastNode.createDoubleParam("size", "Размер")
     param.setMinimum(0, 0)
     param.setDisplayMinimum(0, 0)
     param.setDisplayMaximum(100, 0)
@@ -76,7 +76,7 @@ def createInstance(app,group):
     lastNode.size = param
     del param
 
-    param = lastNode.createColorParam("off", "Darks", False)
+    param = lastNode.createColorParam("off", "Темнота", False)
     param.setDisplayMinimum(-1, 0)
     param.setDisplayMaximum(1, 0)
     param.setDisplayMinimum(-1, 1)
@@ -88,13 +88,13 @@ def createInstance(app,group):
     lastNode.controls.addParam(param)
 
     # Set param properties
-    param.setHelp("adjust the color values to get the best separation between black and the screen type color.\nYou want to be left with only shades of the screen color and black. \nIf a green screen is selected start by bringing down darks->green\nIf a blue screen is selected start by bringing down darks->blue")
+    param.setHelp("отрегулируйте значения цветов, чтобы добиться наилучшего разделения между черным и цветом экрана. \nВы хотите, чтобы на экране оставались только оттенки цвета экрана и черный. Если выбран зеленый экран, начните с уменьшения затемнения-> зелёный, если выбран синий экран, начните с уменьшения затемнения-> синий.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.off = param
     del param
 
-    param = lastNode.createColorParam("mult", "Lights", False)
+    param = lastNode.createColorParam("mult", "Свет", False)
     param.setMinimum(0, 0)
     param.setDisplayMinimum(0, 0)
     param.setDisplayMaximum(2, 0)
@@ -115,7 +115,7 @@ def createInstance(app,group):
     lastNode.controls.addParam(param)
 
     # Set param properties
-    param.setHelp("adjust the color values to get the best separation between black and the screen type color.\nYou want to be left with only shades of the screen color and black. \nIf a green screen is selected start by bringing down darks->green\nIf a blue screen is selected start by bringing down darks->blue")
+    param.setHelp("отрегулируйте значения цветов, чтобы добиться наилучшего разделения между черным и цветом экрана.\nВы хотите, чтобы на экране оставались только оттенки цвета экрана и черный. \nЕсли выбран зеленый экран, начните с уменьшения затемнения-> зеленый, если выбран синий экран, начните с уменьшения затемнения-> синий.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.mult = param
@@ -134,7 +134,7 @@ def createInstance(app,group):
     lastNode.sep1 = param
     del param
 
-    param = lastNode.createDoubleParam("erode", "Erode")
+    param = lastNode.createDoubleParam("erode", "Разъедание")
     param.setMinimum(0, 0)
     param.setDisplayMinimum(0, 0)
     param.setDisplayMaximum(5, 0)
@@ -143,7 +143,7 @@ def createInstance(app,group):
     lastNode.controls.addParam(param)
 
     # Set param properties
-    param.setHelp("increase this value if you still see traces of the foreground edge color in the output")
+    param.setHelp("увеличьте это значение, если на выходе все еще видны следы цвета края переднего плана")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.erode = param
@@ -162,7 +162,7 @@ def createInstance(app,group):
     lastNode.sep2 = param
     del param
 
-    param = lastNode.createDoubleParam("multi", "Patch Black")
+    param = lastNode.createDoubleParam("multi", "Чёрный патч")
     param.setMinimum(0, 0)
     param.setDisplayMinimum(0, 0)
     param.setDisplayMaximum(5, 0)
@@ -171,13 +171,13 @@ def createInstance(app,group):
     lastNode.controls.addParam(param)
 
     # Set param properties
-    param.setHelp("Increase this to optionally remove the black from the output.\nThis should only be used once the the above darks/lights have been set.")
+    param.setHelp("Увеличьте это значение, чтобы при необходимости убрать черный цвет с выходного сигнала.\nЭто следует использовать только после установки вышеуказанных значений затемнения/освещенности.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.multi = param
     del param
 
-    param = lastNode.createBooleanParam("filt", "Filter")
+    param = lastNode.createBooleanParam("filt", "Фильтр")
     param.setDefaultValue(True)
     param.restoreDefaultValue()
 
@@ -204,7 +204,7 @@ def createInstance(app,group):
     lastNode.sep3 = param
     del param
 
-    param = lastNode.createDoubleParam("level", "Level")
+    param = lastNode.createDoubleParam("level", "Уровень")
     param.setDisplayMinimum(0, 0)
     param.setDisplayMaximum(1, 0)
     param.setDefaultValue(1, 0)
@@ -214,7 +214,7 @@ def createInstance(app,group):
     lastNode.controls.addParam(param)
 
     # Set param properties
-    param.setHelp("multiply the rgb output. Helps remove noise from main key")
+    param.setHelp("Умножьте выход RGB. Помогает удалить шум из основного ключа")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.level = param

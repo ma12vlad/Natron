@@ -28,7 +28,7 @@ def getGrouping():
     return "Filter"
 
 def getPluginDescription():
-    return "Blur the image where there are edges in the alpha/matte channel."
+    return "Размытие изображения в тех местах, где есть края в альфа-канале/матовом канале."
 
 def createInstance(app,group):
     # Create all nodes in the group
@@ -37,7 +37,7 @@ def createInstance(app,group):
     lastNode = group
 
     # Create the user parameters
-    lastNode.controlsPage = lastNode.createPageParam("controlsPage", "Controls")
+    lastNode.controlsPage = lastNode.createPageParam("controlsPage", "Управление")
     param = lastNode.createBooleanParam("Blur1NatronOfxParamProcessR", "R")
     param.setDefaultValue(True)
     param.restoreDefaultValue()
@@ -94,19 +94,19 @@ def createInstance(app,group):
     lastNode.Blur1NatronOfxParamProcessA = param
     del param
 
-    param = lastNode.createBooleanParam("externalMatte", "External Matte")
+    param = lastNode.createBooleanParam("externalMatte", "Внешний матовый")
 
     # Add the param to the page
     lastNode.controlsPage.addParam(param)
 
     # Set param properties
-    param.setHelp("Use the edges from the Matte input instead of the alpha channel of the source image.")
+    param.setHelp("Используйте края из матового ввода вместо альфа-канала исходного изображения.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.externalMatte = param
     del param
 
-    param = lastNode.createDoubleParam("size", "Size")
+    param = lastNode.createDoubleParam("size", "Размер")
     param.setMinimum(0, 0)
     param.setDisplayMinimum(0, 0)
     param.setDisplayMaximum(100, 0)
@@ -123,7 +123,7 @@ def createInstance(app,group):
     lastNode.size = param
     del param
 
-    param = lastNode.createChoiceParam("filter", "Filter")
+    param = lastNode.createChoiceParam("filter", "Фильтр")
     param.setDefaultValue(4)
     param.restoreDefaultValue()
 
@@ -137,7 +137,7 @@ def createInstance(app,group):
     lastNode.filter = param
     del param
 
-    param = lastNode.createBooleanParam("cropToFormat", "Crop To Format")
+    param = lastNode.createBooleanParam("cropToFormat", "Обрезка по формату")
     param.setDefaultValue(True)
     param.restoreDefaultValue()
 
@@ -151,7 +151,7 @@ def createInstance(app,group):
     lastNode.cropToFormat = param
     del param
 
-    param = lastNode.createDoubleParam("edgeMult", "Edge Mult")
+    param = lastNode.createDoubleParam("edgeMult", "Множество рёбер")
     param.setMinimum(0, 0)
     param.setMaximum(2147483647, 0)
     param.setDisplayMinimum(0.1, 0)
@@ -163,13 +163,13 @@ def createInstance(app,group):
     lastNode.controlsPage.addParam(param)
 
     # Set param properties
-    param.setHelp("Sharpness of the borders of the blur area.")
+    param.setHelp("Резкость границ размытой области.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.edgeMult = param
     del param
 
-    param = lastNode.createBooleanParam("Merge1maskInvert", "Invert Mask")
+    param = lastNode.createBooleanParam("Merge1maskInvert", "Инвертировать маску")
 
     # Add the param to the page
     lastNode.controlsPage.addParam(param)
@@ -181,7 +181,7 @@ def createInstance(app,group):
     lastNode.Merge1maskInvert = param
     del param
 
-    param = lastNode.createDoubleParam("Blur1mix", "Mix")
+    param = lastNode.createDoubleParam("Blur1mix", "Микс")
     param.setMinimum(0, 0)
     param.setMaximum(1, 0)
     param.setDisplayMinimum(0, 0)

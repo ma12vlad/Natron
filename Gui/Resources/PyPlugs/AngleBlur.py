@@ -28,7 +28,7 @@ def getGrouping():
     return "Filter"
 
 def getPluginDescription():
-    return "The Angle Blur effect gives the illusion of motion in a given direction."
+    return "Эффект размытия под углом создает иллюзию движения в заданном направлении."
 
 def createInstance(app,group):
     # Create all nodes in the group
@@ -37,8 +37,8 @@ def createInstance(app,group):
     lastNode = group
 
     # Create the user parameters
-    lastNode.controls = lastNode.createPageParam("controls", "Controls")
-    param = lastNode.createDoubleParam("angleBlur_angle", "Angle")
+    lastNode.controls = lastNode.createPageParam("controls", "Управление")
+    param = lastNode.createDoubleParam("angleBlur_angle", "Угол")
     param.setMinimum(-2147483648, 0)
     param.setMaximum(2147483647, 0)
     param.setDisplayMinimum(-360, 0)
@@ -48,13 +48,13 @@ def createInstance(app,group):
     lastNode.controls.addParam(param)
 
     # Set param properties
-    param.setHelp("Determines the direction into which the image is blurred. This is an angle in degrees.")
+    param.setHelp("Определяет направление, в котором изображение будет размытым. Это угол в градусах.")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.angleBlur_angle = param
     del param
 
-    param = lastNode.createDoubleParam("angleBlur_distance", "Distance")
+    param = lastNode.createDoubleParam("angleBlur_distance", "Расстояние")
     param.setMinimum(-2147483648, 0)
     param.setMaximum(2147483647, 0)
     param.setDisplayMinimum(0, 0)
@@ -64,7 +64,7 @@ def createInstance(app,group):
     lastNode.controls.addParam(param)
 
     # Set param properties
-    param.setHelp("Determines how much the image will be blurred")
+    param.setHelp("Определяет, насколько изображение будет размыто")
     param.setAddNewLine(True)
     param.setAnimationEnabled(True)
     lastNode.angleBlur_distance = param

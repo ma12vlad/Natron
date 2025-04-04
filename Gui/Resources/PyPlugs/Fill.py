@@ -32,7 +32,7 @@ def getGrouping():
     return "Filter"
 
 def getPluginDescription():
-    return "Add a constant color on the source image where the alpha channel not 0. You can control the blending between the original image and the constant color with the operator and the mix factor."
+    return "Добавьте постоянный цвет к исходному изображению, где альфа-канал не равен 0. Вы можете управлять смешиванием исходного изображения с постоянным цветом с помощью оператора и коэффициента смешивания."
 
 def createInstance(app,group):
     # Create all nodes in the group
@@ -41,8 +41,8 @@ def createInstance(app,group):
     lastNode = group
 
     # Create the user parameters
-    lastNode.controls = lastNode.createPageParam("controls", "Controls")
-    param = lastNode.createColorParam("Solid1color", "Color", False)
+    lastNode.controls = lastNode.createPageParam("controls", "Управление")
+    param = lastNode.createColorParam("Solid1color", "Цвет", False)
     param.setMinimum(-2147483648, 0)
     param.setMaximum(2147483647, 0)
     param.setDisplayMinimum(0, 0)
@@ -66,7 +66,7 @@ def createInstance(app,group):
     lastNode.Solid1color = param
     del param
 
-    param = lastNode.createChoiceParam("Merge1operation", "Operation")
+    param = lastNode.createChoiceParam("Merge1operation", "Операция")
     param.setDefaultValue(28)
     param.restoreDefaultValue()
 
@@ -80,7 +80,7 @@ def createInstance(app,group):
     lastNode.Merge1operation = param
     del param
 
-    param = lastNode.createBooleanParam("Merge1enableMask_Mask", "Mask")
+    param = lastNode.createBooleanParam("Merge1enableMask_Mask", "Маска")
 
     # Add the param to the page
     lastNode.controls.addParam(param)
@@ -106,7 +106,7 @@ def createInstance(app,group):
     lastNode.Merge1maskChannel_Mask = param
     del param
 
-    param = lastNode.createBooleanParam("Merge1maskInvert", "Invert Mask")
+    param = lastNode.createBooleanParam("Merge1maskInvert", "Инверт Маску")
 
     # Add the param to the page
     lastNode.controls.addParam(param)
@@ -118,7 +118,7 @@ def createInstance(app,group):
     lastNode.Merge1maskInvert = param
     del param
 
-    param = lastNode.createDoubleParam("Merge1mix", "Mix")
+    param = lastNode.createDoubleParam("Merge1mix", "Микс")
     param.setMinimum(0, 0)
     param.setMaximum(1, 0)
     param.setDisplayMinimum(0, 0)
